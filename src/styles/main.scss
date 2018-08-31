@@ -1,0 +1,86 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~firacode/distr/fira_code.css";
+
+$spacerBig: 24px;
+
+html, body {
+    height: 100%;
+    font-feature-settings: "calt" 1;
+}
+
+.console {
+    min-height: 620px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, .4);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    
+    .top-bar {
+        display: block;
+        width: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+        color: black;
+        border-top: 1px #fff solid;
+        background-color: #a6a6a6;
+        background-image: linear-gradient(0deg, #e5e3e5 0%, #cfcecf 100%);
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        flex: 0 0 0;
+        position: relative;
+
+        .controls {
+            position: absolute;
+            display: block;
+            height: 100%;
+            padding: 2px 10px;
+            // border: 1px red dashed;
+
+            > div {
+                width: 15px;
+                height: 15px;
+                display: inline-block;
+                border-radius: 50%;
+                border: 1px black solid;
+
+                &.red {
+                    background-color: red;
+                }
+
+                &.yellow {
+                    background-color: yellow;
+                }
+
+                &.green {
+                    background-color: green;
+                }
+            }
+        }
+
+    }
+
+    .content {
+        font-family: "Fira Code", 'Courier New', Courier, monospace;
+        background: #323232;
+        color: #f1f1f1;
+        flex: 1 0;
+
+        .cursor {
+            width: 12px;
+            background: yellow;
+            display: inline-block;
+        }
+    }
+}
+
+.background {
+    &.gradient-1 {
+        background-color: #EECDA3;
+        background-image: linear-gradient(141deg, #EECDA3 0%,  #EF629F 75%);
+    }
+
+    &.gradient-2 {
+        background: #4B79A1;
+        background: linear-gradient(to right, #283E51, #4B79A1);
+    }
+}
