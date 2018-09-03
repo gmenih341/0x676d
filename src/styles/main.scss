@@ -2,6 +2,8 @@
 @import "~firacode/distr/fira_code.css";
 
 $spacerBig: 24px;
+$consoleBackground: #323232;
+$consoleFont: "Fira Code", 'Courier New', Courier, monospace;
 
 html, body {
     height: 100%;
@@ -60,8 +62,8 @@ html, body {
     }
 
     .content {
-        font-family: "Fira Code", 'Courier New', Courier, monospace;
-        background: #323232;
+        font-family: $consoleFont;
+        background: $consoleBackground;
         color: #f1f1f1;
         flex: 1 0;
 
@@ -69,6 +71,23 @@ html, body {
             width: 12px;
             background: yellow;
             display: inline-block;
+        }
+
+        .input {
+            
+            .prompt {
+                font-weight: bold;
+                color: red;
+                vertical-align: top;
+                margin-right: 5px;
+                float: left;
+            }
+
+            .text {
+                display: block;
+                white-space: normal;
+                caret-color: transparent;
+            }
         }
     }
 }

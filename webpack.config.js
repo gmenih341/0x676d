@@ -38,6 +38,13 @@ module.exports = {
                     outputPath: 'fonts/'
                 }
             }]
+        }, {
+            test: /\.clit$/,
+            use: [
+                {
+                    loader: resolve('./webpack/cli-text.loader.js'),
+                },
+            ]
         }]
     },
     plugins: [

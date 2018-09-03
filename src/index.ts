@@ -1,12 +1,11 @@
 import './styles/main.scss';
+import {TypingConsole} from './modules/typing-console.module';
+import test from './assets/test.clit';
 
-const consoleWindow: HTMLDivElement = <HTMLDivElement> document.getElementById('console');
-const fullText: string = 'Hello, World! My name is Gregor Menih\nI like to web do design.';
-let length = 0;
+const consoleWindow: HTMLDivElement = <HTMLDivElement> document.querySelector('#console .feed');
 
-setInterval(() => {
-    if (length >= fullText.length) {
-        return;
-    }
-    consoleWindow.innerHTML += fullText[length++];
-}, 100);
+const tc = new TypingConsole(test);
+
+tc.updaterInterval().subscribe((text: string) => {
+    consoleWindow.innerText = text;
+});
