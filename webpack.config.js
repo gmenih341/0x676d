@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const {resolve} = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-/** @type {webpack.Configuration} */
 module.exports = {
     entry: './src/index.ts',
     mode: 'development',
@@ -35,21 +34,24 @@ module.exports = {
                 loader: 'file-loader',
                 options: {
                     name: '[name].[ext]',
-                    outputPath: 'fonts/'
-                }
+                    outputPath: 'fonts/',
+                },
             }]
         }, {
-            test: /\.clit$/,
-            use: [
-                {
-                    loader: resolve('./webpack/cli-text.loader.js'),
+            test: /\.(jp(e)?g|png)$/,
+            use: [{
+                loader: 'file-loader',
+                options: {
+                    name: '[hash].[ext]',
+                    outputPath: 'images/',
                 },
-            ]
+            }]
         }]
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html',
+            inject: 'body',
         }),
     ],
 };

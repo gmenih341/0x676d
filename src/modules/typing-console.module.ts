@@ -1,4 +1,3 @@
-import {Component} from '../core/decorators/component.decorator';
 import {BehaviorSubject, timer, Observable, of} from 'rxjs';
 import {switchMap, startWith, tap, map} from 'rxjs/operators'
 

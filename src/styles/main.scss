@@ -1,105 +1,179 @@
-@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/bootstrap.scss";
 @import "~firacode/distr/fira_code.css";
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:300,400,50');
+@import "./fontello.scss";
 
-$spacerBig: 24px;
-$consoleBackground: #323232;
-$consoleFont: "Fira Code", 'Courier New', Courier, monospace;
+$spacerSmall: $spacer / 2;
+$spacer: 12px;
+$spacerBig: $spacer * 2;
 
-html, body {
+$jungle-green: #1F271B;
+$sapphire-blue: #19647E;
+$light-sea-green: #28AFB0;
+$marigold: #ECA72C;
+$white: #F2F4F3;
+
+$color-github: #000;
+$color-linkedin: #0077B5;
+$color-email: $marigold;
+
+$console-font: "Fira Code",
+"Courier New",
+Courier,
+monospace;
+$default-font: "Fira Sans Condensed",
+"Helvetica",
+"Arial",
+sans-serif;
+
+html,
+body {
     height: 100%;
-    font-feature-settings: "calt" 1;
+    font-family: $default-font;
 }
 
-.console {
-    min-height: 620px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, .4);
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    
-    .top-bar {
-        display: block;
-        width: 100%;
-        font-family: Arial, Helvetica, sans-serif;
-        text-align: center;
-        color: black;
-        border-top: 1px #fff solid;
-        background-color: #a6a6a6;
-        background-image: linear-gradient(0deg, #e5e3e5 0%, #cfcecf 100%);
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        flex: 0 0 0;
-        position: relative;
+a,
+a:visited,
+a:active,
+a:hover,
+a {
+    color: inherit;
+    text-decoration: none;
+}
 
-        .controls {
-            position: absolute;
-            display: block;
-            height: 100%;
-            padding: 2px 10px;
-            // border: 1px red dashed;
+.page-container {
+    background: $white;
 
-            > div {
-                width: 15px;
-                height: 15px;
-                display: inline-block;
-                border-radius: 50%;
-                border: 1px black solid;
+    header {
 
-                &.red {
-                    background-color: red;
-                }
-
-                &.yellow {
-                    background-color: yellow;
-                }
-
-                &.green {
-                    background-color: green;
-                }
-            }
+        .logo {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: $light-sea-green;
+            vertical-align: middle;
+            margin-right: $spacer;
+            transform: rotate(-5deg);
         }
 
+        h1 {
+            display: inline-block;
+            font-weight: 500;
+            vertical-align: middle;
+            margin: 0;
+        }
     }
 
-    .content {
-        font-family: $consoleFont;
-        background: $consoleBackground;
-        color: #f1f1f1;
-        flex: 1 0;
+    .console {
+        min-height: 620px;
+        box-shadow: 2px 2px 8px rgba(0, 0, 0, .4);
+        padding: 0;
+        display: flex;
+        font-feature-settings: "calt"1;
+        flex-direction: column;
 
-        .cursor {
-            width: 12px;
-            background: yellow;
-            display: inline-block;
+        .top-bar {
+            display: block;
+            width: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            color: black;
+            border-top: 1px $white solid;
+            background-color: #a6a6a6;
+            background-image: linear-gradient(0deg, #e5e3e5 0%, #cfcecf 100%);
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            flex: 0 0 0;
         }
 
-        .input {
-            
-            .prompt {
-                font-weight: bold;
-                color: red;
-                vertical-align: top;
-                margin-right: 5px;
-                float: left;
+        .content {
+            font-family: $console-font;
+            background: $jungle-green;
+            color: $white;
+            max-height: 900px;
+            overflow-y: scroll;
+            flex: 1 0;
+
+            .cursor {
+                width: 12px;
+                background: yellow;
+                display: inline-block;
             }
 
-            .text {
-                display: block;
-                white-space: normal;
-                caret-color: transparent;
+            .input {
+
+                .prompt {
+                    font-weight: bold;
+                    color: $marigold;
+                    vertical-align: top;
+                    margin-right: 5px;
+                    float: left;
+                }
+
+                .text {
+                    display: block;
+                    white-space: normal;
+                    caret-color: transparent;
+                }
+            }
+        }
+    }
+}
+
+.social-icons {
+    a.icon {
+        margin: 0 $spacer;
+        color: $jungle-green;
+        opacity: .3;
+        font-size: .9em;
+        font-weight: 500;
+        transition: color 300ms linear, opacity 420ms ease-out;
+        vertical-align: middle;
+        padding: $spacerSmall;
+
+        @media screen and (max-width: 575px){
+            display: block;
+        }
+
+        &:before {
+            font-size: 1.5em;
+            vertical-align: middle;
+            margin-right: $spacerSmall;
+        }
+
+        &:hover {
+            opacity: 1;
+
+            &.icon-github {
+                color: $color-github;
+            }
+
+            &.icon-linkedin {
+                color: $color-linkedin;
+            }
+
+            &.icon-at {
+                color: $color-email;
             }
         }
     }
 }
 
 .background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 40vh;
+    display: block;
+
     &.gradient-1 {
-        background-color: #EECDA3;
-        background-image: linear-gradient(141deg, #EECDA3 0%,  #EF629F 75%);
+        background-color: #d38312;
+        background-image: linear-gradient(141deg, #f09819, #edde5d);
     }
 
     &.gradient-2 {
-        background: #4B79A1;
-        background: linear-gradient(to right, #283E51, #4B79A1);
+        background: #2c3e50;
+        background: linear-gradient(45deg, #525252 30%, #3498db);
     }
 }
