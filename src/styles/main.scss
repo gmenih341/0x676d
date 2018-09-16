@@ -108,6 +108,10 @@ a {
                     vertical-align: top;
                     margin-right: 5px;
                     float: left;
+                    
+                    .path {
+                        color: $light-sea-green;
+                    }
                 }
 
                 .text {
