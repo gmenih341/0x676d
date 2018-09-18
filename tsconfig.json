@@ -10,7 +10,6 @@
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
-    "noImplicitThis": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "lib": ["es2015", "es2017", "dom"],

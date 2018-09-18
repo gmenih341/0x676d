@@ -26,6 +26,9 @@ module.exports = {
             test: /\.(sass|scss)$/,
             use: [{
                     loader: MiniCssExtractPlugin.loader,
+                    options: {
+                        minify: true,
+                    }
                 },
                 'css-loader',
                 'sass-loader'
@@ -53,7 +56,11 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html',
-            minify: true,
+            minify: {
+                collapseWhitespace: true,
+                preserveLineBreaks: false,
+                html5: true,
+            },
             inject: 'body',
         }),
         new MiniCssExtractPlugin({
