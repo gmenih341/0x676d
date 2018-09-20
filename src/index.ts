@@ -75,5 +75,4 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     const scrollController: ScrollController = new ScrollController(container);
     scrollController.start();
-    scrollController.debug();
 });

@@ -1,14 +1,12 @@
 import {Observable, fromEvent, BehaviorSubject} from 'rxjs';
 import {tap} from 'rxjs/operators';
-import {throttle, debounce} from '../utils/function.utils';
+import {debounce} from '../utils/function.utils';
 import {scrollSmoothly} from '../utils/scroll.utils';
-
-const db = (...args: any[]) => console.log('Debug:', ...args);
 
 export class ScrollController {
     private $scroll: Observable<WheelEvent>;
-    private $activePage: BehaviorSubject<number> = new BehaviorSubject(0);
-
+    
+    private activePage: number = 0;
     private pageCount: number = 0;
     private targetPosition: number = 0;
     private windowHeight: number = 0;
@@ -16,7 +14,7 @@ export class ScrollController {
 
     private isNativeScrolling: boolean = false;
     private isAutoScrolling: boolean = false;
-    private scrollBreakpoint: number = 0.19;
+    private scrollBreakpoint: number = 0.33;
     
     constructor (private scroller: HTMLElement) {
         this.$scroll = fromEvent<WheelEvent>(window, 'scroll');
@@ -27,7 +25,6 @@ export class ScrollController {
     }
 
     public start (): void {
-        const onScrollStart: Function = throttle(this.onScrollStart, 80, this);
         const onScrollEnd: Function = debounce(this.onScrollEnd, 80, this);
 
         this.$scroll
@@ -39,48 +36,20 @@ export class ScrollController {
                     const currentPosition: number = window.pageYOffset;
                     const scrollOffset: number = currentPosition - this.targetPosition;
                     const percentage: number = scrollOffset / this.windowHeight;
-                    this.scroller.scrollTop = (this.$activePage.getValue() * this.scrollHeight) + (this.scrollHeight * percentage);
+                    this.scroller.scrollTop = (this.activePage * this.scrollHeight) + (this.scrollHeight * percentage);
                     if (currentPosition >= this.targetPosition + (this.windowHeight * this.scrollBreakpoint)) {
-                        db('Going down');
                         this.isAutoScrolling = true;
-                        this.nextPage();
+                        this.changePage(1);
 
                     } else if (currentPosition <= this.targetPosition - (this.windowHeight * this.scrollBreakpoint)) {
-                        db('Going up');
                         this.isAutoScrolling = true;
-                        this.prevPage();
+                        this.changePage(-1);
                     }
                 }),
                 tap(() => {
-                    onScrollStart();
                     onScrollEnd();
                 }),
             ).subscribe();
-
-            this.$activePage.subscribe((value: number) => {
-                console.log(value);
-                this.targetPosition = this.windowHeight * value;
-            })
-    }
-
-   
-    public debug(): void {
-        const el: HTMLDivElement | null = document.querySelector('#debug>.text');
-        if (el) {
-            const frame = () => {
-                el.innerText = `
-                NS: ${this.isNativeScrolling}
-                AS: ${this.isAutoScrolling}
-                TR: ${this.targetPosition}
-                AP: ${this.$activePage.getValue()}`;
-                window.requestAnimationFrame(frame);
-            };
-            frame();
-        }
-    }
-
-    private onScrollStart (): void {
-        // this.isAutoScrolling = true;
     }
 
     private onScrollEnd (): void {
@@ -89,14 +58,10 @@ export class ScrollController {
         this.scrollTo(this.targetPosition);
     }
 
-    private nextPage (): void {
-        this.$activePage.next(this.$activePage.getValue() + 1);
-        scrollSmoothly(this.scroller, (this.scrollHeight * (this.$activePage.getValue())), 100);
-    }
-
-    private prevPage (): void {
-        this.$activePage.next(this.$activePage.getValue() - 1);
-        scrollSmoothly(this.scroller, (this.scrollHeight * (this.$activePage.getValue())), 100);
+    private changePage (value: number): void {
+        const newPage: number = (this.activePage += value);
+        this.targetPosition = newPage * this.windowHeight;
+        scrollSmoothly(this.scroller, newPage * this.scrollHeight, 240);
     }
 
     private scrollTo (position: number) {
