@@ -1,0 +1,133 @@
+import {Observable, fromEvent, Subject, of, BehaviorSubject} from 'rxjs';
+import {throttle, debounce} from '../utils/function.utils';
+import {tap, startWith} from 'rxjs/operators';
+
+const log = (...args: any[]) => {} //
+
+export class ScrollController {
+    public $percentage: Subject<number> = new Subject();
+
+    private targetPosition: number = 0;
+    private currentPosition: number = 0;
+    private pageHeight: number = 0;
+    private target: Window;
+
+    private isScrolling: boolean = false;
+    private isAutoScrolling: boolean = false;
+
+    private $scroll: Observable<WheelEvent>;
+    private $windowHeight: BehaviorSubject<number>;
+
+    constructor(pageCount: number) {
+        this.target = window;
+        this.$scroll = fromEvent<WheelEvent>(this.target, 'scroll');
+        this.$windowHeight = new BehaviorSubject(window.innerHeight);
+    }
+
+    public start(): void {
+        const onScrollStart: Function = throttle(this.onScrollStart, 77, this);
+        const onScrollEnd: Function = debounce(this.onScrollEnd, 77, this);
+
+        this.$scroll
+            .pipe(
+                tap(() => {
+                    onScrollStart();
+                    onScrollEnd();
+                }),
+                tap(e => console.log(e)),
+                tap(() => {
+                    const windowHeight: number = this.$windowHeight.getValue();
+                    if (this.isAutoScrolling) {
+                        this.scrolToY(this.currentPosition);
+                        return;
+                    }
+                    this.currentPosition = window.pageYOffset;
+                    if (this.currentPosition >= this.targetPosition + (windowHeight / 4)) {
+                        this.goToNext(windowHeight);
+                    } else if (this.currentPosition <= this.targetPosition - (windowHeight / 4)) {
+                        this.goToPrev(windowHeight);
+                    }
+                }),
+                tap(() => {
+                    this.$percentage.next(this.currentPosition / this.pageHeight);
+                })
+            )
+            .subscribe();
+    }
+
+    private onScrollStart(): void {
+        log('Started scrolling');
+        this.isScrolling = true;
+    }
+
+    private onScrollEnd(): void {
+        log('Stopped scrolling');
+        if (!this.isAutoScrolling) {
+            this.smoothScroll(this.targetPosition, 350);
+        } else {
+            this.isScrolling = false;
+            this.isAutoScrolling = false;
+        }
+    }
+
+    private goToNext(windowHeight: number): void {
+        log('Going down');
+        this.targetPosition += windowHeight;
+        this.isAutoScrolling = true;
+
+        this.smoothScroll(this.targetPosition, 350);
+    }
+
+    private goToPrev(windowHeight: number): void {
+        log('Going up');
+        this.targetPosition -= windowHeight;
+        this.isAutoScrolling = true;
+
+        this.smoothScroll(this.targetPosition, 350);
+    }
+
+    private smoothScroll(to: number, time: number) {
+        let prevTime: number = Date.now();
+        const startTime: number = Date.now();
+        const scrollHeight: number = to - this.currentPosition;
+        const scrollSpeed: number = scrollHeight / time;
+
+        const scroll = (): void => {
+            const currTime: number = Date.now();
+            const deltaTime: number = currTime - prevTime;
+            prevTime = currTime;
+            const deltaHeight = scrollSpeed * deltaTime;
+            this.scrolToY(this.currentPosition + deltaHeight);
+
+            if (currTime - startTime < time) {
+                window.requestAnimationFrame(scroll);
+            } else {
+                this.isScrolling = false;
+                // this.isAutoScrolling = false;
+                this.scrolToY(to);
+            }
+        };
+
+        scroll();
+    }
+
+    private scrolToY(y: number): void {
+        this.currentPosition = y;
+        this.target.scrollTo(0, y);
+    }
+
+    public debug(): void {
+        const el: HTMLDivElement = document.createElement('div');
+        el.classList.add('debug');
+        const frame = () => {
+            el.innerText = `Scrolling: ${this.isScrolling}
+            Auto scrolling: ${this.isAutoScrolling}
+            Y Target: ${this.targetPosition}
+            Y: ${this.currentPosition}
+            `;
+            window.requestAnimationFrame(frame);
+        };
+        window.document.body.appendChild(el);
+        frame();
+    }
+}

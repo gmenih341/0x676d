@@ -4,6 +4,7 @@ import {fromEvent, timer, combineLatest} from 'rxjs';
 import {map, tap, skip, merge, timeout, filter} from 'rxjs/operators';
 import {throttle, debounce} from './utils/function.utils';
 import {ScrollController} from './modules/scroll.controller';
+import {scrollSmoothly} from './utils/scroll.utils';
 
 enum ScrollDirection {
     Up,
@@ -66,9 +67,13 @@ let autoScrolling: boolean = false;
 //     .subscribe();
 
 
-const scrollController: ScrollController = new ScrollController();
 
 window.addEventListener('DOMContentLoaded', () => {
+    const container: HTMLElement | null = document.querySelector('#pages-container')
+    if (!container) {
+        throw new Error('Oops');
+    }
+    const scrollController: ScrollController = new ScrollController(container);
     scrollController.start();
     scrollController.debug();
 });

@@ -13,6 +13,7 @@ module.exports = {
     devServer: {
         open: true,
         port: 42069,
+        host: '0.0.0.0',
     },
     output: {
         path: resolve('./dist'),
