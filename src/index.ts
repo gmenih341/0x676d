@@ -9,4 +9,10 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     const scrollController: ScrollController = new ScrollController(container);
     scrollController.start();
+    scrollController.onPageChange((page: number) => {
+        const fb = {classList: {add: () => {}, remove: () => {}}};
+        (<HTMLElement> document.querySelector('#active-page > .active') || fb).classList.remove('active');
+        (<HTMLElement> document.querySelector(`#active-page div:nth-child(${page + 1}`) || fb).classList.add('active');
+        console.log('current page is', page);
+    });
 });

@@ -6,6 +6,7 @@ export class ScrollController {
     private windowHeight: number = 0;
     private scrollHeight: number = 0;
     private scrollPositions: number[] = [];
+    private onPageChanged: (page: number) => void = () => {};
 
     constructor (private scroller: HTMLElement) {
         this.pageCount = scroller.childElementCount || 0;
@@ -25,11 +26,16 @@ export class ScrollController {
         };
     }
 
+    public onPageChange (callback: (page: number) => void): void {
+        this.onPageChanged = callback;
+    }
+
     private changePage (value: number): void {
         const offsetTop: number = this.scrollPositions[value];
         scrollSmoothly(this.scroller, offsetTop, {
             transitionTime: 250,
         });
+        this.onPageChanged(value);
         this.activePage = value;
     }
 
