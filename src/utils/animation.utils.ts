@@ -42,7 +42,6 @@ export function animate(fun: (value: number) => void, options: AnimationOptions 
         const deltaTime: number = currTime - prevTime;
         change += step * deltaTime;
         prevTime = currTime;
-        console.log(change);
 
         window.requestAnimationFrame(frame);
     };

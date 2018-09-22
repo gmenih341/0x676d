@@ -1,5 +1,4 @@
-import {debounce} from '../utils/function.utils';
-import {scrollSmoothly} from '../utils/animation.utils';
+import {scrollSmoothly, EasingFunctions} from '../utils/animation.utils';
 
 export class ScrollController {
     private activePage: number = 0;
@@ -27,12 +26,11 @@ export class ScrollController {
     }
 
     private changePage (value: number): void {
-        console.log('setting page');
-        this.activePage = value;
-        const offsetTop: number = this.scrollPositions[this.activePage];
+        const offsetTop: number = this.scrollPositions[value];
         scrollSmoothly(this.scroller, offsetTop, {
-            transitionTime: 240,
+            transitionTime: 250,
         });
+        this.activePage = value;
     }
 
     private setBodyHeight (): void {
@@ -41,7 +39,8 @@ export class ScrollController {
     }
 
     private getPositions (): void {
-        [...this.scroller.childNodes].forEach((element: HTMLElement) => {
+        // @ts-ignore
+        Array.from(this.scroller.childNodes).forEach((element: HTMLElement) => {
             this.scrollPositions.push(element.offsetTop);
         });
     }
