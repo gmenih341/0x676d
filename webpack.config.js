@@ -1,7 +1,9 @@
 const webpack = require('webpack');
-const {resolve} = require('path');
+const {resolve, join} = require('path');
+const glob = require('glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const PurgeCSSPlugin = require('purgecss-webpack-plugin');
 
 module.exports = {
     entry: './src/index.ts',
@@ -65,7 +67,10 @@ module.exports = {
             inject: 'body',
         }),
         new MiniCssExtractPlugin({
-            chunkFilename: "[id].css"
+            chunkFilename: "[name].css"
+        }),
+        new PurgeCSSPlugin({
+            paths: glob.sync(join(__dirname, 'src/**/*'),  { nodir: true }),
         }),
     ],
 };
