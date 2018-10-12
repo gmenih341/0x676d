@@ -26,6 +26,9 @@ export class ScrollController {
                 this.changePage(activePage);
             }
         };
+        window.onresize = debounce(() => {
+            this.setPositions();
+        }, 200);
     }
 
     public onPageChange (callback: (page: number) => void): void {
@@ -52,6 +55,5 @@ export class ScrollController {
         Array.from(this.scroller.childNodes).forEach((element: HTMLElement) => {
             this.scrollPositions.push(element.offsetTop - this.scroller.offsetTop);
         });
-        console.log(this.scrollPositions);
     }
 }

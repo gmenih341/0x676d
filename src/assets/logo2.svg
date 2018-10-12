@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2048" height="2048">
     <defs>
         <linearGradient id="b">
-            <stop offset="0" stop-color="#00aad4" />
-            <stop offset="1" stop-color="#00aad4" stop-opacity="0" />
+            <stop offset="0" stop-color="#00718e" />
+            <stop offset="1" stop-color="#00718e" stop-opacity="0" />
         </linearGradient>
         <linearGradient id="a">
-            <stop offset="0" stop-color="#08a" />
-            <stop offset="1" stop-color="#08a" stop-opacity="0" />
+            <stop offset="0" stop-color="#005b71" />
+            <stop offset="1" stop-color="#005b71" stop-opacity="0" />
         </linearGradient>
         <linearGradient id="c" x1="2.2091222" x2="472.79733" y1="867.92084" y2="867.92084" gradientTransform="translate(16)"
             gradientUnits="userSpaceOnUse" xlink:href="#a" />
@@ -16,10 +16,10 @@
     <style>
         
     </style>
-    <path fill="#00aad4" d="M24 1303.411793l352.941168-352.94121 352.94119 352.94121z" />
-    <path fill="#0cf" d="M406.352918 921.058873l352.94117 352.9411 117.64706 117.6471 117.64706-117.6471 499.99997-499.99999-117.647-117.64696-500.00003 499.99998-352.94118-352.9412z" />
-    <path fill="#00aad4" d="M553.411738 773.999983l500.00004 499.99999 117.6469 117.6471 117.6472-117.6471 352.9412-352.9411-117.6471-117.64707-352.9413 352.9412-499.99988-499.99998z" />
-    <path fill="#08a" d="M1318.117578 1303.411793l352.9412-352.94121 352.9412 352.94121z" />
+    <path fill="#00718e" d="M24 1303.411793l352.941168-352.94121 352.94119 352.94121z" />
+    <path fill="#0088aa" d="M406.352918 921.058873l352.94117 352.9411 117.64706 117.6471 117.64706-117.6471 499.99997-499.99999-117.647-117.64696-500.00003 499.99998-352.94118-352.9412z" />
+    <path fill="#00718e" d="M553.411738 773.999983l500.00004 499.99999 117.6469 117.6471 117.6472-117.6471 352.9412-352.9411-117.6471-117.64707-352.9413 352.9412-499.99988-499.99998z" />
+    <path fill="#005b71" d="M1318.117578 1303.411793l352.9412-352.94121 352.9412 352.94121z" />
     <path fill="url(#c)" d="M18.209122 985.56792H488.79732L253.50321 750.27378z" transform="translate(5.790878 317.843873)" />
     <path fill="url(#d)" d="M1312.3267 985.56792h470.5883l-235.2941-235.29414z" transform="translate(5.790878 317.843873)" />
 </svg>

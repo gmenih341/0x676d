@@ -1,40 +1,7 @@
 @import "~bootstrap/scss/bootstrap.scss";
-@import "~firacode/distr/fira_code.css";
-@import url('https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:300,400,50');
-@import "./fontello.scss";
-
-$spacerSmall: $spacer / 2;
-$spacer: 12px;
-$spacerBig: $spacer * 2;
-
-$jungle-green: #1B2021;
-$sapphire-blue: #19647E;
-$deep-space-sparkle: #016FB9;
-$flame: #FF9505;
-$white: #FFFCE8;
-
-$color-github: #000;
-$color-linkedin: #0077B5;
-$color-email: $flame;
-
-$console-font: "Fira Code",
-"Courier New",
-Courier,
-monospace;
-$default-font: "Fira Sans Condensed",
-"Helvetica",
-"Arial",
-sans-serif;
-
-$screen-xs: 0;
-$screen-sm: 576px;
-$screen-md: 768px;
-$screen-lg: 992px;
-$screen-xl: 1200px;
-$screen-xs-max: $screen-sm - 1;
-$screen-sm-max: $screen-md - 1;
-$screen-md-max: $screen-lg - 1;
-$screen-lg-max: $screen-xl - 1;
+@import "./variables";
+@import "./colors";
+@import "./fonts";
 
 html,
 body,
@@ -114,7 +81,10 @@ a {
 
                 .logo {
                     margin: 0 $spacerBig * 2 0 0;
-                    height: 180px;
+                    width: 100%;
+                    height: auto;
+                    min-height: 180px;
+                    max-width: 256px;
                 }
             }
         }
