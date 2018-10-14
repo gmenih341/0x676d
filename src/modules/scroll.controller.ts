@@ -1,12 +1,13 @@
 import {scrollSmoothly, EasingFunctions, animate} from '../utils/animation.utils';
 import {debounce} from '../utils/function.utils';
+import {$} from '../utils/selector.utils';
 
 export class ScrollController {
     private activePage: number = 0;
     private pageCount: number = 0;
     private windowHeight: number = 0;
     private scrollHeight: number = 0;
-    private scrollPositions: number[] = [];
+    private scrollPositions: [number, HTMLElement][] = [];
     private onPageChanged: (page: number) => void = () => {};
 
     constructor (private scroller: HTMLElement) {
@@ -22,13 +23,9 @@ export class ScrollController {
             const percentage: number = currentPosition / this.scrollHeight;
             const activePage: number = Math.floor(percentage * this.pageCount);
             if (this.activePage !== activePage) {
-                console.log(activePage);
                 this.changePage(activePage);
             }
         };
-        window.onresize = debounce(() => {
-            this.setPositions();
-        }, 200);
     }
 
     public onPageChange (callback: (page: number) => void): void {
@@ -36,7 +33,9 @@ export class ScrollController {
     }
 
     private changePage (value: number): void {
-        const offsetTop: number = this.scrollPositions[value];
+        const offsetTop: number = this.scrollPositions[value][0];
+        this.deactivateAll();
+        this.scrollPositions[value][1].classList.add('active');
         scrollSmoothly(this.scroller, offsetTop, {
             transitionTime: 250,
             ease: EasingFunctions.easeOutQuad,
@@ -53,7 +52,13 @@ export class ScrollController {
     private setPositions (): void {
         // @ts-ignore
         Array.from(this.scroller.childNodes).forEach((element: HTMLElement) => {
-            this.scrollPositions.push(element.offsetTop - this.scroller.offsetTop);
+            element.classList.add('active');
+            this.scrollPositions.push([element.offsetTop - this.scroller.offsetTop, element]);
         });
+    }
+
+    private deactivateAll (): void {
+        // @ts-ignore
+        Array.from(this.scroller.childNodes).forEach((element: HTMLElement) => element.classList.remove('active'));
     }
 }

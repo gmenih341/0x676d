@@ -11,70 +11,57 @@
     <meta name="keywords" content="full, stack, fullstack, web developer, web, developer, javascript, typescript">
 </head>
 
-<body>
-    <div class="container-fluid h-100 page-container">
-        <div class="white-cover"></div>
-        <div class="row d-flex justify-content-center placeholder-container">
-            <div class="col-12 col-md-11 col-lg-9">
-                <div class="placeholder" id="placeholder">
-                    <div class="logo"></div>
-                    <div class="scrollable-content" id="pages-container">
-                        <div class="row">
-                            <div class="col-12">
-                                <h1 class="page-title">Gregor Menih</h1>
+<body style="height: 500vh;">
+    <div class="page-container">
+        <div class="yellow-cover"></div>
+        <header class="container-fluid header">
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 col-md-11 col-lg-9">
+                    <div class="title-wrapper">
+                        <div class="logo"></div>
+                        <div class="scrollable-titles" id="titles-container">
+                            <div class="title">
+                                <h1>Gregor Menih</h1>
+                                <span class="description">frontend web developer</span>
                             </div>
-                            <div class="col-12">
-                                full-stack web developer
+                            <div class="title">
+                                <h2>What I do</h2>
+                                <span class="description">my portfolio</span>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <h2 class="page-title">Works</h2>
-                            </div>
-                            <div class="col-12">
-                                things i've made
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <h2 class="page-title">Contact</h2>
-                            </div>
-                            <div class="col-12">
-                                get in touch with me
+                            <div class="title">
+                                <h2>Contact</h2>
+                                <span class="description">get in touch</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row d-flex justify-content-center pt-0 console-container">
-            <div class="col-12 col-md-11 col-lg-9 console" id="console">
-                <div class="top-bar">
-                    <span class="title">guest@menih.si: ~/</span>
-                </div>
-                <div class="content p-3">
-                    <div class="feed"></div>
-                    <div class="input">
-                        <span class="prompt">
-                            <span class="user">λ guest:</span>
-                            <span class="path">~/</span>
-                            <span class="user">→</span>
-                        </span>
-                        <span class="text"><br />bash: command not found: show-website. Maybe it's still under
-                            construction 🤔</span>
+        </header>
+        <div class="container-fluid d-flex console-container">
+            <div class="row d-flex flex-grow-1 justify-content-center">
+                <div class="col-12 col-md-11 col-lg-9">
+                    <div class="console">
+                        <div class="top-bar">
+                            guest@menih.si
+                        </div>
+                        <div class="content">
+                            Test content
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row d-flex justify-content-center py-4">
-            <div class="col text-center">
-                <div class="social-icons">
-                    <a href="https://github.com/gmenih341" target="_blank" class="icon icon-github">gmenih341</a>
-                    <a href="https://linkedin.com/in/gregor-menih" target="_blank" class="icon icon-linkedin">gregor-menih</a>
-                    <a href="mailto:gregor@menih.si" class="icon icon-at">info@menih.si</a>
+        <footer class="container-fluid footer">
+            <div class="row d-flex justify-content-center">
+                <div class="col-5">
+                    <div class="social-icons">
+                        <a href="#" class="icon icon-github">gmenih341</a>
+                        <a href="#" class="icon icon-linkedin">gregor-menih</a>
+                        <a href="#" class="icon icon-at">gregor@menih.si</a>
+                    </div>
                 </div>
             </div>
-        </div>
+        </footer>
     </div>
 </body>
 

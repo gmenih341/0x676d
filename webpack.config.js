@@ -37,7 +37,8 @@ module.exports = {
                 'sass-loader'
             ]
         }, {
-            test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+            test: /.+\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+            exclude: [/assets/],
             use: [{
                 loader: 'file-loader',
                 options: {
@@ -46,12 +47,12 @@ module.exports = {
                 },
             }]
         }, {
-            test: /\.(jp(e)?g|png)$/,
+            test: /\.(jp(e)?g|png|svg)$/,
             use: [{
                 loader: 'file-loader',
                 options: {
                     name: '[hash].[ext]',
-                    outputPath: 'images/',
+                    outputPath: 'assets',
                 },
             }]
         }]
