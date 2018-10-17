@@ -62,7 +62,6 @@ export class ScrollController {
     }
 
     private changePage (value: number): void {
-        console.log('changePage', value);
         const offsetTop: number = this.scrollPositions[value][0];
         this.deactivateAll();
         this.scrollPositions[value][1].classList.add('active');

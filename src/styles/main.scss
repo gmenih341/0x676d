@@ -168,7 +168,10 @@ a {
 
     .footer {
         padding: $spacerBig 0;
-        margin-bottom: 10vh;
+
+        @media screen and (min-width: $screen-md) {
+            margin-bottom: 10vh;
+        }
 
         .social-icons {
             text-align: center;
