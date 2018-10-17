@@ -8,6 +8,11 @@ body {
     height: 100%;
     width: 100%;
 }
+body {
+    @media screen and (min-width: $screen-sm) {
+        overflow: hidden;
+    }
+}
 
 a,
 a:visited,
@@ -139,12 +144,24 @@ a {
 
             .content {
                 font-family: $console-font;
+                font-size: .9em;
+                font-variant-ligatures: common-ligatures;
                 background-color: $color-jungle-green;
                 padding: $spacer;
                 color: $color-white;
                 border-bottom-left-radius: $border-radius;
                 border-bottom-right-radius: $border-radius;
                 flex: 1 0;
+
+                span {
+                    &.r {
+                        color: $color-flame;
+                    }
+
+                    &.y {
+                        color: $color-deep-space-sparkle
+                    }
+                }
             }
         }
     }

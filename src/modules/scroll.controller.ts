@@ -1,29 +1,58 @@
 import {scrollSmoothly, EasingFunctions, animate} from '../utils/animation.utils';
-import {debounce} from '../utils/function.utils';
-import {$} from '../utils/selector.utils';
+import {debounce, throttle} from '../utils/function.utils';
+
+const SCROLL_BREAKPOINT: number = 30;
 
 export class ScrollController {
     private activePage: number = 0;
     private pageCount: number = 0;
-    private windowHeight: number = 0;
-    private scrollHeight: number = 0;
     private scrollPositions: [number, HTMLElement][] = [];
     private onPageChanged: (page: number) => void = () => {};
 
     constructor (private scroller: HTMLElement) {
         this.pageCount = scroller.childElementCount || 0;
-        this.windowHeight = window.innerHeight;
-        this.setBodyHeight();
         this.setPositions();
     }
 
     public start (): void {
-        window.onscroll = () => {
-            const currentPosition: number = window.pageYOffset;
-            const percentage: number = currentPosition / this.scrollHeight;
-            const activePage: number = Math.floor(percentage * this.pageCount);
-            if (this.activePage !== activePage) {
-                this.changePage(activePage);
+        let sumScroll: number = 0;
+        let breakpointModifier: number = 1;
+        let touchStart: number = 0;
+
+        const onWheelEnd: Function = debounce(() => {
+            sumScroll = 0;
+            breakpointModifier = 1;
+        }, 80);
+
+        window.onwheel = (event: WheelEvent): void => {
+            const {deltaY} = event;
+            sumScroll += deltaY;
+            // this.scroller.scrollTop += deltaY;
+            if (Math.abs(sumScroll) > (SCROLL_BREAKPOINT * breakpointModifier)) {
+                const nextPage: number = this.activePage + (sumScroll > 0 ? 1 : -1);
+                if (nextPage >= 0 && nextPage < this.pageCount) {
+                    this.changePage(nextPage);
+                }
+                sumScroll = 0;
+                breakpointModifier += 40;
+                return;
+            }
+            onWheelEnd();
+        };
+
+        window.ontouchstart = (e: TouchEvent): void => {
+            touchStart = e.changedTouches[0].screenY;
+        };
+
+        window.ontouchend = (e: TouchEvent): void => {
+            const clientY: number = e.changedTouches[0].screenY;
+            const delta = touchStart - clientY;
+            if (Math.abs(delta) > SCROLL_BREAKPOINT) {
+                const nextPage: number = this.activePage + (delta > 0 ? 1 : -1);
+                if (nextPage >= 0 && nextPage < this.pageCount) {
+                    this.changePage(nextPage);
+                }
+                touchStart = 0;
             }
         };
     }
@@ -33,6 +62,7 @@ export class ScrollController {
     }
 
     private changePage (value: number): void {
+        console.log('changePage', value);
         const offsetTop: number = this.scrollPositions[value][0];
         this.deactivateAll();
         this.scrollPositions[value][1].classList.add('active');
@@ -42,11 +72,6 @@ export class ScrollController {
         });
         this.onPageChanged(value);
         this.activePage = value;
-    }
-
-    private setBodyHeight (): void {
-        document.body.style.height = `${this.pageCount * 80}vh`;
-        this.scrollHeight = document.body.scrollHeight - this.windowHeight + 1;
     }
 
     private setPositions (): void {

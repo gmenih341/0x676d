@@ -4,6 +4,7 @@ const glob = require('glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const PurgeCSSPlugin = require('purgecss-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = {
     entry: './src/index.ts',
@@ -72,6 +73,12 @@ module.exports = {
         }),
         new PurgeCSSPlugin({
             paths: glob.sync(join(__dirname, 'src/**/*'),  { nodir: true }),
+        }),
+        new FaviconsWebpackPlugin({
+            logo: './src/assets/icon.png',
+            prefix: 'favicons/[hash]',
+            inject: true,
+            title: 'Gregor Menih',
         }),
     ],
 };
