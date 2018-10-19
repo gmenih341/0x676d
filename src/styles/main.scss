@@ -92,12 +92,12 @@ a {
                         display: block;
                         font-weight: 300;
                         text-align: center;
-                        transform: rotate(-2deg) scale(0);
+                        transform: scale(0);
                     }
 
                     &.active {
                         .description {
-                            transform: rotate(-2deg) scale(1);
+                            transform: scale(1);
                             transition: transform 250ms ease-in;
                         }
                     }
@@ -119,15 +119,13 @@ a {
     }
 
     .console-container {
-        $border-radius: 3px;
-        flex-grow: 1;
+        $border-radius: 0px;
         margin-bottom: $spacerBig;
 
         .console {
-            display: flex;
             height: 100%;
-            flex-direction: column;
             border-radius: $border-radius;
+            overflow: hidden;
             box-shadow: 2px 2px 8px rgba(0, 0, 0, .4);
 
             .top-bar {
@@ -149,9 +147,7 @@ a {
                 background-color: $color-jungle-green;
                 padding: $spacer;
                 color: $color-white;
-                border-bottom-left-radius: $border-radius;
-                border-bottom-right-radius: $border-radius;
-                flex: 1 0;
+                height: 100%;
 
                 span {
                     &.r {

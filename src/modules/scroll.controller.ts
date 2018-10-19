@@ -14,10 +14,18 @@ export class ScrollController {
         this.setPositions();
     }
 
-    public start (): void {
+    public start (): void {        
+        this.startDekstop();
+        this.startMobile();
+    }
+
+    public onPageChange (callback: (page: number) => void): void {
+        this.onPageChanged = callback;
+    }
+
+    private startDekstop (): void {
         let sumScroll: number = 0;
         let breakpointModifier: number = 1;
-        let touchStart: number = 0;
 
         const onWheelEnd: Function = debounce(() => {
             sumScroll = 0;
@@ -27,19 +35,21 @@ export class ScrollController {
         window.onwheel = (event: WheelEvent): void => {
             const {deltaY} = event;
             sumScroll += deltaY;
-            // this.scroller.scrollTop += deltaY;
             if (Math.abs(sumScroll) > (SCROLL_BREAKPOINT * breakpointModifier)) {
                 const nextPage: number = this.activePage + (sumScroll > 0 ? 1 : -1);
                 if (nextPage >= 0 && nextPage < this.pageCount) {
                     this.changePage(nextPage);
                 }
                 sumScroll = 0;
-                breakpointModifier += 40;
+                breakpointModifier += 50;
                 return;
             }
             onWheelEnd();
         };
+    }
 
+    private startMobile (): void {
+        let touchStart: number = 0;
         window.ontouchstart = (e: TouchEvent): void => {
             touchStart = e.changedTouches[0].screenY;
         };
@@ -55,10 +65,6 @@ export class ScrollController {
                 touchStart = 0;
             }
         };
-    }
-
-    public onPageChange (callback: (page: number) => void): void {
-        this.onPageChanged = callback;
     }
 
     private changePage (value: number): void {

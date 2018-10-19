@@ -56,11 +56,14 @@ module.exports = {
                     outputPath: 'assets',
                 },
             }]
+        }, {
+            test: /\.hbs$/,
+            loader: 'handlebars-loader',
         }]
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/index.html',
+            template: './src/index.hbs',
             minify: {
                 collapseWhitespace: true,
                 preserveLineBreaks: false,
