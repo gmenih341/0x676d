@@ -41,7 +41,7 @@ export class ScrollController {
                     this.changePage(nextPage);
                 }
                 sumScroll = 0;
-                breakpointModifier += 50;
+                breakpointModifier += 200;
                 return;
             }
             onWheelEnd();

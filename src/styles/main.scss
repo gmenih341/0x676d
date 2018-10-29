@@ -23,6 +23,7 @@ a {
     text-decoration: none;
 }
 
+
 .page-container {
     font-family: $default-font;
     display: flex;
@@ -34,6 +35,22 @@ a {
     flex-direction: column;
     background-color: $color-white;
 
+    &.loading {
+        *:not(.yellow-cover) {
+            opacity: 0;
+        }
+
+        .yellow-cover {
+            top: 0;
+            height: 100vh;
+            transform: rotate(0);
+        }
+    }
+
+    * {
+        transition: opacity 200ms ease-out;
+    }
+
     .yellow-cover {
         background-color: #d38312;
         background-image: linear-gradient(141deg, #f09819, #edde5d);
@@ -44,6 +61,7 @@ a {
         top: -2vh;
         transform: rotate(1deg);
         z-index: -1;
+        transition: all 420ms ease-out;
     }
 
     .header {
@@ -54,16 +72,24 @@ a {
         .logo {
             display: block;
             height: 100px;
-            width: 256px;
-            background: url(../assets/logo2.svg) no-repeat;
-            background-size: 100% auto;
-            background-position: center center;
-            margin: $spacerBig 0 0 0;
+            width: 200px;
+            margin: $spacer 0 0 0;
+
+            svg {
+                width: 90%;
+                max-height: 100%;
+                margin: 5%;
+            }
 
             @media screen and (min-width: $screen-sm) {
                 height: 100%;
                 min-height: 180px;
+                background-size: auto 60%;
                 margin: 0;
+                svg {
+                    width: 70%;
+                    margin: 15%;
+                }
             }
         }
 
@@ -71,6 +97,7 @@ a {
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: static;
 
             .scrollable-titles {
                 overflow: hidden;
@@ -121,11 +148,11 @@ a {
     .console-container {
         $border-radius: 0px;
         margin-bottom: $spacerBig;
-
+        
         .console {
             height: 100%;
             border-radius: $border-radius;
-            overflow: hidden;
+            position: relative;
             box-shadow: 2px 2px 8px rgba(0, 0, 0, .4);
 
             .top-bar {
@@ -147,6 +174,7 @@ a {
                 background-color: $color-jungle-green;
                 padding: $spacer;
                 color: $color-white;
+                overflow: auto;
                 height: 100%;
 
                 span {
@@ -165,8 +193,8 @@ a {
     .footer {
         padding: $spacerBig 0;
 
-        @media screen and (min-width: $screen-md) {
-            margin-bottom: 10vh;
+        @media screen and (min-width: $screen-xl) {
+            margin-bottom: 3em;
         }
 
         .social-icons {
@@ -181,10 +209,6 @@ a {
                 transition: color 300ms linear, opacity 420ms ease-out;
                 vertical-align: middle;
                 padding: $spacerSmall;
-
-                @media screen and (max-width: 575px) {
-                    display: block;
-                }
 
                 &:before {
                     font-size: 1.5em;
@@ -207,6 +231,67 @@ a {
                         color: $color-email;
                     }
                 }
+            }
+        }
+    }
+}
+
+
+.scroll-indicator {
+    $indicatorColor: $color-flame;
+
+    border: 3px solid $indicatorColor;
+    border-radius: 35%;
+    height: 50px;
+    width: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    bottom: $spacerBig;
+    opacity: .6;
+    transform: translateX(-50%);
+
+    &.hidden {
+        transition: opacity 150ms;
+        opacity: 0;
+    }
+
+    .wheel {
+        $wheelOffset: 2px;
+        width: 4px;
+        height: 8px;
+        background: $indicatorColor;
+        margin: 10px -2px;
+        border-radius: 35%;
+        animation: scroll-wheel 7s infinite;
+
+        @keyframes scroll-wheel {
+            0% {
+                transform: translateY(-$wheelOffset);
+            }
+            20% {
+                transform: translateY($wheelOffset);
+            }
+            40% {
+                transform: translateY(-$wheelOffset);
+            }
+            60% {
+                transform: translateY($wheelOffset);
+            }
+            80% {
+                transform: translateY(-$wheelOffset);
+                height: 8px;
+                opacity: 1;
+            }
+            90% {
+                transform: translateY(15px);
+                height: 15px;
+            }
+            100% {
+                transform: translateY(-1px);
+                height: 8px;
             }
         }
     }
