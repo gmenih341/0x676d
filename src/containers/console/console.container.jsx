@@ -20,9 +20,9 @@ export function ConsoleContainer () {
                                 </strong>
                             </span>
                         </div>
-                        <div className="scroll-indicator" id="scroll-indicator">
+                        {/* <div className="scroll-indicator" id="scroll-indicator">
                             <div className="wheel" />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

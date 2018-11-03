@@ -17,7 +17,7 @@ export function HomeContainer () {
     useEffect(() => {
         setTimeout(() => {
             setLoading(false);
-        }, 1000);
+        }, 500);
     });
 
     return (
@@ -75,7 +75,6 @@ function useBrowserTitleAndHistory (pages, activePage) {
             const page = pages[activePage];
             const title = `Gregor Menih / ${page.browserTitle}`;
             document.title = title;
-            window.history.pushState(page, title, page.slug);
         },
         [activePage],
     );
