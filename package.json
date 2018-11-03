@@ -1,6 +1,6 @@
 {
   "name": "1x676d",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,9 +8,10 @@
     "build:dev": "webpack --progress -p --env=dev",
     "build:prod": "webpack --progress -p --env=prod",
     "build": "yarn build:dev",
-    "lint": "eslint ./"
+    "prettier": "prettier --write ./src/**/*.{js,jsx}",
+    "lint": "eslint ./ --fix"
   },
-  "author": "",
+  "author": "Gregor Menih <gregor@menih.si>",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "7.1.2",
@@ -25,7 +26,9 @@
     "file-loader": "2.0.0",
     "html-webpack-plugin": "3.2.0",
     "json5-loader": "1.0.1",
+    "lint-staged": "8.0.4",
     "node-sass": "4.9.4",
+    "pre-commit": "1.2.2",
     "prettier": "1.14.3",
     "sass-loader": "7.1.0",
     "style-loader": "0.23.1",
@@ -39,5 +42,15 @@
     "prop-types": "15.5.7-alpha.1",
     "react": "16.7.0-alpha.0",
     "react-dom": "16.7.0-alpha.0"
+  },
+  "precommit": [
+    "lint-staged"
+  ],
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "npm run prettier",
+      "npm run lint",
+      "git add"
+    ]
   }
 }

@@ -9,10 +9,16 @@ import './home.container.scss';
 
 const SCROLL_BREAKPOINT = 10;
 
-export function HomeContainer () {
-    const [loading, setLoading] = useState(false);
+export function HomeContainer() {
+    const [loading, setLoading] = useState(true);
     const activePage = useWindowWheel(pages.length);
     useBrowserTitleAndHistory(pages, activePage);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000);
+    });
 
     return (
         <div className={'home-container' + (loading ? ' loading' : '')}>
@@ -26,7 +32,7 @@ export function HomeContainer () {
     );
 }
 
-function useWindowWheel (maxPage) {
+function useWindowWheel(maxPage) {
     const [stateActivePage, setActivePage] = useState(0);
     let activePage = 0;
     let sumScroll = 0;
@@ -63,11 +69,14 @@ function useWindowWheel (maxPage) {
     return stateActivePage;
 }
 
-function useBrowserTitleAndHistory (pages, activePage) {
-    useEffect(() => {
-        const page = pages[activePage];
-        const title = `Gregor Menih / ${page.browserTitle}`;
-        document.title = title
-        window.history.pushState(page, title, page.slug);
-    }, [activePage]);
+function useBrowserTitleAndHistory(pages, activePage) {
+    useEffect(
+        () => {
+            const page = pages[activePage];
+            const title = `Gregor Menih / ${page.browserTitle}`;
+            document.title = title;
+            window.history.pushState(page, title, page.slug);
+        },
+        [activePage],
+    );
 }

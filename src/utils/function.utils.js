@@ -7,7 +7,7 @@ export function debounce (fun, delay, target) {
         timeout = setTimeout(() => {
             fun.apply(target, args);
         }, delay);
-    }
+    };
 }
 
 export function throttle (fun, delay, target) {
@@ -21,5 +21,5 @@ export function throttle (fun, delay, target) {
         timeout = setTimeout(() => {
             timeout = 0;
         }, delay);
-    }
+    };
 }

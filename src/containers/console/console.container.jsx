@@ -2,7 +2,7 @@ import React from 'react';
 
 import './console.container.scss';
 
-export function ConsoleContainer () {
+export function ConsoleContainer() {
     return (
         <div className="container-fluid d-flex console-container flex-grow-1">
             <div className="row d-flex flex-grow-1 justify-content-center">
