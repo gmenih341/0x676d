@@ -7,7 +7,7 @@ import {scrollSmoothly, EasingFunctions} from '../../utils/animation.utils';
 
 const DEFAULT_HEIGHT = 177;
 
-export function HeaderContainer(props) {
+export function HeaderContainer (props) {
     const {pages, activePage} = props;
     const [height, scrollableRef] = useFirstChildHeight();
     const titles = pages.map((page, i) => <PageTitle key={`title-${i}`} active={activePage === i} {...page} />);
@@ -36,7 +36,7 @@ HeaderContainer.propTypes = {
     pages: PropTypes.arrayOf(PropTypes.object),
 };
 
-function useFirstChildHeight() {
+function useFirstChildHeight () {
     const scrollableRef = useRef();
     const [height, setHeight] = useState(DEFAULT_HEIGHT);
 
@@ -47,7 +47,7 @@ function useFirstChildHeight() {
     return [height, scrollableRef];
 }
 
-function useScrollToActive(activePage, height, ref) {
+function useScrollToActive (activePage, height, ref) {
     useEffect(
         () => {
             scrollSmoothly(ref.current, height * activePage, {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './page-title.component.scss';
 
-export function PageTitle(props) {
+export function PageTitle (props) {
     const {active, title, description} = props;
 
     return (

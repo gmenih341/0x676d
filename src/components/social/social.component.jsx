@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './social.component.scss';
 
-export function Social(props) {
+export function Social (props) {
     const {networks} = props;
     const icons = networks.map(network => (
         <a key={network.icon} href={network.href} className={`icon ${network.icon}`} rel="noopener noreferrer" target="_blank">

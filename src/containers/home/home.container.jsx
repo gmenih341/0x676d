@@ -9,7 +9,7 @@ import './home.container.scss';
 
 const SCROLL_BREAKPOINT = 10;
 
-export function HomeContainer() {
+export function HomeContainer () {
     const [loading, setLoading] = useState(true);
     const activePage = useWindowWheel(pages.length);
     useBrowserTitleAndHistory(pages, activePage);
@@ -32,7 +32,7 @@ export function HomeContainer() {
     );
 }
 
-function useWindowWheel(maxPage) {
+function useWindowWheel (maxPage) {
     const [stateActivePage, setActivePage] = useState(0);
     let activePage = 0;
     let sumScroll = 0;
@@ -69,7 +69,7 @@ function useWindowWheel(maxPage) {
     return stateActivePage;
 }
 
-function useBrowserTitleAndHistory(pages, activePage) {
+function useBrowserTitleAndHistory (pages, activePage) {
     useEffect(
         () => {
             const page = pages[activePage];
