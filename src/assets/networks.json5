@@ -1,0 +1,17 @@
+[
+    {
+        icon: 'icon-github',
+        href: 'https://github.com/gmenih341',
+        text: 'gmenih341',
+    },
+    {
+        icon: 'icon-linkedin',
+        href: 'https://linkedin.com/in/gmenih-menih',
+        text: 'gregor-menih',
+    },
+    {
+        icon: 'icon-at',
+        href: 'mailto:gregor@menih.si',
+        text: 'gregor@menih.si',
+    },
+]

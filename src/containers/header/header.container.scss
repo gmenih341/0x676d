@@ -1,0 +1,52 @@
+@import "../../styles/variables/variables.scss";
+@import "../../styles/variables/colors.scss";
+
+.header {
+    min-height: 180px;
+    flex-grow: 0;
+    position: relative;
+
+    .logo {
+        display: block;
+        height: 100px;
+        width: 200px;
+        margin: $spacer 0 0 0;
+
+        svg {
+            width: 90%;
+            max-height: 100%;
+            margin: 5%;
+        }
+
+        @media screen and (min-width: $screen-sm) {
+            height: 100%;
+            min-height: 180px;
+            background-size: auto 60%;
+            margin: 0;
+
+            svg {
+                width: 70%;
+                margin: 15%;
+            }
+        }
+    }
+
+    .title-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: static;
+
+        .scrollable {
+            overflow: hidden;
+        }
+
+        @media screen and (min-width: $screen-sm) {
+            flex-direction: row;
+
+            .scrollable {
+                margin-left: $spacer;
+            }
+        }
+    }
+}

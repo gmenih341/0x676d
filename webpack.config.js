@@ -1,45 +1,29 @@
-const webpack = require('webpack');
-const {resolve, join} = require('path');
-const glob = require('glob');
+const {resolve} = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const PurgeCSSPlugin = require('purgecss-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.ts',
+    entry: './src/index.js',
     mode: 'development',
     resolve: {
-        extensions: ['.js', '.ts'],
-    },
-    devtool: 'inline-source-map',
-    devServer: {
-        open: true,
-        port: 42069,
-        host: '0.0.0.0',
+        extensions: ['.js', '.jsx'],
     },
     output: {
         path: resolve('./dist'),
-        filename: '[name].js',
+        filename: '[name]-[hash].js',
     },
     module: {
         rules: [{
-            test: /\.ts$/,
-            loader: 'ts-loader'
+            test: /\.jsx?$/,
+            loader: 'babel-loader',
         }, {
-            test: /\.(sass|scss)$/,
-            use: [{
-                    loader: MiniCssExtractPlugin.loader,
-                    options: {
-                        minify: true,
-                    }
-                },
+            test: /\.scss$/,
+            use: [
+                'style-loader',
                 'css-loader',
                 'sass-loader'
             ]
         }, {
             test: /.+\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-            exclude: [/assets/],
             use: [{
                 loader: 'file-loader',
                 options: {
@@ -48,22 +32,13 @@ module.exports = {
                 },
             }]
         }, {
-            test: /\.(jp(e)?g|png|svg)$/,
-            use: [{
-                loader: 'file-loader',
-                options: {
-                    name: '[hash].[ext]',
-                    outputPath: 'assets',
-                },
-            }]
-        }, {
-            test: /\.hbs$/,
-            loader: 'handlebars-loader',
+            test: /\.json5$/,
+            loader: 'json5-loader',
         }]
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/index.hbs',
+            template: './src/index.html',
             minify: {
                 collapseWhitespace: true,
                 preserveLineBreaks: false,
@@ -71,17 +46,10 @@ module.exports = {
             },
             inject: 'body',
         }),
-        new MiniCssExtractPlugin({
-            chunkFilename: "[name].css"
-        }),
-        new PurgeCSSPlugin({
-            paths: glob.sync(join(__dirname, 'src/**/*'),  { nodir: true }),
-        }),
-        new FaviconsWebpackPlugin({
-            logo: './src/assets/icon.png',
-            prefix: 'favicons/[hash]',
-            inject: true,
-            title: 'Gregor Menih',
-        }),
     ],
-};
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        }
+    }
+}

@@ -1,0 +1,48 @@
+@import "../../styles/variables/variables.scss";
+@import "../../styles/variables/colors.scss";
+
+
+.footer {
+    padding: $spacer-big 0;
+
+    @media screen and (min-width: $screen-xl) {
+        margin-bottom: 3em;
+    }
+
+    .social-icons {
+        text-align: center;
+
+        a.icon {
+            margin: 0 $spacer;
+            color: $color-jungle-green;
+            opacity: .3;
+            font-size: .9em;
+            font-weight: 500;
+            transition: color 300ms linear, opacity 420ms ease-out;
+            vertical-align: middle;
+            padding: $spacer-small;
+
+            &:before {
+                font-size: 1.5em;
+                vertical-align: middle;
+                margin-right: $spacer-small;
+            }
+
+            &:hover {
+                opacity: 1;
+
+                &.icon-github {
+                    color: $color-github;
+                }
+
+                &.icon-linkedin {
+                    color: $color-linkedin;
+                }
+
+                &.icon-at {
+                    color: $color-email;
+                }
+            }
+        }
+    }
+}

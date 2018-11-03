@@ -1,0 +1,21 @@
+[
+    {
+        slug: '/',
+        title: 'Gregor Menih',
+        description: 'full stack web developer',
+        browserTitle: 'home',
+    },
+    {
+        slug: '/work',
+        title: 'What I do',
+        description: 'some of my creations',
+        browserTitle: 'work',
+
+    },
+    {
+        slug: '/contact',
+        title: 'Contact',
+        description: "let's get in touch",
+        browserTitle: 'contact',
+    },
+]

@@ -1,6 +1,6 @@
-export function debounce (fun: (...args: any[]) => any, delay: number, target?: any): (...args: any[]) => any {
-    let timeout: number;
-    return (...args: any[]): any => {
+export function debounce (fun, delay, target) {
+    let timeout;
+    return (...args) => {
         if (timeout) {
             clearTimeout(timeout);
         }
@@ -10,9 +10,9 @@ export function debounce (fun: (...args: any[]) => any, delay: number, target?: 
     }
 }
 
-export function throttle (fun: (...args: any[]) => any, delay: number, target?: any): (...args: any[]) => any {
-    let timeout: number = 0;
-    return (...args: any[]): any => {
+export function throttle (fun, delay, target) {
+    let timeout = 0;
+    return (...args) => {
         if (!timeout) {
             fun.apply(target, args);
         } else {
