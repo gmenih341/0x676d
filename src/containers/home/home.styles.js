@@ -43,8 +43,4 @@ const loading = css`
     },
 `;
 
-export const homeContainer = (isLoading = false) =>
-    cx({
-        [container]: true,
-        [loading]: isLoading,
-    });
+export const homeContainer = (isLoading = false) => cx([container, isLoading && loading]);

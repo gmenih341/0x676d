@@ -1,4 +1,4 @@
-import {css, keyframes} from 'emotion';
+import {css} from 'emotion';
 import {
     COLOR_JUNGLE_GREEN,
     SPACER,
@@ -34,31 +34,6 @@ export const y = css`
     color: ${COLOR_DEEP_SPACE_SPARKLE};
 `;
 
-const scroll = keyframes(`
-    0%, 40%, 80% {
-        transform: translateY(-2px);
-    }
-
-    20%, 60% {
-        transform: translateY(2px);
-    }
-
-    80% {
-        height: 8px;
-        opacity: 1;
-    }
-
-    90% {
-        transform: translateY(15px);
-        height: 15px;
-    }
-
-    100% {
-        transform: translateY(-1px);
-        height: 8px;
-    }
-`);
-
 export const scrollIndicator = css`
     border: 3px solid ${COLOR_FLAME};
     border-radius: 35%;
@@ -80,5 +55,33 @@ export const scrollWheel = css`
     background-color: ${COLOR_FLAME};
     margin: 10px -2px;
     border-radius: 35%;
-    animation: ${scroll} 7s infinite;
+    animation: scroll 7s infinite;
+
+    @keyframes scroll {
+        0%,
+        40%,
+        80% {
+            transform: translateY(-2px);
+        }
+
+        20%,
+        60% {
+            transform: translateY(2px);
+        }
+
+        80% {
+            height: 8px;
+            opacity: 1;
+        }
+
+        90% {
+            transform: translateY(15px);
+            height: 15px;
+        }
+
+        100% {
+            transform: translateY(-1px);
+            height: 8px;
+        }
+    }
 `;

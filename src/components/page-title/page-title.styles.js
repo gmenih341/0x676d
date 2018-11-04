@@ -32,8 +32,4 @@ const active = css`
     }
 `;
 
-export const pageTitle = isActive =>
-    cx({
-        [root]: true,
-        [active]: !!isActive,
-    });
+export const pageTitle = isActive => cx([root, isActive && active]);

@@ -1,4 +1,4 @@
-import {css} from 'emotion';
+import {css, cx} from 'emotion';
 import {SPACER_BIG, SPACER, SPACER_SMALL, COLOR_JUNGLE_GREEN, COLOR_GITHUB, COLOR_LINKEDIN, COLOR_EMAIL} from '../../styles/variables';
 import {mediaMin} from '../../utils/style.utils';
 
@@ -13,7 +13,7 @@ export const socialIcons = css`
     text-align: center;
 `;
 
-export const icon = css`
+const socialIcon = css`
     margin: 0 ${SPACER}px;
     color: ${COLOR_JUNGLE_GREEN};
     opacity: 0.3;
@@ -45,3 +45,5 @@ export const icon = css`
         }
     }
 `;
+
+export const icon = variant => cx([socialIcon, 'icon', variant]);
