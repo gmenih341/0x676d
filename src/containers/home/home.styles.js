@@ -1,7 +1,5 @@
 import {css} from 'emotion';
-
-const colorWhite = '#FFFCE8';
-const colorFlame = '#d38312';
+import {COLOR_WHITE, COLOR_FLAME} from '../../styles/variables';
 
 export const homeContainer = css({
     position: 'fixed',
@@ -9,11 +7,11 @@ export const homeContainer = css({
     left: 0,
     width: '100%',
     height: '100%',
-    backgroundColor: colorWhite,
+    backgroundColor: COLOR_WHITE,
 });
 
 export const cover = css({
-    backgroundColor: colorFlame,
+    backgroundColor: COLOR_FLAME,
     backgroundImage: `linear-gradient(141deg, #f09819, #edde5d)`,
     position: 'absolute',
     width: '110%',

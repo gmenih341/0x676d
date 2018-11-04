@@ -1,7 +1,6 @@
 import {css} from 'emotion';
-
-const spacer = 12;
-const screenSm = 576;
+import {SPACER} from '../../styles/variables';
+import {mediaMin} from '../../utils/style.utils';
 
 export const header = css({
     minHeight: 180,
@@ -13,13 +12,13 @@ export const logo = css({
     display: 'block',
     height: 100,
     width: 200,
-    margin: [spacer, 0, 0, 0],
+    margin: `${SPACER}px 0 0 0`,
     svg: {
         width: '90%',
         maxHeight: '100%',
         margin: '5%',
     },
-    [`@media screen and (min-width: ${screenSm}px)`]: {
+    [mediaMin('sm')]: {
         height: '100%',
         minHeight: 180,
         backgroundSize: 'auto 60%',
@@ -40,11 +39,11 @@ export const titles = css({
     flexDirection: 'column',
     alignItems: 'center',
     position: 'static',
-    [`@media screen and (min-width: ${screenSm}px)`]: {
+    [mediaMin('sm')]: {
         flexDirection: 'row',
         justifyContent: 'center',
         [`.${scrollable}`]: {
-            marginLeft: spacer,
+            marginLeft: SPACER,
         },
     },
 });

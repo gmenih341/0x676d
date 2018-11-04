@@ -1,21 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import './social.component.scss';
+import {cx} from 'emotion';
+import * as css from './social.styles';
 
 export function Social (props) {
     const {networks} = props;
     const icons = networks.map(network => (
-        <a key={network.icon} href={network.href} className={`icon ${network.icon}`} rel="noopener noreferrer" target="_blank">
+        <a
+            key={network.icon}
+            href={network.href}
+            className={cx([css.icon, 'icon', network.icon])}
+            rel="noopener noreferrer"
+            target="_blank">
             <span className="d-none d-sm-inline">{network.text}</span>
         </a>
     ));
 
     return (
-        <footer className="container-fluid footer">
-            <div className="d-flex justify-content-center">
-                <div className="social-icons">{icons}</div>
-            </div>
+        <footer className={css.footer}>
+            <div className={css.socialIcons}>{icons}</div>
         </footer>
     );
 }

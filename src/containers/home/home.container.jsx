@@ -1,5 +1,5 @@
 import React from 'react';
-import cn from 'classnames';
+import {cx} from 'emotion';
 import {HeaderContainer} from '../header/header.container';
 import {ConsoleContainer} from '../console/console.container';
 import {Social} from '../../components/social/social.component';
@@ -20,7 +20,7 @@ export function HomeContainer () {
 
     return (
         <div
-            className={cn({
+            className={cx({
                 [css.homeContainer]: true,
                 [css.loading]: loading,
             })}>
