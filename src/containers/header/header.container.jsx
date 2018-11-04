@@ -4,9 +4,7 @@ import {Logo} from '../../components/logo/logo.component';
 import {PageTitle} from '../../components/page-title/page-title.component';
 import {useRefHeight} from './ref-height.hook';
 import {useScrollToActive} from './scroll-active.hook';
-
-// assets
-import './header.container.scss';
+import * as css from './header.style';
 
 export function HeaderContainer (props) {
     const {pages, activePage} = props;
@@ -16,12 +14,12 @@ export function HeaderContainer (props) {
     useScrollToActive(activePage, height, scrollableRef);
 
     return (
-        <header className="container-fluid header">
-            <div className="title-wrapper">
-                <div className="logo">
+        <header className={css.header}>
+            <div className={css.titles}>
+                <div className={css.logo}>
                     <Logo />
                 </div>
-                <div className="scrollable" ref={scrollableRef} style={{height}}>
+                <div className={css.scrollable} ref={scrollableRef} style={{height}}>
                     {titles}
                 </div>
             </div>
