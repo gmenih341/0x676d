@@ -11,3 +11,5 @@ export const COLOR_WHITE = '#FFFCE8';
 export const COLOR_GITHUB = '#000';
 export const COLOR_LINKEDIN = '#0077B5';
 export const COLOR_EMAIL = COLOR_FLAME;
+
+export const CONSOLE_FONT = '"Fira Code", "Courier New", Courier, monospace';

@@ -45,13 +45,11 @@
   },
   "dependencies": {
     "bootstrap": "4.1.3",
-    "classnames": "2.2.6",
     "emotion": "9.2.12",
     "firacode": "1.205.0",
     "prop-types": "15.5.7",
     "react": "16.7.0-alpha.0",
-    "react-dom": "16.7.0-alpha.0",
-    "react-emotion": "9.2.12"
+    "react-dom": "16.7.0-alpha.0"
   },
   "precommit": [
     "lint-staged"

@@ -1,5 +1,4 @@
 import React from 'react';
-import {cx} from 'emotion';
 import {HeaderContainer} from '../header/header.container';
 import {ConsoleContainer} from '../console/console.container';
 import {Social} from '../../components/social/social.component';
@@ -19,11 +18,7 @@ export function HomeContainer () {
     useDocumentTitle(pages[activePage].browserTitle);
 
     return (
-        <div
-            className={cx({
-                [css.homeContainer]: true,
-                [css.loading]: loading,
-            })}>
+        <div className={css.homeContainer(loading)}>
             <div className={css.cover} />
             <div className={css.loadingWrapper}>
                 <HeaderContainer activePage={activePage} pages={pages} />
