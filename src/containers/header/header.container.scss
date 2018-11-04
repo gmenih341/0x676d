@@ -43,6 +43,7 @@
 
         @media screen and (min-width: $screen-sm) {
             flex-direction: row;
+            justify-content: center;
 
             .scrollable {
                 margin-left: $spacer;

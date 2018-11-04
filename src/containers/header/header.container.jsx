@@ -17,16 +17,12 @@ export function HeaderContainer (props) {
 
     return (
         <header className="container-fluid header">
-            <div className="row d-flex justify-content-center">
-                <div className="col-12 col-md-11 col-lg-9">
-                    <div className="title-wrapper">
-                        <div className="logo">
-                            <Logo />
-                        </div>
-                        <div className="scrollable" ref={scrollableRef} style={{height}}>
-                            {titles}
-                        </div>
-                    </div>
+            <div className="title-wrapper">
+                <div className="logo">
+                    <Logo />
+                </div>
+                <div className="scrollable" ref={scrollableRef} style={{height}}>
+                    {titles}
                 </div>
             </div>
         </header>

@@ -1,15 +1,16 @@
 import React from 'react';
+import cn from 'classnames';
 import {HeaderContainer} from '../header/header.container';
 import {ConsoleContainer} from '../console/console.container';
 import {Social} from '../../components/social/social.component';
 import {useWheelPager} from './wheel-pager.hook';
 import {useDocumentTitle} from './document-title.hook';
 import {useLoading} from './loading.hook';
+import * as css from './home.styles';
 
 // assets
 import pages from '../../assets/pages.json5';
 import networks from '../../assets/networks.json5';
-import './home.container.scss';
 
 export function HomeContainer () {
     const loading = useLoading();
@@ -18,9 +19,13 @@ export function HomeContainer () {
     useDocumentTitle(pages[activePage].browserTitle);
 
     return (
-        <div className={'home-container' + (loading ? ' loading' : '')}>
-            <div className="yellow-cover" />
-            <div className="loading-wrapper">
+        <div
+            className={cn({
+                [css.homeContainer]: true,
+                [css.loading]: loading,
+            })}>
+            <div className={css.cover} />
+            <div className={css.loadingWrapper}>
                 <HeaderContainer activePage={activePage} pages={pages} />
                 <ConsoleContainer activePage={activePage} />
                 <Social networks={networks} />
