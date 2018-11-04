@@ -33,5 +33,10 @@
         .loading-wrapper {
             opacity: 0;
         }
+        .yellow-cover {
+            transform: rotate(0);
+            height: 100%;
+            top: 0;
+        }
     }
 }

@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const PurgeCSSPlugin = require('purgecss-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 
 module.exports = {
     entry: './src/index.js',
@@ -76,6 +77,7 @@ module.exports = {
             inject: true,
             title: 'Gregor Menih',
         }),
+        new DashboardPlugin(),
     ],
     optimization: {
         splitChunks: {

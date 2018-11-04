@@ -1,5 +1,5 @@
 import {useLayoutEffect, useState} from 'react';
-import {debounce} from '../utils/function.utils';
+import {debounce} from '../../utils/function.utils';
 
 const SCROLL_BREAKPOINT = 10;
 
