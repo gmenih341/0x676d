@@ -1,10 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Console} from './styled/console.styled';
 import {ConsoleContent} from './styled/console-content.styled';
 import * as Prompt from './styled/prompt.styled';
 import {ScrollIndicator, Wheel} from './styled/scroll-indicator.styled';
 
-export function ConsoleContainer () {
+export function ConsoleContainer (props) {
+    const {showIndicator} = props;
     return (
         <div className="container-fluid d-flex flex-grow-1">
             <div className="row d-flex flex-grow-1 justify-content-center">
@@ -19,12 +21,18 @@ export function ConsoleContainer () {
                                 <Prompt.Red> →</Prompt.Red>
                             </Prompt.Text>
                         </ConsoleContent>
-                        <ScrollIndicator>
-                            <Wheel />
-                        </ScrollIndicator>
+                        {showIndicator ? (
+                            <ScrollIndicator>
+                                <Wheel />
+                            </ScrollIndicator>
+                        ) : null}
                     </Console>
                 </div>
             </div>
         </div>
     );
 }
+
+ConsoleContainer.propTypes = {
+    showIndicator: PropTypes.bool.isRequired,
+};

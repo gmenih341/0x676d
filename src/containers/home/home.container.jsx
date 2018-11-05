@@ -15,7 +15,7 @@ import networks from '../../assets/networks.json5';
 
 export function HomeContainer () {
     const loading = useLoading();
-    const activePage = useWheelPager(pages.length);
+    const [activePage, firstChange] = useWheelPager(pages.length);
 
     useDocumentTitle(pages[activePage].browserTitle);
 
@@ -24,7 +24,7 @@ export function HomeContainer () {
             <Cover loading={loading} />
             <LoadingWrapper loading={loading}>
                 <HeaderContainer activePage={activePage} pages={pages} />
-                <ConsoleContainer activePage={activePage} />
+                <ConsoleContainer activePage={activePage} showIndicator={!firstChange} />
                 <Social networks={networks} />
             </LoadingWrapper>
         </Container>
