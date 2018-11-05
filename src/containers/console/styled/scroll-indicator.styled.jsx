@@ -1,40 +1,7 @@
-import {css} from 'emotion';
-import {
-    COLOR_JUNGLE_GREEN,
-    SPACER,
-    COLOR_WHITE,
-    COLOR_FLAME,
-    COLOR_DEEP_SPACE_SPARKLE,
-    CONSOLE_FONT,
-    SPACER_BIG,
-} from '../../styles/variables';
+import styled from '@emotion/styled';
+import {COLOR_FLAME, SPACER_BIG} from '../../../styles/variables';
 
-export const console = css`
-    height: 100%;
-    position: relative;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
-`;
-
-export const content = css`
-    font-family: ${CONSOLE_FONT};
-    font-size: 0.9em;
-    font-variant-ligatures: common-ligatures;
-    background-color: ${COLOR_JUNGLE_GREEN};
-    padding: ${SPACER}px;
-    color: ${COLOR_WHITE};
-    overflow: auto;
-    height: 100%;
-`;
-
-export const r = css`
-    color: ${COLOR_FLAME};
-`;
-
-export const y = css`
-    color: ${COLOR_DEEP_SPACE_SPARKLE};
-`;
-
-export const scrollIndicator = css`
+export const ScrollIndicator = styled('div')`
     border: 3px solid ${COLOR_FLAME};
     border-radius: 35%;
     height: 50px;
@@ -49,7 +16,7 @@ export const scrollIndicator = css`
     transform: translateX(-50%);
 `;
 
-export const scrollWheel = css`
+export const Wheel = styled('div')`
     width: 4px;
     height: 8px;
     background-color: ${COLOR_FLAME};

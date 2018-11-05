@@ -5,7 +5,9 @@ import {Social} from '../../components/social/social.component';
 import {useWheelPager} from './wheel-pager.hook';
 import {useDocumentTitle} from './document-title.hook';
 import {useLoading} from './loading.hook';
-import * as css from './home.styles';
+import {Container} from './styled/container.styled';
+import {Cover} from './styled/cover.styled';
+import {LoadingWrapper} from './styled/loading-wrapper.styled';
 
 // assets
 import pages from '../../assets/pages.json5';
@@ -18,13 +20,13 @@ export function HomeContainer () {
     useDocumentTitle(pages[activePage].browserTitle);
 
     return (
-        <div className={css.homeContainer(loading)}>
-            <div className={css.cover} />
-            <div className={css.loadingWrapper}>
+        <Container>
+            <Cover loading={loading} />
+            <LoadingWrapper loading={loading}>
                 <HeaderContainer activePage={activePage} pages={pages} />
                 <ConsoleContainer activePage={activePage} />
                 <Social networks={networks} />
-            </div>
-        </div>
+            </LoadingWrapper>
+        </Container>
     );
 }
