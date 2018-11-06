@@ -3,18 +3,15 @@ import PropTypes from 'prop-types';
 import {Logo} from '../../components/logo/logo.component';
 import {PageTitle} from '../../components/page-title/page-title.component';
 import {useRefHeight} from './ref-height.hook';
-import {useScrollToActive} from './scroll-active.hook';
 import {Container} from './styled/container.styled';
 import {Headings} from './styled/headings.styled';
 import {LogoContainer} from './styled/logo-container.styled';
-import {Scrollable} from './styled/scrollable.styled';
+import {useSpring, animated} from 'react-spring';
 
 export function HeaderContainer (props) {
     const {pages, activePage} = props;
     const [height, scrollableRef] = useRefHeight();
-    const titles = pages.map((page, i) => <PageTitle key={`title-${i}`} active={activePage === i} {...page} />);
-
-    useScrollToActive(activePage, height, scrollableRef);
+    const [springStyle] = useSpring({y: height * activePage});
 
     return (
         <Container>
@@ -22,9 +19,11 @@ export function HeaderContainer (props) {
                 <LogoContainer>
                     <Logo />
                 </LogoContainer>
-                <Scrollable ref={scrollableRef} height={height}>
-                    {titles}
-                </Scrollable>
+                <animated.div style={{overflow: 'hidden', height}} scrollTop={springStyle.y} ref={scrollableRef}>
+                    {pages.map((page, i) => (
+                        <PageTitle key={`title-${i}`} active={activePage === i} {...page} />
+                    ))}
+                </animated.div>
             </Headings>
         </Container>
     );

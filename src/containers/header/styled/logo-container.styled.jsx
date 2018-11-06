@@ -19,6 +19,7 @@ export const LogoContainer = styled('div')`
         min-height: 180px;
         background-size: auto 60%;
         margin: 0;
+        margin-right: ${SPACER}px;
         svg {
             width: 70%;
             margin: 15%;
