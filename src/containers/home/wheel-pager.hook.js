@@ -5,6 +5,7 @@ const SCROLL_BREAKPOINT = 10;
 
 export function useWheelPager (maxPage) {
     const [stateActivePage, setActivePage] = useState(0);
+    const [firstChange, setFirstChange] = useState(false);
     let activePage = 0;
     let sumScroll = 0;
     let breakpointModifier = 1;
@@ -25,6 +26,9 @@ export function useWheelPager (maxPage) {
             if (nextPage >= 0 && nextPage < maxPage) {
                 activePage = nextPage;
                 setActivePage(nextPage);
+                if (!firstChange) {
+                    setFirstChange(true);
+                }
             }
         }
         onWheelEnd();
@@ -37,5 +41,5 @@ export function useWheelPager (maxPage) {
         };
     }, []);
 
-    return stateActivePage;
+    return [stateActivePage, firstChange];
 }

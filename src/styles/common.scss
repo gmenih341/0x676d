@@ -1,5 +1,4 @@
 @import "~bootstrap/scss/bootstrap.scss";
-@import "./variables/variables";
 @import "./variables/fonts";
 @import "./variables/fontello";
 
@@ -10,7 +9,7 @@ body {
 }
 body {
     font-family: $default-font;
-    @media screen and (min-width: $screen-sm) {
+    @media screen and (min-width: 576px) {
         overflow: hidden;
     }
 }

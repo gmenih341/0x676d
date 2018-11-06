@@ -1,22 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import './social.component.scss';
+import {Footer} from './styled/footer.styled';
+import {SocialIcons, Icon} from './styled/social-icons.styled';
 
 export function Social (props) {
     const {networks} = props;
     const icons = networks.map(network => (
-        <a key={network.icon} href={network.href} className={`icon ${network.icon}`} rel="noopener noreferrer" target="_blank">
+        <Icon
+            key={network.icon}
+            href={network.href}
+            className={network.icon}
+            color={network.color}
+            rel="noopener noreferrer"
+            target="_blank&quot;">
             <span className="d-none d-sm-inline">{network.text}</span>
-        </a>
+        </Icon>
     ));
 
     return (
-        <footer className="container-fluid footer">
-            <div className="d-flex justify-content-center">
-                <div className="social-icons">{icons}</div>
-            </div>
-        </footer>
+        <Footer>
+            <SocialIcons>{icons}</SocialIcons>
+        </Footer>
     );
 }
 

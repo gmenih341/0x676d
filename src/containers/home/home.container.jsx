@@ -5,26 +5,28 @@ import {Social} from '../../components/social/social.component';
 import {useWheelPager} from './wheel-pager.hook';
 import {useDocumentTitle} from './document-title.hook';
 import {useLoading} from './loading.hook';
+import {Container} from './styled/container.styled';
+import {Cover} from './styled/cover.styled';
+import {LoadingWrapper} from './styled/loading-wrapper.styled';
 
 // assets
 import pages from '../../assets/pages.json5';
 import networks from '../../assets/networks.json5';
-import './home.container.scss';
 
 export function HomeContainer () {
     const loading = useLoading();
-    const activePage = useWheelPager(pages.length);
+    const [activePage, firstChange] = useWheelPager(pages.length);
 
     useDocumentTitle(pages[activePage].browserTitle);
 
     return (
-        <div className={'home-container' + (loading ? ' loading' : '')}>
-            <div className="yellow-cover" />
-            <div className="loading-wrapper">
+        <Container>
+            <Cover loading={loading} />
+            <LoadingWrapper loading={loading}>
                 <HeaderContainer activePage={activePage} pages={pages} />
-                <ConsoleContainer activePage={activePage} />
+                <ConsoleContainer activePage={activePage} showIndicator={!firstChange} />
                 <Social networks={networks} />
-            </div>
-        </div>
+            </LoadingWrapper>
+        </Container>
     );
 }

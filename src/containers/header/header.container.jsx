@@ -4,9 +4,10 @@ import {Logo} from '../../components/logo/logo.component';
 import {PageTitle} from '../../components/page-title/page-title.component';
 import {useRefHeight} from './ref-height.hook';
 import {useScrollToActive} from './scroll-active.hook';
-
-// assets
-import './header.container.scss';
+import {Container} from './styled/container.styled';
+import {Headings} from './styled/headings.styled';
+import {LogoContainer} from './styled/logo-container.styled';
+import {Scrollable} from './styled/scrollable.styled';
 
 export function HeaderContainer (props) {
     const {pages, activePage} = props;
@@ -16,20 +17,16 @@ export function HeaderContainer (props) {
     useScrollToActive(activePage, height, scrollableRef);
 
     return (
-        <header className="container-fluid header">
-            <div className="row d-flex justify-content-center">
-                <div className="col-12 col-md-11 col-lg-9">
-                    <div className="title-wrapper">
-                        <div className="logo">
-                            <Logo />
-                        </div>
-                        <div className="scrollable" ref={scrollableRef} style={{height}}>
-                            {titles}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
+        <Container>
+            <Headings>
+                <LogoContainer>
+                    <Logo />
+                </LogoContainer>
+                <Scrollable ref={scrollableRef} height={height}>
+                    {titles}
+                </Scrollable>
+            </Headings>
+        </Container>
     );
 }
 
