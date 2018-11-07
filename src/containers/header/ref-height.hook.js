@@ -6,9 +6,12 @@ export function useRefHeight () {
     const scrollableRef = useRef();
     const [height, setHeight] = useState(DEFAULT_HEIGHT);
 
-    useEffect(() => {
-        setHeight(scrollableRef.current.firstChild.clientHeight);
-    });
+    useEffect(
+        () => {
+            setHeight(scrollableRef.current.firstChild.clientHeight);
+        },
+        [scrollableRef],
+    );
 
     return [height, scrollableRef];
 }

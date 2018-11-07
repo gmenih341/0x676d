@@ -7,11 +7,17 @@ import {Container} from './styled/container.styled';
 import {Headings} from './styled/headings.styled';
 import {LogoContainer} from './styled/logo-container.styled';
 import {useSpring, animated} from 'react-spring';
+import {easeCubicIn} from 'd3-ease';
 
 export function HeaderContainer (props) {
     const {pages, activePage} = props;
     const [height, scrollableRef] = useRefHeight();
-    const [springStyle] = useSpring({y: height * activePage});
+    // forced to use string interpolation, because react-spring doesn't like 0
+    const [springStyle] = useSpring({
+        scrollTop: `${height * activePage}`,
+        from: {scrollTop: '0'},
+        config: {duration: 150, ease: easeCubicIn},
+    });
 
     return (
         <Container>
@@ -19,7 +25,7 @@ export function HeaderContainer (props) {
                 <LogoContainer>
                     <Logo />
                 </LogoContainer>
-                <animated.div style={{overflow: 'hidden', height}} scrollTop={springStyle.y} ref={scrollableRef}>
+                <animated.div style={{overflow: 'hidden', height}} ref={scrollableRef} {...springStyle}>
                     {pages.map((page, i) => (
                         <PageTitle key={`title-${i}`} active={activePage === i} {...page} />
                     ))}

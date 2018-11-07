@@ -7,7 +7,7 @@ export function useLoading () {
         setTimeout(() => {
             setLoading(false);
         }, 500);
-    });
+    }, []);
 
     return loading;
 }
