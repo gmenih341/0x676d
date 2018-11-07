@@ -12,10 +12,9 @@ import {easeCubicIn} from 'd3-ease';
 export function HeaderContainer (props) {
     const {pages, activePage} = props;
     const [height, scrollableRef] = useRefHeight();
-    // forced to use string interpolation, because react-spring doesn't like 0
     const [springStyle] = useSpring({
-        scrollTop: `${height * activePage}`,
-        from: {scrollTop: '0'},
+        scrollTop: height * activePage,
+        from: {scrollTop: 0},
         config: {duration: 150, ease: easeCubicIn},
     });
 

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import {COLOR_WHITE} from '../../../styles/variables';
 
-export const Container = styled('div')`
+export const HomeContainer = styled('div')`
     position: fixed;
     top: 0;
     left: 0;
