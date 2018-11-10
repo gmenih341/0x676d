@@ -11,7 +11,7 @@ export const LogoContainer = styled('div')`
     svg {
         width: 90%;
         max-height: 100%;
-        margin: 5%;
+        margin: 0 5%;
     }
 
     ${mediaMin('sm')} {
