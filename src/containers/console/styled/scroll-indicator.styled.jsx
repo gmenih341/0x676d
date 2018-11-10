@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
-import {COLOR_FLAME, SPACER_BIG} from '../../../styles/variables';
+import {COLOR_GRAY, SPACER_BIG} from '../../../styles/variables';
+
+const INDICATOR_COLOR = COLOR_GRAY[0];
 
 export const ScrollIndicator = styled('div')`
-    border: 3px solid ${COLOR_FLAME};
+    border: 3px solid ${INDICATOR_COLOR};
     border-radius: 35%;
     height: 50px;
     width: 25px;
@@ -19,7 +21,7 @@ export const ScrollIndicator = styled('div')`
 export const Wheel = styled('div')`
     width: 4px;
     height: 8px;
-    background-color: ${COLOR_FLAME};
+    background-color: ${INDICATOR_COLOR};
     margin: 10px -2px;
     border-radius: 35%;
     animation: scroll 7s infinite;

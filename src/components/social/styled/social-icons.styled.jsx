@@ -1,18 +1,19 @@
 import styled from '@emotion/styled';
-import {SPACER, COLOR_JUNGLE_GREEN, SPACER_SMALL} from '../../../styles/variables';
+import {SPACER, SPACER_SMALL, COLOR_BLACK} from '../../../styles/variables';
 
 export const SocialIcons = styled('div')`
     text-align: center;
 `;
 
 export const Icon = styled('a')`
+    display: inline-block;
     margin: 0 ${SPACER}px;
-    color: ${COLOR_JUNGLE_GREEN};
-    opacity: 0.3;
+    color: ${COLOR_BLACK};
+    position: relative;
+    opacity: 0.5;
     font-size: 0.9em;
     font-weight: 500;
     transition: color 300ms linear, opacity 420ms ease-out;
-    vertical-align: middle;
     padding: ${SPACER_SMALL}px;
 
     &:before {

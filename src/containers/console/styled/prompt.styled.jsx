@@ -1,14 +1,14 @@
 import styled from '@emotion/styled';
-import {COLOR_FLAME, COLOR_DEEP_SPACE_SPARKLE} from '../../../styles/variables';
+import {COLOR_MAIN} from '../../../styles/variables';
 
 export const Text = styled('span')`
     font-weight: 700;
 `;
 
 export const Red = styled('span')`
-    color: ${COLOR_FLAME};
+    color: #ff0000;
 `;
 
 export const Blue = styled('span')`
-    color: ${COLOR_DEEP_SPACE_SPARKLE};
+    color: ${COLOR_MAIN[4]};
 `;
