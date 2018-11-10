@@ -5,16 +5,37 @@ import {ConsoleContent} from './styled/console-content.styled';
 import * as Prompt from './styled/prompt.styled';
 import {ScrollIndicator, Wheel} from './styled/scroll-indicator.styled';
 
+const pageContent = [
+    {
+        content: 'test',
+    },
+    {
+        content: 'test '.repeat(1000),
+    },
+];
+
+const stopPropagationIfScrollable = event => {
+    if (event.target.scrollHeight > event.target.clientHeight) {
+        // if (
+        //     !(event.deltaY < 0 && event.target.scrollTop === 0) &&
+        //     !(event.deltaY > 0 && (event.target.scrollTop + event.target.clientHeight) >= event.target.scrollHeight)
+        // ) {
+        // }
+        event.stopPropagation();
+    }
+};
+
 export function ConsoleContainer (props) {
-    const {showIndicator} = props;
+    const {showIndicator, activePage} = props;
+    const page = pageContent[activePage];
+
     return (
         <div className="container-fluid d-flex flex-grow-1">
             <div className="row d-flex flex-grow-1 justify-content-center">
                 <div className="col-12 col-md-11 col-lg-9">
-                    <Console>
+                    <Console onWheel={stopPropagationIfScrollable}>
                         <ConsoleContent>
-                            {`gmsh: render-website: command not found. Maybe it's under construction 🤔`}
-                            <br />
+                            {page && page.content}
                             <Prompt.Text>
                                 <Prompt.Red>λ </Prompt.Red>
                                 <Prompt.Blue> ~/</Prompt.Blue>
@@ -34,5 +55,6 @@ export function ConsoleContainer (props) {
 }
 
 ConsoleContainer.propTypes = {
+    activePage: PropTypes.number.isRequired,
     showIndicator: PropTypes.bool.isRequired,
 };

@@ -3,7 +3,7 @@ import {SPACER, COLOR_WHITE, COLOR_BLACK} from '../../../styles/variables';
 
 const CONSOLE_FONT = '"Fira Code", "Courier New", Courier, monospace';
 
-export const ConsoleContent = styled('div')`
+export const ConsoleContent = styled('pre')`
     font-family: ${CONSOLE_FONT};
     font-size: 0.9em;
     font-variant-ligatures: common-ligatures;
@@ -12,4 +12,5 @@ export const ConsoleContent = styled('div')`
     color: ${COLOR_WHITE};
     overflow: auto;
     height: 100%;
+    white-space: pre-wrap;
 `;
