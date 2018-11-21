@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Console} from './styled/console.styled';
 import {ConsoleContent} from './styled/console-content.styled';
-import * as Prompt from './styled/prompt.styled';
 import {ScrollIndicator, Wheel} from './styled/scroll-indicator.styled';
+import {HomePage} from '../../components/home-page/home-page.component';
 
 const stopPropagationIfScrollable = event => {
     if (event.target.scrollHeight > event.target.clientHeight) {
@@ -20,13 +20,7 @@ export function ConsoleContainer (props) {
                 <div className="col-12 col-md-11 col-lg-9">
                     <Console onWheel={stopPropagationIfScrollable}>
                         <ConsoleContent>
-                            {`gmsh: render-website: command not found. Maybe it's under construction 🤔`}
-                            <Prompt.Text>
-                                <Prompt.Red>λ </Prompt.Red>
-                                <Prompt.Blue> ~/</Prompt.Blue>
-                                <Prompt.Red> →</Prompt.Red>
-                                <Prompt.Cursor />
-                            </Prompt.Text>
+                            <HomePage />
                         </ConsoleContent>
                         {showIndicator ? (
                             <ScrollIndicator>

@@ -16,6 +16,10 @@ module.exports = {
         path: resolve('./dist'),
         filename: '[name]-[hash].js',
     },
+    devServer: {
+        host: '0.0.0.0',
+        open: true,
+    },
     module: {
         rules: [
             {
@@ -46,6 +50,10 @@ module.exports = {
                         },
                     },
                 ],
+            },
+            {
+                test: /\.png$/,
+                loader: 'file-loader',
             },
             {
                 test: /\.json5$/,
