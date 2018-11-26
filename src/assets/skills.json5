@@ -1,0 +1,26 @@
+[
+    {
+        name: 'JavaScript',
+        value: 105,
+    },
+    {
+        name: 'CSS+HTML',
+        value: 100,
+    },
+    {
+        name: 'NodeJS',
+        value: 90,
+    },
+    {
+        name: 'React',
+        value: 60,
+    },
+    {
+        name: 'Angular',
+        value: 70,
+    },
+    {
+        name: 'Freestyle rapping',
+        value: 5,
+    }
+]

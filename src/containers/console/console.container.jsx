@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Console} from './styled/console.styled';
 import {ConsoleContent} from './styled/console-content.styled';
-import {ScrollIndicator, Wheel} from './styled/scroll-indicator.styled';
 import {HomePage} from '../../components/home-page/home-page.component';
 
 const stopPropagationIfScrollable = event => {
@@ -11,9 +10,7 @@ const stopPropagationIfScrollable = event => {
     }
 };
 
-export function ConsoleContainer (props) {
-    const {showIndicator} = props;
-
+export function ConsoleContainer () {
     return (
         <div className="container-fluid d-flex flex-grow-1">
             <div className="row d-flex flex-grow-1 justify-content-center">
@@ -22,11 +19,6 @@ export function ConsoleContainer (props) {
                         <ConsoleContent>
                             <HomePage />
                         </ConsoleContent>
-                        {showIndicator ? (
-                            <ScrollIndicator>
-                                <Wheel />
-                            </ScrollIndicator>
-                        ) : null}
                     </Console>
                 </div>
             </div>

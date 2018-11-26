@@ -1,17 +1,27 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import {Trail, animated} from 'react-spring';
 import {ConsoleBox} from '../console-box/console-box.component';
 import styled from '@emotion/styled';
-import {mediaMin} from '../../utils/style.utils';
+import {mediaMin, lineClamp} from '../../utils/style.utils';
 import {COLOR_MAIN, SPACER, COLOR_GRAY, SPACER_SMALL} from '../../styles/variables';
 import profile from '../../assets/profile.png';
 import {GridRow, GridCol} from '../grid/grid.component';
 
+import skillItems from '../../assets/skills.json5';
+
+const BLOCK_OFFSET = '2px';
+const PROFILE_OFFSET = '4px';
+const BIRTH_DATE = new Date('1994-03-08T03:45:00.000');
+const MILLISECONDS_IN_AVG_YEAR = 1000 * 60 * 60 * 24 * 365.24;
+
 const ProfilePic = styled('div')`
+    position: relative;
+    left: -${PROFILE_OFFSET};
+    top: -${PROFILE_OFFSET};
     width: 200px;
     height: 200px;
-    background-color: ${COLOR_MAIN[3]};
+    background-color: ${COLOR_GRAY[7]};
     display: block;
-    transform: rotate(-2deg);
     flex-grow: 0;
     flex-shrink: 0;
 
@@ -21,7 +31,9 @@ const ProfilePic = styled('div')`
 
     img {
         max-width: 100%;
-        transform: rotate(2deg);
+        position: relative;
+        left: ${PROFILE_OFFSET};
+        top: ${PROFILE_OFFSET};
     }
 `;
 
@@ -33,7 +45,7 @@ const InfoContainer = styled('div')`
 
 const Quote = styled('div')`
     padding: ${SPACER_SMALL}px 0;
-    color: ${COLOR_GRAY[4]};
+    color: ${COLOR_GRAY[3]};
     text-align: center;
     flex-grow: 1;
 `;
@@ -41,8 +53,10 @@ const Quote = styled('div')`
 const InfoLine = styled('div')`
     flex-grow: 0;
     flex-shrink: 0;
-    span {
-        color: ${COLOR_MAIN[4]};
+    ${lineClamp(1)} span {
+        display: inline-block;
+        color: ${COLOR_GRAY[3]};
+        width: 70px;
     }
 `;
 
@@ -58,27 +72,53 @@ const Skill = styled('div')`
     span {
         flex-grow: 1;
         line-height: 30px;
+        text-align: right;
+        margin-right: ${SPACER}px;
+        ${lineClamp(1, 30, 'px')};
+    }
+
+    div {
+        width: 66%;
+        flex-grow: 0;
+        flex-shrink: 0;
+        height: 30px;
     }
 `;
 
-const SkillBar = styled('div')`
+const SkillBarContainer = styled('div')`
     display: block;
     position: relative;
+    top: -${BLOCK_OFFSET};
+    left: -${BLOCK_OFFSET};
     width: 66%;
     flex-grow: 0;
     flex-shrink: 0;
-    height: 30px;
-
-    &:after {
-        content: ' ';
-        display: block;
-        width: ${props => props.percent}%;
-        height: 100%;
-        background: purple;
-    }
+    height: 25px;
+    background-color: ${COLOR_GRAY[7]};
 `;
 
+const SkillBar = styled(animated.div)`
+    position: relative;
+    display: block;
+    top: ${BLOCK_OFFSET};
+    left: ${BLOCK_OFFSET};
+    height: 100%;
+    background-color: ${COLOR_MAIN[6]};
+`;
+
+/* eslint-disable */
+const skillTrail = item => props => (
+    <Skill>
+        <span>{item.name}</span>
+        <SkillBarContainer>
+            <SkillBar style={{width: `${item.value * props.p}%`}} />
+        </SkillBarContainer>
+    </Skill>
+);
+/* eslint-enable */
+
 export function HomePage () {
+    const age = useExactAge(BIRTH_DATE);
     return (
         <>
             <GridRow>
@@ -93,54 +133,42 @@ export function HomePage () {
                                 <br />
                             </Quote>
                             <InfoLine>
-                                Uptime: <span>24 years</span>
+                                <span>Uptime:</span> ~{age} cycles around the earth
                             </InfoLine>
                             <InfoLine>
-                                Length: <span>1.98 m</span>
+                                <span>Big:</span> 1.98 m
                             </InfoLine>
                             <InfoLine>
-                                IQ: <span>81</span>
+                                <span>IQ:</span> 142
                             </InfoLine>
                             <InfoLine>
-                                Eyes: <span>2</span>
+                                <span>Eyes:</span> 2
                             </InfoLine>
                         </InfoContainer>
                     </ConsoleBox>
                 </GridCol>
                 <GridCol xl={50}>
                     <ConsoleBox title="Skills" direction="column">
-                        <Skill>
-                            <span>JavaScript</span>
-                            <SkillBar percent={300} />
-                        </Skill>
-                        <Skill>
-                            <span>TypeScript</span>
-                            <SkillBar percent={20} />
-                        </Skill>
-                        <Skill>
-                            <span>CSS</span>
-                            <SkillBar percent={30} />
-                        </Skill>
-                        <Skill>
-                            <span>SQL</span>
-                            <SkillBar percent={40} />
-                        </Skill>
-                        <Skill>
-                            <span>OTHA SHIZ</span>
-                            <SkillBar percent={50} />
-                        </Skill>
-                        <Skill>
-                            <span>Farming</span>
-                            <SkillBar percent={80} />
-                        </Skill>
+                        <Trail items={skillItems} keys={item => item.name + item.value} from={{p: 0}} to={{p: 1}} config={{delay: 1000}}>
+                            {skillTrail}
+                        </Trail>
                     </ConsoleBox>
                 </GridCol>
             </GridRow>
-            <GridRow>
+            <GridRow style={{flexGrow: 1}}>
                 <GridCol>
-                    <ConsoleBox title="You have a big monitor">Where did you get it</ConsoleBox>
+                    <ConsoleBox title="Recent blog posts">None</ConsoleBox>
                 </GridCol>
             </GridRow>
         </>
     );
+}
+
+function useExactAge (birth) {
+    const [age, setAge] = useState(24);
+    useEffect(() => {
+        const diff = ((Date.now() - birth.getTime()) / MILLISECONDS_IN_AVG_YEAR).toFixed(7);
+        setAge(diff);
+    });
+    return age;
 }

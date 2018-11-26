@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import {COLOR_BLACK, SPACER, SPACER_SMALL, COLOR_MAIN} from '../../styles/variables';
+import {COLOR_BLACK, SPACER, SPACER_SMALL, COLOR_GRAY} from '../../styles/variables';
 
 const Wrapper = styled('div')`
     padding: ${SPACER_SMALL}px;
@@ -13,7 +13,7 @@ const Container = styled('div')`
     display: flex;
     flex-direction: ${props => props.direction};
     height: 100%;
-    border: 1px solid ${props => props.color || COLOR_MAIN[2]};
+    border: 1px solid ${props => props.color || COLOR_GRAY[6]};
     position: relative;
     padding: ${SPACER}px;
 `;
@@ -44,6 +44,6 @@ export function ConsoleBox (props) {
 
 ConsoleBox.propTypes = {
     title: PropTypes.string,
-    children: PropTypes.arrayOf(PropTypes.node),
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
     direction: PropTypes.oneOf(['column', 'row']),
 };
