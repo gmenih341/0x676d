@@ -8,19 +8,27 @@
         value: 100,
     },
     {
-        name: 'NodeJS',
-        value: 90,
-    },
-    {
         name: 'React',
         value: 60,
+    },
+    {
+        name: 'NodeJS',
+        value: 90,
     },
     {
         name: 'Angular',
         value: 70,
     },
     {
+        name: 'Go',
+        value: 50,
+    },
+    {
+        name: 'Java',
+        value: 20,
+    },
+    {
         name: 'Freestyle rapping',
-        value: 5,
+        value: 3.14,
     }
 ]

@@ -12,7 +12,7 @@ export function Social (props) {
             className={network.icon}
             color={network.color}
             rel="noopener noreferrer"
-            target="_blank&quot;">
+            target='_blank"'>
             <span className="d-none d-sm-inline">{network.text}</span>
         </Icon>
     ));

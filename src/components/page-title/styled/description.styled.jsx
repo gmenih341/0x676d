@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 export const Description = styled('span')`
     display: block;
+    position: relative;
     font-weight: 300;
     text-align: center;
     transform: ${props => (props.active ? 'scale(1)' : 'scale(0)')};

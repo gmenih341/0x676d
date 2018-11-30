@@ -1,18 +1,18 @@
 import styled from '@emotion/styled';
-import {COLOR_MAIN} from '../../../styles/variables';
+import {COLOR_MAIN, SPACER_SMALL} from '../../../styles/variables';
 
 export const Text = styled('span')`
     display: block;
     line-height: 1em;
-    font-weight: 700;
+    /* font-weight: 700; */
 `;
 
 export const Red = styled('span')`
-    color: #ff0000;
+    color: #ff530d;
 `;
 
 export const Blue = styled('span')`
-    color: ${COLOR_MAIN[3]};
+    color: ${COLOR_MAIN[4]};
 `;
 
 export const Cursor = styled('span')`
@@ -21,8 +21,7 @@ export const Cursor = styled('span')`
     width: 0.5em;
     height: 1.2em;
     vertical-align: bottom;
-    border-bottom: 1px solid ${COLOR_MAIN[3]};
-    animation: blink 1s linear infinite;
+    animation: blink 1.2s linear infinite;
 
     @keyframes blink {
         0%,
@@ -32,7 +31,12 @@ export const Cursor = styled('span')`
         }
         50%,
         99% {
-            background-color: ${COLOR_MAIN[3]};
+            background-color: ${COLOR_MAIN[4]};
         }
     }
+`;
+
+export const Command = styled('span')`
+    margin-left: ${SPACER_SMALL}px;
+    font-weight: normal;
 `;

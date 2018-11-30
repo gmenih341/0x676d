@@ -15,13 +15,11 @@ const BIRTH_DATE = new Date('1994-03-08T03:45:00.000');
 const MILLISECONDS_IN_AVG_YEAR = 1000 * 60 * 60 * 24 * 365.24;
 
 const ProfilePic = styled('div')`
-    position: relative;
-    left: -${PROFILE_OFFSET};
-    top: -${PROFILE_OFFSET};
     width: 200px;
-    height: 200px;
-    background-color: ${COLOR_GRAY[7]};
-    display: block;
+    min-height: 200px;
+    height: 100%;
+    background: url(${profile}) no-repeat center center;
+    background-size: auto 100%;
     flex-grow: 0;
     flex-shrink: 0;
 
@@ -29,11 +27,16 @@ const ProfilePic = styled('div')`
         margin-right: ${SPACER}px;
     }
 
-    img {
-        max-width: 100%;
+    &:before {
+        content: ' ';
         position: relative;
-        left: ${PROFILE_OFFSET};
-        top: ${PROFILE_OFFSET};
+        left: -${PROFILE_OFFSET};
+        top: -${PROFILE_OFFSET};
+        width: 200px;
+        height: 100%;
+        background-color: ${COLOR_GRAY[6]};
+        display: block;
+        z-index: -1;
     }
 `;
 
@@ -46,17 +49,18 @@ const InfoContainer = styled('div')`
 const Quote = styled('div')`
     padding: ${SPACER_SMALL}px 0;
     color: ${COLOR_GRAY[3]};
-    text-align: center;
     flex-grow: 1;
 `;
 
 const InfoLine = styled('div')`
     flex-grow: 0;
     flex-shrink: 0;
-    ${lineClamp(1)} span {
+    padding: ${SPACER_SMALL / 2}px;
+
+    span {
         display: inline-block;
         color: ${COLOR_GRAY[3]};
-        width: 70px;
+        width: 115px;
     }
 `;
 
@@ -72,7 +76,6 @@ const Skill = styled('div')`
     span {
         flex-grow: 1;
         line-height: 30px;
-        text-align: right;
         margin-right: ${SPACER}px;
         ${lineClamp(1, 30, 'px')};
     }
@@ -104,6 +107,7 @@ const SkillBar = styled(animated.div)`
     left: ${BLOCK_OFFSET};
     height: 100%;
     background-color: ${COLOR_MAIN[6]};
+    transform-origin: 0 0;
 `;
 
 /* eslint-disable */
@@ -124,25 +128,19 @@ export function HomePage () {
             <GridRow>
                 <GridCol xl={50}>
                     <ConsoleBox title="About me" direction="row">
-                        <ProfilePic>
-                            <img src={profile} alt="my-face.pdf" />
-                        </ProfilePic>
+                        <ProfilePic />
                         <InfoContainer>
-                            <Quote>
-                                a fullstack web developer with an increasing love for the frontend
-                                <br />
-                            </Quote>
+                            <Quote>a fullstack web developer with an increasing love for the frontend</Quote>
                             <InfoLine>
-                                <span>Uptime:</span> ~{age} cycles around the earth
+                                <span>Employment:</span>
+                                EqualEyes ltd
                             </InfoLine>
                             <InfoLine>
-                                <span>Big:</span> 1.98 m
+                                <span>Location:</span>
+                                Maribor, 🇸🇮
                             </InfoLine>
                             <InfoLine>
-                                <span>IQ:</span> 142
-                            </InfoLine>
-                            <InfoLine>
-                                <span>Eyes:</span> 2
+                                <span>Uptime:</span>~{age} years
                             </InfoLine>
                         </InfoContainer>
                     </ConsoleBox>
@@ -155,11 +153,6 @@ export function HomePage () {
                     </ConsoleBox>
                 </GridCol>
             </GridRow>
-            <GridRow style={{flexGrow: 1}}>
-                <GridCol>
-                    <ConsoleBox title="Recent blog posts">None</ConsoleBox>
-                </GridCol>
-            </GridRow>
         </>
     );
 }
@@ -167,7 +160,7 @@ export function HomePage () {
 function useExactAge (birth) {
     const [age, setAge] = useState(24);
     useEffect(() => {
-        const diff = ((Date.now() - birth.getTime()) / MILLISECONDS_IN_AVG_YEAR).toFixed(7);
+        const diff = ((Date.now() - birth.getTime()) / MILLISECONDS_IN_AVG_YEAR).toFixed(4);
         setAge(diff);
     });
     return age;

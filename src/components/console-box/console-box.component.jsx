@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import {COLOR_BLACK, SPACER, SPACER_SMALL, COLOR_GRAY} from '../../styles/variables';
 
 const Wrapper = styled('div')`
-    padding: ${SPACER_SMALL}px;
+    /* padding: ${SPACER_SMALL}px; */
     padding-top: ${SPACER}px;
     height: 100%;
 `;
