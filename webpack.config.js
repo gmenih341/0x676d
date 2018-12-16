@@ -63,7 +63,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/index.html',
+            template: './src/assets/index.html',
             minify: {
                 collapseWhitespace: true,
                 preserveLineBreaks: false,

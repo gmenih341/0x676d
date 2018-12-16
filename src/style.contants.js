@@ -1,6 +1,6 @@
-export const SPACER_SMALL = 6;
-export const SPACER = 12;
-export const SPACER_BIG = 24;
+export const SPACER_SMALL = 7;
+export const SPACER = 15;
+export const SPACER_BIG = 30;
 
 export const COLOR_MAIN = ['#e9f3fb', '#bddcf4', '#91c4ed', '#65ade6', '#3a96df', '#207cc5', '#19619a', '#12456e', '#0b2942', '#040e16'];
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {COLOR_MAIN} from '../../styles/variables';
+import {COLOR_MAIN} from '../../style.contants';
 
 const LIGHT = COLOR_MAIN[5];
 const DARK = COLOR_MAIN[6];
