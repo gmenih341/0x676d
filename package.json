@@ -48,8 +48,6 @@
   "dependencies": {
     "@emotion/core": "10.0.5",
     "@emotion/styled": "10.0.5",
-    "d3-ease": "1.0.5",
-    "firacode": "1.205.0",
     "prop-types": "15.6.2",
     "react": "16.7.0-alpha.2",
     "react-dom": "16.7.0-alpha.2",
