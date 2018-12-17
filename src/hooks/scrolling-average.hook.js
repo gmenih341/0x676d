@@ -12,13 +12,13 @@ const defaultSettings = {
 export function useScrollingAverage (callback, options = defaultSettings) {
     const {stability, sensitivity, tolerance, delay, duration} = {...defaultSettings, ...options};
 
-    const [lastChange, setLastChange] = useState(Date.now());
+    const [lastChange, setLastChange] = useState(null);
     const nextDeltas = useMemo(() => Array(stability * 2).fill(null), [stability]);
     const prevDeltas = useMemo(() => Array(stability * 2).fill(null), [stability]);
     const timestampDeltas = useMemo(() => Array(stability * 2).fill(null), [stability]);
     const wrappedCallback = useCallback(
         direction => {
-            if (lastChange + duration < Date.now()) {
+            if (lastChange === null || lastChange + duration < Date.now()) {
                 setLastChange(Date.now());
                 callback(direction);
             }
