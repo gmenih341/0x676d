@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import styled from '@emotion/styled';
 import {Global, css} from '@emotion/core';
 import {Header} from './header/header.component';
@@ -6,8 +6,8 @@ import {Footer} from './footer/footer.component';
 import {Terminal} from './terminal/terminal.component';
 import {mediaMin} from '../utils/style.utils';
 import {SPACER, COLOR_WHITE} from '../style.contants';
+import {useScrollingPage} from '../hooks/scrolling-page.hook';
 import pages from '../assets/pages.json5';
-import {useScrollingAverage} from '../hooks/scrolling-average.hook';
 
 const globalStyle = css`
     html,
@@ -55,7 +55,7 @@ const AppContainer = styled.div`
 `;
 
 export function App () {
-    const page = useScrollingPage(pages.length);
+    const page = useScrollingPage(pages.length, {duration: 300});
     useBrowserTitle(`${pages[page].title} / ${pages[page].browserTitle}`, [page]);
     return (
         <AppContainer>
@@ -71,37 +71,4 @@ function useBrowserTitle (title, props) {
     useEffect(() => {
         document.title = title;
     }, props);
-}
-
-function useScrollingPage (pages) {
-    const [page, setPage] = useState(0);
-    const safelySetPage = direction => {
-        if (page + direction >= 0 && page + direction < pages) {
-            setPage(page + direction);
-        }
-    };
-    const wheelHandler = useScrollingAverage(safelySetPage);
-    const keyHandler = event => {
-        switch (event.keyCode) {
-            case 38:
-                return safelySetPage(-1);
-            case 40:
-                return safelySetPage(1);
-        }
-    };
-
-    useEffect(
-        () => {
-            window.addEventListener('wheel', wheelHandler);
-            window.addEventListener('keyup', keyHandler);
-
-            return () => {
-                window.removeEventListener('wheel', wheelHandler);
-                window.removeEventListener('keyup', keyHandler);
-            };
-        },
-        [page],
-    );
-
-    return page;
 }

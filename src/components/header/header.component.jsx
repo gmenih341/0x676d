@@ -40,7 +40,7 @@ export function Header ({activePage, pages}) {
                 <Logo />
             </LogoContainer>
             <TitleContainer>
-                <Parallax ref={parallaxRef} pages={pages.length} scrolling={false} config={{tension: 210, friction: 20}}>
+                <Parallax ref={parallaxRef} pages={pages.length} scrolling={false} config={{duration: 300}}>
                     {pages.map((page, i) => (
                         <ParallaxTitle key={page.title} title={page.title} description={page.description} offset={i} />
                     ))}
