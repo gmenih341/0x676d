@@ -6,14 +6,16 @@ import {COLOR_BLACK, COLOR_WHITE} from '../../style.contants';
 
 const TerminalContainer = styled.main`
     position: relative;
-    font-family: Fira Mono, 'Courier New', Courier, monospace;
-    box-sizing: border-box;
     height: 100%;
     width: 100%;
+    grid-row: 3 / 4;
+    grid-column: 1 / 3;
+    overflow: hidden;
+    font-family: Fira Mono, 'Courier New', Courier, monospace;
+    box-sizing: border-box;
     background: ${COLOR_BLACK};
     color: ${COLOR_WHITE};
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    overflow: hidden;
 `;
 
 export function Terminal ({activePage, pages}) {

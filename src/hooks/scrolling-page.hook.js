@@ -19,15 +19,34 @@ export function useScrollingPage (pages, options) {
         [page],
     );
     const wheelHandler = useScrollingAverage(safelySetPage, options);
+    const keyHandler = useKeyHandler(safelySetPage);
 
     useEffect(
         () => {
             window.addEventListener(EVENTS.WHEEL, wheelHandler);
+            window.addEventListener(EVENTS.KEY_UP, keyHandler);
 
-            return () => window.removeEventListener(EVENTS.WHEEL, wheelHandler);
+            return () => {
+                window.removeEventListener(EVENTS.WHEEL, wheelHandler);
+                window.removeEventListener(EVENTS.KEY_UP, keyHandler);
+            };
         },
         [wheelHandler],
     );
 
     return page;
+}
+
+function useKeyHandler (callback) {
+    return useCallback(
+        evt => {
+            switch (evt.keyCode) {
+                case 38:
+                    return callback(-1);
+                case 40:
+                    return callback(1);
+            }
+        },
+        [callback],
+    );
 }

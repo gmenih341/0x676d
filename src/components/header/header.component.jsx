@@ -2,28 +2,20 @@ import React, {useRef, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import {Parallax} from 'react-spring/addons';
-import {Logo} from './logo.component';
 import {ParallaxTitle} from './parallax-title.component';
-import {SPACER_BIG} from '../../style.contants';
-
-const HeaderContainer = styled.header`
-    display: grid;
-    grid-template-columns: 150px 1fr;
-    align-items: start;
-    grid-gap: 0 ${SPACER_BIG}px;
-`;
-
-const LogoContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    grid-row: 1 / 2;
-    align-self: stretch;
-`;
+import {mediaMin} from '../../utils/style.utils';
 
 const TitleContainer = styled.div`
-    align-self: stretch;
     position: relative;
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+    text-align: center;
+
+    ${mediaMin('sm')} {
+        text-align: left;
+        grid-column: 2 / 3;
+        grid-row: 1 / 3;
+    }
 `;
 
 export function Header ({activePage, pages}) {
@@ -35,18 +27,13 @@ export function Header ({activePage, pages}) {
         [activePage],
     );
     return (
-        <HeaderContainer>
-            <LogoContainer>
-                <Logo />
-            </LogoContainer>
-            <TitleContainer>
-                <Parallax ref={parallaxRef} pages={pages.length} scrolling={false} config={{tension: 210, friction: 20}}>
-                    {pages.map((page, i) => (
-                        <ParallaxTitle key={page.title} title={page.title} description={page.description} offset={i} />
-                    ))}
-                </Parallax>
-            </TitleContainer>
-        </HeaderContainer>
+        <TitleContainer>
+            <Parallax ref={parallaxRef} pages={pages.length} scrolling={false} config={{tension: 210, friction: 20}}>
+                {pages.map((page, i) => (
+                    <ParallaxTitle key={page.title} title={page.title} description={page.description} offset={i} />
+                ))}
+            </Parallax>
+        </TitleContainer>
     );
 }
 
