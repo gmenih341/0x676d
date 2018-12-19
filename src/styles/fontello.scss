@@ -33,14 +33,13 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-at:before {
-    content: '\e802';
-}
-
 .icon-github:before {
-    content: '\f056';
+    content: '\e800';
 }
 
 .icon-linkedin:before {
-    content: '\f05c';
+    content: '\e801';
+}
+.icon-email:before {
+    content: '\e802';
 }

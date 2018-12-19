@@ -1,20 +1,17 @@
 [
     {
-        icon: 'icon-github',
+        network: 'github',
         href: 'https://github.com/gmenih341',
         text: 'gmenih341',
-        color: '#000',
     },
     {
-        icon: 'icon-linkedin',
-        href: 'https://linkedin.com/in/gmenih-menih',
+        network: 'linkedin',
+        href: 'https://linkedin.com/in/gregor-menih',
         text: 'gregor-menih',
-        color: '#0077B5',
     },
     {
-        icon: 'icon-at',
+        network: 'email',
         href: 'mailto:gregor@menih.si',
         text: 'gregor@menih.si',
-        color: '#FF9505',
     },
 ]

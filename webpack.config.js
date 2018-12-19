@@ -16,6 +16,10 @@ module.exports = {
         path: resolve('./dist'),
         filename: '[name]-[hash].js',
     },
+    devServer: {
+        host: '0.0.0.0',
+        open: true,
+    },
     module: {
         rules: [
             {
@@ -48,6 +52,10 @@ module.exports = {
                 ],
             },
             {
+                test: /\.png$/,
+                loader: 'file-loader',
+            },
+            {
                 test: /\.json5$/,
                 loader: 'json5-loader',
             },
@@ -55,7 +63,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/index.html',
+            template: './src/assets/index.html',
             minify: {
                 collapseWhitespace: true,
                 preserveLineBreaks: false,
@@ -65,11 +73,6 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             chunkFilename: '[name].css',
-        }),
-        new PurgeCSSPlugin({
-            paths: glob.sync(join(__dirname, 'src/**/*'), {
-                nodir: true,
-            }),
         }),
         new FaviconsWebpackPlugin({
             logo: './src/assets/icon.png',
