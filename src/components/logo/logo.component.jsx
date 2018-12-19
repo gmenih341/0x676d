@@ -4,7 +4,7 @@ import {COLOR_MAIN} from '../../style.contants';
 const LIGHT = COLOR_MAIN[5];
 const DARK = COLOR_MAIN[6];
 
-export function Logo () {
+export const Logo = React.memo(() => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 591.76867 477.9678">
             <g>
@@ -26,4 +26,4 @@ export function Logo () {
             </g>
         </svg>
     );
-}
+});

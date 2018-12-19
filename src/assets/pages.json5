@@ -2,7 +2,7 @@
     {
         slug: '/',
         title: 'Gregor Menih',
-        description: 'frontend web developer',
+        description: 'front-end web developer',
         browserTitle: 'home',
     },
     {

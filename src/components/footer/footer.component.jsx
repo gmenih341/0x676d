@@ -2,7 +2,6 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {COLOR_BLACK, SPACER, COLOR_GRAY} from '../../style.contants';
 import {mediaMin} from '../../utils/style.utils';
-import '../../styles/fontello.scss';
 
 const IconItem = ({children, href, type, ...props}) => (
     <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
@@ -12,8 +11,8 @@ const IconItem = ({children, href, type, ...props}) => (
 );
 
 const FooterContainer = styled.footer`
-    grid-column: 1 / 3;
-    grid-row: 4 / 5;
+    grid-column: 1 / -1;
+    grid-row: -2 / -1;
     margin-top: ${SPACER}px;
     color: ${COLOR_BLACK};
     text-align: center;
@@ -47,7 +46,7 @@ const Icon = styled(IconItem)`
     }
 `;
 
-export function Footer () {
+export const Footer = React.memo(() => {
     return (
         <FooterContainer>
             <Icon type="github" href="https://github.com/gmenih341">
@@ -61,4 +60,4 @@ export function Footer () {
             </Icon>
         </FooterContainer>
     );
-}
+});

@@ -74,11 +74,6 @@ module.exports = {
         new MiniCssExtractPlugin({
             chunkFilename: '[name].css',
         }),
-        new PurgeCSSPlugin({
-            paths: glob.sync(join(__dirname, 'src/**/*'), {
-                nodir: true,
-            }),
-        }),
         new FaviconsWebpackPlugin({
             logo: './src/assets/icon.png',
             prefix: 'favicons/[hash]',

@@ -7,13 +7,13 @@ import {mediaMin} from '../../utils/style.utils';
 
 const TitleContainer = styled.div`
     position: relative;
-    grid-column: 1 / 3;
+    grid-column: 1 / -2;
     grid-row: 2 / 3;
     text-align: center;
 
     ${mediaMin('sm')} {
         text-align: left;
-        grid-column: 2 / 3;
+        grid-column: 3 / -1;
         grid-row: 1 / 3;
     }
 `;

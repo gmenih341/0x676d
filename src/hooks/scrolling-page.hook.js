@@ -34,7 +34,7 @@ export function useScrollingPage (pages, options) {
         [wheelHandler],
     );
 
-    return page;
+    return [page, setPage];
 }
 
 function useKeyHandler (callback) {

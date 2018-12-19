@@ -25,7 +25,7 @@ const ParallaxContainer = styled(ParallaxLayer)`
     justify-content: center;
 `;
 
-export function ParallaxTitle ({title, description, offset}) {
+export const ParallaxTitle = React.memo(({title, description, offset}) => {
     return (
         <>
             <ParallaxContainer offset={offset} speed={0.8}>
@@ -36,7 +36,8 @@ export function ParallaxTitle ({title, description, offset}) {
             </ParallaxContainer>
         </>
     );
-}
+});
+
 ParallaxTitle.propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
