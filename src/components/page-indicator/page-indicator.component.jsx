@@ -18,6 +18,7 @@ const PagesContainer = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
+    z-index: 10;
 
     ${mediaMin('sm')} {
         grid-column: 2 / 3;

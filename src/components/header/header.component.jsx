@@ -7,7 +7,7 @@ import {mediaMin} from '../../utils/style.utils';
 
 const TitleContainer = styled.div`
     position: relative;
-    grid-column: 1 / -2;
+    grid-column: 1 / -1;
     grid-row: 2 / 3;
     text-align: center;
 

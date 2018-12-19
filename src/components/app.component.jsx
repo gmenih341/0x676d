@@ -61,7 +61,7 @@ const LogoContainer = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
-    grid-column: 1 / -2;
+    grid-column: 1 / -1;
     grid-row: 1 / 2;
 
     ${mediaMin('sm')} {

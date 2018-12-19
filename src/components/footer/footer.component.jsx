@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {COLOR_BLACK, SPACER, COLOR_GRAY} from '../../style.contants';
 import {mediaMin} from '../../utils/style.utils';
+import '../../styles/fontello.scss';
 
 const IconItem = ({children, href, type, ...props}) => (
     <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
