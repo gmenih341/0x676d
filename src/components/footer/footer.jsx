@@ -1,9 +1,9 @@
-import React from 'react';
 import styled from '@emotion/styled';
+import React from 'react';
 import {animated} from 'react-spring/hooks';
-import {COLOR_BLACK, SPACER, COLOR_GRAY} from '../../style.contants';
-import {mediaMin} from '../../utils/style.utils';
+import {COLOR_BLACK, COLOR_GRAY, SPACER} from '../../style.contants';
 import '../../styles/fontello.scss';
+import {mediaMin} from '../../utils/style.utils';
 
 const IconItem = ({children, href, type, ...props}) => (
     <a href={href} target="_blank" rel="noopener noreferrer" {...props}>

@@ -1,11 +1,11 @@
-import React, {useRef, useEffect, useContext} from 'react';
-import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
+import React, {useContext, useEffect, useRef} from 'react';
 import {Parallax} from 'react-spring/addons';
 import {animated} from 'react-spring/hooks';
-import {ParallaxTitle} from './parallax-title';
-import {mediaMin} from '../../utils/style.utils';
 import {PageContext} from '../../context/page.context';
+import {mediaMin} from '../../utils/style.utils';
+import {ParallaxTitle} from './parallax-title';
 
 const TitleContainer = styled(animated.div)`
     position: relative;

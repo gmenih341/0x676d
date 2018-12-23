@@ -1,10 +1,10 @@
-import React, {useRef, useEffect, useContext} from 'react';
-import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
+import React, {useContext, useEffect, useRef} from 'react';
 import {Parallax, ParallaxLayer} from 'react-spring/addons';
 import {animated} from 'react-spring/hooks';
-import {COLOR_BLACK, COLOR_WHITE, SPACER} from '../../style.contants';
 import {PageContext} from '../../context/page.context';
+import {COLOR_BLACK, COLOR_WHITE, SPACER} from '../../style.contants';
 
 const TerminalContainer = styled(animated.main)`
     position: relative;

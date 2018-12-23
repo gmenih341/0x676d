@@ -1,7 +1,7 @@
-import React, {createContext, useEffect} from 'react';
 import PropTypes from 'prop-types';
-import {useScrollingPage} from '../hooks/scrolling-page.hook';
+import React, {createContext, useEffect} from 'react';
 import pages from '../assets/pages.json5';
+import {useScrollingPage} from '../hooks/scrolling-page.hook';
 
 export const PageContext = createContext();
 

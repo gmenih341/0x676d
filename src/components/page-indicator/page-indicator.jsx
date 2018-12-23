@@ -1,10 +1,10 @@
-import React, {useMemo, useContext} from 'react';
-import PropTypes from 'prop-types';
-import {COLOR_MAIN, SPACER_SMALL} from '../../style.contants';
-import {useSpring, animated} from 'react-spring/hooks';
 import styled from '@emotion/styled';
-import {mediaMin} from '../../utils/style.utils';
+import PropTypes from 'prop-types';
+import React, {useContext, useMemo} from 'react';
+import {animated, useSpring} from 'react-spring/hooks';
 import {PageContext} from '../../context/page.context';
+import {COLOR_MAIN, SPACER_SMALL} from '../../style.contants';
+import {mediaMin} from '../../utils/style.utils';
 
 const PATHS = {
     UP: 'M0 64L64 64L128 64L62.02 0L0 64Z',

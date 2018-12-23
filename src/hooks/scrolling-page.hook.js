@@ -1,4 +1,4 @@
-import {useState, useEffect, useCallback} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {useScrollingAverage} from './scrolling-average.hook';
 
 const EVENTS = {

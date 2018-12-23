@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import {COLOR_MAIN, SPACER_SMALL} from '../../style.contants';
+import PropTypes from 'prop-types';
+import React from 'react';
 import {ParallaxLayer} from 'react-spring/addons';
+import {COLOR_MAIN, SPACER_SMALL} from '../../style.contants';
 
 const HeaderTitle = styled.h1`
     padding: 0;
