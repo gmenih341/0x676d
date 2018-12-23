@@ -1,17 +1,17 @@
 [
     {
-        network: 'github',
+        type: 'github',
         href: 'https://github.com/gmenih341',
         text: 'gmenih341',
     },
     {
-        network: 'linkedin',
-        href: 'https://linkedin.com/in/gregor-menih',
-        text: 'gregor-menih',
-    },
-    {
-        network: 'email',
+        type: 'email',
         href: 'mailto:gregor@menih.si',
         text: 'gregor@menih.si',
+    },
+    {
+        type: 'linkedin',
+        href: 'https://linkedin.com/in/gregor-menih',
+        text: 'gregor-menih',
     },
 ]

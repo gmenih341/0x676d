@@ -13,7 +13,7 @@ const HeaderTitle = styled.h1`
 
 const HeaderDescription = styled.span`
     margin: 0 ${SPACER_SMALL / 2}px;
-    margin-top: 60px;
+    margin-top: 70px;
     color: ${COLOR_MAIN[8]};
     font-size: 16px;
     font-weight: 300;

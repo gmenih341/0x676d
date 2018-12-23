@@ -1,10 +1,13 @@
 const {resolve, join} = require('path');
 const glob = require('glob');
+const ip = require('ip');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const PurgeCSSPlugin = require('purgecss-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
+
+const {platform} = process;
 
 module.exports = {
     entry: './src/index.js',
@@ -17,7 +20,7 @@ module.exports = {
         filename: '[name]-[hash].js',
     },
     devServer: {
-        host: '0.0.0.0',
+        host: platform === 'win32' ? ip.address() : '0.0.0.0',
         open: true,
     },
     module: {
@@ -80,7 +83,6 @@ module.exports = {
             inject: true,
             title: 'Gregor Menih',
         }),
-        new DashboardPlugin(),
     ],
     optimization: {
         splitChunks: {

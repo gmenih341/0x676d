@@ -26,7 +26,7 @@ const PagesContainer = styled(animated.div)`
     }
 
     svg {
-        width: 25px;
+        width: 20px;
         margin: ${SPACER_SMALL}px auto;
         height: auto;
         cursor: pointer;

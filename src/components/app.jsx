@@ -6,11 +6,12 @@ import {PageContextProvider} from '../context/page.context';
 import {COLOR_WHITE, SPACER} from '../style.contants';
 import {mediaMin} from '../utils/style.utils';
 import {TransitionAnimation} from './animations/transition.animation';
-import {Footer} from './footer/footer';
 import {Header} from './header/header';
 import {Logo} from './logo/logo';
 import {PageIndicator} from './page-indicator/page-indicator';
 import {Terminal} from './terminal/terminal';
+import {SocialIcons} from './social-icons/social-icons';
+import networks from '../assets/networks.json5';
 
 const globalStyle = css`
     html,
@@ -54,7 +55,7 @@ const AppContainer = styled.div`
     }
 
     ${mediaMin('xl')} {
-        width: 1140px;
+        width: 80vw;
     }
 `;
 
@@ -99,7 +100,8 @@ export function App () {
                 />
             </PageContextProvider>
             <TransitionAnimation
-                Component={Footer}
+                Component={SocialIcons}
+                networks={networks}
                 from={{opacity: 0, transform: 'translateY(25px)'}}
                 to={{opacity: 1, transform: 'translateY(0)'}}
             />

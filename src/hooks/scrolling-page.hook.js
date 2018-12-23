@@ -42,7 +42,9 @@ function useKeyHandler (callback) {
         evt => {
             switch (evt.keyCode) {
                 case 38:
+                case 37:
                     return callback(-1);
+                case 39:
                 case 40:
                     return callback(1);
             }

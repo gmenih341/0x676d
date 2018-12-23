@@ -13,8 +13,7 @@ export function TransitionAnimation ({Component, children, from, to, ...props}) 
 }
 
 TransitionAnimation.propTypes = {
-    Component: PropTypes.func,
-    from: PropTypes.string,
-    to: PropTypes.string,
-    config: PropTypes.object,
+    Component: PropTypes.func.isRequired,
+    to: PropTypes.object.isRequired,
+    from: PropTypes.object,
 };
