@@ -1,9 +1,10 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, useContext} from 'react';
 import PropTypes from 'prop-types';
 import {COLOR_MAIN, SPACER_SMALL} from '../../style.contants';
 import {useSpring, animated} from 'react-spring/hooks';
 import styled from '@emotion/styled';
 import {mediaMin} from '../../utils/style.utils';
+import {PageContext} from '../../context/page.context';
 
 const PATHS = {
     UP: 'M0 64L64 64L128 64L62.02 0L0 64Z',
@@ -11,7 +12,7 @@ const PATHS = {
     DOWN: 'M0 64L64 128L128 64L64 64L0 64Z',
 };
 
-const PagesContainer = styled.div`
+const PagesContainer = styled(animated.div)`
     grid-row: 1 / 3;
     grid-column: -2 / -1;
     text-align: center;
@@ -45,19 +46,19 @@ const Indicator = React.memo(({index, activePage, indicatorClicked}) => {
     );
 });
 
-export function PageIndicator ({activePage, nrPages, indicatorClicked}) {
+export function PageIndicator ({style}) {
+    const {page, pages, setPage} = useContext(PageContext);
     const indicators = useMemo(
         () =>
-            Array(nrPages)
+            Array(pages.length)
                 .fill(0)
-                .map((_, i) => <Indicator key={i} index={i} activePage={activePage} indicatorClicked={indicatorClicked} />),
-        [activePage],
+                .map((_, i) => <Indicator key={i} index={i} activePage={page} indicatorClicked={setPage} />),
+        [page],
     );
-    return <PagesContainer>{indicators}</PagesContainer>;
+    return <PagesContainer style={style}>{indicators}</PagesContainer>;
 }
 
 PageIndicator.propTypes = {
-    activePage: PropTypes.number.isRequired,
-    nrPages: PropTypes.number.isRequired,
+    style: PropTypes.object,
     indicatorClicked: PropTypes.func,
 };

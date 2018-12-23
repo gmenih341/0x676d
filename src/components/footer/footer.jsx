@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import {animated} from 'react-spring/hooks';
 import {COLOR_BLACK, SPACER, COLOR_GRAY} from '../../style.contants';
 import {mediaMin} from '../../utils/style.utils';
 import '../../styles/fontello.scss';
@@ -11,7 +12,7 @@ const IconItem = ({children, href, type, ...props}) => (
     </a>
 );
 
-const FooterContainer = styled.footer`
+const FooterContainer = styled(animated.div)`
     grid-column: 1 / -1;
     grid-row: -2 / -1;
     margin-top: ${SPACER}px;
@@ -47,9 +48,9 @@ const Icon = styled(IconItem)`
     }
 `;
 
-export const Footer = React.memo(() => {
+export const Footer = React.memo(({style}) => {
     return (
-        <FooterContainer>
+        <FooterContainer style={style}>
             <Icon type="github" href="https://github.com/gmenih341">
                 gmenih341
             </Icon>

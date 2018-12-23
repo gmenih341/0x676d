@@ -1,10 +1,12 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useRef, useEffect, useContext} from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import {Parallax, ParallaxLayer} from 'react-spring/addons';
+import {animated} from 'react-spring/hooks';
 import {COLOR_BLACK, COLOR_WHITE, SPACER} from '../../style.contants';
+import {PageContext} from '../../context/page.context';
 
-const TerminalContainer = styled.main`
+const TerminalContainer = styled(animated.main)`
     position: relative;
     height: 100%;
     width: 100%;
@@ -25,16 +27,17 @@ const TerminalContent = styled.div`
     box-sizing: border-box;
 `;
 
-export function Terminal ({activePage, pages}) {
+export function Terminal ({style}) {
+    const {page, pages} = useContext(PageContext);
     const parallaxRef = useRef();
     useEffect(
         () => {
-            parallaxRef.current.scrollTo(activePage);
+            parallaxRef.current.scrollTo(page);
         },
-        [activePage],
+        [page],
     );
     return (
-        <TerminalContainer>
+        <TerminalContainer style={style}>
             <Parallax ref={parallaxRef} pages={pages.length} scrolling={false} config={{tension: 210, friction: 30}}>
                 {pages.map((page, i) => (
                     <ParallaxLayer key={i} offset={i}>
@@ -47,13 +50,5 @@ export function Terminal ({activePage, pages}) {
 }
 
 Terminal.propTypes = {
-    activePage: PropTypes.number.isRequired,
-    pages: PropTypes.arrayOf(
-        PropTypes.shape({
-            slug: PropTypes.string.isRequired,
-            title: PropTypes.string.isRequired,
-            description: PropTypes.string.isRequired,
-            browserTitle: PropTypes.string.isRequired,
-        }),
-    ),
+    style: PropTypes.object,
 };
