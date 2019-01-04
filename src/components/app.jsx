@@ -1,17 +1,13 @@
 import {css, Global} from '@emotion/core';
 import styled from '@emotion/styled';
-import React from 'react';
+import React, {Suspense} from 'react';
 import {animated} from 'react-spring/hooks';
+import networks from '../assets/networks.json5';
 import {PageContextProvider} from '../context/page.context';
 import {COLOR_WHITE, SPACER} from '../style.contants';
 import {mediaMin} from '../utils/style.utils';
 import {TransitionAnimation} from './animations/transition.animation';
-import {Header} from './header/header';
 import {Logo} from './logo/logo';
-import {PageIndicator} from './page-indicator/page-indicator';
-import {Terminal} from './terminal/terminal';
-import {SocialIcons} from './social-icons/social-icons';
-import networks from '../assets/networks.json5';
 
 const globalStyle = css`
     html,
@@ -72,39 +68,46 @@ const LogoContainer = styled(animated.div)`
     }
 `;
 
+const Header = React.lazy(() => import('./header/header'));
+const PageIndicator = React.lazy(() => import('./page-indicator/page-indicator'));
+const SocialIcons = React.lazy(() => import('./social-icons/social-icons'));
+const Terminal = React.lazy(() => import('./terminal/terminal'));
+
 export function App () {
     return (
         <AppContainer>
             <Global styles={globalStyle} />
-            <PageContextProvider>
+            <Suspense fallback={'null'}>
                 <TransitionAnimation
                     Component={LogoContainer}
-                    from={{opacity: 0, transform: 'translateX(-25px)'}}
-                    to={{opacity: 1, transform: 'translateX(0)'}}>
+                    from={{opacity: 0, transform: 'translateX(-10px)'}}
+                    to={{opacity: 1, transform: 'translateY(0)'}}>
                     <Logo />
                 </TransitionAnimation>
+                <PageContextProvider>
+                    <TransitionAnimation
+                        Component={PageIndicator}
+                        from={{opacity: 0, transform: 'translateY(-10px)'}}
+                        to={{opacity: 1, transform: 'translateY(0)'}}
+                    />
+                    <TransitionAnimation
+                        Component={Header}
+                        from={{opacity: 0, transform: 'translateX(25px)'}}
+                        to={{opacity: 1, transform: 'translateX(0)'}}
+                    />
+                    <TransitionAnimation
+                        Component={Terminal}
+                        from={{opacity: 0, transform: 'translateY(50px)'}}
+                        to={{opacity: 1, transform: 'translateY(0)'}}
+                    />
+                </PageContextProvider>
                 <TransitionAnimation
-                    Component={PageIndicator}
-                    from={{opacity: 0, transform: 'translateY(-10px)'}}
+                    Component={SocialIcons}
+                    networks={networks}
+                    from={{opacity: 0, transform: 'translateY(25px)'}}
                     to={{opacity: 1, transform: 'translateY(0)'}}
                 />
-                <TransitionAnimation
-                    Component={Header}
-                    from={{opacity: 0, transform: 'translateX(25px)'}}
-                    to={{opacity: 1, transform: 'translateX(0)'}}
-                />
-                <TransitionAnimation
-                    Component={Terminal}
-                    from={{opacity: 0, transform: 'translateY(50px)'}}
-                    to={{opacity: 1, transform: 'translateY(0)'}}
-                />
-            </PageContextProvider>
-            <TransitionAnimation
-                Component={SocialIcons}
-                networks={networks}
-                from={{opacity: 0, transform: 'translateY(25px)'}}
-                to={{opacity: 1, transform: 'translateY(0)'}}
-            />
+            </Suspense>
         </AppContainer>
     );
 }

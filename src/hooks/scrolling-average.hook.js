@@ -1,29 +1,28 @@
-import {useCallback, useMemo, useState} from 'react';
+import {useCallback, useMemo} from 'react';
 
 const defaultSettings = {
     stability: 8,
     sensitivity: 100,
     tolerance: 1.1,
     delay: 150,
-    duration: 300,
+    duration: 200,
 };
 
 /** @param {Function} callback */
 export function useScrollingAverage (callback, options = defaultSettings) {
     const {stability, sensitivity, tolerance, delay, duration} = {...defaultSettings, ...options};
 
-    const [lastChange, setLastChange] = useState(null);
     const nextDeltas = useMemo(() => Array(stability * 2).fill(null), []);
     const prevDeltas = useMemo(() => Array(stability * 2).fill(null), []);
     const timestampDeltas = useMemo(() => Array(stability * 2).fill(null), []);
+    const lastDelta = useMemo(() => Date.now(), [callback]);
     const wrappedCallback = useCallback(
         direction => {
-            if (lastChange === null || lastChange + duration < Date.now()) {
-                setLastChange(Date.now());
+            if (lastDelta + duration < Date.now()) {
                 callback(direction);
             }
         },
-        [lastChange, callback],
+        [lastDelta],
     );
 
     const shouldSwitch = useCallback(direction => {

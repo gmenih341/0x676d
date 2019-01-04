@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import {animated} from 'react-spring/hooks';
 import {COLOR_BLACK, COLOR_GRAY, SPACER} from '../../style.contants';
 import '../../styles/fontello.scss';
 import {mediaMin} from '../../utils/style.utils';
 
 const IconItem = ({children, href, type, onClick, ...props}) => (
-    <a href={href} target="_blank" rel="noopener noreferrer" onClick={onClick} {...props}>
+    <a href={href} title={type} target="_blank" rel="noopener noreferrer" onClick={onClick} {...props}>
         <i className={`icon icon-${type}`} />
         <span>{children}</span>
     </a>
@@ -78,3 +78,5 @@ SocialIcons.propTypes = {
         }),
     ),
 };
+
+export default SocialIcons;

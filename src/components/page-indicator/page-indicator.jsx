@@ -62,3 +62,5 @@ PageIndicator.propTypes = {
     style: PropTypes.object,
     indicatorClicked: PropTypes.func,
 };
+
+export default PageIndicator;

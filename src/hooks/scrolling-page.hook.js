@@ -31,7 +31,7 @@ export function useScrollingPage (pages, options) {
                 window.removeEventListener(EVENTS.KEY_UP, keyHandler);
             };
         },
-        [wheelHandler],
+        [page],
     );
 
     return [page, setPage];
