@@ -27,3 +27,5 @@ export const Logo = React.memo(() => {
         </svg>
     );
 });
+
+export default Logo;

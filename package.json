@@ -11,13 +11,13 @@
     "build": "yarn build:dev",
     "prettier": "prettier --write ./src/**/*.{js,jsx}",
     "lint": "eslint -c .eslintrc ./src/**/*.{js,jsx} --fix",
-    "stylelint": "stylelint src/**/*.{js,jsx,css}",
     "lint-staged": "lint-staged"
   },
   "author": "Gregor Menih <gregor@menih.si>",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "7.2.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/polyfill": "7.2.5",
     "@babel/preset-env": "7.2.3",
     "@babel/preset-react": "7.0.0",
@@ -44,8 +44,6 @@
     "raw-loader": "1.0.0",
     "sass-loader": "7.1.0",
     "style-loader": "0.23.1",
-    "stylelint": "9.9.0",
-    "stylelint-config-recommended": "2.1.0",
     "webpack": "4.28.2",
     "webpack-cli": "3.1.2",
     "webpack-dashboard": "2.0.0",
@@ -57,7 +55,7 @@
     "prop-types": "15.6.2",
     "react": "16.7.0-alpha.2",
     "react-dom": "16.7.0-alpha.2",
-    "react-spring": "7.2.4"
+    "react-spring": "7.2.5"
   },
   "precommit": [
     "lint-staged"
@@ -65,7 +63,6 @@
   "lint-staged": {
     "*.{js,jsx}": [
       "npm run prettier",
-      "npm run stylelint",
       "npm run lint",
       "git add"
     ]

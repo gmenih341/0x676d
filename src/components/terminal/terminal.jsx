@@ -27,9 +27,10 @@ const TerminalContent = styled.div`
     box-sizing: border-box;
 `;
 
-export function Terminal ({style}) {
+export const Terminal = React.memo(({style}) => {
     const {page, pages} = useContext(PageContext);
     const parallaxRef = useRef();
+    useEffect(() => parallaxRef.current.updateRaf(), []);
     useEffect(
         () => {
             parallaxRef.current.scrollTo(page);
@@ -47,8 +48,10 @@ export function Terminal ({style}) {
             </Parallax>
         </TerminalContainer>
     );
-}
+});
 
 Terminal.propTypes = {
     style: PropTypes.object,
 };
+
+export default Terminal;

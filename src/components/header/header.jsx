@@ -23,6 +23,7 @@ const TitleContainer = styled(animated.div)`
 export function Header ({style}) {
     const {page, pages} = useContext(PageContext);
     const parallaxRef = useRef();
+    useEffect(() => parallaxRef.current.updateRaf(), []);
     useEffect(
         () => {
             parallaxRef.current.scrollTo(page);
@@ -43,3 +44,5 @@ export function Header ({style}) {
 Header.propTypes = {
     style: PropTypes.object,
 };
+
+export default Header;
