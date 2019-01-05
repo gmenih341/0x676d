@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
-import PropTypes from 'prop-types';
-import React, {useContext, useMemo} from 'react';
-import {animated, useSpring} from 'react-spring/hooks';
+import React, {FunctionComponent, useContext, useMemo} from 'react';
+import {animated} from 'react-spring';
+import {useSpring} from 'react-spring/hooks';
 import {PageContext} from '../../context/page.context';
 import {COLOR_MAIN, SPACER_SMALL} from '../../style.contants';
-import {mediaMin} from '../../utils/style.utils';
+import {mediaMin, ScreenSize} from '../../utils/style.utils';
 
 const PATHS = {
     UP: 'M0 64L64 64L128 64L62.02 0L0 64Z',
@@ -12,7 +12,7 @@ const PATHS = {
     DOWN: 'M0 64L64 128L128 64L64 64L0 64Z',
 };
 
-const PagesContainer = styled(animated.div)`
+const PagesContainer = styled.div`
     grid-row: 1 / 3;
     grid-column: -2 / -1;
     text-align: center;
@@ -21,7 +21,7 @@ const PagesContainer = styled(animated.div)`
     flex-direction: column;
     z-index: 10;
 
-    ${mediaMin('sm')} {
+    ${mediaMin(ScreenSize.SM)} {
         grid-column: 2 / 3;
     }
 
@@ -33,7 +33,13 @@ const PagesContainer = styled(animated.div)`
     }
 `;
 
-const Indicator = React.memo(({index, activePage, indicatorClicked}) => {
+interface IIndicatorProps {
+    index: number;
+    activePage: number;
+    indicatorClicked: (...args: any[]) => any;
+}
+
+const Indicator: FunctionComponent<IIndicatorProps> = React.memo(({index, activePage, indicatorClicked}) => {
     const path = index === activePage ? PATHS.ACTIVE : index > activePage ? PATHS.DOWN : PATHS.UP;
     const spring = useSpring({
         path: path,
@@ -46,7 +52,7 @@ const Indicator = React.memo(({index, activePage, indicatorClicked}) => {
     );
 });
 
-export function PageIndicator ({style}) {
+export const PageIndicator: FunctionComponent = () => {
     const {page, pages, setPage} = useContext(PageContext);
     const indicators = useMemo(
         () =>
@@ -55,12 +61,7 @@ export function PageIndicator ({style}) {
                 .map((_, i) => <Indicator key={i} index={i} activePage={page} indicatorClicked={setPage} />),
         [page],
     );
-    return <PagesContainer style={style}>{indicators}</PagesContainer>;
+    return <PagesContainer>{indicators}</PagesContainer>;
 }
-
-PageIndicator.propTypes = {
-    style: PropTypes.object,
-    indicatorClicked: PropTypes.func,
-};
 
 export default PageIndicator;

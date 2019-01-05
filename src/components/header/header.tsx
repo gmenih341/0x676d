@@ -1,37 +1,35 @@
 import styled from '@emotion/styled';
-import PropTypes from 'prop-types';
-import React, {useContext, useEffect, useRef} from 'react';
+import React, {FunctionComponent, useContext, useEffect, useRef} from 'react';
 import {Parallax} from 'react-spring/addons';
-import {animated} from 'react-spring/hooks';
 import {PageContext} from '../../context/page.context';
-import {mediaMin} from '../../utils/style.utils';
+import {mediaMin, ScreenSize} from '../../utils/style.utils';
 import {ParallaxTitle} from './parallax-title';
 
-const TitleContainer = styled(animated.div)`
+const TitleContainer = styled.div`
     position: relative;
     grid-column: 1 / -1;
     grid-row: 2 / 3;
     text-align: center;
 
-    ${mediaMin('sm')} {
+    ${mediaMin(ScreenSize.SM)} {
         text-align: left;
         grid-column: 3 / -1;
         grid-row: 1 / 3;
     }
 `;
-
-export function Header ({style}) {
+export const Header: FunctionComponent = () => {
     const {page, pages} = useContext(PageContext);
-    const parallaxRef = useRef();
-    useEffect(() => parallaxRef.current.updateRaf(), []);
+    const parallaxRef = useRef<Parallax>(null);
     useEffect(
         () => {
-            parallaxRef.current.scrollTo(page);
+            if (parallaxRef.current) {
+                parallaxRef.current.scrollTo(page);
+            }
         },
         [page],
     );
     return (
-        <TitleContainer style={style}>
+        <TitleContainer>
             <Parallax ref={parallaxRef} pages={pages.length} scrolling={false} config={{tension: 210, friction: 20}}>
                 {pages.map((page, i) => (
                     <ParallaxTitle key={page.title} title={page.title} description={page.description} offset={i} />
@@ -39,10 +37,6 @@ export function Header ({style}) {
             </Parallax>
         </TitleContainer>
     );
-}
-
-Header.propTypes = {
-    style: PropTypes.object,
 };
 
 export default Header;
