@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 import {ParallaxLayer} from 'react-spring/addons';
 import {COLOR_MAIN, SPACER_SMALL} from '../../style.contants';
 
@@ -25,7 +24,13 @@ const ParallaxContainer = styled(ParallaxLayer)`
     justify-content: center;
 `;
 
-export const ParallaxTitle = React.memo(({title, description, offset}) => {
+export interface IParallaxTitleProps {
+    title: string;
+    description: string;
+    offset: number;
+}
+
+export const ParallaxTitle: FunctionComponent<IParallaxTitleProps> = React.memo(({title, description, offset}) => {
     return (
         <>
             <ParallaxContainer offset={offset} speed={0.8}>
@@ -37,9 +42,3 @@ export const ParallaxTitle = React.memo(({title, description, offset}) => {
         </>
     );
 });
-
-ParallaxTitle.propTypes = {
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    offset: PropTypes.number.isRequired,
-};

@@ -1,12 +1,10 @@
 import {css, Global} from '@emotion/core';
 import styled from '@emotion/styled';
 import React, {Suspense} from 'react';
-import {animated} from 'react-spring/hooks';
 import networks from '../assets/networks.json5';
 import {PageContextProvider} from '../context/page.context';
 import {COLOR_WHITE, SPACER} from '../style.contants';
-import {mediaMin} from '../utils/style.utils';
-import {TransitionAnimation} from './animations/transition.animation';
+import {mediaMin, ScreenSize} from '../utils/style.utils';
 import {Logo} from './logo/logo';
 
 const globalStyle = css`
@@ -37,32 +35,32 @@ const AppContainer = styled.div`
     box-sizing: border-box;
     font-family: Fira Sans, Arial, Helvetica, sans-serif;
 
-    ${mediaMin('sm')} {
+    ${mediaMin(ScreenSize.SM)} {
         width: 570px;
         margin: 0 auto;
     }
 
-    ${mediaMin('md')} {
+    ${mediaMin(ScreenSize.MD)} {
         width: 760px;
     }
 
-    ${mediaMin('lg')} {
+    ${mediaMin(ScreenSize.LG)} {
         width: 980px;
     }
 
-    ${mediaMin('xl')} {
+    ${mediaMin(ScreenSize.XL)} {
         width: 80vw;
     }
 `;
 
-const LogoContainer = styled(animated.div)`
+const LogoContainer = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
     grid-column: 1 / -1;
     grid-row: 1 / 2;
 
-    ${mediaMin('sm')} {
+    ${mediaMin(ScreenSize.SM)} {
         grid-column: 1 / 2;
         grid-row: 1 / 3;
     }
@@ -78,35 +76,15 @@ export function App () {
         <AppContainer>
             <Global styles={globalStyle} />
             <Suspense fallback={'null'}>
-                <TransitionAnimation
-                    Component={LogoContainer}
-                    from={{opacity: 0, transform: 'translateX(-10px)'}}
-                    to={{opacity: 1, transform: 'translateY(0)'}}>
+                <LogoContainer>
                     <Logo />
-                </TransitionAnimation>
+                </LogoContainer>
                 <PageContextProvider>
-                    <TransitionAnimation
-                        Component={PageIndicator}
-                        from={{opacity: 0, transform: 'translateY(-10px)'}}
-                        to={{opacity: 1, transform: 'translateY(0)'}}
-                    />
-                    <TransitionAnimation
-                        Component={Header}
-                        from={{opacity: 0, transform: 'translateX(25px)'}}
-                        to={{opacity: 1, transform: 'translateX(0)'}}
-                    />
-                    <TransitionAnimation
-                        Component={Terminal}
-                        from={{opacity: 0, transform: 'translateY(50px)'}}
-                        to={{opacity: 1, transform: 'translateY(0)'}}
-                    />
+                    <PageIndicator />
+                    <Header />
+                    <Terminal />
                 </PageContextProvider>
-                <TransitionAnimation
-                    Component={SocialIcons}
-                    networks={networks}
-                    from={{opacity: 0, transform: 'translateY(25px)'}}
-                    to={{opacity: 1, transform: 'translateY(0)'}}
-                />
+                <SocialIcons networks={networks} />
             </Suspense>
         </AppContainer>
     );

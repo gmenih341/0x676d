@@ -10,7 +10,6 @@
     "build:prod": "webpack --progress -p --env=prod",
     "build": "yarn build:dev",
     "prettier": "prettier --write ./src/**/*.{js,jsx}",
-    "lint": "eslint -c .eslintrc ./src/**/*.{js,jsx} --fix",
     "lint-staged": "lint-staged"
   },
   "author": "Gregor Menih <gregor@menih.si>",
@@ -21,6 +20,9 @@
     "@babel/polyfill": "7.2.5",
     "@babel/preset-env": "7.2.3",
     "@babel/preset-react": "7.0.0",
+    "@babel/preset-typescript": "7.1.0",
+    "@types/react": "16.7.18",
+    "@types/react-dom": "16.0.11",
     "babel-eslint": "10.0.1",
     "babel-loader": "8.0.4",
     "babel-plugin-emotion": "10.0.5",
@@ -44,6 +46,7 @@
     "raw-loader": "1.0.0",
     "sass-loader": "7.1.0",
     "style-loader": "0.23.1",
+    "typescript": "3.2.2",
     "webpack": "4.28.2",
     "webpack-cli": "3.1.2",
     "webpack-dashboard": "2.0.0",
@@ -61,9 +64,8 @@
     "lint-staged"
   ],
   "lint-staged": {
-    "*.{js,jsx}": [
+    "*.{ts,tsx}": [
       "npm run prettier",
-      "npm run lint",
       "git add"
     ]
   }

@@ -10,10 +10,10 @@ const DashboardPlugin = require('webpack-dashboard/plugin');
 const {platform} = process;
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/index.tsx',
     mode: 'development',
     resolve: {
-        extensions: ['.js', '.jsx'],
+        extensions: ['.ts', '.tsx', '.js', 'jsx'],
     },
     output: {
         path: resolve('./dist'),
@@ -26,7 +26,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.jsx?$/,
+                test: /\.[jt]sx?$/,
                 loader: 'babel-loader',
             },
             {

@@ -1,19 +1,17 @@
 import styled from '@emotion/styled';
-import PropTypes from 'prop-types';
-import React, {useContext, useEffect, useRef} from 'react';
+import React, {FunctionComponent, useContext, useEffect, useRef} from 'react';
 import {Parallax, ParallaxLayer} from 'react-spring/addons';
-import {animated} from 'react-spring/hooks';
 import {PageContext} from '../../context/page.context';
 import {COLOR_BLACK, COLOR_WHITE, SPACER} from '../../style.contants';
 
-const TerminalContainer = styled(animated.main)`
+const TerminalContainer = styled.main`
     position: relative;
     height: 100%;
     width: 100%;
     grid-row: 3 / 4;
     grid-column: 1 / -1;
     overflow: hidden;
-    font-family: Fira Mono, 'Courier New', Courier, monospace;
+    font-family: 'Fira Mono', 'Courier New', Courier, monospace;
     box-sizing: border-box;
     background: ${COLOR_BLACK};
     color: ${COLOR_WHITE};
@@ -27,18 +25,19 @@ const TerminalContent = styled.div`
     box-sizing: border-box;
 `;
 
-export const Terminal = React.memo(({style}) => {
+export const Terminal: FunctionComponent = React.memo(() => {
     const {page, pages} = useContext(PageContext);
-    const parallaxRef = useRef();
-    useEffect(() => parallaxRef.current.updateRaf(), []);
+    const parallaxRef = useRef<Parallax>(null);
     useEffect(
         () => {
-            parallaxRef.current.scrollTo(page);
+            if (parallaxRef.current) {
+                parallaxRef.current.scrollTo(page);
+            }
         },
         [page],
     );
     return (
-        <TerminalContainer style={style}>
+        <TerminalContainer>
             <Parallax ref={parallaxRef} pages={pages.length} scrolling={false} config={{tension: 210, friction: 30}}>
                 {pages.map((page, i) => (
                     <ParallaxLayer key={i} offset={i}>
@@ -49,9 +48,4 @@ export const Terminal = React.memo(({style}) => {
         </TerminalContainer>
     );
 });
-
-Terminal.propTypes = {
-    style: PropTypes.object,
-};
-
 export default Terminal;
