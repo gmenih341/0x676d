@@ -1,4 +1,4 @@
-declare module "*/assets/pages.json5" {
+declare module '*/assets/pages.json5' {
     export interface IPage {
         slug: string;
         title: string;

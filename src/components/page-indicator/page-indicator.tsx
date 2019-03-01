@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import React, {FunctionComponent, useContext, useMemo} from 'react';
-import {animated} from 'react-spring';
-import {useSpring} from 'react-spring/hooks';
+import {useSpring, animated} from 'react-spring/hooks';
 import {PageContext} from '../../context/page.context';
 import {COLOR_MAIN, SPACER_SMALL} from '../../style.contants';
 import {mediaMin, ScreenSize} from '../../utils/style.utils';
@@ -26,7 +25,7 @@ const PagesContainer = styled.div`
     }
 
     svg {
-        width: 20px;
+        width: 17px;
         margin: ${SPACER_SMALL}px auto;
         height: auto;
         cursor: pointer;
@@ -39,10 +38,17 @@ interface IIndicatorProps {
     indicatorClicked: (...args: any[]) => any;
 }
 
+interface ISpringPath {
+    path: string;
+}
+
 const Indicator: FunctionComponent<IIndicatorProps> = React.memo(({index, activePage, indicatorClicked}) => {
     const path = index === activePage ? PATHS.ACTIVE : index > activePage ? PATHS.DOWN : PATHS.UP;
-    const spring = useSpring({
+    const spring = useSpring<ISpringPath>({
         path: path,
+        from: {
+            path: PATHS.ACTIVE,
+        },
         config: {tension: 210, friction: 20},
     });
     return (
@@ -62,6 +68,6 @@ export const PageIndicator: FunctionComponent = () => {
         [page],
     );
     return <PagesContainer>{indicators}</PagesContainer>;
-}
+};
 
 export default PageIndicator;
