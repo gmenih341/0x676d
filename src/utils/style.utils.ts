@@ -6,17 +6,17 @@ export enum ScreenSize {
     XL = 1200,
 }
 
-export function mediaMin (size: ScreenSize = ScreenSize.XS) {
+export function mediaMin(size: ScreenSize = ScreenSize.XS): string {
     return `@media screen and (min-width: ${size}px)`;
 }
 
-export function mediaMax (size: ScreenSize = ScreenSize.XL) {
+export function mediaMax(size: ScreenSize = ScreenSize.XL): string {
     return `@media screen and (max-width: ${size - 1}px)`;
 }
 
 export type Unit = 'rem' | 'em' | 'px';
 
-export function lineClamp (lines: number, lineHeight: number = 1.412, unit: Unit = 'rem') {
+export function lineClamp(lines: number, lineHeight: number = 1.412, unit: Unit = 'rem'): string {
     return `
         display: block;
         display: -webkit-box;
@@ -27,4 +27,11 @@ export function lineClamp (lines: number, lineHeight: number = 1.412, unit: Unit
         -webkit-line-clamp: ${lines};
         -webkit-box-orient: vertical;
     `;
+}
+
+export function makeAccessibleColor(colors: string[], mainIndex: number): string {
+    if (mainIndex >= colors.length) {
+        throw new Error('Invalid main color');
+    }
+    return colors[main];
 }

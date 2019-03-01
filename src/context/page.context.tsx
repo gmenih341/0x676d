@@ -1,7 +1,12 @@
-import React, {createContext, useEffect, FunctionComponent, InputIdentityList} from 'react';
-import pages from '../assets/pages.json5';
-import {useScrollingPage} from '../hooks/wheel-page/wheel-page.hook';
-import {IPageContext} from './page.types';
+import styled from '@emotion/styled';
+import React, {createContext, Dispatch, FunctionComponent, InputIdentityList, SetStateAction, useEffect, useState} from 'react';
+import pages, {IPage} from '../assets/pages.json5';
+
+export interface IPageContext {
+    page: number;
+    pages: IPage[];
+    setPage: Dispatch<SetStateAction<number>>;
+}
 
 export const PageContext = createContext<IPageContext>({
     page: 0,
@@ -10,7 +15,7 @@ export const PageContext = createContext<IPageContext>({
 });
 
 export const PageContextProvider: FunctionComponent = ({children}) => {
-    const [page, setPage] = useScrollingPage(pages.length, {duration: 300});
+    const [page, setPage] = useState(0);
     useBrowserTitle(`${pages[page].title} / ${pages[page].browserTitle}`, [page]);
     return (
         <PageContext.Provider
@@ -22,9 +27,9 @@ export const PageContextProvider: FunctionComponent = ({children}) => {
             {children}
         </PageContext.Provider>
     );
-}
+};
 
-function useBrowserTitle (title: string, props: InputIdentityList): void {
+function useBrowserTitle(title: string, props: InputIdentityList): void {
     useEffect(() => {
         document.title = title;
     }, props);

@@ -1,36 +1,47 @@
-import {INetwork} from '*/assets/networks.json5';
 import styled from '@emotion/styled';
 import React, {FunctionComponent} from 'react';
-import {animated} from 'react-spring';
-import {COLOR_BLACK, SPACER} from '../../style.contants';
-import '../../styles/fontello.scss';
+import {COLOR_BLACK, COLOR_MAIN, COLOR_WHITE, SPACER} from '../../style.contants';
+import {GithubIcon} from './icons/GithubIcon';
+import {LinkedInIcon} from './icons/LinkedInIcon';
+import {MailIcon} from './icons/MailIcon';
+import {SocialIconItem} from './social-icon-item';
 import {mediaMin, ScreenSize} from '../../utils/style.utils';
-import {IconItem} from './icon-item';
 
-const SocialIconsContainer = styled(animated.footer)`
-    grid-column: 1 / -1;
-    grid-row: -2 / -1;
+const ICON_SIZE = 25;
+
+const SocialIconsContainer = styled('footer')`
     margin-top: ${SPACER}px;
+    grid-area: footer;
+    display: flex;
     color: ${COLOR_BLACK};
-    text-align: center;
+    justify-content: center;
 
     ${mediaMin(ScreenSize.SM)} {
-        text-align: left;
+        justify-content: flex-start;
     }
 `;
 
-export interface ISocialIconsProps {
-    networks: INetwork[];
-}
-
-export const SocialIcons: FunctionComponent<ISocialIconsProps> = React.memo(({networks}) => {
+export const SocialIcons: FunctionComponent = React.memo(() => {
     return (
         <SocialIconsContainer>
-            {networks.map(network => (
-                <IconItem key={network.type} type={network.type} href={network.href}>
-                    {network.text}
-                </IconItem>
-            ))}
+            <SocialIconItem
+                icon={<MailIcon width={ICON_SIZE} height={ICON_SIZE} fill={COLOR_WHITE} />}
+                href="mailto:gregor@menih.si"
+                transitionColor={COLOR_MAIN[5]}>
+                gregor@menih.si
+            </SocialIconItem>
+            <SocialIconItem
+                icon={<LinkedInIcon width={ICON_SIZE} height={ICON_SIZE} fill={COLOR_WHITE} />}
+                href="https://linkedin.com/in/gregor-menih"
+                transitionColor={COLOR_MAIN[6]}>
+                /in/gregor-menih
+            </SocialIconItem>
+            <SocialIconItem
+                icon={<GithubIcon width={ICON_SIZE} height={ICON_SIZE} fill={COLOR_WHITE} />}
+                href="https://github.com/gmenih341"
+                transitionColor={COLOR_MAIN[7]}>
+                gmenih341
+            </SocialIconItem>
         </SocialIconsContainer>
     );
 });

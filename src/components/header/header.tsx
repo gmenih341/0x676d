@@ -7,14 +7,11 @@ import {ParallaxTitle} from './parallax-title';
 
 const TitleContainer = styled.div`
     position: relative;
-    grid-column: 1 / -1;
-    grid-row: 2 / 3;
     text-align: center;
+    grid-area: header;
 
     ${mediaMin(ScreenSize.SM)} {
         text-align: left;
-        grid-column: 3 / -1;
-        grid-row: 1 / 3;
     }
 `;
 export const Header: FunctionComponent = () => {
