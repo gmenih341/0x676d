@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
-import React, {FunctionComponent, useContext, useEffect, useRef} from 'react';
-import {Parallax} from 'react-spring/addons';
-import {PageContext} from '../../context/page.context';
+import {withRouter} from 'next/router';
+import Head from 'next/head';
+import React from 'react';
 import {mediaMin, ScreenSize} from '../../utils/style.utils';
-import {ParallaxTitle} from './parallax-title';
+import {HeaderTitle} from './header-title';
+import {useRouteData} from '../../hooks/useRouteData';
 
-const TitleContainer = styled.div`
+const HeaderContainer = styled('header')`
     position: relative;
     text-align: center;
     grid-area: header;
@@ -14,26 +15,15 @@ const TitleContainer = styled.div`
         text-align: left;
     }
 `;
-export const Header: FunctionComponent = () => {
-    const {page, pages} = useContext(PageContext);
-    const parallaxRef = useRef<Parallax>(null);
-    useEffect(
-        () => {
-            if (parallaxRef.current) {
-                parallaxRef.current.scrollTo(page);
-            }
-        },
-        [page],
-    );
+export const Header = withRouter(({router}) => {
+    const {header} = useRouteData((router && router.pathname) || '/');
     return (
-        <TitleContainer>
-            <Parallax ref={parallaxRef} pages={pages.length} scrolling={false} config={{tension: 210, friction: 20}}>
-                {pages.map((page, i) => (
-                    <ParallaxTitle key={page.title} title={page.title} description={page.description} offset={i} />
-                ))}
-            </Parallax>
-        </TitleContainer>
+        <HeaderContainer>
+            <Head>
+                <title>{header.title} / Gregor Menih</title>
+                <meta name="description" content={header.description} />
+            </Head>
+            <HeaderTitle title={header.title} description={header.description} />
+        </HeaderContainer>
     );
-};
-
-export default Header;
+});
