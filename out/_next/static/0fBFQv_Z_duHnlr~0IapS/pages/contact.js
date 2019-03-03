@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[5],{"3TF+":function(n,t,o){(window.__NEXT_P=window.__NEXT_P||[]).push(["/contact",function(){var n=o("W5ma");return{page:n.default||n}}])},W5ma:function(n,t,o){"use strict";o.r(t);var a=o("q1tI"),e=o.n(a);t.default=function(){return e.a.createElement("h1",null,"This is big pooop")}}},[["3TF+",1,0]]]);

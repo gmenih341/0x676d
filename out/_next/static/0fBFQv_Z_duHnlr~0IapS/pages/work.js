@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[7],{nU6g:function(n,o,t){(window.__NEXT_P=window.__NEXT_P||[]).push(["/work",function(){var n=t("pkyb");return{page:n.default||n}}])},pkyb:function(n,o,t){"use strict";t.r(o);var e=t("q1tI"),i=t.n(e);o.default=function(){return i.a.createElement("h1",null,"This is big pooop")}}},[["nU6g",1,0]]]);

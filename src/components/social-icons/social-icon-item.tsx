@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import React, {FunctionComponent, ReactNode} from 'react';
-import {COLOR_BLACK, COLOR_WHITE, SPACER, SPACER_SMALL} from '../../style.contants';
-import {mediaMax, ScreenSize} from '../../utils/style.utils';
+import {COLOR_BLACK, SPACER, SPACER_SMALL} from '../../style.contants';
 
 export interface IconItemProps {
     href: string;
@@ -14,20 +13,19 @@ export interface IconItemProps {
 const Icon: FunctionComponent<IconItemProps> = ({href, icon, children, className}) => (
     <a href={href} title={children} target="_blank" rel="noopener noreferrer" className={className}>
         <i>{icon}</i>
-        <span>{children}</span>
     </a>
 );
 
 export const SocialIconItem = styled(Icon)`
-    background: ${COLOR_BLACK};
-    color: ${COLOR_WHITE};
-    line-height: 25px;
+    color: ${COLOR_BLACK};
+    line-height: 22px;
     text-decoration: none;
     position: relative;
     overflow: hidden;
+    font-size: 0.8em;
 
-    &:not(:first-of-type) {
-        margin-left: ${SPACER}px;
+    &:not(:last-of-type) {
+        margin-right: ${SPACER}px;
     }
 
     i {
@@ -35,31 +33,6 @@ export const SocialIconItem = styled(Icon)`
         display: inline-block;
         vertical-align: middle;
         padding: ${SPACER_SMALL}px ${SPACER}px;
-        background: ${props => props.transitionColor};
         position: relative;
-
-        &:after {
-            display: block;
-            content: '';
-            position: absolute;
-            height: 0;
-            width: 0;
-            right: -13px;
-            top: 0;
-            border-left: 7px solid red;
-            border-top: 20px solid red;
-            border-color: ${props => props.transitionColor};
-            border-right: 7px solid transparent;
-            border-bottom: 20px solid transparent;
-        }
-    }
-
-    span {
-        vertical-align: middle;
-        padding: ${SPACER_SMALL}px ${SPACER}px;
-
-        ${mediaMax(ScreenSize.MD)} {
-            display: none;
-        }
     }
 `;
