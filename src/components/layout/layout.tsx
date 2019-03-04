@@ -7,6 +7,7 @@ import {Header} from '../header/header';
 import {Logo} from '../logo/logo';
 import {Terminal} from '../terminal/terminal';
 import {Menu} from '../menu/menu';
+import {WebFontLoader} from '../webfont-loader/webfont-loader';
 
 interface LayoutProps {
     children: ReactNode;
@@ -23,7 +24,7 @@ const LayoutContainer = styled('div')`
     padding: ${SPACER}px 0;
     margin: 0 ${SPACER}px;
     box-sizing: border-box;
-    font-family: Fira Sans, Arial, Helvetica, sans-serif;
+    font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
 
     ${mediaMin(ScreenSize.SM)} {
         width: 570px;
