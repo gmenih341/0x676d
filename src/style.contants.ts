@@ -28,3 +28,5 @@ export const COLOR_GRAY: string[] = [
 ];
 export const COLOR_WHITE: string = COLOR_GRAY[0];
 export const COLOR_BLACK: string = COLOR_GRAY[8];
+
+export const MENU_BACKGROP_BLUR: number = 8;

@@ -1,5 +1,5 @@
-import React from 'react';
 import {css, Global} from '@emotion/core';
+import React from 'react';
 import {COLOR_WHITE} from '../../style.contants';
 
 const globalStyle = css`
@@ -10,7 +10,7 @@ const globalStyle = css`
         margin: 0;
         position: relative;
     }
-    #root {
+    body {
         background-color: ${COLOR_WHITE};
     }
 `;

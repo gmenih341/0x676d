@@ -1,13 +1,12 @@
 import styled from '@emotion/styled-base';
-import React, {FunctionComponent, ReactNode} from 'react';
+import React, {FunctionComponent, ReactNode, useCallback, useState} from 'react';
 import {SPACER, SPACER_BIG} from '../../style.contants';
 import {mediaMin, ScreenSize} from '../../utils/style.utils';
 import {Footer} from '../footer/footer';
 import {Header} from '../header/header';
 import {Logo} from '../logo/logo';
-import {Terminal} from '../terminal/terminal';
 import {Menu} from '../menu/menu';
-import {WebFontLoader} from '../webfont-loader/webfont-loader';
+import {Terminal} from '../terminal/terminal';
 
 interface LayoutProps {
     children: ReactNode;
@@ -15,9 +14,8 @@ interface LayoutProps {
 
 const LayoutContainer = styled('div')`
     display: grid;
-    height: auto;
     grid-template-rows: 85px 90px 1fr min-content;
-    grid-template-columns: minmax(0, 150px) minmax(0, 300px) 1fr;
+    grid-template-columns: minmax(min-content, 150px) minmax(min-content, 300px) 1fr;
     grid-template-areas: 'logo logo logo' 'header header header' 'terminal terminal terminal' 'footer footer footer';
     grid-row-gap: ${SPACER}px;
     grid-column-gap: ${SPACER_BIG}px;
@@ -25,6 +23,7 @@ const LayoutContainer = styled('div')`
     margin: 0 ${SPACER}px;
     box-sizing: border-box;
     font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+    position: relative;
 
     ${mediaMin(ScreenSize.SM)} {
         width: 570px;
@@ -46,11 +45,13 @@ const LayoutContainer = styled('div')`
 `;
 
 export const Layout: FunctionComponent<LayoutProps> = ({children}) => {
+    const [active, setActive] = useState(false);
+    const toggleMenu = useCallback(() => setActive(!active), [active]);
     return (
         <LayoutContainer>
-            <Logo />
-            <Header />
-            <Menu />
+            <Logo blur={active} />
+            <Header blur={active} />
+            <Menu active={active} toggle={toggleMenu} />
             <Terminal>{children}</Terminal>
             <Footer />
         </LayoutContainer>

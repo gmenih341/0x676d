@@ -1,22 +1,31 @@
-import React, {FunctionComponent} from 'react';
-import {COLOR_MAIN} from '../../style.contants';
 import styled from '@emotion/styled';
 import Link from 'next/link';
+import React, {FunctionComponent} from 'react';
+import {COLOR_MAIN, MENU_BACKGROP_BLUR} from '../../style.contants';
+
+interface LogoProps {
+    blur: boolean;
+}
 
 const LIGHT = COLOR_MAIN[5];
 const DARK = COLOR_MAIN[6];
 
-const LogoContainer = styled.div`
+const LogoContainer = styled('div')`
     display: flex;
     justify-content: center;
     flex-direction: column;
     grid-area: logo;
     cursor: pointer;
+    transition: filter 300ms;
+
+    &.blur {
+        filter: blur(${MENU_BACKGROP_BLUR}px);
+    }
 `;
 
-export const Logo: FunctionComponent = React.memo(() => {
+export const Logo: FunctionComponent<LogoProps> = React.memo(({blur}) => {
     return (
-        <LogoContainer>
+        <LogoContainer className={blur ? 'blur' : ''}>
             <Link href="/">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 591.76867 477.9678">
                     <g>
