@@ -1,11 +1,9 @@
 {
     "presets": [
-        "@babel/preset-env",
         "next/babel",
         "@zeit/next-typescript/babel"
     ],
     "plugins": [
-        "emotion",
-        "@babel/plugin-syntax-dynamic-import"
+        "emotion"
     ]
   }
