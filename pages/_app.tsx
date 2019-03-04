@@ -4,20 +4,11 @@ import {GlobalStyle} from '../src/components/global-style/global-style';
 import {Layout} from '../src/components/layout/layout';
 
 export default class extends App {
-    static getInitialProps = async ({ctx, Component}: NextAppContext) => {
-        const server = !!ctx.req;
-        const out = {server} as any;
-
-        if (Component.getInitialProps) {
-            return {
-                ...out,
-                pageProps: {
-                    ...(await Component.getInitialProps(ctx)),
-                },
-            };
-        }
-
-        return out;
+    static getInitialProps = async ({ctx}: NextAppContext) => {
+        return {
+            server: !!ctx.req,
+            pageProps: {},
+        };
     };
 
     render() {

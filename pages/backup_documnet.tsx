@@ -2,6 +2,10 @@ import * as React from 'react';
 import Document, {Head, Main, NextScript} from 'next/document';
 
 export default class extends Document {
+    static getInitialProps() {
+        return {};
+    }
+
     render() {
         return (
             <html lang="en">
