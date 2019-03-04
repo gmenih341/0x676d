@@ -5,10 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "next",
-    "dev": "npm run dev",
-    "build:dev": "next build && next export",
-    "build:prod": "next export",
-    "build": "yarn build:dev",
+    "dev": "npm run start",
+    "build": "npm run build:dev",
+    "build:dev": "next build",
+    "build:prod": "NODE_ENV=production next build",
+    "export": "next export",
+    "netlify": "npm run build:prod && npm run export",
     "prettier": "prettier --write ./src/**/*.{ts,tsx}",
     "lint-staged": "lint-staged"
   },
@@ -29,7 +31,7 @@
     "babel-loader": "8.0.5",
     "babel-plugin-emotion": "10.0.7",
     "css-loader": "2.1.0",
-    "eslint": "5.14.1",
+    "eslint": "5.15.0",
     "eslint-plugin-prettier": "3.0.1",
     "eslint-plugin-react": "7.12.4",
     "favicons-webpack-plugin": "0.0.9",
@@ -38,9 +40,9 @@
     "html-webpack-plugin": "3.2.0",
     "ip": "1.1.5",
     "json5-loader": "1.0.1",
-    "lint-staged": "8.1.4",
+    "lint-staged": "8.1.5",
     "mini-css-extract-plugin": "0.5.0",
-    "next-transpile-modules": "2.0.0",
+    "next-transpile-modules": "2.1.0",
     "node-sass": "4.11.0",
     "postcss-jsx": "0.36.0",
     "pre-commit": "1.2.2",
@@ -63,7 +65,7 @@
     "prop-types": "15.7.2",
     "react": "16.8.3",
     "react-dom": "16.8.3",
-    "react-spring": "8.0.6"
+    "react-spring": "8.0.10"
   },
   "precommit": [
     "lint-staged"
