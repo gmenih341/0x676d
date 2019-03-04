@@ -4,7 +4,6 @@ import {COLOR_BLACK, SPACER, SPACER_SMALL} from '../../style.contants';
 
 export interface IconItemProps {
     href: string;
-    transitionColor?: string;
     icon: ReactNode;
     className?: string;
     children: string;
