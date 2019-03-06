@@ -28,10 +28,3 @@ export function lineClamp(lines: number, lineHeight: number = 1.412, unit: Unit 
         -webkit-box-orient: vertical;
     `;
 }
-
-export function makeAccessibleColor(colors: string[], mainIndex: number): string {
-    if (mainIndex >= colors.length) {
-        throw new Error('Invalid main color');
-    }
-    return colors[main];
-}

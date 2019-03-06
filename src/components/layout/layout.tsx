@@ -1,5 +1,5 @@
 import styled from '@emotion/styled-base';
-import React, {FunctionComponent, ReactNode, useCallback, useState} from 'react';
+import React, {FunctionComponent, ReactNode, useCallback, useState, useEffect} from 'react';
 import {SPACER, SPACER_BIG} from '../../style.contants';
 import {mediaMin, ScreenSize} from '../../utils/style.utils';
 import {Footer} from '../footer/footer';
@@ -7,6 +7,7 @@ import {Header} from '../header/header';
 import {Logo} from '../logo/logo';
 import {Menu} from '../menu/menu';
 import {Terminal} from '../terminal/terminal';
+import Router from 'next/router';
 
 interface LayoutProps {
     children: ReactNode;
@@ -15,8 +16,8 @@ interface LayoutProps {
 const LayoutContainer = styled('div')`
     display: grid;
     grid-template-rows: 85px 90px 1fr min-content;
-    grid-template-columns: minmax(min-content, 150px) minmax(min-content, 300px) 1fr;
-    grid-template-areas: 'logo logo logo' 'header header header' 'terminal terminal terminal' 'footer footer footer';
+    grid-template-columns: minmax(min-content, 120px) minmax(min-content, 300px) 1fr;
+    grid-template-areas: 'logo header header' 'logo header header' 'terminal terminal terminal' 'footer footer footer';
     grid-row-gap: ${SPACER}px;
     grid-column-gap: ${SPACER_BIG}px;
     padding: ${SPACER}px 0;
@@ -47,10 +48,16 @@ const LayoutContainer = styled('div')`
 export const Layout: FunctionComponent<LayoutProps> = ({children}) => {
     const [active, setActive] = useState(false);
     const toggleMenu = useCallback(() => setActive(!active), [active]);
+    useEffect(() => {
+        const hideMenuOnRouteChange = () => setActive(false);
+        Router.events.on('routeChangeComplete', hideMenuOnRouteChange);
+        return () => Router.events.off('routeChangeComplete', hideMenuOnRouteChange);
+    }, []);
+
     return (
         <LayoutContainer>
-            <Logo blur={active} />
-            <Header blur={active} />
+            <Logo />
+            <Header />
             <Menu active={active} toggle={toggleMenu} />
             <Terminal>{children}</Terminal>
             <Footer />

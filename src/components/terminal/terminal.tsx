@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import React, {FunctionComponent} from 'react';
 import {COLOR_BLACK, COLOR_WHITE, SPACER} from '../../style.contants';
 
-const TerminalContainer = styled.main`
+const TerminalContainer = styled('main')`
     position: relative;
     width: 100%;
     grid-area: terminal;

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import React, {FunctionComponent} from 'react';
 import {COLOR_BLACK, SPACER, COLOR_GRAY} from '../../style.contants';
-import {mediaMin, ScreenSize} from '../../utils/style.utils';
+import {mediaMin, ScreenSize, mediaMax} from '../../utils/style.utils';
 import SocialIcons from '../social-icons/social-icons';
 import {NetlifyIcon} from '../icons/netlify.icon';
 import {SocialIconItem} from '../social-icons/social-icon-item';
@@ -20,6 +20,10 @@ const FooterContainer = styled('footer')`
 
 const NetlifySocialIcon = styled(SocialIconItem)`
     margin-left: auto;
+
+    ${mediaMax(ScreenSize.SM)} {
+        display: none;
+    }
 `;
 
 export const Footer: FunctionComponent = React.memo(() => {
