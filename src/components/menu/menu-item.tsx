@@ -1,12 +1,13 @@
 import styled from '@emotion/styled-base';
 import Link from 'next/link';
 import React, {FunctionComponent} from 'react';
-import {COLOR_BLACK, SPACER, SPACER_SMALL} from '../../style.contants';
+import {COLOR_BLACK, SPACER, SPACER_SMALL, COLOR_MAIN} from '../../style.contants';
 import {mediaMin, ScreenSize} from '../../utils/style.utils';
 
 interface MenuItemProps {
     href: string;
     children: string;
+    currentPath: string;
 }
 
 const Anchor = styled('a')`
@@ -17,6 +18,7 @@ const Anchor = styled('a')`
     line-height: 1em;
     text-decoration: none;
     margin: ${SPACER}px 0;
+    position: relative;
 
     &:first-of-type {
         margin: 0 !important;
@@ -30,10 +32,41 @@ const Anchor = styled('a')`
     ${mediaMin(ScreenSize.LG)} {
         margin: 0 0 0 ${SPACER}px;
     }
+
+    strong,
+    span {
+        display: inline-block;
+        transition: opacity 300ms, visibility 300ms;
+    }
+
+    strong {
+        position: absolute;
+        left: 0;
+        text-align: center;
+        width: 100%;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    &.active {
+        color: ${COLOR_MAIN[6]};
+
+        strong {
+            opacity: 1;
+            visibility: visible;
+        }
+        span {
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
 `;
 
-export const MenuItem: FunctionComponent<MenuItemProps> = ({children, href}) => (
+export const MenuItem: FunctionComponent<MenuItemProps> = ({children, href, currentPath}) => (
     <Link href={href}>
-        <Anchor href={href}>/{children}</Anchor>
+        <Anchor className={href === currentPath ? 'active' : ''} href={href}>
+            <span>{children}</span>
+            <strong>{children}</strong>
+        </Anchor>
     </Link>
 );

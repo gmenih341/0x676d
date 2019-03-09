@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, HTMLAttributes} from 'react';
+import {animated} from 'react-spring';
 import {COLOR_MAIN, SPACER_SMALL} from '../../style.contants';
 
-const TitleContainer = styled('div')`
+const TitleContainer = styled(animated.div)`
     display: flex;
     height: 100%;
     flex-direction: column;
@@ -24,14 +25,14 @@ const Description = styled('span')`
     margin: -3px ${SPACER_SMALL}px;
 `;
 
-export interface IParallaxTitleProps {
+export interface HeaderTitleProps extends HTMLAttributes<HTMLDivElement> {
     title: string;
     description: string;
 }
 
-export const HeaderTitle: FunctionComponent<IParallaxTitleProps> = React.memo(({title, description}) => {
+export const HeaderTitle: FunctionComponent<HeaderTitleProps> = React.memo(({title, description, ...props}) => {
     return (
-        <TitleContainer>
+        <TitleContainer {...props}>
             <Title>{title}</Title>
             <Description>{description}</Description>
         </TitleContainer>

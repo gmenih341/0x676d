@@ -1,3 +1,90 @@
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 
-export default () => <h1>Work</h1>;
+const Work: FunctionComponent = () => (
+    <div>
+        <h1>Work</h1>
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+        Haha <br />
+    </div>
+);
+
+Work.displayName = 'work';
+
+export default Work;

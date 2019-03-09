@@ -33,10 +33,10 @@ const MobileToggle = styled('button')`
     }
 
     &.active {
-        .bar:nth-child(2) {
+        .bar:nth-of-type(2) {
             transform: scaleX(0.7);
         }
-        .bar:nth-child(3) {
+        .bar:nth-of-type(3) {
             transform: scaleX(0.5);
         }
     }

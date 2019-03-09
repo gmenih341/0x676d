@@ -1,5 +1,7 @@
 import styled from '@emotion/styled-base';
-import React, {FunctionComponent, ReactNode, useCallback, useState, useEffect} from 'react';
+import Router from 'next/router';
+import React, {FunctionComponent, useCallback, useEffect, useState} from 'react';
+import {animated, useTransition} from 'react-spring';
 import {SPACER, SPACER_BIG} from '../../style.contants';
 import {mediaMin, ScreenSize} from '../../utils/style.utils';
 import {Footer} from '../footer/footer';
@@ -7,10 +9,9 @@ import {Header} from '../header/header';
 import {Logo} from '../logo/logo';
 import {Menu} from '../menu/menu';
 import {Terminal} from '../terminal/terminal';
-import Router from 'next/router';
 
 interface LayoutProps {
-    children: ReactNode;
+    children: typeof ReactNode;
 }
 
 const LayoutContainer = styled('div')`
@@ -45,22 +46,38 @@ const LayoutContainer = styled('div')`
     }
 `;
 
-export const Layout: FunctionComponent<LayoutProps> = ({children}) => {
-    const [active, setActive] = useState(false);
-    const toggleMenu = useCallback(() => setActive(!active), [active]);
-    useEffect(() => {
-        const hideMenuOnRouteChange = () => setActive(false);
-        Router.events.on('routeChangeComplete', hideMenuOnRouteChange);
-        return () => Router.events.off('routeChangeComplete', hideMenuOnRouteChange);
-    }, []);
-
+export const Layout: FunctionComponent<LayoutProps> = ({children: RouteComponent}) => {
+    const transition = useTransition(RouteComponent, item => item.displayName || 'none', {
+        from: {opacity: 0, transform: 'translateY(-30px)'},
+        enter: {opacity: 1, transform: 'translateY(0px)'},
+        leave: {opacity: 0, transform: 'translateY(30px)', position: 'absolute'},
+    });
+    const [active, toggleMenu] = useMenu();
     return (
-        <LayoutContainer>
+        <LayoutContainer onClick={() => toggleMenu(false)}>
             <Logo />
             <Header />
             <Menu active={active} toggle={toggleMenu} />
-            <Terminal>{children}</Terminal>
+            <Terminal>
+                {transition.map(({item: RouteComponent, props, key}) => (
+                    <animated.div key={key} style={props}>
+                        <RouteComponent />
+                    </animated.div>
+                ))}
+            </Terminal>
             <Footer />
         </LayoutContainer>
     );
 };
+
+function useMenu(): [boolean, (force: boolean) => void] {
+    const [active, setActive] = useState(false);
+    const toggleMenu = useCallback((force: boolean) => setActive(force === undefined ? !active : force), [active]);
+    useEffect(() => {
+        const hideMenuOnRouteChange = () => setActive(false);
+        Router.events.on('routeChangeComplete', hideMenuOnRouteChange);
+        window.scrollTo(0, 0);
+        return () => Router.events.off('routeChangeComplete', hideMenuOnRouteChange);
+    }, []);
+    return [active, toggleMenu];
+}

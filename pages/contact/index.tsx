@@ -1,3 +1,7 @@
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 
-export default () => <h1>Contact</h1>;
+const Contact: FunctionComponent = () => <h1>Contact</h1>;
+
+Contact.displayName = 'Contact';
+
+export default Contact;

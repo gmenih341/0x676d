@@ -17,6 +17,7 @@ const TerminalContent = styled.div`
     padding: ${SPACER}px;
     width: 100%;
     box-sizing: border-box;
+    overflow: hidden;
 `;
 
 export const Terminal: FunctionComponent = React.memo(({children}) => {

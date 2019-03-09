@@ -4,10 +4,11 @@ import {SPACER, SPACER_BIG} from '../../style.contants';
 import {mediaMax, mediaMin, ScreenSize} from '../../utils/style.utils';
 import {MenuItem} from './menu-item';
 import {ToggleButton} from './toggle-button';
+import {useRouter} from '../../context/router.context';
 
 interface MenuProps {
     active: boolean;
-    toggle: () => void;
+    toggle: (force: boolean) => void;
 }
 
 const TRANSITION = '250ms ease';
@@ -54,7 +55,7 @@ const MenuItems = styled('div')`
         visibility: visible;
 
         &:not(.active) {
-            transform: translateY(50px);
+            transform: translateY(-50px);
             opacity: 0;
             visibility: hidden;
         }
@@ -71,14 +72,21 @@ const MobileTitle = styled('h2')`
 `;
 
 export const Menu: FunctionComponent<MenuProps> = ({active, toggle}) => {
+    const {pathname} = useRouter();
     return (
-        <MenuContainer className={active ? 'active' : ''}>
+        <MenuContainer className={active ? 'active' : ''} onClick={e => e.stopPropagation()}>
             <ToggleButton toggle={toggle} active={active} />
             <MenuItems className={active ? 'active' : ''}>
                 <MobileTitle>Menu</MobileTitle>
-                <MenuItem href="/">home</MenuItem>
-                <MenuItem href="/work">work</MenuItem>
-                <MenuItem href="/contact">contact</MenuItem>
+                <MenuItem href="/" currentPath={pathname}>
+                    home
+                </MenuItem>
+                <MenuItem href="/work" currentPath={pathname}>
+                    work
+                </MenuItem>
+                <MenuItem href="/contact" currentPath={pathname}>
+                    contact
+                </MenuItem>
             </MenuItems>
         </MenuContainer>
     );

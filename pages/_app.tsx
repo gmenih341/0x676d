@@ -1,26 +1,19 @@
-import App, {Container, NextAppContext} from 'next/app';
+import App, {Container} from 'next/app';
 import * as React from 'react';
 import {GlobalStyle} from '../src/components/global-style/global-style';
 import {Layout} from '../src/components/layout/layout';
+import {NextRouterProvider} from '../src/context/router.context';
 
-export default class extends App {
-    static getInitialProps = async ({ctx}: NextAppContext) => {
-        return {
-            server: !!ctx.req,
-            pageProps: {},
-        };
-    };
-
-    render() {
-        const {props} = this as any;
-        const {Component, pageProps} = props;
+export default class AppComponent extends App {
+    public render() {
+        const {Component} = this.props;
 
         return (
             <Container>
                 <GlobalStyle />
-                <Layout>
-                    <Component {...pageProps} />
-                </Layout>
+                <NextRouterProvider>
+                    <Layout>{Component}</Layout>
+                </NextRouterProvider>
             </Container>
         );
     }
