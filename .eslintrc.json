@@ -7,7 +7,8 @@
     ],
     "plugins": [
         "@typescript-eslint",
-        "react"
+        "react",
+        "react-hooks"
     ],
     "parserOptions": {
         "ecmaVersion": 2018,
@@ -25,6 +26,7 @@
         "@typescript-eslint/interface-name-prefix": 0,
         "@typescript-eslint/explicit-function-return-type": "off",
         "react/prop-types": "off",
-        "react/display-name": "off"
+        "react/display-name": "off",
+        "react-hooks/rules-of-hooks": "error"
     }
 }

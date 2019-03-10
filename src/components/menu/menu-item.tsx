@@ -1,7 +1,7 @@
 import styled from '@emotion/styled-base';
 import Link from 'next/link';
 import React, {FunctionComponent} from 'react';
-import {COLOR_BLACK, SPACER, SPACER_SMALL, COLOR_MAIN} from '../../style.contants';
+import {COLOR_BLACK, COLOR_MAIN, SPACER, SPACER_SMALL} from '../../style.contants';
 import {mediaMin, ScreenSize} from '../../utils/style.utils';
 
 interface MenuItemProps {

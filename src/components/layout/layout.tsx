@@ -1,5 +1,5 @@
 import styled from '@emotion/styled-base';
-import React, {FunctionComponent, ReactNode} from 'react';
+import React, {FunctionComponent} from 'react';
 import {animated, useTransition} from 'react-spring';
 import {useMenu} from '../../hooks/useMenu';
 import {SPACER, SPACER_BIG} from '../../style.contants';
@@ -11,7 +11,7 @@ import {Menu} from '../menu/menu';
 import {Terminal} from '../terminal/terminal';
 
 interface LayoutProps {
-    children: typeof ReactNode;
+    children: FunctionComponent;
 }
 
 const LayoutContainer = styled('div')`
@@ -46,18 +46,19 @@ const LayoutContainer = styled('div')`
     }
 `;
 
-export const Layout: FunctionComponent<LayoutProps> = ({children: RouteComponent}) => {
+export const Layout: FunctionComponent<LayoutProps> = ({children: RouteComponent}: LayoutProps) => {
     const transition = useTransition(RouteComponent, item => item.displayName || 'none', {
         from: {opacity: 0, transform: 'translateY(-30px)'},
         enter: {opacity: 1, transform: 'translateY(0px)'},
         leave: {opacity: 0, transform: 'translateY(30px)', position: 'absolute'},
     });
-    const [active, toggleMenu] = useMenu();
+    const [active, setActive] = useMenu();
+
     return (
-        <LayoutContainer onClick={() => toggleMenu(false)}>
+        <LayoutContainer onClick={() => setActive(false)}>
             <Logo />
             <Header />
-            <Menu active={active} toggle={toggleMenu} />
+            <Menu active={active} setActive={setActive} />
             <Terminal>
                 {transition.map(({item: RouteComponent, props, key}) => (
                     <animated.div key={key} style={props}>

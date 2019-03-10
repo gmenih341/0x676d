@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 import React, {FunctionComponent} from 'react';
-import {COLOR_BLACK, SPACER, COLOR_GRAY} from '../../style.contants';
-import {mediaMin, ScreenSize, mediaMax} from '../../utils/style.utils';
-import SocialIcons from '../social-icons/social-icons';
+import {COLOR_BLACK, COLOR_GRAY, SPACER} from '../../style.contants';
+import {mediaMax, mediaMin, ScreenSize} from '../../utils/style.utils';
 import {NetlifyIcon} from '../icons/netlify.icon';
 import {SocialIconItem} from '../social-icons/social-icon-item';
+import SocialIcons from '../social-icons/social-icons';
 
 const FooterContainer = styled('footer')`
     margin-top: ${SPACER}px;

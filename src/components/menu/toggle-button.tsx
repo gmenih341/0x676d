@@ -1,6 +1,6 @@
-import React, {FunctionComponent} from 'react';
 import styled from '@emotion/styled-base';
-import {SPACER, COLOR_GRAY, SPACER_SMALL} from '../../style.contants';
+import React, {FunctionComponent} from 'react';
+import {COLOR_GRAY, SPACER, SPACER_SMALL} from '../../style.contants';
 import {mediaMin, ScreenSize} from '../../utils/style.utils';
 
 interface MenuProps {

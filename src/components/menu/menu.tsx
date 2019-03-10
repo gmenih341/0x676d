@@ -1,14 +1,15 @@
 import styled from '@emotion/styled-base';
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useCallback} from 'react';
+import {useRouter} from '../../context/router.context';
+import {useStopPropagation} from '../../hooks/useStopPropagation';
 import {SPACER, SPACER_BIG} from '../../style.contants';
 import {mediaMax, mediaMin, ScreenSize} from '../../utils/style.utils';
 import {MenuItem} from './menu-item';
 import {ToggleButton} from './toggle-button';
-import {useRouter} from '../../context/router.context';
 
 interface MenuProps {
     active: boolean;
-    toggle: (force: boolean) => void;
+    setActive: (value: boolean) => void;
 }
 
 const TRANSITION = '250ms ease';
@@ -71,11 +72,14 @@ const MobileTitle = styled('h2')`
     }
 `;
 
-export const Menu: FunctionComponent<MenuProps> = ({active, toggle}) => {
+export const Menu: FunctionComponent<MenuProps> = ({active, setActive}) => {
     const {pathname} = useRouter();
+    const stopPropagation = useStopPropagation();
+    const toggleMenu = useCallback(() => setActive(!active), [active]);
+
     return (
-        <MenuContainer className={active ? 'active' : ''} onClick={e => e.stopPropagation()}>
-            <ToggleButton toggle={toggle} active={active} />
+        <MenuContainer className={active ? 'active' : ''} onClick={stopPropagation}>
+            <ToggleButton toggle={toggleMenu} active={active} />
             <MenuItems className={active ? 'active' : ''}>
                 <MobileTitle>Menu</MobileTitle>
                 <MenuItem href="/" currentPath={pathname}>
