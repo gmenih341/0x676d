@@ -16,6 +16,7 @@ const HeaderContainer = styled('header')`
         text-align: left;
     }
 `;
+
 export const Header: FunctionComponent = () => {
     const {pathname} = useRouter();
     const {header} = useRouteData(pathname);

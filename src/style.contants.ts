@@ -1,6 +1,6 @@
-export const SPACER_SMALL: number = 7;
-export const SPACER: number = 15;
-export const SPACER_BIG: number = 30;
+export const SPACER_SMALL = 7;
+export const SPACER = 15;
+export const SPACER_BIG = 30;
 
 export const COLOR_MAIN: string[] = [
     '#e9f3fb',
@@ -29,4 +29,4 @@ export const COLOR_GRAY: string[] = [
 export const COLOR_WHITE: string = COLOR_GRAY[0];
 export const COLOR_BLACK: string = COLOR_GRAY[8];
 
-export const MENU_BACKGROP_BLUR: number = 8;
+export const MENU_BACKGROP_BLUR = 8;

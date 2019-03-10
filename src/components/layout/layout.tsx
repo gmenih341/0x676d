@@ -1,7 +1,7 @@
 import styled from '@emotion/styled-base';
-import Router from 'next/router';
-import React, {FunctionComponent, useCallback, useEffect, useState} from 'react';
+import React, {FunctionComponent, ReactNode} from 'react';
 import {animated, useTransition} from 'react-spring';
+import {useMenu} from '../../hooks/useMenu';
 import {SPACER, SPACER_BIG} from '../../style.contants';
 import {mediaMin, ScreenSize} from '../../utils/style.utils';
 import {Footer} from '../footer/footer';
@@ -69,15 +69,3 @@ export const Layout: FunctionComponent<LayoutProps> = ({children: RouteComponent
         </LayoutContainer>
     );
 };
-
-function useMenu(): [boolean, (force: boolean) => void] {
-    const [active, setActive] = useState(false);
-    const toggleMenu = useCallback((force: boolean) => setActive(force === undefined ? !active : force), [active]);
-    useEffect(() => {
-        const hideMenuOnRouteChange = () => setActive(false);
-        Router.events.on('routeChangeComplete', hideMenuOnRouteChange);
-        window.scrollTo(0, 0);
-        return () => Router.events.off('routeChangeComplete', hideMenuOnRouteChange);
-    }, []);
-    return [active, toggleMenu];
-}
