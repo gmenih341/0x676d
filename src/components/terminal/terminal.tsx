@@ -11,13 +11,13 @@ const TerminalContainer = styled('main')`
     background: ${COLOR_BLACK};
     color: ${COLOR_WHITE};
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    z-index: 100;
 `;
 
 const TerminalContent = styled.div`
     padding: ${SPACER}px;
     width: 100%;
     box-sizing: border-box;
-    overflow: hidden;
 `;
 
 export const Terminal: FunctionComponent = React.memo(({children}) => {
