@@ -19,6 +19,7 @@ const Anchor = styled('a')`
     text-decoration: none;
     margin: ${SPACER}px 0;
     position: relative;
+    font-weight: 300;
 
     &:first-of-type {
         margin: 0 !important;
@@ -40,6 +41,7 @@ const Anchor = styled('a')`
     }
 
     strong {
+        font-weight: 600;
         position: absolute;
         left: 0;
         text-align: center;

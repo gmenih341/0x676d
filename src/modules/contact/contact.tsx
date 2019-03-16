@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import React, {FunctionComponent} from 'react';
-import {useRouter} from '../../context/router.context';
 import {FormSelect} from '../form-select/form-select';
 
 const ContactPage = styled('section')`
@@ -8,7 +7,6 @@ const ContactPage = styled('section')`
 `;
 
 export const Contact: FunctionComponent = () => {
-    const {pathname} = useRouter();
     const subjectOptions: string[] = ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5'];
     return (
         <ContactPage>
