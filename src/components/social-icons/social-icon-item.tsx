@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components/macro';
 import React, {FunctionComponent, ReactNode} from 'react';
 import {COLOR_BLACK, SPACER, SPACER_SMALL} from '../../style.contants';
 

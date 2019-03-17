@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components/macro';
 import Head from 'next/head';
 import React, {FunctionComponent} from 'react';
 import {useTransition} from 'react-spring';

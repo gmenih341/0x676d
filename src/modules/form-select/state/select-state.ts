@@ -28,6 +28,7 @@ const reducer: Reducer<SelectState, SelectAction> = (state, action) => {
                 return {
                     ...state,
                     open: true,
+                    selectIndex: -1,
                 };
             }
             break;
@@ -42,6 +43,7 @@ const reducer: Reducer<SelectState, SelectAction> = (state, action) => {
         case SelectActionType.TOGGLE:
             return {
                 ...state,
+                selectIndex: state.open === false ? -1 : state.selectIndex,
                 open: !state.open,
             };
         case SelectActionType.FOCUSED:

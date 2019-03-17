@@ -1,5 +1,5 @@
-import styled from '@emotion/styled-base';
 import React, {FunctionComponent, useCallback} from 'react';
+import styled from 'styled-components/macro';
 import {useRouter} from '../../context/router.context';
 import {useStopPropagation} from '../../hooks/useStopPropagation';
 import {SPACER, SPACER_BIG} from '../../style.contants';

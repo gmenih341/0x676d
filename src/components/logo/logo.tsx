@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components/macro';
 import Link from 'next/link';
 import React, {FunctionComponent} from 'react';
 import {COLOR_MAIN} from '../../style.contants';

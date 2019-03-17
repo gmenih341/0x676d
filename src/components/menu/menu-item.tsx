@@ -1,6 +1,6 @@
-import styled from '@emotion/styled-base';
 import Link from 'next/link';
 import React, {FunctionComponent} from 'react';
+import styled from 'styled-components/macro';
 import {COLOR_BLACK, COLOR_MAIN, SPACER, SPACER_SMALL} from '../../style.contants';
 import {mediaMin, ScreenSize} from '../../utils/style.utils';
 

@@ -1,8 +1,7 @@
-import {css, Global} from '@emotion/core';
-import React from 'react';
+import {createGlobalStyle} from 'styled-components';
 import {COLOR_WHITE} from '../../style.contants';
 
-const globalStyle = css`
+export const GlobalStyle = createGlobalStyle`
     html,
     body,
     #root {
@@ -14,5 +13,3 @@ const globalStyle = css`
         background-color: ${COLOR_WHITE};
     }
 `;
-
-export const GlobalStyle = () => <Global styles={globalStyle} />;

@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components/macro';
 import React, {FunctionComponent, HTMLAttributes} from 'react';
 import {animated} from 'react-spring';
 import {COLOR_MAIN, SPACER_SMALL} from '../../style.contants';

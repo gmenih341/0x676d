@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components/macro';
 import React, {FunctionComponent} from 'react';
 import {FormSelect} from '../form-select/form-select';
 
@@ -7,7 +7,13 @@ const ContactPage = styled('section')`
 `;
 
 export const Contact: FunctionComponent = () => {
-    const subjectOptions: string[] = ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5'];
+    const subjectOptions: string[] = [
+        'I want to work with you',
+        'I need help with a library you contributed to and stuff',
+        'Option 3',
+        'Option 4',
+        'T',
+    ];
     return (
         <ContactPage>
             <FormSelect name="subject" options={subjectOptions} placeholder="Subject" />

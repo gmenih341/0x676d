@@ -1,9 +1,11 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components/macro';
 import React, {FunctionComponent, useRef} from 'react';
 import {animated} from 'react-spring';
-import {COLOR_BLACK, COLOR_GRAY, COLOR_WHITE, SPACER, SPACER_SMALL} from '../../style.contants';
+import {COLOR_BLACK, COLOR_GRAY, COLOR_WHITE, SPACER, SPACER_SMALL, SPACER_BIG} from '../../style.contants';
 import {FormOption} from './form-option';
 import {SelectActionType, useSelectState} from './state/select-state';
+import {DropDownIcon} from '../../components/icons/dropdown.icon';
+import {lineClamp} from '../../utils/style.utils';
 
 export type OnValueSelected = (value: string) => void;
 
@@ -40,11 +42,19 @@ const SelectButton = styled('button')`
     background: ${COLOR_GRAY[2]};
     color: ${COLOR_BLACK};
     padding: ${SPACER_SMALL}px ${SPACER}px;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-sizing: border-box;
+    padding-right: ${SPACER_BIG + 5}px;
 `;
 
-const DropdownArrow = styled('div')`
-    border: 1px red dashed;
-    float: right;
+const DropdownArrow = styled(DropDownIcon)`
+    position: absolute;
+    margin-top: ${({open}) => (open ? 0 : '-3px')};
+    right: ${SPACER}px;
+    line-height: 0;
 `;
 
 export const FormSelect: FunctionComponent<FormSelectProps> = React.memo(({name, options, placeholder}: FormSelectProps) => {
@@ -58,7 +68,7 @@ export const FormSelect: FunctionComponent<FormSelectProps> = React.memo(({name,
                 onClick={() => dispatch({type: SelectActionType.TOGGLE})}
                 onBlur={() => dispatch({type: SelectActionType.CLOSE})}>
                 {value || placeholder}
-                <DropdownArrow />
+                <DropdownArrow open={open} width={15} height={15} fill={COLOR_BLACK} />
             </SelectButton>
             <SelectDropdown
                 tabIndex={open ? -1 : 0}
@@ -74,7 +84,7 @@ export const FormSelect: FunctionComponent<FormSelectProps> = React.memo(({name,
                         key={option}
                         value={option}
                         selectable={open}
-                        isPrevios={selectIndex - 1 === i}
+                        isPrevious={selectIndex - 1 === i}
                         isSelected={selectIndex === 1}
                         isNext={selectIndex + 1 === i}
                         onFocus={() => dispatch({type: SelectActionType.FOCUSED, selectedIndex: i})}

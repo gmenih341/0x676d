@@ -1,6 +1,6 @@
-import styled from '@emotion/styled-base';
 import React, {FunctionComponent} from 'react';
 import {animated, useTransition} from 'react-spring';
+import styled from 'styled-components/macro';
 import {useMenu} from '../../hooks/useMenu';
 import {SPACER, SPACER_BIG} from '../../style.contants';
 import {mediaMin, ScreenSize} from '../../utils/style.utils';

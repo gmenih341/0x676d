@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components/macro';
 import React, {FunctionComponent} from 'react';
 import {COLOR_BLACK, COLOR_GRAY, SPACER} from '../../style.contants';
 import {mediaMax, mediaMin, ScreenSize} from '../../utils/style.utils';
