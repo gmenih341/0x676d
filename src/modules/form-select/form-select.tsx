@@ -1,8 +1,9 @@
 import React, {FunctionComponent, useRef} from 'react';
 import {animated} from 'react-spring';
 import styled from 'styled-components/macro';
+import {makeInputComponent} from '../../components/common/input';
 import {DropDownIcon} from '../../components/icons/dropdown.icon';
-import {COLOR_BLACK, COLOR_GRAY, COLOR_WHITE, SPACER, SPACER_BIG, SPACER_SMALL} from '../../style.contants';
+import {COLOR_BLACK, COLOR_WHITE, SPACER, SPACER_SMALL} from '../../style.contants';
 import {FormOption} from './form-option';
 import {SelectActionType, useSelectState} from './state/select-state';
 
@@ -10,9 +11,14 @@ export type OnValueSelected = (value: string) => void;
 
 interface FormSelectProps {
     name: string;
-    placeholder?: string;
     options: string[];
+    placeholder?: string;
+    className?: string;
 }
+
+const FormSelectWrapper = styled('div')`
+    position: relative;
+`;
 
 const SelectDropdown = styled(animated.div)`
     display: block;
@@ -27,26 +33,13 @@ const SelectDropdown = styled(animated.div)`
     color: ${COLOR_BLACK};
 `;
 
-const FormSelectWrapper = styled('div')`
-    position: relative;
-`;
-
-const SelectButton = styled('button')`
-    display: block;
-    box-sizing: border-box;
-    width: 100%;
-    margin: 0;
-    padding: ${SPACER_SMALL}px ${SPACER}px;
-    padding-right: ${SPACER_BIG + 5}px;
-    overflow: hidden;
-    border: 1px solid ${COLOR_GRAY[4]};
-    background: ${COLOR_GRAY[2]};
-    color: ${COLOR_BLACK};
-    font-family: 'Fira Code', Arial, Helvetica, sans-serif;
-    text-align: left;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    cursor: pointer;
+const SelectButton = styled(makeInputComponent('button'))`
+    span {
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 `;
 
 const DropdownArrow = styled(DropDownIcon)`
@@ -56,17 +49,17 @@ const DropdownArrow = styled(DropDownIcon)`
     line-height: 0;
 `;
 
-export const FormSelect: FunctionComponent<FormSelectProps> = React.memo(({name, options, placeholder}: FormSelectProps) => {
+export const FormSelect: FunctionComponent<FormSelectProps> = React.memo(({name, options, placeholder, className}: FormSelectProps) => {
     const [{value, open, selectIndex}, dispatch] = useSelectState();
     const dropdownRef = useRef<HTMLDivElement>(null);
     return (
-        <FormSelectWrapper ref={dropdownRef}>
+        <FormSelectWrapper ref={dropdownRef} className={className}>
             <input name={name} type="hidden" value={value} />
             <SelectButton
                 tabIndex={-1}
                 onClick={() => dispatch({type: SelectActionType.TOGGLE})}
                 onBlur={() => dispatch({type: SelectActionType.CLOSE})}>
-                {value || placeholder}
+                <span>{value || placeholder}</span>
                 <DropdownArrow open={open} width={15} height={15} fill={COLOR_BLACK} />
             </SelectButton>
             <SelectDropdown
@@ -83,9 +76,9 @@ export const FormSelect: FunctionComponent<FormSelectProps> = React.memo(({name,
                         key={option}
                         value={option}
                         selectable={open}
-                        isPrevious={selectIndex - 1 === i}
+                        isPrevious={selectIndex === i + 1}
                         isSelected={selectIndex === 1}
-                        isNext={selectIndex + 1 === i}
+                        isNext={selectIndex === i - 1}
                         onFocus={() => dispatch({type: SelectActionType.FOCUSED, selectedIndex: i})}
                         onClick={() => dispatch({type: SelectActionType.SELECTED, option})}
                     />
