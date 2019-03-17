@@ -4,20 +4,20 @@ import {COLOR_BLACK, COLOR_WHITE, SPACER} from '../../style.contants';
 
 const TerminalContainer = styled('main')`
     position: relative;
-    width: 100%;
     grid-area: terminal;
-    font-family: 'Fira Mono', 'Courier New', Courier, monospace;
+    z-index: 100;
     box-sizing: border-box;
+    width: 100%;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     background: ${COLOR_BLACK};
     color: ${COLOR_WHITE};
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    z-index: 100;
+    font-family: 'Fira Mono', 'Courier New', Courier, monospace;
 `;
 
 const TerminalContent = styled.div`
-    padding: ${SPACER}px;
-    width: 100%;
     box-sizing: border-box;
+    width: 100%;
+    padding: ${SPACER}px;
 `;
 
 export const Terminal: FunctionComponent = React.memo(({children}) => {

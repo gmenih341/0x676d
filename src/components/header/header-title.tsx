@@ -5,24 +5,24 @@ import {COLOR_MAIN, SPACER_SMALL} from '../../style.contants';
 
 const TitleContainer = styled(animated.div)`
     display: flex;
-    height: 100%;
     flex-direction: column;
     justify-content: center;
+    height: 100%;
 `;
 
 const Title = styled('h1')`
-    padding: 0;
     margin: 0;
+    padding: 0;
     color: ${COLOR_MAIN[7]};
     font-size: 45px;
     font-weight: 600;
 `;
 
 const Description = styled('span')`
+    margin: -3px ${SPACER_SMALL}px;
     color: ${COLOR_MAIN[8]};
     font-size: 16px;
     font-weight: 300;
-    margin: -3px ${SPACER_SMALL}px;
 `;
 
 export interface HeaderTitleProps extends HTMLAttributes<HTMLDivElement> {

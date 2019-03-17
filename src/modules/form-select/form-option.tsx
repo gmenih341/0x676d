@@ -13,17 +13,17 @@ interface FormOptionProps extends Pick<HTMLAttributes<HTMLDivElement>, 'onFocus'
 
 const Option = styled('div')`
     max-width: 100%;
-    font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
-    font-size: 12px;
     padding: ${SPACER_SMALL}px ${SPACER}px;
+    overflow: hidden;
+    transition: background 150ms;
     border: 1px solid ${COLOR_GRAY[2]};
     border-bottom: none;
     color: ${COLOR_BLACK};
-    transition: background 150ms;
-    cursor: pointer;
+    font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+    font-size: 12px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: hidden;
+    cursor: pointer;
 
     &:hover,
     &:focus {
@@ -36,20 +36,20 @@ const Hint = styled('div')`
         display: none;
     }
     position: absolute;
-    right: ${SPACER}px;
     top: 0;
+    right: ${SPACER}px;
     color: ${COLOR_GRAY[4]};
     line-height: 30px;
 
     kbd {
+        display: inline-block;
         padding: 2px 3px;
         border: 1px solid ${COLOR_GRAY[3]};
+        border-radius: 3px;
         background-color: ${COLOR_GRAY[1]};
         color: ${COLOR_GRAY[6]};
         font-size: 9px;
         line-height: 9px;
-        border-radius: 3px;
-        display: inline-block;
         text-shadow: 0 1px 0 #fff;
         white-space: nowrap;
     }

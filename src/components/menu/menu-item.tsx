@@ -12,14 +12,14 @@ interface MenuItemProps {
 
 const Anchor = styled('a')`
     display: block;
+    position: relative;
+    margin: ${SPACER}px 0;
     padding: ${SPACER_SMALL}px ${SPACER}px;
     color: ${COLOR_BLACK};
     font-size: 1em;
+    font-weight: 300;
     line-height: 1em;
     text-decoration: none;
-    margin: ${SPACER}px 0;
-    position: relative;
-    font-weight: 300;
 
     &:first-of-type {
         margin: 0 !important;
@@ -41,25 +41,25 @@ const Anchor = styled('a')`
     }
 
     strong {
-        font-weight: 600;
+        visibility: hidden;
         position: absolute;
         left: 0;
-        text-align: center;
         width: 100%;
         opacity: 0;
-        visibility: hidden;
+        font-weight: 600;
+        text-align: center;
     }
 
     &.active {
         color: ${COLOR_MAIN[6]};
 
         strong {
-            opacity: 1;
             visibility: visible;
+            opacity: 1;
         }
         span {
-            opacity: 0;
             visibility: hidden;
+            opacity: 0;
         }
     }
 `;

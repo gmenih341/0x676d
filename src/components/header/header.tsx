@@ -9,8 +9,8 @@ import {HeaderTitle} from './header-title';
 
 const HeaderContainer = styled('header')`
     position: relative;
-    text-align: center;
     grid-area: header;
+    text-align: center;
 
     ${mediaMin(ScreenSize.SM)} {
         text-align: left;

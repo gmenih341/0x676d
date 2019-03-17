@@ -16,21 +16,21 @@ interface LayoutProps {
 
 const LayoutContainer = styled('div')`
     display: grid;
-    grid-template-rows: 85px 90px 1fr min-content;
-    grid-template-columns: minmax(min-content, 120px) minmax(min-content, 300px) 1fr;
-    grid-template-areas: 'logo header header' 'logo header header' 'terminal terminal terminal' 'footer footer footer';
-    grid-row-gap: ${SPACER}px;
-    grid-column-gap: ${SPACER_BIG}px;
-    padding: ${SPACER}px 0;
-    margin: 0 ${SPACER}px;
-    box-sizing: border-box;
-    font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
     position: relative;
+    grid-template-columns: minmax(min-content, 120px) minmax(min-content, 300px) 1fr;
+    grid-template-rows: 85px 90px 1fr min-content;
+    grid-template-areas: 'logo header header' 'logo header header' 'terminal terminal terminal' 'footer footer footer';
+    grid-column-gap: ${SPACER_BIG}px;
+    grid-row-gap: ${SPACER}px;
+    box-sizing: border-box;
+    margin: 0 ${SPACER}px;
+    padding: ${SPACER}px 0;
+    font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
 
     ${mediaMin(ScreenSize.SM)} {
+        grid-template-areas: 'logo header menu' 'logo header menu' 'terminal terminal terminal' 'footer footer footer';
         width: 570px;
         margin: 0 auto;
-        grid-template-areas: 'logo header menu' 'logo header menu' 'terminal terminal terminal' 'footer footer footer';
     }
 
     ${mediaMin(ScreenSize.MD)} {

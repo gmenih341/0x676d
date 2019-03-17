@@ -8,9 +8,9 @@ const DARK = COLOR_MAIN[6];
 
 const LogoContainer = styled('div')`
     display: flex;
-    justify-content: center;
-    flex-direction: column;
     grid-area: logo;
+    flex-direction: column;
+    justify-content: center;
     cursor: pointer;
 `;
 

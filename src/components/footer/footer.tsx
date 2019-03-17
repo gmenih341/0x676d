@@ -7,11 +7,11 @@ import {SocialIconItem} from '../social-icons/social-icon-item';
 import SocialIcons from '../social-icons/social-icons';
 
 const FooterContainer = styled('footer')`
-    margin-top: ${SPACER}px;
-    grid-area: footer;
     display: flex;
-    color: ${COLOR_BLACK};
+    grid-area: footer;
     justify-content: center;
+    margin-top: ${SPACER}px;
+    color: ${COLOR_BLACK};
 
     ${mediaMin(ScreenSize.SM)} {
         justify-content: flex-start;

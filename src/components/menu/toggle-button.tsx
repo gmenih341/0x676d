@@ -9,27 +9,26 @@ interface MenuProps {
 }
 
 const MobileToggle = styled('button')`
+    display: flex;
     position: absolute;
     z-index: 2000;
     top: ${SPACER}px;
     right: 0;
-    background: none;
-    border: none;
-    padding: 0;
-    width: 20px;
-    height: 15px;
-    display: flex;
+    box-sizing: content-box;
     flex-direction: column;
     justify-content: space-between;
+    width: 20px;
+    height: 15px;
     padding: ${SPACER_SMALL}px;
-    box-sizing: content-box;
+    border: none;
+    background: none;
 
     .bar {
         width: 20px;
         height: 3px;
-        background: ${COLOR_GRAY[7]};
-        transition: transform 300ms;
         transform-origin: 0 0;
+        transition: transform 300ms;
+        background: ${COLOR_GRAY[7]};
     }
 
     &.active {
