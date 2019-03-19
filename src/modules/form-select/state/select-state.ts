@@ -21,7 +21,6 @@ interface SelectAction {
 }
 
 const reducer: Reducer<SelectState, SelectAction> = (state, action) => {
-    console.log(SelectActionType[action.type], action, state);
     switch (action.type) {
         case SelectActionType.OPEN:
             if (state.open === false) {

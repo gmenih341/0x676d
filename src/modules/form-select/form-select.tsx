@@ -3,7 +3,7 @@ import {animated} from 'react-spring';
 import styled from 'styled-components/macro';
 import {makeInputComponent} from '../../components/common/input';
 import {DropDownIcon} from '../../components/icons/dropdown.icon';
-import {COLOR_BLACK, COLOR_WHITE, SPACER, SPACER_SMALL} from '../../style.contants';
+import {COLOR_BLACK, COLOR_WHITE, SPACER, SPACER_SMALL, COLOR_GRAY, SPACER_BIG} from '../../style.contants';
 import {FormOption} from './form-option';
 import {SelectActionType, useSelectState} from './state/select-state';
 
@@ -20,9 +20,10 @@ const FormSelectWrapper = styled('div')`
     position: relative;
 `;
 
-const SelectDropdown = styled(animated.div)`
+const SelectDropdown = styled('div')`
     display: block;
     position: absolute;
+    z-index: 100;
     top: calc(100% + ${SPACER_SMALL}px);
     width: 100%;
     max-height: 300px;
@@ -34,17 +35,26 @@ const SelectDropdown = styled(animated.div)`
 `;
 
 const SelectButton = styled(makeInputComponent('button'))`
+    display: flex;
+    flex-direction: row;
+
     span {
+        display: block;
+        flex-grow: 1;
         max-width: 100%;
+        margin-right: ${SPACER}px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+
+        &:empty:before {
+            content: attr(data-placeholder);
+            color: ${COLOR_GRAY[5]};
+        }
     }
 `;
 
 const DropdownArrow = styled(DropDownIcon)`
-    position: absolute;
-    right: ${SPACER}px;
     margin-top: ${({open}) => (open ? 0 : '-3px')};
     line-height: 0;
 `;
@@ -59,7 +69,7 @@ export const FormSelect: FunctionComponent<FormSelectProps> = React.memo(({name,
                 tabIndex={-1}
                 onClick={() => dispatch({type: SelectActionType.TOGGLE})}
                 onBlur={() => dispatch({type: SelectActionType.CLOSE})}>
-                <span>{value || placeholder}</span>
+                <span data-placeholder={placeholder}>{value}</span>
                 <DropdownArrow open={open} width={15} height={15} fill={COLOR_BLACK} />
             </SelectButton>
             <SelectDropdown

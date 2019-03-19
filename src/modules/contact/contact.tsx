@@ -7,17 +7,18 @@ import {mediaMin, ScreenSize} from '../../utils/style.utils';
 
 const ContactPage = styled('section')`
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 1fr 1fr 300px;
     grid-gap: ${SPACER}px;
 
     ${mediaMin(ScreenSize.MD)} {
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-rows: 1fr 300px;
     }
 `;
 
 const TextArea = styled(FormText)`
     grid-column: 1 / -1;
-    height: 300px;
 `;
 
 export const Contact: FunctionComponent = () => {
@@ -30,9 +31,9 @@ export const Contact: FunctionComponent = () => {
     ];
     return (
         <ContactPage>
-            <FormText placeholder="Email" />
+            <FormText placeholder="Your email" type="email" />
             <FormSelect name="subject" options={subjectOptions} placeholder="Subject" />
-            <TextArea placeholder="What do you want to say?" />
+            <TextArea placeholder="What do you want to say?" multiline={true} />
         </ContactPage>
     );
 };
