@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React, {FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
 import {COLOR_BLACK, COLOR_MAIN, SPACER, SPACER_SMALL} from '../../style.contants';
-import {mediaMin, ScreenSize} from '../../utils/style.utils';
+import {mediaMin} from '../../utils/style.utils';
 
 interface MenuItemProps {
     href: string;
@@ -25,12 +25,12 @@ const Anchor = styled('a')`
         margin: 0 !important;
     }
 
-    ${mediaMin(ScreenSize.MD)} {
+    ${mediaMin('md')} {
         display: inline-block;
         margin: 0 0 0 ${SPACER_SMALL}px;
     }
 
-    ${mediaMin(ScreenSize.LG)} {
+    ${mediaMin('lg')} {
         margin: 0 0 0 ${SPACER}px;
     }
 
@@ -54,7 +54,7 @@ const Anchor = styled('a')`
         color: ${COLOR_MAIN[6]};
 
         strong {
-            visibility: visible;
+            visibility: inherit;
             opacity: 1;
         }
         span {

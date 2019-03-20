@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import {useRouter} from '../../context/router.context';
 import {useStopPropagation} from '../../hooks/useStopPropagation';
 import {SPACER, SPACER_BIG} from '../../style.contants';
-import {mediaMax, mediaMin, ScreenSize} from '../../utils/style.utils';
+import {mediaMax, mediaMin} from '../../utils/style.utils';
 import {MenuItem} from './menu-item';
 import {ToggleButton} from './toggle-button';
 
@@ -20,7 +20,7 @@ const MenuContainer = styled('nav')`
     z-index: 1000;
     height: 100%;
 
-    ${mediaMax(ScreenSize.MD)} {
+    ${mediaMax('md')} {
         transition: background ${TRANSITION};
         background: rgba(240, 242, 244, 0);
 
@@ -29,7 +29,7 @@ const MenuContainer = styled('nav')`
         }
     }
 
-    ${mediaMin(ScreenSize.MD)} {
+    ${mediaMin('md')} {
         grid-area: menu;
         z-index: none;
         align-self: center;
@@ -46,7 +46,7 @@ const MenuItems = styled('div')`
     text-align: right;
     white-space: nowrap;
 
-    ${mediaMax(ScreenSize.MD)} {
+    ${mediaMax('md')} {
         visibility: hidden;
         z-index: 1000;
         min-height: 100%;
@@ -57,7 +57,7 @@ const MenuItems = styled('div')`
         text-align: center;
 
         &.active {
-            visibility: visible;
+            visibility: inherit;
             transform: translateY(-15px);
             opacity: 1;
         }
@@ -67,7 +67,7 @@ const MenuItems = styled('div')`
 const MobileTitle = styled('h2')`
     display: none;
 
-    ${mediaMax(ScreenSize.MD)} {
+    ${mediaMax('md')} {
         display: block;
         margin: 0;
         margin-bottom: ${SPACER}px;

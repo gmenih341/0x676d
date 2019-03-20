@@ -23,15 +23,15 @@ const FormSelectWrapper = styled('div')`
 const SelectDropdown = styled('div')`
     display: block;
     position: absolute;
-    z-index: 100;
+    z-index: 1000;
     top: calc(100% + ${SPACER_SMALL}px);
     width: 100%;
     max-height: 300px;
     overflow-y: auto;
     transform-origin: 0 0;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    background: ${COLOR_WHITE};
-    color: ${COLOR_BLACK};
+    background: ${COLOR_GRAY[7]};
+    color: ${COLOR_WHITE};
 `;
 
 const SelectButton = styled(makeInputComponent('button'))`
@@ -67,10 +67,11 @@ export const FormSelect: FunctionComponent<FormSelectProps> = React.memo(({name,
             <input name={name} type="hidden" value={value} />
             <SelectButton
                 tabIndex={-1}
+                type="button"
                 onClick={() => dispatch({type: SelectActionType.TOGGLE})}
                 onBlur={() => dispatch({type: SelectActionType.CLOSE})}>
                 <span data-placeholder={placeholder}>{value}</span>
-                <DropdownArrow open={open} width={15} height={15} fill={COLOR_BLACK} />
+                <DropdownArrow open={open} width={15} height={15} fill={COLOR_GRAY[4]} />
             </SelectButton>
             <SelectDropdown
                 tabIndex={open ? -1 : 0}

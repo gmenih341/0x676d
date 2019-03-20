@@ -9,7 +9,20 @@ export interface FormTextProps extends Pick<InputHTMLAttributes<HTMLInputElement
     className?: string;
 }
 
-const InputWrapper = makeInputComponent('input');
+const InputWrapper = styled(makeInputComponent('input'))`
+    &::-webkit-input-placeholder {
+        color: ${COLOR_GRAY[5]};
+    }
+    &::-moz-placeholder {
+        color: ${COLOR_GRAY[5]};
+    }
+    &:-ms-input-placeholder {
+        color: ${COLOR_GRAY[5]};
+    }
+    &:-moz-placeholder {
+        color: ${COLOR_GRAY[5]};
+    }
+`;
 
 const TextAreaWrapper = styled(makeInputComponent('div')).attrs({contentEditable: true})`
     &:empty:before {

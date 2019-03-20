@@ -40,7 +40,7 @@ const MobileToggle = styled('button')`
         }
     }
 
-    ${mediaMin(ScreenSize.MD)} {
+    ${mediaMin('md')} {
         display: none;
     }
 `;

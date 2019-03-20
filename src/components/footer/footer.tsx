@@ -13,7 +13,7 @@ const FooterContainer = styled('footer')`
     margin-top: ${SPACER}px;
     color: ${COLOR_BLACK};
 
-    ${mediaMin(ScreenSize.SM)} {
+    ${mediaMin('sm')} {
         justify-content: flex-start;
     }
 `;
@@ -21,7 +21,7 @@ const FooterContainer = styled('footer')`
 const NetlifySocialIcon = styled(SocialIconItem)`
     margin-left: auto;
 
-    ${mediaMax(ScreenSize.SM)} {
+    ${mediaMax('sm')} {
         display: none;
     }
 `;

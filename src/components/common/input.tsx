@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {SPACER_SMALL, SPACER, SPACER_BIG, COLOR_GRAY, COLOR_BLACK} from '../../style.contants';
+import {COLOR_GRAY, COLOR_WHITE, SPACER, SPACER_SMALL, FONT_MONO} from '../../style.contants';
 
 export function makeInputComponent<C extends keyof JSX.IntrinsicElements | React.ComponentType<any>>(type: C) {
     return styled(type)`
@@ -11,9 +11,9 @@ export function makeInputComponent<C extends keyof JSX.IntrinsicElements | React
         padding: ${SPACER_SMALL}px ${SPACER}px;
         overflow: hidden;
         border: 1px solid ${COLOR_GRAY[4]};
-        background: ${COLOR_GRAY[2]};
-        color: ${COLOR_BLACK};
-        font-family: 'Fira Mono', 'Courier New', Courier, monospace;
+        background: ${COLOR_GRAY[8]};
+        color: ${COLOR_WHITE};
+        font-family: ${FONT_MONO};
         font-size: 13px;
         text-align: left;
         text-overflow: ellipsis;

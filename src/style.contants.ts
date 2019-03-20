@@ -29,4 +29,5 @@ export const COLOR_GRAY: string[] = [
 export const COLOR_WHITE: string = COLOR_GRAY[0];
 export const COLOR_BLACK: string = COLOR_GRAY[8];
 
-export const MENU_BACKGROP_BLUR = 8;
+export const FONT_SANS: string = `'Fira Sans', Arial, Helvetica, sans-serif`;
+export const FONT_MONO: string = `'Fira Mono', 'Courier New', Courier, monospace`;

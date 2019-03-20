@@ -1,8 +1,8 @@
 import React, {FunctionComponent} from 'react';
-import {animated, useTransition} from 'react-spring';
+import {useTransition} from 'react-spring';
 import styled from 'styled-components/macro';
 import {useMenu} from '../../hooks/useMenu';
-import {SPACER, SPACER_BIG} from '../../style.contants';
+import {FONT_SANS, SPACER, SPACER_BIG} from '../../style.contants';
 import {mediaMin, ScreenSize} from '../../utils/style.utils';
 import {Footer} from '../footer/footer';
 import {Header} from '../header/header';
@@ -25,19 +25,19 @@ const LayoutContainer = styled('div')`
     box-sizing: border-box;
     margin: 0 ${SPACER}px;
     padding: ${SPACER}px 0;
-    font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+    font-family: ${FONT_SANS};
 
-    ${mediaMin(ScreenSize.SM)} {
+    ${mediaMin('sm')} {
         grid-template-areas: 'logo header menu' 'logo header menu' 'terminal terminal terminal' 'footer footer footer';
         width: 570px;
         margin: 0 auto;
     }
 
-    ${mediaMin(ScreenSize.MD)} {
+    ${mediaMin('md')} {
         width: 760px;
     }
 
-    ${mediaMin(ScreenSize.LG)} {
+    ${mediaMin('lg')} {
         width: 980px;
     }
 
@@ -59,13 +59,11 @@ export const Layout: FunctionComponent<LayoutProps> = ({children: RouteComponent
             <Logo />
             <Header />
             <Menu active={active} setActive={setActive} />
-            <Terminal>
-                {transition.map(({item: RouteComponent, props, key}) => (
-                    <animated.div key={key} style={props}>
-                        <RouteComponent />
-                    </animated.div>
-                ))}
-            </Terminal>
+            {transition.map(({item: RouteComponent, props, key}) => (
+                <Terminal key={key} style={props}>
+                    <RouteComponent />
+                </Terminal>
+            ))}
             <Footer />
         </LayoutContainer>
     );
