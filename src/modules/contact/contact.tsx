@@ -13,6 +13,7 @@ const ContactPage = styled('section')`
 
 const ContactForm = styled('form')`
     display: grid;
+    grid-auto-columns: minmax(0, 1fr);
     grid-template-rows: min-content min-content 300px min-content;
     grid-gap: ${SPACER}px;
     margin: ${SPACER_BIG}px 0;
