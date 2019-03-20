@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import {COLOR_GRAY} from '../../style.contants';
 
 export interface FormTextProps extends Pick<InputHTMLAttributes<HTMLInputElement>, 'type'> {
+    name: string;
     placeholder?: string;
     multiline?: boolean;
     className?: string;
@@ -31,10 +32,10 @@ const TextAreaWrapper = styled(makeInputComponent('div')).attrs({contentEditable
     }
 `;
 
-export const FormText: FunctionComponent<FormTextProps> = ({className, placeholder, type, multiline}) => {
+export const FormText: FunctionComponent<FormTextProps> = ({className, placeholder, type, multiline, name}) => {
     return multiline === true ? (
         <TextAreaWrapper className={className} data-placeholder={placeholder} />
     ) : (
-        <InputWrapper type={type || 'text'} className={className} placeholder={placeholder} />
+        <InputWrapper type={type || 'text'} className={className} placeholder={placeholder} name={name} />
     );
 };
