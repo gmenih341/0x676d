@@ -107,11 +107,11 @@ export const Contact: FunctionComponent = () => {
                 </div>
                 <div className="map" />
             </MapSection>
-            <ContactForm>
+            <ContactForm data-netlify={true}>
                 <FormText placeholder="Your email" type="email" />
                 <FormSelect name="subject" options={subjectOptions} placeholder="Subject" />
                 <TextArea placeholder="What do you want to say?" multiline={true} />
-                <Button>Send</Button>
+                <Button type="submit">Send</Button>
             </ContactForm>
         </ContactPage>
     );

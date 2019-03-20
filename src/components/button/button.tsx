@@ -1,6 +1,6 @@
-import React, {FunctionComponent, HTMLAttributes} from 'react';
+import React, {FunctionComponent, InputHTMLAttributes} from 'react';
 import styled from 'styled-components';
-import {FONT_SANS, COLOR_MAIN, SPACER, SPACER_SMALL, COLOR_WHITE, COLOR_GRAY} from '../../style.contants';
+import {COLOR_MAIN, FONT_SANS, SPACER, SPACER_SMALL} from '../../style.contants';
 
 const StyledButton = styled('button')`
     grid-column: 2 / -1;
@@ -17,6 +17,6 @@ const StyledButton = styled('button')`
     cursor: pointer;
 `;
 
-export const Button: FunctionComponent<HTMLAttributes<HTMLButtonElement>> = ({children}) => {
-    return <StyledButton type="button">{children}</StyledButton>;
+export const Button: FunctionComponent<InputHTMLAttributes<HTMLButtonElement>> = ({children, ...props}) => {
+    return <StyledButton {...props}>{children}</StyledButton>;
 };
