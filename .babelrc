@@ -4,6 +4,7 @@
         "@zeit/next-typescript/babel"
     ],
     "plugins": [
-        "emotion"
+        "babel-plugin-styled-components",
+        "babel-plugin-macros"
     ]
-  }
+}

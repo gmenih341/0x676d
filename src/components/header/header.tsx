@@ -1,18 +1,18 @@
-import styled from '@emotion/styled';
 import Head from 'next/head';
 import React, {FunctionComponent} from 'react';
 import {useTransition} from 'react-spring';
+import styled from 'styled-components/macro';
 import {useRouter} from '../../context/router.context';
 import {useRouteData} from '../../hooks/useRouteData';
-import {mediaMin, ScreenSize} from '../../utils/style.utils';
+import {mediaMin} from '../../utils/style.utils';
 import {HeaderTitle} from './header-title';
 
 const HeaderContainer = styled('header')`
     position: relative;
-    text-align: center;
     grid-area: header;
+    text-align: center;
 
-    ${mediaMin(ScreenSize.SM)} {
+    ${mediaMin('sm')} {
         text-align: left;
     }
 `;

@@ -1,69 +1,100 @@
-import styled from '@emotion/styled';
-import React, {FunctionComponent, useState} from 'react';
-import {animated, useSpring} from 'react-spring';
-import {COLOR_BLACK, COLOR_GRAY, SPACER} from '../../style.contants';
+import React, {FunctionComponent, useRef} from 'react';
+import {animated} from 'react-spring';
+import styled from 'styled-components/macro';
+import {makeInputComponent} from '../../components/common/input';
+import {DropDownIcon} from '../../components/icons/dropdown.icon';
+import {COLOR_BLACK, COLOR_WHITE, SPACER, SPACER_SMALL, COLOR_GRAY, SPACER_BIG} from '../../style.contants';
 import {FormOption} from './form-option';
+import {SelectActionType, useSelectState} from './state/select-state';
 
 export type OnValueSelected = (value: string) => void;
 
 interface FormSelectProps {
     name: string;
-    placeholder?: string;
     options: string[];
+    placeholder?: string;
+    className?: string;
 }
 
-const SelectDropdown = styled('div')`
-    background: ${COLOR_GRAY[2]};
-    color: ${COLOR_BLACK};
-    padding: ${SPACER}px;
+const FormSelectWrapper = styled('div')`
     position: relative;
-    cursor: pointer;
-    z-index: 1000;
 `;
 
-const OptionsContainer = styled(animated.div)`
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    overflow: hidden;
+const SelectDropdown = styled('div')`
+    display: block;
     position: absolute;
-    top: 100%;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    transform-origin: 0 0;
-    z-index: 100;
-`;
-
-const DropdownButton = styled('div')`
     z-index: 1000;
+    top: calc(100% + ${SPACER_SMALL}px);
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    transform-origin: 0 0;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    background: ${COLOR_GRAY[7]};
+    color: ${COLOR_WHITE};
 `;
 
-export const FormSelect: FunctionComponent<FormSelectProps> = ({name, options, placeholder}: FormSelectProps) => {
-    const [value, setValue] = useState(placeholder || options[0]);
-    const [open, setOpen] = useState(false);
-    const props = useSpring({
-        to: [
-            {transform: open ? 'scaleY(1)' : 'scaleY(0)', opacity: open ? 1 : 0, visibility: 'visible'},
-            {transform: open ? 'scaleY(1)' : 'scaleY(0)', visibility: open ? 'visible' : 'hidden'},
-        ],
-        config: {
-            mass: 1,
-            friction: 35,
-            tension: 500,
-        },
-    });
+const SelectButton = styled(makeInputComponent('button'))`
+    display: flex;
+    flex-direction: row;
 
+    span {
+        display: block;
+        flex-grow: 1;
+        max-width: 100%;
+        margin-right: ${SPACER}px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &:empty:before {
+            content: attr(data-placeholder);
+            color: ${COLOR_GRAY[5]};
+        }
+    }
+`;
+
+const DropdownArrow = styled(DropDownIcon)`
+    margin-top: ${({open}) => (open ? 0 : '-3px')};
+    line-height: 0;
+`;
+
+export const FormSelect: FunctionComponent<FormSelectProps> = React.memo(({name, options, placeholder, className}: FormSelectProps) => {
+    const [{value, open, selectIndex}, dispatch] = useSelectState();
+    const dropdownRef = useRef<HTMLDivElement>(null);
     return (
-        <div>
-            <input name={name} value={value} type="hidden" />
-            <SelectDropdown onClick={() => setOpen(!open)}>
-                <OptionsContainer style={props}>
-                    {options.map(option => (
-                        <FormOption key={option} value={option} selected={option === value} onClick={() => setValue(option)} />
-                    ))}
-                </OptionsContainer>
-                <DropdownButton>{value}</DropdownButton>
+        <FormSelectWrapper ref={dropdownRef} className={className}>
+            <input name={name} type="hidden" value={value} />
+            <SelectButton
+                tabIndex={-1}
+                type="button"
+                onClick={() => dispatch({type: SelectActionType.TOGGLE})}
+                onBlur={() => dispatch({type: SelectActionType.CLOSE})}>
+                <span data-placeholder={placeholder}>{value}</span>
+                <DropdownArrow open={open} width={15} height={15} fill={COLOR_GRAY[4]} />
+            </SelectButton>
+            <SelectDropdown
+                tabIndex={open ? -1 : 0}
+                onFocus={() => dispatch({type: SelectActionType.OPEN})}
+                onBlur={e => {
+                    if (!(dropdownRef.current && dropdownRef.current.contains(e.relatedTarget as Element))) {
+                        dispatch({type: SelectActionType.CLOSE});
+                    }
+                }}
+                style={{transform: open ? 'scale(1)' : 'scale(0)'}}>
+                {options.map((option: string, i: number) => (
+                    <FormOption
+                        key={option}
+                        value={option}
+                        selectable={open}
+                        isPrevious={selectIndex === i + 1}
+                        isSelected={selectIndex === 1}
+                        isNext={selectIndex === i - 1}
+                        onFocus={() => dispatch({type: SelectActionType.FOCUSED, selectedIndex: i})}
+                        onClick={() => dispatch({type: SelectActionType.SELECTED, option})}
+                    />
+                ))}
             </SelectDropdown>
-        </div>
+        </FormSelectWrapper>
     );
-};
+});

@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components/macro';
 import React, {FunctionComponent, ReactNode} from 'react';
 import {COLOR_BLACK, SPACER, SPACER_SMALL} from '../../style.contants';
 
@@ -16,22 +16,22 @@ const Icon: FunctionComponent<IconItemProps> = ({href, icon, children, className
 );
 
 export const SocialIconItem = styled(Icon)`
-    color: ${COLOR_BLACK};
-    line-height: 22px;
-    text-decoration: none;
     position: relative;
     overflow: hidden;
+    color: ${COLOR_BLACK};
     font-size: 0.8em;
+    line-height: 22px;
+    text-decoration: none;
 
     &:not(:last-of-type) {
         margin-right: ${SPACER}px;
     }
 
     i {
-        line-height: 0;
         display: inline-block;
-        vertical-align: middle;
-        padding: ${SPACER_SMALL}px ${SPACER}px;
         position: relative;
+        padding: ${SPACER_SMALL}px ${SPACER}px;
+        line-height: 0;
+        vertical-align: middle;
     }
 `;

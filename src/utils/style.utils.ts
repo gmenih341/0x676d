@@ -1,17 +1,17 @@
 export enum ScreenSize {
-    XS = 0,
-    SM = 576,
-    MD = 768,
-    LG = 992,
-    XL = 1200,
+    xs = 0,
+    sm = 576,
+    md = 768,
+    lg = 992,
+    xl = 1200,
 }
 
-export function mediaMin(size: ScreenSize = ScreenSize.XS): string {
-    return `@media screen and (min-width: ${size}px)`;
+export function mediaMin(size: keyof typeof ScreenSize): string {
+    return `@media screen and (min-width: ${ScreenSize[size]}px)`;
 }
 
-export function mediaMax(size: ScreenSize = ScreenSize.XL): string {
-    return `@media screen and (max-width: ${size - 1}px)`;
+export function mediaMax(size: keyof typeof ScreenSize): string {
+    return `@media screen and (max-width: ${ScreenSize[size] - 1}px)`;
 }
 
 export type Unit = 'rem' | 'em' | 'px';

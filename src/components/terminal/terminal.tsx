@@ -1,30 +1,31 @@
-import styled from '@emotion/styled';
-import React, {FunctionComponent} from 'react';
-import {COLOR_BLACK, COLOR_WHITE, SPACER} from '../../style.contants';
+import styled from 'styled-components/macro';
+import React, {FunctionComponent, HTMLAttributes} from 'react';
+import {COLOR_BLACK, COLOR_WHITE, SPACER, FONT_MONO} from '../../style.contants';
+import {animated} from 'react-spring';
 
-const TerminalContainer = styled('main')`
-    position: relative;
-    width: 100%;
+const TerminalContainer = styled(animated.main)`
     grid-area: terminal;
-    font-family: 'Fira Mono', 'Courier New', Courier, monospace;
+    z-index: 100;
     box-sizing: border-box;
+    width: 100%;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     background: ${COLOR_BLACK};
     color: ${COLOR_WHITE};
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    z-index: 100;
+    font-family: ${FONT_MONO};
 `;
 
 const TerminalContent = styled.div`
-    padding: ${SPACER}px;
-    width: 100%;
     box-sizing: border-box;
+    width: 100%;
+    padding: ${SPACER}px;
 `;
 
-export const Terminal: FunctionComponent = React.memo(({children}) => {
+export const Terminal: FunctionComponent<Pick<HTMLAttributes<HTMLDivElement>, 'style'>> = React.memo(({children, style}) => {
     return (
-        <TerminalContainer>
+        <TerminalContainer style={style}>
             <TerminalContent>{children}</TerminalContent>
         </TerminalContainer>
     );
 });
+
 export default Terminal;

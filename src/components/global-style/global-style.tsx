@@ -1,18 +1,15 @@
-import {css, Global} from '@emotion/core';
-import React from 'react';
+import {createGlobalStyle} from 'styled-components';
 import {COLOR_WHITE} from '../../style.contants';
 
-const globalStyle = css`
+export const GlobalStyle = createGlobalStyle`
     html,
     body,
     #root {
-        padding: 0;
-        margin: 0;
         position: relative;
+        margin: 0;
+        padding: 0;
     }
     body {
         background-color: ${COLOR_WHITE};
     }
 `;
-
-export const GlobalStyle = () => <Global styles={globalStyle} />;
