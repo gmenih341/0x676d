@@ -1,6 +1,6 @@
-import React, {FunctionComponent, HTMLAttributes, InputHTMLAttributes} from 'react';
+import React, {FunctionComponent, InputHTMLAttributes} from 'react';
+import styled from 'styled-components/macro';
 import {makeInputComponent} from '../../components/common/input';
-import styled from 'styled-components';
 import {COLOR_GRAY} from '../../style.contants';
 
 export interface FormTextProps extends Pick<InputHTMLAttributes<HTMLInputElement>, 'type'> {

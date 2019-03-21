@@ -1,7 +1,7 @@
 import React, {FunctionComponent, HTMLAttributes} from 'react';
 import styled from 'styled-components/macro';
-import {COLOR_BLACK, COLOR_GRAY, COLOR_MAIN, SPACER, SPACER_SMALL, COLOR_WHITE, FONT_SANS} from '../../style.contants';
-import {mediaMax, ScreenSize} from '../../utils/style.utils';
+import {COLOR_BLACK, COLOR_GRAY, COLOR_MAIN, COLOR_WHITE, FONT_SANS, SPACER, SPACER_SMALL} from '../../style.contants';
+import {mediaMax} from '../../utils/style.utils';
 
 interface FormOptionProps extends Pick<HTMLAttributes<HTMLDivElement>, 'onFocus' | 'onClick'> {
     value: string;

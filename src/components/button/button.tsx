@@ -1,5 +1,5 @@
 import React, {FunctionComponent, InputHTMLAttributes} from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macros';
 import {COLOR_MAIN, FONT_SANS, SPACER, SPACER_SMALL} from '../../style.contants';
 
 const StyledButton = styled('button')`

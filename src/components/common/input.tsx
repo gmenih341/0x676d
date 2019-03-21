@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import {COLOR_GRAY, COLOR_WHITE, SPACER, SPACER_SMALL, FONT_MONO} from '../../style.contants';
 
 export function makeInputComponent<C extends keyof JSX.IntrinsicElements | React.ComponentType<any>>(type: C) {

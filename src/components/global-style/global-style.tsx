@@ -1,4 +1,4 @@
-import {createGlobalStyle} from 'styled-components';
+import {createGlobalStyle} from 'styled-components/macro';
 import {COLOR_WHITE} from '../../style.contants';
 
 export const GlobalStyle = createGlobalStyle`

@@ -1,9 +1,8 @@
 import React, {FunctionComponent, useRef} from 'react';
-import {animated} from 'react-spring';
 import styled from 'styled-components/macro';
 import {makeInputComponent} from '../../components/common/input';
 import {DropDownIcon} from '../../components/icons/dropdown.icon';
-import {COLOR_BLACK, COLOR_WHITE, SPACER, SPACER_SMALL, COLOR_GRAY, SPACER_BIG} from '../../style.contants';
+import {COLOR_GRAY, COLOR_WHITE, SPACER, SPACER_SMALL} from '../../style.contants';
 import {FormOption} from './form-option';
 import {SelectActionType, useSelectState} from './state/select-state';
 

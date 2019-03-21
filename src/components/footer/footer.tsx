@@ -1,7 +1,7 @@
-import styled from 'styled-components/macro';
 import React, {FunctionComponent} from 'react';
+import styled from 'styled-components/macro';
 import {COLOR_BLACK, COLOR_GRAY, SPACER} from '../../style.contants';
-import {mediaMax, mediaMin, ScreenSize} from '../../utils/style.utils';
+import {mediaMax, mediaMin} from '../../utils/style.utils';
 import {NetlifyIcon} from '../icons/netlify.icon';
 import {SocialIconItem} from '../social-icons/social-icon-item';
 import SocialIcons from '../social-icons/social-icons';
