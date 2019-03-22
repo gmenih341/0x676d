@@ -1,18 +1,16 @@
-import React, {FunctionComponent, useRef} from 'react';
+import React, {FunctionComponent, useRef, useLayoutEffect} from 'react';
 import styled from 'styled-components/macro';
-import {makeInputComponent} from '../../components/common/input';
-import {DropDownIcon} from '../../components/icons/dropdown.icon';
-import {COLOR_GRAY, COLOR_WHITE, SPACER, SPACER_SMALL} from '../../style.contants';
 import {FormOption} from './form-option';
 import {SelectActionType, useSelectState} from './state/select-state';
+import {SPACER_SMALL, COLOR_GRAY, COLOR_WHITE, SPACER} from '../../../style.contants';
+import {makeInputComponent} from '../../../components/common/input';
+import {DropDownIcon} from '../../../components/icons/dropdown.icon';
+import {BaseFormElement} from '../interfaces/base-form-element';
 
 export type OnValueSelected = (value: string) => void;
 
-interface FormSelectProps {
-    name: string;
+interface FormSelectProps extends BaseFormElement<string> {
     options: string[];
-    placeholder?: string;
-    className?: string;
 }
 
 const FormSelectWrapper = styled('div')`
@@ -58,26 +56,30 @@ const DropdownArrow = styled(DropDownIcon)`
     line-height: 0;
 `;
 
-export const FormSelect: FunctionComponent<FormSelectProps> = React.memo(({name, options, placeholder, className}: FormSelectProps) => {
+export const FormSelect: FunctionComponent<FormSelectProps> = React.memo(({name, options, placeholder, setValue, className}) => {
     const [{value, open, selectIndex}, dispatch] = useSelectState();
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const openDropdown = () => dispatch({type: SelectActionType.OPEN});
+    const closeDropdown = () => dispatch({type: SelectActionType.CLOSE});
+    const toggleDropdown = () => dispatch({type: SelectActionType.TOGGLE});
+    useLayoutEffect(() => {
+        if (setValue) {
+            setValue(value);
+        }
+    }, [value]);
     return (
         <FormSelectWrapper ref={dropdownRef} className={className}>
             <input name={name} type="hidden" value={value} />
-            <SelectButton
-                tabIndex={-1}
-                type="button"
-                onClick={() => dispatch({type: SelectActionType.TOGGLE})}
-                onBlur={() => dispatch({type: SelectActionType.CLOSE})}>
+            <SelectButton tabIndex={-1} type="button" onClick={toggleDropdown} onBlur={closeDropdown}>
                 <span data-placeholder={placeholder}>{value}</span>
                 <DropdownArrow open={open} width={15} height={15} fill={COLOR_GRAY[4]} />
             </SelectButton>
             <SelectDropdown
                 tabIndex={open ? -1 : 0}
-                onFocus={() => dispatch({type: SelectActionType.OPEN})}
+                onFocus={openDropdown}
                 onBlur={e => {
                     if (!(dropdownRef.current && dropdownRef.current.contains(e.relatedTarget as Element))) {
-                        dispatch({type: SelectActionType.CLOSE});
+                        closeDropdown();
                     }
                 }}
                 style={{transform: open ? 'scale(1)' : 'scale(0)'}}>

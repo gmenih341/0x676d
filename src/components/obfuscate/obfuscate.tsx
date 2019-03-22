@@ -7,7 +7,9 @@ interface ObfuscateTextProps {
 
 const Obfuscated = styled('span')`
     i {
-        display: none;
+        position: absolute;
+        left: 0;
+        opacity: 0;
     }
 `;
 

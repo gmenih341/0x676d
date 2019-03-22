@@ -1,11 +1,13 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, FormEvent, useReducer} from 'react';
 import styled from 'styled-components/macro';
 import {Button} from '../../components/button/button';
 import {ObfuscateText} from '../../components/obfuscate/obfuscate';
 import {COLOR_GRAY, SPACER, SPACER_BIG} from '../../style.contants';
 import {mediaMin} from '../../utils/style.utils';
-import {FormSelect} from '../form-select/form-select';
-import {FormText} from '../form-text/form-text';
+import {FormText} from '../form/form-text/form-text';
+import {FormSelect} from '../form/form-select/form-select';
+import {FormTextArea} from '../form/form-text/form-textarea';
+import {toQueryString} from '../../utils/url.utils';
 
 const ContactPage = styled('section')`
     display: block;
@@ -24,7 +26,7 @@ const ContactForm = styled('form')`
     }
 `;
 
-const TextArea = styled(FormText)`
+const TextArea = styled(FormTextArea)`
     ${mediaMin('md')} {
         grid-column: 1 / -1;
     }
@@ -80,6 +82,20 @@ const MapSection = styled('div')`
     }
 `;
 
+interface ContactForm {
+    email: string;
+    subject: string;
+    message: string;
+    gdprConfirm: boolean;
+}
+
+const contactFormReducer: Reducer = (state: Partial<ContactForm>, action: ContactForm) => {
+    return {
+        ...state,
+        ...action,
+    };
+};
+
 export const Contact: FunctionComponent = () => {
     const subjectOptions: string[] = [
         'I want to work with you',
@@ -88,6 +104,31 @@ export const Contact: FunctionComponent = () => {
         'Option 4',
         'T',
     ];
+    const [state] = useReducer(contactFormReducer, {
+        email: 'test@menih.si',
+        subject: 'Hello',
+        message: 'Hi!',
+    });
+    const onFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const formData = {
+            ...state,
+            'form-name': 'contact',
+        };
+
+        try {
+            const response = await fetch('https://menih.si/contact', {
+                method: 'POST',
+                mode: 'no-cors',
+                body: new URLSearchParams(toQueryString(formData)),
+            });
+
+            console.log(response.body);
+        } catch (e) {
+            console.log(e);
+        }
+    };
     return (
         <ContactPage>
             <MapSection>
@@ -107,10 +148,10 @@ export const Contact: FunctionComponent = () => {
                 </div>
                 <div className="map" />
             </MapSection>
-            <ContactForm data-netlify={'true'} method="POST" name="contact">
-                <FormText placeholder="Your email" type="email" name="email" />
-                <FormSelect name="subject" options={subjectOptions} placeholder="Subject" />
-                <TextArea placeholder="What do you want to say?" multiline={true} name="content" />
+            <ContactForm method="POST" name="contact" onSubmit={onFormSubmit}>
+                <FormText placeholder="Your email" type="email" name="email" setValue={console.log} />
+                <FormSelect name="subject" options={subjectOptions} placeholder="Subject" setValue={console.log} />
+                <TextArea placeholder="What do you want to say?" name="content" setValue={console.log} />
                 <Button type="submit">Send</Button>
             </ContactForm>
         </ContactPage>
