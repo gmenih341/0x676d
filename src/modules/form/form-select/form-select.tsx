@@ -93,6 +93,7 @@ export const FormSelect: FunctionComponent<FormSelectProps> = React.memo(({name,
                         isNext={selectIndex === i - 1}
                         onFocus={() => dispatch({type: SelectActionType.FOCUSED, selectedIndex: i})}
                         onClick={() => dispatch({type: SelectActionType.SELECTED, option})}
+                        onKeyPress={e => e.key === 'Enter' && dispatch({type: SelectActionType.SELECTED, option})}
                     />
                 ))}
             </SelectDropdown>

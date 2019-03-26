@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, {FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
-import {COLOR_BLACK, COLOR_MAIN, SPACER, SPACER_SMALL} from '../../style.contants';
+import {COLOR_BLACK, COLOR_MAIN, FONT_SANS, SPACER, SPACER_SMALL} from '../../style.contants';
 import {mediaMin} from '../../utils/style.utils';
 
 interface MenuItemProps {
@@ -16,9 +16,10 @@ const Anchor = styled('a')`
     margin: ${SPACER}px 0;
     padding: ${SPACER_SMALL}px ${SPACER}px;
     color: ${COLOR_BLACK};
-    font-size: 1em;
+    font-family: ${FONT_SANS};
+    font-size: 18px;
     font-weight: 300;
-    line-height: 1em;
+    line-height: 18px;
     text-decoration: none;
 
     &:first-of-type {

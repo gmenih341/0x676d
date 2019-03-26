@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import {SPACER_SMALL, SPACER, COLOR_BLACK, FONT_SANS, COLOR_MAIN, COLOR_WHITE, COLOR_GRAY} from '../../../style.contants';
 import {mediaMax} from '../../../utils/style.utils';
 
-interface FormOptionProps extends Pick<HTMLAttributes<HTMLDivElement>, 'onFocus' | 'onClick'> {
+interface FormOptionProps extends Pick<HTMLAttributes<HTMLDivElement>, 'onFocus' | 'onClick' | 'onKeyPress'> {
     value: string;
     selectable: boolean;
     isNext: boolean;
@@ -17,7 +17,6 @@ const Option = styled('div')`
     flex-direction: row;
     width: 100%;
     padding: ${SPACER_SMALL}px ${SPACER}px;
-    transition: background 150ms;
     border: 1px solid ${COLOR_BLACK};
     border-bottom: none;
     font-family: ${FONT_SANS};

@@ -1,11 +1,12 @@
-import styled from 'styled-components/macro';
 import React, {FunctionComponent, HTMLAttributes} from 'react';
 import {animated} from 'react-spring';
-import {COLOR_MAIN, SPACER_SMALL} from '../../style.contants';
+import styled from 'styled-components/macro';
+import {COLOR_MAIN, FONT_SANS, SPACER_SMALL} from '../../style.contants';
 
 const TitleContainer = styled(animated.div)`
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     justify-content: center;
     height: 100%;
 `;
@@ -14,15 +15,18 @@ const Title = styled('h1')`
     margin: 0;
     padding: 0;
     color: ${COLOR_MAIN[7]};
+    font-family: ${FONT_SANS};
     font-size: 45px;
     font-weight: 600;
 `;
 
 const Description = styled('span')`
-    margin: -3px ${SPACER_SMALL}px;
-    color: ${COLOR_MAIN[8]};
-    font-size: 16px;
+    display: block;
+    margin-left: ${SPACER_SMALL}px;
+    font-family: ${FONT_SANS};
+    font-size: 14px;
     font-weight: 300;
+    text-transform: lowercase;
 `;
 
 export interface HeaderTitleProps extends HTMLAttributes<HTMLDivElement> {

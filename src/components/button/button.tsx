@@ -1,20 +1,22 @@
 import React, {FunctionComponent, InputHTMLAttributes} from 'react';
 import styled from 'styled-components/macro';
-import {COLOR_MAIN, FONT_SANS, SPACER, SPACER_SMALL} from '../../style.contants';
+import {COLOR_MAIN, COLOR_WHITE, FONT_MONO, SPACER_BIG, SPACER_SMALL} from '../../style.contants';
 
 const StyledButton = styled('button')`
-    grid-column: 2 / -1;
-    justify-self: end;
-    padding: ${SPACER_SMALL * 2}px ${SPACER * 2}px;
-    border: 1px solid ${COLOR_MAIN[8]};
-    box-shadow: 2px 2px 0 ${COLOR_MAIN[9]}, 1px 1px ${COLOR_MAIN[6]} inset;
-    background: ${COLOR_MAIN[7]};
-    color: ${COLOR_MAIN[1]};
-    font-family: ${FONT_SANS};
-    font-size: 20px;
-    font-weight: bold;
-    text-transform: uppercase;
+    padding: ${SPACER_SMALL}px ${SPACER_BIG}px;
+    border: 1px solid ${COLOR_MAIN[5]};
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    background: none;
+    color: ${COLOR_MAIN[5]};
+    font-family: ${FONT_MONO};
+    font-size: 18px;
+    font-weight: 300;
     cursor: pointer;
+
+    &:hover {
+        background: ${COLOR_MAIN[5]};
+        color: ${COLOR_WHITE};
+    }
 `;
 
 export const Button: FunctionComponent<InputHTMLAttributes<HTMLButtonElement>> = ({children, ...props}) => {

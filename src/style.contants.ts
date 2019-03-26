@@ -31,3 +31,4 @@ export const COLOR_BLACK: string = COLOR_GRAY[8];
 
 export const FONT_SANS: string = `'Fira Sans', Arial, Helvetica, sans-serif`;
 export const FONT_MONO: string = `'Fira Mono', 'Courier New', Courier, monospace`;
+export const FONT_SERIF: string = `'Zilla Slab', 'Times New Roman', Times, serif`;
