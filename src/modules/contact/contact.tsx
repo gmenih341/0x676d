@@ -79,7 +79,7 @@ const MapSection = styled('div')`
         width: 100%;
         height: 100%;
         opacity: 0.2;
-        background: url(/static/maribor.png) no-repeat center top;
+        background: url(/static/maribor.jpg) no-repeat center top;
         background-size: 100% auto;
 
         ${mediaMin('md')} {

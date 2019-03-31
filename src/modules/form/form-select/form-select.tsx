@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useRef, useLayoutEffect} from 'react';
+import React, {FunctionComponent, useRef, useEffect} from 'react';
 import styled from 'styled-components/macro';
 import {FormOption} from './form-option';
 import {SelectActionType, useSelectState} from './state/select-state';
@@ -62,7 +62,7 @@ export const FormSelect: FunctionComponent<FormSelectProps> = React.memo(({name,
     const openDropdown = () => dispatch({type: SelectActionType.OPEN});
     const closeDropdown = () => dispatch({type: SelectActionType.CLOSE});
     const toggleDropdown = () => dispatch({type: SelectActionType.TOGGLE});
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (setValue) {
             setValue(value);
         }
