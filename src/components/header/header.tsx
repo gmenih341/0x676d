@@ -6,18 +6,9 @@ import {useRouter} from '../../context/router.context';
 import {useRouteData} from '../../hooks/useRouteData';
 import {mediaMin} from '../../utils/style.utils';
 import {HeaderTitle} from './header-title';
+import {ClassNameOnly} from '../common/types';
 
-const HeaderContainer = styled('header')`
-    position: relative;
-    grid-area: header;
-    text-align: center;
-
-    ${mediaMin('sm')} {
-        text-align: left;
-    }
-`;
-
-export const Header: FunctionComponent = () => {
+const HeaderComponent: FunctionComponent<ClassNameOnly> = ({className}) => {
     const {pathname} = useRouter();
     const {header} = useRouteData(pathname);
     const transition = useTransition(header, item => item.title, {
@@ -26,7 +17,7 @@ export const Header: FunctionComponent = () => {
         leave: {opacity: 0, transform: 'translateY(-30px)', position: 'absolute'},
     });
     return (
-        <HeaderContainer>
+        <header className={className}>
             <Head>
                 <title>
                     {header.title} / {header.description}
@@ -36,6 +27,15 @@ export const Header: FunctionComponent = () => {
             {transition.map(({item, key, props}) => (
                 <HeaderTitle key={key} style={props} title={item.title} description={item.description} />
             ))}
-        </HeaderContainer>
+        </header>
     );
 };
+
+export const Header = styled(HeaderComponent)`
+    position: relative;
+    grid-area: header;
+
+    ${mediaMin('sm')} {
+        text-align: left;
+    }
+`;

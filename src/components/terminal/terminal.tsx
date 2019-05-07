@@ -1,9 +1,20 @@
-import styled from 'styled-components/macro';
 import React, {FunctionComponent, HTMLAttributes} from 'react';
-import {COLOR_BLACK, COLOR_WHITE, SPACER, FONT_MONO} from '../../style.contants';
 import {animated} from 'react-spring';
+import styled from 'styled-components/macro';
+import {COLOR_BLACK, COLOR_WHITE, FONT_MONO} from '../../style.contants';
+import {TerminalContent} from './styled';
 
-const TerminalContainer = styled(animated.main)`
+type TerminalProps = Pick<HTMLAttributes<HTMLDivElement>, 'style' | 'className'>;
+
+const TerminalComponent: FunctionComponent<TerminalProps> = React.memo(({children, className, style}) => {
+    return (
+        <animated.main className={className} style={style}>
+            <TerminalContent>{children}</TerminalContent>
+        </animated.main>
+    );
+});
+
+export const Terminal = styled(TerminalComponent)`
     grid-area: terminal;
     z-index: 100;
     box-sizing: border-box;
@@ -13,19 +24,5 @@ const TerminalContainer = styled(animated.main)`
     color: ${COLOR_WHITE};
     font-family: ${FONT_MONO};
 `;
-
-const TerminalContent = styled.div`
-    box-sizing: border-box;
-    width: 100%;
-    padding: ${SPACER}px;
-`;
-
-export const Terminal: FunctionComponent<Pick<HTMLAttributes<HTMLDivElement>, 'style'>> = React.memo(({children, style}) => {
-    return (
-        <TerminalContainer style={style}>
-            <TerminalContent>{children}</TerminalContent>
-        </TerminalContainer>
-    );
-});
 
 export default Terminal;

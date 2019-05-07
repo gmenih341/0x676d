@@ -6,17 +6,9 @@ import {COLOR_MAIN} from '../../style.contants';
 const LIGHT = COLOR_MAIN[5];
 const DARK = COLOR_MAIN[6];
 
-const LogoContainer = styled('div')`
-    display: flex;
-    grid-area: logo;
-    flex-direction: column;
-    justify-content: center;
-    cursor: pointer;
-`;
-
-export const Logo: FunctionComponent = React.memo(() => {
+const LogoComponent: FunctionComponent<ClassNameOnly> = React.memo(({className}) => {
     return (
-        <LogoContainer>
+        <div className={className}>
             <Link href="/">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 591.76867 477.9678">
                     <g>
@@ -41,8 +33,16 @@ export const Logo: FunctionComponent = React.memo(() => {
                     </g>
                 </svg>
             </Link>
-        </LogoContainer>
+        </div>
     );
 });
+
+export const Logo = styled(LogoComponent)`
+    display: flex;
+    grid-area: logo;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+`;
 
 export default Logo;

@@ -1,8 +1,12 @@
-import React, {FunctionComponent, InputHTMLAttributes} from 'react';
+import React, {ButtonHTMLAttributes, FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
 import {COLOR_MAIN, COLOR_WHITE, FONT_MONO, SPACER_BIG, SPACER_SMALL} from '../../style.contants';
 
-const StyledButton = styled('button')`
+const ButtonComponent: FunctionComponent<ButtonHTMLAttributes<HTMLButtonElement>> = ({children, ...props}) => (
+    <button {...props}>{children}</button>
+);
+
+export const Button = styled(ButtonComponent)`
     padding: ${SPACER_SMALL}px ${SPACER_BIG}px;
     border: 1px solid ${COLOR_MAIN[5]};
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -18,7 +22,3 @@ const StyledButton = styled('button')`
         color: ${COLOR_WHITE};
     }
 `;
-
-export const Button: FunctionComponent<InputHTMLAttributes<HTMLButtonElement>> = ({children, ...props}) => {
-    return <StyledButton {...props}>{children}</StyledButton>;
-};

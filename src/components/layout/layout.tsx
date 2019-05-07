@@ -3,7 +3,7 @@ import {useTransition} from 'react-spring';
 import styled from 'styled-components/macro';
 import {useMenu} from '../../hooks/useMenu';
 import {FONT_SANS, SPACER, SPACER_BIG} from '../../style.contants';
-import {mediaMin, ScreenSize} from '../../utils/style.utils';
+import {mediaMin} from '../../utils/style.utils';
 import {Footer} from '../footer/footer';
 import {Header} from '../header/header';
 import {Logo} from '../logo/logo';
@@ -11,10 +11,34 @@ import {Menu} from '../menu/menu';
 import {Terminal} from '../terminal/terminal';
 
 interface LayoutProps {
+    className?: string;
     children: FunctionComponent;
 }
 
-const LayoutContainer = styled('div')`
+const LayoutComponent: FunctionComponent<LayoutProps> = ({children: RouteComponent, className}: LayoutProps) => {
+    const transition = useTransition(RouteComponent, item => item.displayName || 'none', {
+        from: {opacity: 0, transform: 'translateY(-30px)'},
+        enter: {opacity: 1, transform: 'translateY(0px)'},
+        leave: {opacity: 0, transform: 'translateY(30px)', position: 'absolute'},
+    });
+    const [active, setActive] = useMenu();
+
+    return (
+        <div className={className} onClick={() => setActive(false)}>
+            <Logo />
+            <Header />
+            <Menu active={active} setActive={setActive} />
+            {transition.map(({item: RouteComponent, props, key}) => (
+                <Terminal key={key} style={props}>
+                    <RouteComponent />
+                </Terminal>
+            ))}
+            <Footer />
+        </div>
+    );
+};
+
+export const Layout = styled(LayoutComponent)`
     display: grid;
     position: relative;
     grid-template-columns: minmax(min-content, 120px) minmax(min-content, 300px) 1fr;
@@ -41,30 +65,7 @@ const LayoutContainer = styled('div')`
         width: 980px;
     }
 
-    ${mediaMin(ScreenSize.XL)} {
+    ${mediaMin('xl')} {
         width: 1140px;
     }
 `;
-
-export const Layout: FunctionComponent<LayoutProps> = ({children: RouteComponent}: LayoutProps) => {
-    const transition = useTransition(RouteComponent, item => item.displayName || 'none', {
-        from: {opacity: 0, transform: 'translateY(-30px)'},
-        enter: {opacity: 1, transform: 'translateY(0px)'},
-        leave: {opacity: 0, transform: 'translateY(30px)', position: 'absolute'},
-    });
-    const [active, setActive] = useMenu();
-
-    return (
-        <LayoutContainer onClick={() => setActive(false)}>
-            <Logo />
-            <Header />
-            <Menu active={active} setActive={setActive} />
-            {transition.map(({item: RouteComponent, props, key}) => (
-                <Terminal key={key} style={props}>
-                    <RouteComponent />
-                </Terminal>
-            ))}
-            <Footer />
-        </LayoutContainer>
-    );
-};

@@ -11,5 +11,6 @@ export const GlobalStyle = createGlobalStyle`
     }
     body {
         background-color: ${COLOR_WHITE};
+        text-rendering: optimizeLegibility;
     }
 `;

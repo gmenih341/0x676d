@@ -6,7 +6,18 @@ import {NetlifyIcon} from '../icons/netlify.icon';
 import {SocialIconItem} from '../social-icons/social-icon-item';
 import SocialIcons from '../social-icons/social-icons';
 
-const FooterContainer = styled('footer')`
+export const FooterComponent: FunctionComponent = React.memo(({className}) => {
+    return (
+        <footer className={className}>
+            <SocialIcons />
+            <NetlifySocialIcon icon={<NetlifyIcon width={20} height={20} fill={COLOR_GRAY[3]} />} href="https://netlify.com">
+                Hosted on Netlify
+            </NetlifySocialIcon>
+        </footer>
+    );
+});
+
+export const Footer = styled(FooterComponent)`
     display: flex;
     grid-area: footer;
     justify-content: center;
@@ -25,14 +36,3 @@ const NetlifySocialIcon = styled(SocialIconItem)`
         display: none;
     }
 `;
-
-export const Footer: FunctionComponent = React.memo(() => {
-    return (
-        <FooterContainer>
-            <SocialIcons />
-            <NetlifySocialIcon icon={<NetlifyIcon width={20} height={20} fill={COLOR_GRAY[3]} />} href="https://netlify.com">
-                Hosted on Netlify
-            </NetlifySocialIcon>
-        </FooterContainer>
-    );
-});

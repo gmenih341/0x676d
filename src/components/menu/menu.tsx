@@ -1,20 +1,45 @@
-import React, {FunctionComponent, useCallback} from 'react';
+import React, {FunctionComponent, useCallback, useMemo} from 'react';
 import styled from 'styled-components/macro';
 import {useRouter} from '../../context/router.context';
 import {useStopPropagation} from '../../hooks/useStopPropagation';
-import {SPACER, SPACER_BIG} from '../../style.contants';
+import {routes} from '../../routes';
 import {mediaMax, mediaMin} from '../../utils/style.utils';
 import {MenuItem} from './menu-item';
+import {MenuItems, MobileTitle, TRANSITION} from './styled';
 import {ToggleButton} from './toggle-button';
 
 interface MenuProps {
     active: boolean;
+    className?: string;
     setActive: (value: boolean) => void;
 }
 
-const TRANSITION = '250ms ease';
+const MenuComponent: FunctionComponent<MenuProps> = ({active, className, setActive}) => {
+    const {pathname} = useRouter();
+    const stopPropagation = useStopPropagation();
+    const toggleMenu = useCallback(() => setActive(!active), [active]);
+    const items = useMemo(
+        () =>
+            Object.entries(routes).map(([path, route]) => (
+                <MenuItem key={path} href={path} currentPath={pathname}>
+                    {route.menuText}
+                </MenuItem>
+            )),
+        [pathname],
+    );
 
-const MenuContainer = styled('nav')`
+    return (
+        <nav className={className + (active ? ' active' : '')} onClick={stopPropagation}>
+            <ToggleButton toggle={toggleMenu} active={active} />
+            <MenuItems className={active ? 'active' : ''}>
+                <MobileTitle>Menu</MobileTitle>
+                {items}
+            </MenuItems>
+        </nav>
+    );
+};
+
+export const Menu = styled(MenuComponent)`
     grid-column: 1 / -1;
     grid-row: 1 / 3;
     z-index: 1000;
@@ -38,62 +63,3 @@ const MenuContainer = styled('nav')`
         line-height: 0;
     }
 `;
-
-const MenuItems = styled('div')`
-    display: block;
-    box-sizing: border-box;
-    align-self: center;
-    text-align: right;
-    white-space: nowrap;
-
-    ${mediaMax('md')} {
-        visibility: hidden;
-        z-index: 1000;
-        min-height: 100%;
-        padding: ${SPACER}px ${SPACER_BIG}px;
-        transform: translateY(-50px);
-        transition: transform ${TRANSITION}, opacity ${TRANSITION}, visibility ${TRANSITION};
-        opacity: 0;
-        text-align: center;
-
-        &.active {
-            visibility: inherit;
-            transform: translateY(-15px);
-            opacity: 1;
-        }
-    }
-`;
-
-const MobileTitle = styled('h2')`
-    display: none;
-
-    ${mediaMax('md')} {
-        display: block;
-        margin: 0;
-        margin-bottom: ${SPACER}px;
-    }
-`;
-
-export const Menu: FunctionComponent<MenuProps> = ({active, setActive}) => {
-    const {pathname} = useRouter();
-    const stopPropagation = useStopPropagation();
-    const toggleMenu = useCallback(() => setActive(!active), [active]);
-
-    return (
-        <MenuContainer className={active ? 'active' : ''} onClick={stopPropagation}>
-            <ToggleButton toggle={toggleMenu} active={active} />
-            <MenuItems className={active ? 'active' : ''}>
-                <MobileTitle>Menu</MobileTitle>
-                <MenuItem href="/" currentPath={pathname}>
-                    home
-                </MenuItem>
-                <MenuItem href="/work" currentPath={pathname}>
-                    work
-                </MenuItem>
-                <MenuItem href="/contact" currentPath={pathname}>
-                    contact
-                </MenuItem>
-            </MenuItems>
-        </MenuContainer>
-    );
-};

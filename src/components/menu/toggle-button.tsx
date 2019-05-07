@@ -5,10 +5,21 @@ import {mediaMin} from '../../utils/style.utils';
 
 interface MenuProps {
     active: boolean;
+    className?: string;
     toggle: () => void;
 }
 
-const MobileToggle = styled('button')`
+const ToggleButtonComponent: FunctionComponent<MenuProps> = ({active, className, toggle}) => {
+    return (
+        <div onClick={toggle} className={className + (active ? 'active' : '')}>
+            <div className="bar" />
+            <div className="bar" />
+            <div className="bar" />
+        </div>
+    );
+};
+
+export const ToggleButton = styled(ToggleButtonComponent)`
     display: flex;
     position: absolute;
     z-index: 2000;
@@ -44,13 +55,3 @@ const MobileToggle = styled('button')`
         display: none;
     }
 `;
-
-export const ToggleButton: FunctionComponent<MenuProps> = ({toggle, active}) => {
-    return (
-        <MobileToggle onClick={toggle} className={active ? 'active' : ''}>
-            <div className="bar" />
-            <div className="bar" />
-            <div className="bar" />
-        </MobileToggle>
-    );
-};

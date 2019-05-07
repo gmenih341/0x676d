@@ -3,7 +3,21 @@ import {animated} from 'react-spring';
 import styled from 'styled-components/macro';
 import {COLOR_MAIN, FONT_SANS, SPACER_SMALL} from '../../style.contants';
 
-const TitleContainer = styled(animated.div)`
+export interface HeaderTitleProps extends HTMLAttributes<HTMLDivElement> {
+    title: string;
+    description: string;
+}
+
+const HeaderTitleComponent: FunctionComponent<HeaderTitleProps> = React.memo(({title, description, ...props}) => {
+    return (
+        <animated.div {...props}>
+            <Title>{title}</Title>
+            <Description>{description}</Description>
+        </animated.div>
+    );
+});
+
+export const HeaderTitle = styled(HeaderTitleComponent)`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -28,17 +42,3 @@ const Description = styled('span')`
     font-weight: 300;
     text-transform: lowercase;
 `;
-
-export interface HeaderTitleProps extends HTMLAttributes<HTMLDivElement> {
-    title: string;
-    description: string;
-}
-
-export const HeaderTitle: FunctionComponent<HeaderTitleProps> = React.memo(({title, description, ...props}) => {
-    return (
-        <TitleContainer {...props}>
-            <Title>{title}</Title>
-            <Description>{description}</Description>
-        </TitleContainer>
-    );
-});
