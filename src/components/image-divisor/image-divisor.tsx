@@ -28,14 +28,15 @@ export const ImageDivisor = styled(ImageDivisorComponent)`
     display: flex;
     position: relative;
     flex-direction: ${({direction}) => (direction === 'right' ? 'row-reverse' : 'row')};
+    margin: ${-SPACER}px;
 
     ${mediaMax('md')} {
-        margin: ${-SPACER}px;
         padding: ${SPACER}px;
         text-shadow: 1px 1px 0 ${COLOR_GRAY[9]}, -1px 1px 0 ${COLOR_GRAY[9]};
     }
 
     .content {
+        z-index: 1;
         ${mediaMin('md')} {
             display: flex;
             top: 0;
@@ -67,7 +68,6 @@ export const ImageDivisor = styled(ImageDivisorComponent)`
 
         ${mediaMax('md')} {
             position: absolute;
-            z-index: -1;
             top: 0;
             left: 0;
             width: 100%;

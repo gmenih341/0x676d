@@ -11,7 +11,7 @@ interface MenuProps {
 
 const ToggleButtonComponent: FunctionComponent<MenuProps> = ({active, className, toggle}) => {
     return (
-        <div onClick={toggle} className={className + (active ? 'active' : '')}>
+        <div onClick={toggle} className={className + (active ? ' active' : '')}>
             <div className="bar" />
             <div className="bar" />
             <div className="bar" />
