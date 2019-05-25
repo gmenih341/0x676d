@@ -1,5 +1,4 @@
 import React, {FunctionComponent} from 'react';
-import {useTransition} from 'react-spring';
 import styled from 'styled-components/macro';
 import {useMenu} from '../../hooks/useMenu';
 import {FONT_SANS, SPACER, SPACER_BIG} from '../../style.contants';
@@ -9,18 +8,12 @@ import {Header} from '../header/header';
 import {Logo} from '../logo/logo';
 import {Menu} from '../menu/menu';
 import {Terminal} from '../terminal/terminal';
-
-interface LayoutProps {
+interface MainProps {
     className?: string;
-    children: FunctionComponent;
+    children: any;
 }
 
-const LayoutComponent: FunctionComponent<LayoutProps> = ({children: RouteComponent, className}: LayoutProps) => {
-    const transition = useTransition(RouteComponent, item => item.displayName || 'none', {
-        from: {opacity: 0, transform: 'translateY(-30px)'},
-        enter: {opacity: 1, transform: 'translateY(0px)'},
-        leave: {opacity: 0, transform: 'translateY(30px)', position: 'absolute'},
-    });
+const MainComponent: FunctionComponent<MainProps> = ({children: RouteComponent, className}) => {
     const [active, setActive] = useMenu();
 
     return (
@@ -28,17 +21,15 @@ const LayoutComponent: FunctionComponent<LayoutProps> = ({children: RouteCompone
             <Logo />
             <Header />
             <Menu active={active} setActive={setActive} />
-            {transition.map(({item: RouteComponent, props, key}) => (
-                <Terminal key={key} style={props}>
-                    <RouteComponent />
-                </Terminal>
-            ))}
+            <Terminal customContent={!!RouteComponent.customContent} displayName={RouteComponent.displayName}>
+                <RouteComponent />
+            </Terminal>
             <Footer />
         </div>
     );
 };
 
-export const Layout = styled(LayoutComponent)`
+export const Main = styled(MainComponent)`
     display: grid;
     position: relative;
     grid-template-columns: minmax(min-content, 120px) minmax(min-content, 300px) 1fr;
