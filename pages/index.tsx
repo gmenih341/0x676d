@@ -28,17 +28,6 @@ const Home: FunctionComponent = () => {
                     contact me via <ExternalLink href={LINKEDIN_URL}>LinkedIn</ExternalLink>.
                 </p>
             </ImageDivisor>
-            <ImageDivisor imageSrc="/static/me.png" direction="right" overlap={true}>
-                <h1>who am i</h1>
-                <p>
-                    Im Gregor, a web developer from Slovenia, where Ive been living for the past <strong>{age}</strong> years! Programming
-                    is something that I really enjoy, so I decided to create this website, where Ill showcase some of my work.
-                </p>
-                <p>
-                    If you want to know more about me, feel free to check out my <ExternalLink href={GITHUB_URL}>Github</ExternalLink>, or
-                    contact me via <ExternalLink href={LINKEDIN_URL}>LinkedIn</ExternalLink>.
-                </p>
-            </ImageDivisor>
         </Test>
     );
 };
