@@ -1,5 +1,5 @@
 import {createGlobalStyle} from 'styled-components/macro';
-import {COLOR_WHITE} from '../../style.contants';
+import {COLOR_GRAY} from '../../style.contants';
 
 export const GlobalStyle = createGlobalStyle`
     html,
@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
     }
     body {
-        background-color: ${COLOR_WHITE};
+        background-color: ${COLOR_GRAY[1]};
         text-rendering: optimizeLegibility;
     }
 `;

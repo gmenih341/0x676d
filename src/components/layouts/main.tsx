@@ -1,6 +1,7 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useEffect} from 'react';
 import styled from 'styled-components/macro';
 import {useMenu} from '../../hooks/useMenu';
+import {PageComponent} from '../../interfaces';
 import {FONT_SANS, SPACER, SPACER_BIG} from '../../style.contants';
 import {mediaMin} from '../../utils/style.utils';
 import {Footer} from '../footer/footer';
@@ -8,12 +9,13 @@ import {Header} from '../header/header';
 import {Logo} from '../logo/logo';
 import {Menu} from '../menu/menu';
 import {Terminal} from '../terminal/terminal';
+
 interface MainProps {
     className?: string;
-    children: any;
+    children: PageComponent;
 }
 
-const MainComponent: FunctionComponent<MainProps> = ({children: RouteComponent, className}) => {
+const MainComponent: FunctionComponent<MainProps> = React.memo(({children: RouteComponent, className}) => {
     const [active, setActive] = useMenu();
 
     return (
@@ -27,7 +29,7 @@ const MainComponent: FunctionComponent<MainProps> = ({children: RouteComponent, 
             <Footer />
         </div>
     );
-};
+});
 
 export const Main = styled(MainComponent)`
     display: grid;

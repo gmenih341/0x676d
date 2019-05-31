@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
+import {COLOR_BLACK, COLOR_MAIN, FONT_SANS, SPACER, SPACER_BIG, SPACER_SMALL} from '../../style.contants';
 import {mediaMax, mediaMin} from '../../utils/style.utils';
-import {SPACER, SPACER_BIG, SPACER_SMALL, COLOR_BLACK, FONT_SANS, COLOR_MAIN, COLOR_GRAY} from '../../style.contants';
 
 export const TRANSITION = '250ms ease';
 

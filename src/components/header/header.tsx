@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useEffect} from 'react';
 import styled from 'styled-components/macro';
 import {useRouter} from '../../context/router.context';
 import {useRouteData} from '../../hooks/useRouteData';
@@ -7,7 +7,7 @@ import {mediaMin} from '../../utils/style.utils';
 import {ClassNameOnly} from '../common/types';
 import {HeaderTitle} from './header-title';
 
-const HeaderComponent: FunctionComponent<ClassNameOnly> = ({className}) => {
+const HeaderComponent: FunctionComponent<ClassNameOnly> = React.memo(({className}) => {
     const {pathname} = useRouter();
     const {header} = useRouteData(pathname);
 
@@ -22,7 +22,7 @@ const HeaderComponent: FunctionComponent<ClassNameOnly> = ({className}) => {
             <HeaderTitle title={header.title} description={header.description} />
         </header>
     );
-};
+});
 
 export const Header = styled(HeaderComponent)`
     display: flex;

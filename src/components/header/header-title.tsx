@@ -2,7 +2,6 @@ import React, {FunctionComponent} from 'react';
 import {animated} from 'react-spring';
 import styled from 'styled-components/macro';
 import {COLOR_MAIN, FONT_SANS, SPACER_SMALL} from '../../style.contants';
-import {useFadeInOut} from '../../hooks/useFadeInOut';
 import {mediaMin} from '../../utils/style.utils';
 
 export interface HeaderTitleProps {
@@ -11,30 +10,15 @@ export interface HeaderTitleProps {
 }
 
 export const HeaderTitle: FunctionComponent<HeaderTitleProps> = React.memo(({title, description}) => {
-    const titleTransition = useFadeInOut(title, null, 15);
-    const descriptionTransition = useFadeInOut(description, null, 5);
-
     return (
         <>
-            <Title>
-                {titleTransition.map(({item, key, props}) => (
-                    <animated.div key={key} style={props}>
-                        {item}
-                    </animated.div>
-                ))}
-            </Title>
-            <Description>
-                {descriptionTransition.map(({item, key, props}) => (
-                    <animated.div key={key} style={props}>
-                        {item}
-                    </animated.div>
-                ))}
-            </Description>
+            <Title>{title}</Title>
+            <Description>{description}</Description>
         </>
     );
 });
 
-const Title = styled('h1')`
+const Title = styled(animated.h1)`
     margin: 0;
     padding: 0;
     color: ${COLOR_MAIN[7]};
@@ -47,7 +31,7 @@ const Title = styled('h1')`
     }
 `;
 
-const Description = styled('span')`
+const Description = styled(animated.span)`
     display: block;
     margin-left: ${SPACER_SMALL}px;
     font-family: ${FONT_SANS};
