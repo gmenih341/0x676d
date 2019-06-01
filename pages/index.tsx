@@ -8,16 +8,18 @@ import {GITHUB_URL, LINKEDIN_URL} from '../src/social.constants';
 import {SPACER_SMALL, SPACER, FONT_SANS, FONT_SERIF, COLOR_GRAY, SPACER_BIG} from '../src/style.contants';
 import {TerminalContent} from '../src/components/terminal/styled';
 import {WorkTimeline} from '../src/components/work-timeline/work-timeline';
+import {mediaMin} from '../src/utils/style.utils';
 
 /* eslint-disable react/no-unescaped-entities */
 
 const ContainerCV = styled('div')`
     display: grid;
-    grid-template-columns: minmax(0, 4fr) minmax(0, 3fr);
-    grid-template-rows: fr 1fr;
+    grid-template-rows: repeat(auto);
     grid-gap: ${SPACER}px;
-    p {
-        line-height: 150%;
+    line-height: 1.5;
+
+    ${mediaMin('md')} {
+        grid-template-columns: minmax(0, 4fr) minmax(0, 3fr);
     }
 `;
 
@@ -37,6 +39,7 @@ const SectionTitle = styled('div')`
         font-family: ${FONT_SANS};
         font-weight: 300;
         text-transform: uppercase;
+        /* white-space: nowrap; */
     }
 
     span {
@@ -91,7 +94,7 @@ const Home: PageComponent = () => {
             </TerminalContent>
             <TerminalContent>
                 <SectionTitle>
-                    <h2>Knowledge</h2>
+                    <h2>Skills</h2>
                     <span>many cause I'm smart 🤓</span>
                 </SectionTitle>
                 <div style={{textAlign: 'center', paddingTop: 50}}>www.google.si</div>

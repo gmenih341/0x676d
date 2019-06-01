@@ -8,17 +8,10 @@ export interface RouteData {
 
 export const routes: Record<string, RouteData> = {
     '/': {
-        menuText: 'about',
+        menuText: 'cv',
         header: {
             title: 'Gregor Menih',
-            description: 'front-end web developer',
-        },
-    },
-    '/work': {
-        menuText: 'work',
-        header: {
-            title: 'Projects',
-            description: "some of the things I've built",
+            description: 'full-stack web developer',
         },
     },
     '/contact': {

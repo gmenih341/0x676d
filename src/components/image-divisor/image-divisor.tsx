@@ -28,25 +28,18 @@ export const ImageDivisor = styled(ImageDivisorComponent)`
     display: flex;
     position: relative;
     flex-direction: ${({direction}) => (direction === 'right' ? 'row-reverse' : 'row')};
-    margin: ${-SPACER}px;
-
-    ${mediaMax('md')} {
-        padding: ${SPACER}px;
-        text-shadow: 1px 1px 0 ${COLOR_GRAY[9]}, -1px 1px 0 ${COLOR_GRAY[9]};
-    }
 
     .content {
         z-index: 1;
         ${mediaMin('md')} {
             display: flex;
             top: 0;
+            flex-direction: column;
+            justify-content: center;
+            text-align: ${({direction}) => (direction === 'right' ? 'right' : 'left')};
             ${({overlap, direction}) => `
                 margin-${direction || 'left'}: ${SPACER_BIG * (overlap === true ? -1 : 1)}px;
             `}
-            flex-direction: column;
-            justify-content: center;
-            height: ${SECTION_WIDTH}px;
-            text-align: ${({direction}) => (direction === 'right' ? 'right' : 'left')};
 
             > * {
                 margin: ${SPACER_SMALL}px 0;
@@ -60,7 +53,8 @@ export const ImageDivisor = styled(ImageDivisorComponent)`
         position: static;
         flex-shrink: 0;
         width: ${SECTION_WIDTH}px;
-        height: ${SECTION_WIDTH}px;
+        min-height: ${SECTION_WIDTH}px;
+        margin: ${-SPACER}px;
         background-repeat: no-repeat;
         background-position: center top;
         background-size: cover;
@@ -72,6 +66,7 @@ export const ImageDivisor = styled(ImageDivisorComponent)`
             left: 0;
             width: 100%;
             height: 100%;
+            padding: ${SPACER}px;
             opacity: 0.15;
         }
     }

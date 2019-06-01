@@ -1,13 +1,13 @@
 import React, {FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
-import {COLOR_GRAY, SPACER, SPACER_BIG, FONT_SERIF, SPACER_SMALL, FONT_SANS} from '../../style.contants';
+import {COLOR_GRAY, FONT_SERIF, SPACER, SPACER_SMALL} from '../../style.contants';
+import {mediaMax, mediaMin} from '../../utils/style.utils';
 
 interface TimelineItemProps {
     company: string;
     title: string;
     year?: string;
     className?: string;
-    children?: string;
     isPresent?: boolean;
 }
 
@@ -30,10 +30,14 @@ const COLOR_TIMELINE = COLOR_GRAY[5];
 
 export const TimelineItem = styled(TimelineItemComponent)`
     display: flex;
-    flex-direction: row;
-    margin-left: ${INDICATOR_SIZE}px;
+    flex-direction: column;
     padding-bottom: ${SPACER}px;
-    border-left: 3px solid ${COLOR_TIMELINE};
+
+    ${mediaMin('md')} {
+        flex-direction: row;
+        margin-left: ${INDICATOR_SIZE}px;
+        border-left: 3px solid ${COLOR_TIMELINE};
+    }
 
     .indicator {
         width: ${INDICATOR_SIZE}px;
@@ -42,16 +46,23 @@ export const TimelineItem = styled(TimelineItemComponent)`
         border: 3px solid ${({isPresent}) => (isPresent ? COLOR_TIMELINE : COLOR_GRAY[8])};
         outline: 1px solid ${({isPresent}) => (isPresent ? COLOR_TIMELINE : COLOR_GRAY[8])};
         background: ${({isPresent}) => (isPresent ? COLOR_GRAY[8] : COLOR_TIMELINE)};
+
+        ${mediaMax('md')} {
+            display: none;
+        }
     }
 
     .year {
-        flex: 0 0 120px;
-        margin-top: 8px;
-        margin-left: ${SPACER_SMALL}px;
         color: ${COLOR_TIMELINE};
         font-size: 12px;
         line-height: ${INDICATOR_SIZE}px;
         text-transform: uppercase;
+
+        ${mediaMin('md')} {
+            flex: 0 0 120px;
+            margin-top: 8px;
+            margin-left: ${SPACER_SMALL}px;
+        }
     }
 
     .meta {
@@ -65,12 +76,19 @@ export const TimelineItem = styled(TimelineItemComponent)`
 
         .title {
             color: ${COLOR_GRAY[4]};
-            font-size: 14px;
             font-family: ${FONT_SERIF};
+            font-size: 14px;
         }
 
         .content {
             font-size: 14px;
+            p {
+                margin: ${SPACER_SMALL}px 0;
+            }
+
+            ${mediaMax('md')} {
+                margin-left: ${SPACER}px;
+            }
         }
     }
 `;
