@@ -28,6 +28,9 @@ export const ImageDivisor = styled(ImageDivisorComponent)`
     display: flex;
     position: relative;
     flex-direction: ${({direction}) => (direction === 'right' ? 'row-reverse' : 'row')};
+    margin: ${-SPACER}px;
+    padding: ${SPACER}px;
+    background: ${COLOR_GRAY[8]};
 
     .content {
         z-index: 1;

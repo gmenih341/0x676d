@@ -81,7 +81,7 @@ const Home: PageComponent = () => {
     );
 };
 
-Home.displayName = 'home';
+Home.displayName = 'adgdas';
 Home.index = 0;
 Home.customContent = true;
 Home.children = (

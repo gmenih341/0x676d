@@ -21,7 +21,7 @@ interface MainProps {
 
 const MainComponent: FunctionComponent<MainProps> = React.memo(({children, className}) => {
     const [active, setActive] = useMenu();
-    const [transform, transition] = useMainContentTransition(children);
+    const [parent, transition] = useMainContentTransition(children);
 
     return (
         <div className={className} onClick={() => setActive(false)}>
@@ -29,9 +29,9 @@ const MainComponent: FunctionComponent<MainProps> = React.memo(({children, class
             <Header />
             <Menu active={active} setActive={setActive} />
             <Terminal customContent={!!children.customContent} displayName={children.displayName}>
-                <TerminalContent style={{transform}}>
+                <TerminalContent style={parent}>
                     {transition(({props, key, item}) => (
-                        <animated.div key={'test-' + key} style={props}>
+                        <animated.div key={'home-page-' + key} style={props}>
                             {item.children}
                         </animated.div>
                     ))}
