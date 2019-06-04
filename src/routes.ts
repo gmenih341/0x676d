@@ -1,5 +1,6 @@
 export interface RouteData {
     menuText: string;
+    position: number;
     header: {
         title: string;
         description: string;

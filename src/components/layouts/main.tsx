@@ -1,5 +1,7 @@
-import React, {FunctionComponent, useEffect} from 'react';
+import React, {FunctionComponent, useRef} from 'react';
+import {animated} from 'react-spring';
 import styled from 'styled-components/macro';
+import {useMainContentTransition} from '../../hooks/animations/useMainContentTransition';
 import {useMenu} from '../../hooks/useMenu';
 import {PageComponent} from '../../interfaces';
 import {FONT_SANS, SPACER, SPACER_BIG} from '../../style.contants';
@@ -8,6 +10,8 @@ import {Footer} from '../footer/footer';
 import {Header} from '../header/header';
 import {Logo} from '../logo/logo';
 import {Menu} from '../menu/menu';
+import {ScrollToReveal} from '../scroll-to-reveal/scroll-to-reveal';
+import {TerminalContent} from '../terminal/styled';
 import {Terminal} from '../terminal/terminal';
 
 interface MainProps {
@@ -15,16 +19,24 @@ interface MainProps {
     children: PageComponent;
 }
 
-const MainComponent: FunctionComponent<MainProps> = React.memo(({children: RouteComponent, className}) => {
+const MainComponent: FunctionComponent<MainProps> = React.memo(({children, className}) => {
     const [active, setActive] = useMenu();
+    const [transform, transition] = useMainContentTransition(children);
 
     return (
         <div className={className} onClick={() => setActive(false)}>
             <Logo />
             <Header />
             <Menu active={active} setActive={setActive} />
-            <Terminal customContent={!!RouteComponent.customContent} displayName={RouteComponent.displayName}>
-                <RouteComponent />
+            <Terminal customContent={!!children.customContent} displayName={children.displayName}>
+                <TerminalContent style={{transform}}>
+                    {transition(({props, key, item}) => (
+                        <animated.div key={'test-' + key} style={props}>
+                            {item.children}
+                        </animated.div>
+                    ))}
+                </TerminalContent>
+                <ScrollToReveal>Hello!</ScrollToReveal>
             </Terminal>
             <Footer />
         </div>
@@ -60,5 +72,9 @@ export const Main = styled(MainComponent)`
 
     ${mediaMin('xl')} {
         width: 1140px;
+    }
+
+    ${TerminalContent} {
+        margin-bottom: ${SPACER}px;
     }
 `;

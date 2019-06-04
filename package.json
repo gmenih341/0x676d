@@ -7,6 +7,8 @@
     "start": "next",
     "dev": "npm run start",
     "dev:proxy": "netlify dev",
+    "deploy": "netfliy deploy",
+    "deploy:prod": "netlify deploy --prod",
     "build": "npm run build:dev",
     "build:dev": "next build",
     "build:prod": "set NODE_ENV=production && next build",
@@ -21,14 +23,14 @@
   "author": "Gregor Menih <gregor@menih.si>",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "7.4.4",
+    "@babel/core": "7.4.5",
     "@types/next": "8.0.5",
-    "@types/react": "16.8.17",
+    "@types/react": "16.8.19",
     "@types/react-dom": "16.8.4",
     "@types/styled-components": "4.1.15",
     "@typescript-eslint/eslint-plugin": "1.9.0",
     "@typescript-eslint/parser": "1.9.0",
-    "babel-plugin-macros": "2.5.1",
+    "babel-plugin-macros": "2.6.0",
     "babel-plugin-styled-components": "1.10.0",
     "cross-env": "5.2.0",
     "eslint": "5.16.0",
@@ -36,10 +38,10 @@
     "eslint-plugin-prettier": "3.1.0",
     "eslint-plugin-react": "7.13.0",
     "eslint-plugin-react-hooks": "1.6.0",
-    "express": "4.17.0",
+    "express": "4.17.1",
     "http-proxy-middleware": "^0.19.1",
     "lint-staged": "8.1.7",
-    "netlify-cli": "2.11.18",
+    "netlify-cli": "2.11.19",
     "pre-commit": "1.2.2",
     "prettier": "1.17.1",
     "prop-types": "15.7.2",
@@ -47,16 +49,18 @@
     "stylelint-config-standard": "18.3.0",
     "stylelint-config-styled-components": "0.1.1",
     "stylelint-order": "3.0.0",
-    "stylelint-processor-styled-components": "1.7.0",
-    "typescript": "3.4.5"
+    "stylelint-processor-styled-components": "1.8.0",
+    "typescript": "3.5.1"
   },
   "dependencies": {
+    "@types/d3-ease": "1.0.8",
     "@zeit/next-typescript": "1.1.1",
+    "d3-ease": "1.0.5",
     "next": "8.1.0",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-spring": "8.0.20",
-    "styled-components": "4.2.0"
+    "styled-components": "4.2.1"
   },
   "precommit": [
     "lint:staged"

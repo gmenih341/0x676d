@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
-import {COLOR_GRAY, FONT_SERIF, SPACER, SPACER_SMALL} from '../../style.contants';
+import {COLOR_GRAY, FONT_SERIF, SPACER, SPACER_SMALL, SPACER_BIG} from '../../style.contants';
 import {mediaMax, mediaMin} from '../../utils/style.utils';
 
 interface TimelineItemProps {
@@ -9,9 +9,10 @@ interface TimelineItemProps {
     year?: string;
     className?: string;
     isPresent?: boolean;
+    tags?: string[];
 }
 
-const TimelineItemComponent: FunctionComponent<TimelineItemProps> = ({children, className, company, isPresent, title, year}) => {
+const TimelineItemComponent: FunctionComponent<TimelineItemProps> = ({children, className, company, isPresent, tags, title, year}) => {
     return (
         <li className={className}>
             <div className="indicator" />
@@ -19,7 +20,12 @@ const TimelineItemComponent: FunctionComponent<TimelineItemProps> = ({children, 
             <div className="meta">
                 <div className="company">{company}</div>
                 <div className="title">{title}</div>
-                <div className="content">{children}</div>
+            </div>
+            {/* {tags && tags.length && 
+            <div className="tags">{tags.map(tag => <span className='tag'>{tag}</span>)}</div>
+        } */}
+            <div className="content" style={{flexBasis: '100%'}}>
+                {children}
             </div>
         </li>
     );
@@ -29,12 +35,12 @@ const INDICATOR_SIZE = 12;
 const COLOR_TIMELINE = COLOR_GRAY[5];
 
 export const TimelineItem = styled(TimelineItemComponent)`
-    display: flex;
-    flex-direction: column;
-    padding-bottom: ${SPACER}px;
+    display: grid;
+    grid-template-columns: 0px 120px auto;
+    grid-template-rows: repeat(max-content);
+    grid-gap: ${SPACER}px;
 
     ${mediaMin('md')} {
-        flex-direction: row;
         margin-left: ${INDICATOR_SIZE}px;
         border-left: 3px solid ${COLOR_TIMELINE};
     }
@@ -79,16 +85,33 @@ export const TimelineItem = styled(TimelineItemComponent)`
             font-family: ${FONT_SERIF};
             font-size: 14px;
         }
+    }
 
-        .content {
-            font-size: 14px;
-            p {
-                margin: ${SPACER_SMALL}px 0;
-            }
+    .tags {
+        grid-column: 2 / 3;
+        margin: 0 ${-SPACER_SMALL / 2}px;
+        font-size: 11px;
 
-            ${mediaMax('md')} {
-                margin-left: ${SPACER}px;
-            }
+        .tag {
+            display: inline-block;
+            margin: 0 ${SPACER_SMALL / 2}px;
+            margin-bottom: ${SPACER_SMALL}px;
+            padding: 2px;
+            border-radius: 3px;
+            background: ${COLOR_GRAY[4]};
+        }
+    }
+
+    .content {
+        grid-column: 3 / -1;
+        font-size: 14px;
+
+        p {
+            margin: 0 0 ${SPACER_BIG}px 0;
+        }
+
+        ${mediaMax('md')} {
+            margin-left: ${SPACER}px;
         }
     }
 `;
