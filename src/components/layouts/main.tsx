@@ -1,7 +1,6 @@
 import React, {FunctionComponent, useRef} from 'react';
 import {animated} from 'react-spring';
 import styled from 'styled-components/macro';
-import {useMainContentTransition} from '../../hooks/animations/useMainContentTransition';
 import {useMenu} from '../../hooks/useMenu';
 import {PageComponent} from '../../interfaces';
 import {FONT_SANS, SPACER, SPACER_BIG} from '../../style.contants';
@@ -13,6 +12,8 @@ import {Menu} from '../menu/menu';
 import {ScrollToReveal} from '../scroll-to-reveal/scroll-to-reveal';
 import {TerminalContent} from '../terminal/styled';
 import {Terminal} from '../terminal/terminal';
+import {ImageDivisor} from '../image-divisor/image-divisor';
+import {useMainContentTransition} from '../animations/hooks/useMainContentTransition';
 
 interface MainProps {
     className?: string;
@@ -21,7 +22,7 @@ interface MainProps {
 
 const MainComponent: FunctionComponent<MainProps> = React.memo(({children, className}) => {
     const [active, setActive] = useMenu();
-    const [parent, transition] = useMainContentTransition(children);
+    const transition = useMainContentTransition(children);
 
     return (
         <div className={className} onClick={() => setActive(false)}>
@@ -29,13 +30,22 @@ const MainComponent: FunctionComponent<MainProps> = React.memo(({children, class
             <Header />
             <Menu active={active} setActive={setActive} />
             <Terminal customContent={!!children.customContent} displayName={children.displayName}>
-                <TerminalContent style={parent}>
-                    {transition(({props, key, item}) => (
-                        <animated.div key={'home-page-' + key} style={props}>
-                            {item.children}
-                        </animated.div>
-                    ))}
-                </TerminalContent>
+                {children.children && (
+                    <TerminalContent>
+                        {transition(({props: {imageStyle, contentStyle, ...restProps}, item, key}) => (
+                            <ImageDivisor
+                                key={key}
+                                overlap={true}
+                                imageSrc={item.image}
+                                overlay={true}
+                                imageStyle={imageStyle}
+                                contentStyle={contentStyle}
+                                style={restProps}>
+                                {item.children}
+                            </ImageDivisor>
+                        ))}
+                    </TerminalContent>
+                )}
                 <ScrollToReveal>Hello!</ScrollToReveal>
             </Terminal>
             <Footer />

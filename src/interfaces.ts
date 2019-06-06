@@ -6,4 +6,5 @@ export interface PageComponent extends FunctionComponent<RouterProps> {
     index: number;
     customContent?: boolean;
     children?: ReactNode | ReactNode[];
+    image?: string;
 }

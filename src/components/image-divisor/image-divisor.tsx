@@ -1,5 +1,6 @@
 import React, {FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
+import {animated} from 'react-spring';
 import {COLOR_GRAY, SPACER, SPACER_SMALL, SPACER_BIG} from '../../style.contants';
 import {mediaMax, mediaMin} from '../../utils/style.utils';
 
@@ -15,13 +16,18 @@ interface DivisorProps {
     direction?: keyof typeof DivisorProtection;
     imageSrc: string;
     overlap?: boolean;
+    imageStyle: any;
+    contentStyle: any;
+    style: any;
 }
 
-const ImageDivisorComponent: FunctionComponent<DivisorProps> = ({imageSrc, className, children}) => (
-    <div className={className}>
-        <div className="image" style={{backgroundImage: `url(${imageSrc})`}} />
-        <div className="content">{children}</div>
-    </div>
+const ImageDivisorComponent: FunctionComponent<DivisorProps> = ({className, children, contentStyle, imageStyle, style}) => (
+    <animated.div className={className} style={style}>
+        <animated.div className="image" style={imageStyle} />
+        <animated.div className="content" style={contentStyle}>
+            {children}
+        </animated.div>
+    </animated.div>
 );
 
 export const ImageDivisor = styled(ImageDivisorComponent)`
@@ -58,6 +64,7 @@ export const ImageDivisor = styled(ImageDivisorComponent)`
         width: ${SECTION_WIDTH}px;
         min-height: ${SECTION_WIDTH}px;
         margin: ${-SPACER}px;
+        background: url(${({imageSrc}) => imageSrc});
         background-repeat: no-repeat;
         background-position: center top;
         background-size: cover;

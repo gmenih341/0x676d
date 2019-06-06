@@ -26,8 +26,9 @@ export const Contact: PageComponent = () => {
 Contact.displayName = 'contact';
 Contact.index = 5;
 Contact.customContent = true;
+Contact.image = '/static/maribor.jpg';
 Contact.children = (
-    <ImageDivisor imageSrc="/static/maribor.jpg">
+    <>
         <h3>Gregor Menih</h3>
         <p>
             Web developer
@@ -41,7 +42,7 @@ Contact.children = (
             <br />
             <ObfuscateText text="hello@menih.si" />
         </p>
-    </ImageDivisor>
+    </>
 );
 
 export default Contact;

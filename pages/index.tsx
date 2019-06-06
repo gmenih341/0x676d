@@ -84,8 +84,9 @@ const Home: PageComponent = () => {
 Home.displayName = 'adgdas';
 Home.index = 0;
 Home.customContent = true;
+Home.image = '/static/me.png';
 Home.children = (
-    <ImageDivisor imageSrc="/static/me.png" overlap={true}>
+    <>
         <SectionTitle>
             <h1>Quick Bio</h1>
             <span>it's a me</span>
@@ -100,7 +101,7 @@ Home.children = (
             If you want to know more about me, feel free to check out my <ExternalLink href={GITHUB_URL}>Github</ExternalLink>, or contact
             me via <ExternalLink href={LINKEDIN_URL}>LinkedIn</ExternalLink>.
         </p>
-    </ImageDivisor>
+    </>
 );
 
 export default Home;
