@@ -6,27 +6,7 @@ import {ClassNameOnly} from '../common/types';
 const WorkTimelineComponent: FunctionComponent<ClassNameOnly> = ({className}) => {
     return (
         <ul className={className}>
-            <TimelineItem
-                company="EqualEyes Ltd."
-                title="Full stack web developer"
-                year="Mar 2016 +"
-                tags={[
-                    'JavaScript',
-                    'express',
-                    'TypeScript',
-                    'Angular',
-                    'React',
-                    'NestJS',
-                    'Java',
-                    'Spring',
-                    'Go',
-                    'MySQL',
-                    'PostgreSQL',
-                    'MongoDB',
-                    'AWS',
-                    'GCE',
-                ]}
-                isPresent={true}>
+            <TimelineItem company="EqualEyes Ltd." title="Full stack web developer" year="Mar 2016 +" isPresent={true}>
                 <p>
                     Working for a large rental company built with 80+ microservices in varous languages, and an Angular 8 frontend
                     application.

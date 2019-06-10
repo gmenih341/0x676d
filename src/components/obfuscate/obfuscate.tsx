@@ -6,7 +6,7 @@ function obfuscateText(text: string): JSX.Element {
     const randomString = ['hello', 'world', 'this', 'is', 'a', 'measure', 'against', 'scraping', 'dont', 'read', 'this'];
 
     let i = 0;
-    for (const c of text.split('').reverse()) {
+    for (const c of text.split('')) {
         elements.push(<i key={i++}>{randomString[i % randomString.length]}</i>);
         elements.push(<span key={i++}>{c}</span>);
         elements.push(<i key={i++}>{randomString[i % randomString.length]}</i>);
@@ -26,10 +26,15 @@ const ObfuscateTextComponent: FunctionComponent<ObfuscateTextProps> = React.memo
 
 export const ObfuscateText = styled(ObfuscateTextComponent)`
     display: inline-flex;
-    flex-direction: row-reverse;
+    /* flex-direction: row-reverse; */
+
+    span {
+        min-width: 5px;
+    }
 
     i {
         position: absolute;
         opacity: 0;
+        user-select: none;
     }
 `;

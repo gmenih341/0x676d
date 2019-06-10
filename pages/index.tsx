@@ -12,16 +12,7 @@ import {mediaMin} from '../src/utils/style.utils';
 
 /* eslint-disable react/no-unescaped-entities */
 
-const ContainerCV = styled('div')`
-    display: grid;
-    grid-template-rows: repeat(auto);
-    grid-gap: ${SPACER}px;
-    line-height: 1.5;
-
-    ${mediaMin('md')} {
-        grid-template-columns: minmax(0, 4fr) minmax(0, 3fr);
-    }
-`;
+const ContainerCV = styled('div')``;
 
 const SectionTitle = styled('div')`
     display: flex;
@@ -58,37 +49,17 @@ const SectionTitle = styled('div')`
     }
 `;
 
-const Home: PageComponent = () => {
-    const age = useExactAge(new Date('1994-03-08T04:45:00.000Z'), 3);
-
-    return (
-        <ContainerCV>
-            <TerminalContent>
-                <SectionTitle>
-                    <h2>Work experience</h2>
-                    <span>not many cause I'm loyal</span>
-                </SectionTitle>
-                <WorkTimeline />
-            </TerminalContent>
-            <TerminalContent>
-                <SectionTitle>
-                    <h2>Skills</h2>
-                    <span>many cause I'm smart 🤓</span>
-                </SectionTitle>
-                <div style={{textAlign: 'center', paddingTop: 50}}>www.google.si</div>
-            </TerminalContent>
-        </ContainerCV>
-    );
+const Home: PageComponent = ({children}) => {
+    return <ContainerCV>{children}</ContainerCV>;
 };
 
 Home.displayName = 'adgdas';
 Home.index = 0;
-Home.customContent = true;
 Home.image = '/static/me.png';
-Home.children = (
+Home.headerContent = (
     <>
         <SectionTitle>
-            <h1>Quick Bio</h1>
+            <h2>Quick Bio</h2>
             <span>it's a me</span>
         </SectionTitle>
         <p>
@@ -103,5 +74,25 @@ Home.children = (
         </p>
     </>
 );
+Home.contentItems = [
+    (props, key) => (
+        <TerminalContent className="experience" props={props} key={key}>
+            <SectionTitle>
+                <h2>Experience</h2>
+                <span>not many cause I'm loyal</span>
+            </SectionTitle>
+            <WorkTimeline />
+        </TerminalContent>
+    ),
+    (props, key) => (
+        <TerminalContent className="skills" props={props} key={key}>
+            <SectionTitle>
+                <h2>Skills</h2>
+                <span>many cause I'm smart 🤓</span>
+            </SectionTitle>
+            <div style={{textAlign: 'center', paddingTop: 50}}>www.google.si</div>
+        </TerminalContent>
+    ),
+];
 
 export default Home;

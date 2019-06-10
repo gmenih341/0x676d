@@ -1,52 +1,52 @@
-import React, {FunctionComponent, useRef} from 'react';
+import React, {FunctionComponent, useMemo} from 'react';
 import {animated} from 'react-spring';
 import styled from 'styled-components/macro';
 import {useMenu} from '../../hooks/useMenu';
 import {PageComponent} from '../../interfaces';
 import {FONT_SANS, SPACER, SPACER_BIG} from '../../style.contants';
 import {mediaMin} from '../../utils/style.utils';
+import {usePageHeaderTransition} from '../animations/hooks/usePageHeaderTransition';
+import {usePageContentTransition} from '../animations/hooks/usePageContentTransition';
 import {Footer} from '../footer/footer';
 import {Header} from '../header/header';
+import {ImageDivisor} from '../image-divisor/image-divisor';
 import {Logo} from '../logo/logo';
 import {Menu} from '../menu/menu';
-import {ScrollToReveal} from '../scroll-to-reveal/scroll-to-reveal';
 import {TerminalContent} from '../terminal/styled';
 import {Terminal} from '../terminal/terminal';
-import {ImageDivisor} from '../image-divisor/image-divisor';
-import {useMainContentTransition} from '../animations/hooks/useMainContentTransition';
 
 interface MainProps {
     className?: string;
-    children: PageComponent;
+    pageComponent: PageComponent;
 }
 
-const MainComponent: FunctionComponent<MainProps> = React.memo(({children, className}) => {
+const MainComponent: FunctionComponent<MainProps> = React.memo(({pageComponent, className}) => {
     const [active, setActive] = useMenu();
-    const transition = useMainContentTransition(children);
+    const headerTransition = usePageHeaderTransition(pageComponent);
+    const contentTransition = usePageContentTransition(pageComponent);
 
     return (
         <div className={className} onClick={() => setActive(false)}>
             <Logo />
             <Header />
             <Menu active={active} setActive={setActive} />
-            <Terminal customContent={!!children.customContent} displayName={children.displayName}>
-                {children.children && (
+            <Terminal>
+                {pageComponent.headerContent && (
                     <TerminalContent>
-                        {transition(({props: {imageStyle, contentStyle, ...restProps}, item, key}) => (
+                        {headerTransition(({props: {imageStyle, contentStyle, ...restProps}, item, key}) => (
                             <ImageDivisor
                                 key={key}
                                 overlap={true}
                                 imageSrc={item.image}
-                                overlay={true}
                                 imageStyle={imageStyle}
                                 contentStyle={contentStyle}
                                 style={restProps}>
-                                {item.children}
+                                {item.headerContent}
                             </ImageDivisor>
                         ))}
                     </TerminalContent>
                 )}
-                <ScrollToReveal>Hello!</ScrollToReveal>
+                <Grid>{contentTransition(({props, key, item}) => item(props, key))}</Grid>
             </Terminal>
             <Footer />
         </div>
@@ -86,5 +86,20 @@ export const Main = styled(MainComponent)`
 
     ${TerminalContent} {
         margin-bottom: ${SPACER}px;
+    }
+`;
+
+const Grid = styled('div')`
+    display: grid;
+    grid-template-rows: repeat(auto);
+    grid-gap: ${SPACER}px;
+    line-height: 1.5;
+
+    ${mediaMin('md')} {
+        grid-template-columns: minmax(0, 4fr) minmax(0, 3fr);
+    }
+
+    > {
+        grid-column: 1 / -1;
     }
 `;

@@ -14,7 +14,7 @@ interface Transition {
 
 type CallbackFn = (props: Transition) => ReactNode;
 
-export function useMainContentTransition(routeComponent: PageComponent): (fn: CallbackFn) => void {
+export function usePageHeaderTransition(routeComponent: PageComponent): (fn: CallbackFn) => ReactNode {
     const firstIndex = useMemo(() => routeComponent.index, []);
     const [lastIndex, setLastIndex] = useState(firstIndex);
     const transition = useTransition([routeComponent], (item: PageComponent) => item.displayName, {

@@ -3,8 +3,6 @@ import styled from 'styled-components/macro';
 import {COLOR_WHITE} from '../../style.contants';
 
 interface TerminalProps extends Pick<HTMLAttributes<HTMLDivElement>, 'style' | 'className'> {
-    customContent?: boolean;
-    displayName?: string;
     className?: string;
 }
 

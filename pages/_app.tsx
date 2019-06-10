@@ -12,7 +12,7 @@ export default class AppComponent extends App {
             <Container>
                 <GlobalStyle />
                 <NextRouterProvider>
-                    <Main>{Component}</Main>
+                    <Main pageComponent={Component} />
                 </NextRouterProvider>
             </Container>
         );

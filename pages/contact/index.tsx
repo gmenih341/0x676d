@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import {ObfuscateText} from '../../src/components/obfuscate/obfuscate';
 import {TerminalContent} from '../../src/components/terminal/styled';
 import {PageComponent} from '../../src/interfaces';
 import {SPACER} from '../../src/style.contants';
 import {ContactForm} from './contact-form';
-import {ImageDivisor} from '../../src/components/image-divisor/image-divisor';
-import {ObfuscateText} from '../../src/components/obfuscate/obfuscate';
+import {animated} from 'react-spring';
 
-const ContactPage = styled('section')`
+const ContactPage = styled(animated.div)`
     display: block;
 
     ${TerminalContent} {
@@ -15,19 +15,14 @@ const ContactPage = styled('section')`
     }
 `;
 
-export const Contact: PageComponent = () => {
-    return (
-        <ContactPage>
-            <ContactForm />
-        </ContactPage>
-    );
+export const Contact: PageComponent = ({children, style}) => {
+    return <ContactPage style={style}>{children}</ContactPage>;
 };
 
 Contact.displayName = 'contact';
 Contact.index = 5;
-Contact.customContent = true;
 Contact.image = '/static/maribor.jpg';
-Contact.children = (
+Contact.headerContent = (
     <>
         <h3>Gregor Menih</h3>
         <p>
@@ -44,5 +39,5 @@ Contact.children = (
         </p>
     </>
 );
-
+Contact.contentItems = [(props, key) => <ContactForm style={props} key={key} />];
 export default Contact;

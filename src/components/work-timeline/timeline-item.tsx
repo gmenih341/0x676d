@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
-import {COLOR_GRAY, FONT_SERIF, SPACER, SPACER_SMALL, SPACER_BIG} from '../../style.contants';
+import {COLOR_GRAY, FONT_SERIF, SPACER, SPACER_BIG} from '../../style.contants';
 import {mediaMax, mediaMin} from '../../utils/style.utils';
 
 interface TimelineItemProps {
@@ -9,7 +9,6 @@ interface TimelineItemProps {
     year?: string;
     className?: string;
     isPresent?: boolean;
-    tags?: string[];
 }
 
 const TimelineItemComponent: FunctionComponent<TimelineItemProps> = ({children, className, company, isPresent, tags, title, year}) => {
@@ -21,9 +20,6 @@ const TimelineItemComponent: FunctionComponent<TimelineItemProps> = ({children, 
                 <div className="company">{company}</div>
                 <div className="title">{title}</div>
             </div>
-            {/* {tags && tags.length && 
-            <div className="tags">{tags.map(tag => <span className='tag'>{tag}</span>)}</div>
-        } */}
             <div className="content" style={{flexBasis: '100%'}}>
                 {children}
             </div>
@@ -32,13 +28,17 @@ const TimelineItemComponent: FunctionComponent<TimelineItemProps> = ({children, 
 };
 
 const INDICATOR_SIZE = 12;
-const COLOR_TIMELINE = COLOR_GRAY[5];
+const COLOR_TIMELINE = COLOR_GRAY[4];
 
 export const TimelineItem = styled(TimelineItemComponent)`
     display: grid;
-    grid-template-columns: 0px 120px auto;
+    grid-template-columns: ${SPACER}px 120px auto;
     grid-template-rows: repeat(max-content);
     grid-gap: ${SPACER}px;
+
+    &:not(:last-of-type) {
+        padding-bottom: ${SPACER_BIG - SPACER}px;
+    }
 
     ${mediaMin('md')} {
         margin-left: ${INDICATOR_SIZE}px;
@@ -51,7 +51,7 @@ export const TimelineItem = styled(TimelineItemComponent)`
         transform: translateX(${-INDICATOR_SIZE / 2 - 5}px) translateY(4px) rotate(45deg);
         border: 3px solid ${({isPresent}) => (isPresent ? COLOR_TIMELINE : COLOR_GRAY[8])};
         outline: 1px solid ${({isPresent}) => (isPresent ? COLOR_TIMELINE : COLOR_GRAY[8])};
-        background: ${({isPresent}) => (isPresent ? COLOR_GRAY[8] : COLOR_TIMELINE)};
+        background: ${({isPresent}) => (isPresent ? COLOR_GRAY[9] : COLOR_TIMELINE)};
 
         ${mediaMax('md')} {
             display: none;
@@ -67,11 +67,11 @@ export const TimelineItem = styled(TimelineItemComponent)`
         ${mediaMin('md')} {
             flex: 0 0 120px;
             margin-top: 8px;
-            margin-left: ${SPACER_SMALL}px;
         }
     }
 
     .meta {
+        grid-column: 2 / -1;
         flex: 1 0;
         line-height: 1.4;
 
@@ -81,7 +81,7 @@ export const TimelineItem = styled(TimelineItemComponent)`
         }
 
         .title {
-            color: ${COLOR_GRAY[4]};
+            color: ${COLOR_TIMELINE};
             font-family: ${FONT_SERIF};
             font-size: 14px;
         }
@@ -89,25 +89,26 @@ export const TimelineItem = styled(TimelineItemComponent)`
 
     .tags {
         grid-column: 2 / 3;
-        margin: 0 ${-SPACER_SMALL / 2}px;
+        overflow: hidden;
+        color: ${COLOR_GRAY[6]};
         font-size: 11px;
+        font-size: 30px;
+        line-height: 0.8;
+        text-align: justify;
+        text-transform: uppercase;
+        word-break: break-all;
 
         .tag {
             display: inline-block;
-            margin: 0 ${SPACER_SMALL / 2}px;
-            margin-bottom: ${SPACER_SMALL}px;
-            padding: 2px;
-            border-radius: 3px;
-            background: ${COLOR_GRAY[4]};
         }
     }
 
     .content {
-        grid-column: 3 / -1;
+        grid-column: 2 / -1;
         font-size: 14px;
 
         p {
-            margin: 0 0 ${SPACER_BIG}px 0;
+            margin: 0 0 ${SPACER}px 0;
         }
 
         ${mediaMax('md')} {
