@@ -5,6 +5,6 @@ export interface PageComponent extends FunctionComponent<RouterProps> {
     displayName: string;
     index: number;
     headerContent: ReactNode;
-    contentItems: ReactNode[];
+    contentItems: FunctionComponent<{style: any; key: any}>[];
     image?: string;
 }

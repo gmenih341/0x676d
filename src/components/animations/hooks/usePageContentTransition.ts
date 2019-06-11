@@ -1,6 +1,6 @@
-import {ReactNode, useEffect, useMemo, useState, CSSProperties} from 'react';
+import {CSSProperties, ReactNode, useEffect, useMemo, useState} from 'react';
 import {config, useTransition} from 'react-spring';
-import {PageComponent} from '../../interfaces';
+import {PageComponent} from '../../../interfaces';
 
 interface TransitionProps extends CSSProperties {
     imageStyle: CSSProperties;
@@ -19,23 +19,30 @@ export function usePageContentTransition(pageComponent: PageComponent): (fn: Cal
     const firstIndex = useMemo(() => pageComponent.index, []);
     const [lastIndex, setLastIndex] = useState(firstIndex);
     const change = useMemo(() => (lastIndex > pageComponent.index ? -10 : 10), [pageComponent]);
-    const transition = useTransition(contentItems, null, {
+    const what = useMemo(() => Math.random(), [pageComponent]);
+    const transition = useTransition(contentItems, (_: any, i: number): number => i + what, {
         from: {transform: `translateX(${-change}px)`, opacity: 0, p: 0},
         enter: {transform: 'translateX(0)', opacity: 1, p: 1},
-        leave: {transform: `translateX(${change}px)`, opacity: 0},
+        leave: {transform: `translateX(${change}px)`, opacity: 0, position: 'absolute'},
+        trail: 100,
         config: config.gentle,
-        onRest: () => {
-            setContentItems(pageComponent.contentItems);
-        },
     });
 
     useEffect(() => {
         setContentItems([]);
         setLastIndex(pageComponent.index);
+
+        const timeout = setTimeout(() => {
+            setContentItems(pageComponent.contentItems);
+        }, 400);
+
+        return () => clearTimeout(timeout);
     }, [pageComponent]);
 
     useEffect(() => {
-        setContentItems(pageComponent.contentItems);
+        setTimeout(() => {
+            setContentItems(pageComponent.contentItems);
+        }, 150);
     }, []);
 
     return (callbackFn: CallbackFn) => transition.map(callbackFn);

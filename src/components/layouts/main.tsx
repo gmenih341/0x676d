@@ -1,12 +1,11 @@
-import React, {FunctionComponent, useMemo} from 'react';
-import {animated} from 'react-spring';
+import React, {FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
 import {useMenu} from '../../hooks/useMenu';
 import {PageComponent} from '../../interfaces';
 import {FONT_SANS, SPACER, SPACER_BIG} from '../../style.contants';
 import {mediaMin} from '../../utils/style.utils';
-import {usePageHeaderTransition} from '../animations/hooks/usePageHeaderTransition';
 import {usePageContentTransition} from '../animations/hooks/usePageContentTransition';
+import {usePageHeaderTransition} from '../animations/hooks/usePageHeaderTransition';
 import {Footer} from '../footer/footer';
 import {Header} from '../header/header';
 import {ImageDivisor} from '../image-divisor/image-divisor';
@@ -46,7 +45,11 @@ const MainComponent: FunctionComponent<MainProps> = React.memo(({pageComponent, 
                         ))}
                     </TerminalContent>
                 )}
-                <Grid>{contentTransition(({props, key, item}) => item(props, key))}</Grid>
+                <Grid>
+                    {contentTransition(({props, key, item: Component}) => (
+                        <Component style={props} key={key} />
+                    ))}
+                </Grid>
             </Terminal>
             <Footer />
         </div>
@@ -62,6 +65,7 @@ export const Main = styled(MainComponent)`
     grid-column-gap: ${SPACER_BIG}px;
     grid-row-gap: ${SPACER}px;
     box-sizing: border-box;
+    min-height: 100%;
     margin: 0 ${SPACER}px;
     padding: ${SPACER}px 0;
     font-family: ${FONT_SANS};
@@ -97,9 +101,5 @@ const Grid = styled('div')`
 
     ${mediaMin('md')} {
         grid-template-columns: minmax(0, 4fr) minmax(0, 3fr);
-    }
-
-    > {
-        grid-column: 1 / -1;
     }
 `;

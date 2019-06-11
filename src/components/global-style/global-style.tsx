@@ -4,8 +4,9 @@ import {COLOR_GRAY} from '../../style.contants';
 export const GlobalStyle = createGlobalStyle`
     html,
     body,
-    #root {
+    #__next {
         position: relative;
+        height: 100%;
         margin: 0;
         padding: 0;
     }

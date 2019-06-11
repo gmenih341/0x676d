@@ -47,11 +47,16 @@ const SectionTitle = styled('div')`
             content: '\u2014 ';
         }
     }
+
+    .experience {
+        grid-column: 1 / 2;
+    }
+    .skills {
+        grid-column: 2 / 3;
+    }
 `;
 
-const Home: PageComponent = ({children}) => {
-    return <ContainerCV>{children}</ContainerCV>;
-};
+const Home: PageComponent = ({children}) => null;
 
 Home.displayName = 'adgdas';
 Home.index = 0;
@@ -66,7 +71,7 @@ Home.headerContent = (
             I'm Gregor, a web developer from Slovenia, where I've been living for the past years! I've always had an interest in computing,
             which is why I pursued a career as a software engineer. Most days I build websites and APIs, but I won't shy away from anything
             interesting. Throuh my career, I acquired great knowledge of JavaScript and related technologies, problem solving skills and
-            other things. This needs to be fixed so it can expand.
+            other things.
         </p>
         <p>
             If you want to know more about me, feel free to check out my <ExternalLink href={GITHUB_URL}>Github</ExternalLink>, or contact
@@ -75,8 +80,8 @@ Home.headerContent = (
     </>
 );
 Home.contentItems = [
-    (props, key) => (
-        <TerminalContent className="experience" props={props} key={key}>
+    ({style, key}) => (
+        <TerminalContent className="experience" style={style} key={key}>
             <SectionTitle>
                 <h2>Experience</h2>
                 <span>not many cause I'm loyal</span>
@@ -84,13 +89,13 @@ Home.contentItems = [
             <WorkTimeline />
         </TerminalContent>
     ),
-    (props, key) => (
-        <TerminalContent className="skills" props={props} key={key}>
+    ({style, key}) => (
+        <TerminalContent className="skills" style={style} key={key}>
             <SectionTitle>
                 <h2>Skills</h2>
                 <span>many cause I'm smart 🤓</span>
             </SectionTitle>
-            <div style={{textAlign: 'center', paddingTop: 50}}>www.google.si</div>
+            <div style={{textAlign: 'center', paddingTop: 50, color: COLOR_GRAY[7]}}>Still figuring this out.</div>
         </TerminalContent>
     ),
 ];

@@ -9,15 +9,10 @@ import {animated} from 'react-spring';
 
 const ContactPage = styled(animated.div)`
     display: block;
-
-    ${TerminalContent} {
-        margin-bottom: ${SPACER}px;
-    }
+    grid-column: 1 / -1;
 `;
 
-export const Contact: PageComponent = ({children, style}) => {
-    return <ContactPage style={style}>{children}</ContactPage>;
-};
+export const Contact: PageComponent = () => null;
 
 Contact.displayName = 'contact';
 Contact.index = 5;
@@ -39,5 +34,5 @@ Contact.headerContent = (
         </p>
     </>
 );
-Contact.contentItems = [(props, key) => <ContactForm style={props} key={key} />];
+Contact.contentItems = [({style, key}) => <ContactForm style={{...style, gridColumn: '1 / -1'}} key={key} />];
 export default Contact;
