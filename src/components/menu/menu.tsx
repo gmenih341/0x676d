@@ -47,10 +47,10 @@ export const Menu = styled(MenuComponent)`
 
     ${mediaMax('md')} {
         transition: background ${TRANSITION};
-        background: rgba(240, 242, 244, 0);
+        background: rgba(211, 217, 222, 0);
 
         &.active {
-            background: rgba(240, 242, 244, 0.95);
+            background: rgba(211, 217, 222, 0.95);
         }
     }
 

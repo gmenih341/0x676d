@@ -20,9 +20,7 @@ const TimelineItemComponent: FunctionComponent<TimelineItemProps> = ({children, 
                 <div className="company">{company}</div>
                 <div className="title">{title}</div>
             </div>
-            <div className="content" style={{flexBasis: '100%'}}>
-                {children}
-            </div>
+            <div className="content">{children}</div>
         </li>
     );
 };
@@ -59,21 +57,25 @@ export const TimelineItem = styled(TimelineItemComponent)`
     }
 
     .year {
+        grid-column: 1 / -1;
         color: ${COLOR_TIMELINE};
         font-size: 12px;
         line-height: ${INDICATOR_SIZE}px;
         text-transform: uppercase;
 
         ${mediaMin('md')} {
-            flex: 0 0 120px;
+            grid-column: 2 / 3;
             margin-top: 8px;
         }
     }
 
     .meta {
-        grid-column: 2 / -1;
-        flex: 1 0;
+        grid-column: 1 / -1;
         line-height: 1.4;
+
+        ${mediaMin('md')} {
+            grid-column: 2 / -1;
+        }
 
         .company {
             font-size: 18px;
@@ -109,10 +111,6 @@ export const TimelineItem = styled(TimelineItemComponent)`
 
         p {
             margin: 0 0 ${SPACER}px 0;
-        }
-
-        ${mediaMax('md')} {
-            margin-left: ${SPACER}px;
         }
     }
 `;
