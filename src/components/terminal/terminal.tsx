@@ -1,31 +1,22 @@
+import React, {HTMLAttributes, FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
-import React, {FunctionComponent, HTMLAttributes} from 'react';
-import {COLOR_BLACK, COLOR_WHITE, SPACER, FONT_MONO} from '../../style.contants';
-import {animated} from 'react-spring';
+import {COLOR_WHITE} from '../../style.contants';
 
-const TerminalContainer = styled(animated.main)`
+interface TerminalProps extends Pick<HTMLAttributes<HTMLDivElement>, 'style' | 'className'> {
+    className?: string;
+}
+
+const TerminalComponent: FunctionComponent<TerminalProps> = React.memo(({children, className}) => (
+    <main className={className}>{children}</main>
+));
+
+export const Terminal = styled(TerminalComponent)`
     grid-area: terminal;
     z-index: 100;
     box-sizing: border-box;
     width: 100%;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    background: ${COLOR_BLACK};
+    background: none;
     color: ${COLOR_WHITE};
-    font-family: ${FONT_MONO};
 `;
-
-const TerminalContent = styled.div`
-    box-sizing: border-box;
-    width: 100%;
-    padding: ${SPACER}px;
-`;
-
-export const Terminal: FunctionComponent<Pick<HTMLAttributes<HTMLDivElement>, 'style'>> = React.memo(({children, style}) => {
-    return (
-        <TerminalContainer style={style}>
-            <TerminalContent>{children}</TerminalContent>
-        </TerminalContainer>
-    );
-});
 
 export default Terminal;

@@ -1,6 +1,7 @@
 import styled from 'styled-components/macro';
 import React, {FunctionComponent, ReactNode} from 'react';
 import {COLOR_BLACK, SPACER, SPACER_SMALL} from '../../style.contants';
+import {ExternalLink} from '../external-link/external-link';
 
 export interface IconItemProps {
     href: string;
@@ -10,9 +11,9 @@ export interface IconItemProps {
 }
 
 const Icon: FunctionComponent<IconItemProps> = ({href, icon, children, className}) => (
-    <a href={href} title={children} target="_blank" rel="noopener noreferrer" className={className}>
+    <ExternalLink href={href} title={children} className={className}>
         <i>{icon}</i>
-    </a>
+    </ExternalLink>
 );
 
 export const SocialIconItem = styled(Icon)`

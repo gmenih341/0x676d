@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import {COLOR_GRAY, COLOR_WHITE, SPACER, SPACER_SMALL, FONT_MONO} from '../../style.contants';
+import styled from 'styled-components/macro';
+import {COLOR_GRAY, COLOR_WHITE, FONT_SANS, SPACER, SPACER_SMALL} from '../../style.contants';
 
-export function makeInputComponent<C extends keyof JSX.IntrinsicElements | React.ComponentType<any>>(type: C) {
+export function makeInputComponent<C extends keyof JSX.IntrinsicElements | React.ComponentType<C>>(type: C) {
     return styled(type)`
         display: block;
         z-index: 10;
@@ -13,8 +13,8 @@ export function makeInputComponent<C extends keyof JSX.IntrinsicElements | React
         border: 1px solid ${COLOR_GRAY[4]};
         background: ${COLOR_GRAY[8]};
         color: ${COLOR_WHITE};
-        font-family: ${FONT_MONO};
-        font-size: 13px;
+        font-family: ${FONT_SANS};
+        font-size: 14px;
         text-align: left;
         text-overflow: ellipsis;
         white-space: nowrap;

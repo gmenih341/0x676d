@@ -1,24 +1,22 @@
 export interface RouteData {
+    menuText: string;
+    position: number;
     header: {
         title: string;
         description: string;
     };
 }
 
-const routes: Record<string, RouteData> = {
+export const routes: Record<string, RouteData> = {
     '/': {
+        menuText: 'cv',
         header: {
             title: 'Gregor Menih',
-            description: 'front-end web developer',
-        },
-    },
-    '/work': {
-        header: {
-            title: 'Projects',
-            description: "some of the things I've built",
+            description: 'full-stack web developer',
         },
     },
     '/contact': {
+        menuText: 'contact',
         header: {
             title: 'Contact',
             description: 'get in touch with me',

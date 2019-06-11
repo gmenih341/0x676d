@@ -4,7 +4,14 @@
         "@zeit/next-typescript/babel"
     ],
     "plugins": [
-        "babel-plugin-styled-components",
+        [
+            "babel-plugin-styled-components",
+            {
+                "ssr": true,
+                "minify": true,
+                "displayName": false,
+            }
+        ],
         "babel-plugin-macros"
     ]
 }

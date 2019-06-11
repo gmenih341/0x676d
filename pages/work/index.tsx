@@ -1,6 +1,7 @@
-import React, {FunctionComponent} from 'react';
+import React from 'react';
+import {PageComponent} from '../../src/interfaces';
 
-const Work: FunctionComponent = () => (
+const Work: PageComponent = () => (
     <div>
         <h1>Work</h1>
     </div>

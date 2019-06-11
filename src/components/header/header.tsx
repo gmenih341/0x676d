@@ -1,41 +1,39 @@
 import Head from 'next/head';
-import React, {FunctionComponent} from 'react';
-import {useTransition} from 'react-spring';
+import React, {FunctionComponent, useEffect} from 'react';
 import styled from 'styled-components/macro';
 import {useRouter} from '../../context/router.context';
 import {useRouteData} from '../../hooks/useRouteData';
 import {mediaMin} from '../../utils/style.utils';
+import {ClassNameOnly} from '../common/types';
 import {HeaderTitle} from './header-title';
 
-const HeaderContainer = styled('header')`
-    position: relative;
-    grid-area: header;
-    text-align: center;
-
-    ${mediaMin('sm')} {
-        text-align: left;
-    }
-`;
-
-export const Header: FunctionComponent = () => {
+const HeaderComponent: FunctionComponent<ClassNameOnly> = React.memo(({className}) => {
     const {pathname} = useRouter();
     const {header} = useRouteData(pathname);
-    const transition = useTransition(header, item => item.title, {
-        from: {opacity: 0, transform: 'translateY(30px)'},
-        enter: {opacity: 1, transform: 'translateY(0px)'},
-        leave: {opacity: 0, transform: 'translateY(-30px)', position: 'absolute'},
-    });
+
     return (
-        <HeaderContainer>
+        <header className={className}>
             <Head>
                 <title>
                     {header.title} / {header.description}
                 </title>
                 <meta name="description" content={header.description} />
             </Head>
-            {transition.map(({item, key, props}) => (
-                <HeaderTitle key={key} style={props} title={item.title} description={item.description} />
-            ))}
-        </HeaderContainer>
+            <HeaderTitle title={header.title} description={header.description} />
+        </header>
     );
-};
+});
+
+export const Header = styled(HeaderComponent)`
+    display: flex;
+    position: relative;
+    grid-area: header;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+
+    ${mediaMin('sm')} {
+        text-align: left;
+    }
+`;
