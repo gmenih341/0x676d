@@ -6,7 +6,7 @@ import {ClassNameOnly} from '../common/types';
 const WorkTimelineComponent: FunctionComponent<ClassNameOnly> = ({className}) => {
     return (
         <ul className={className}>
-            <TimelineItem company="EqualEyes Ltd." title="Full stack web developer" year="Mar 2016 +" isPresent={true}>
+            <TimelineItem company="EqualEyes Ltd." title="Full stack web developer" year="Mar 2016 - Present" isPresent={true}>
                 <p>
                     Working for a large rental company built with 80+ microservices in varous languages, and an Angular 8 frontend
                     application.
@@ -33,7 +33,7 @@ const WorkTimelineComponent: FunctionComponent<ClassNameOnly> = ({className}) =>
                 </p>
                 <p>Developing packages for Citrix XenApp.</p>
             </TimelineItem>
-            <TimelineItem company="Various" title="" year="2015 -">
+            <TimelineItem company="Various" year="Before 2015">
                 <p>Many projects using PHP and JavaScript, that are no longer alive.</p>
             </TimelineItem>
         </ul>

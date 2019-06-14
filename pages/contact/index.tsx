@@ -1,11 +1,9 @@
 import React from 'react';
+import {animated} from 'react-spring';
 import styled from 'styled-components/macro';
 import {ObfuscateText} from '../../src/components/obfuscate/obfuscate';
-import {TerminalContent} from '../../src/components/terminal/styled';
 import {PageComponent} from '../../src/interfaces';
-import {SPACER} from '../../src/style.contants';
 import {ContactForm} from './contact-form';
-import {animated} from 'react-spring';
 
 const ContactPage = styled(animated.div)`
     display: block;

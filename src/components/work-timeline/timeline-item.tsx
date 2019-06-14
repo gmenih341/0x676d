@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
-import {COLOR_GRAY, FONT_SERIF, SPACER, SPACER_BIG} from '../../style.contants';
+import {COLOR_GRAY, FONT_SERIF, SPACER, SPACER_BIG, COLOR_MAIN, COLOR_BLACK} from '../../style.contants';
 import {mediaMax, mediaMin} from '../../utils/style.utils';
 
 interface TimelineItemProps {
@@ -30,7 +30,7 @@ const COLOR_TIMELINE = COLOR_GRAY[4];
 
 export const TimelineItem = styled(TimelineItemComponent)`
     display: grid;
-    grid-template-columns: ${SPACER}px 120px auto;
+    grid-template-columns: ${SPACER}px 1fr;
     grid-template-rows: repeat(max-content);
     grid-gap: ${SPACER}px;
 
@@ -39,17 +39,18 @@ export const TimelineItem = styled(TimelineItemComponent)`
     }
 
     ${mediaMin('md')} {
-        margin-left: ${INDICATOR_SIZE}px;
+        margin: 0 ${INDICATOR_SIZE}px;
         border-left: 3px solid ${COLOR_TIMELINE};
     }
 
     .indicator {
+        display: block;
         width: ${INDICATOR_SIZE}px;
         height: ${INDICATOR_SIZE}px;
         transform: translateX(${-INDICATOR_SIZE / 2 - 5}px) translateY(4px) rotate(45deg);
-        border: 3px solid ${({isPresent}) => (isPresent ? COLOR_TIMELINE : COLOR_GRAY[8])};
-        outline: 1px solid ${({isPresent}) => (isPresent ? COLOR_TIMELINE : COLOR_GRAY[8])};
-        background: ${({isPresent}) => (isPresent ? COLOR_GRAY[9] : COLOR_TIMELINE)};
+        border: 3px solid ${({isPresent}) => (isPresent ? COLOR_MAIN[4] : COLOR_TIMELINE)};
+        outline: 1px solid ${({isPresent}) => (isPresent ? COLOR_MAIN[4] : COLOR_TIMELINE)};
+        background: ${COLOR_GRAY[8]};
 
         ${mediaMax('md')} {
             display: none;
@@ -57,20 +58,44 @@ export const TimelineItem = styled(TimelineItemComponent)`
     }
 
     .year {
+        position: relative;
         grid-column: 1 / -1;
-        color: ${COLOR_TIMELINE};
+        margin-left: ${INDICATOR_SIZE / 2}px;
+        padding: 6px;
+        background: ${({isPresent}) => (isPresent ? COLOR_MAIN[4] : COLOR_TIMELINE)};
+        color: ${COLOR_GRAY[9]};
         font-size: 12px;
         line-height: ${INDICATOR_SIZE}px;
         text-transform: uppercase;
 
-        ${mediaMin('md')} {
-            grid-column: 2 / 3;
-            margin-top: 8px;
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: ${-INDICATOR_SIZE}px;
+            width: 0;
+            height: 0;
+            border-top: ${INDICATOR_SIZE}px solid transparent;
+            border-right: ${INDICATOR_SIZE}px solid ${({isPresent}) => (isPresent ? COLOR_MAIN[4] : COLOR_TIMELINE)};
+            border-bottom: ${INDICATOR_SIZE}px solid transparent;
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 99%;
+            width: ${INDICATOR_SIZE * 2}px;
+            height: ${INDICATOR_SIZE * 4}px;
+            transform: rotate(45deg);
+            transform-origin: 0 0;
+            background: ${COLOR_BLACK};
         }
     }
 
     .meta {
         grid-column: 1 / -1;
+        flex: 1 0;
         line-height: 1.4;
 
         ${mediaMin('md')} {
@@ -106,11 +131,19 @@ export const TimelineItem = styled(TimelineItemComponent)`
     }
 
     .content {
-        grid-column: 2 / -1;
+        grid-column: 1 / -1;
         font-size: 14px;
 
         p {
             margin: 0 0 ${SPACER}px 0;
+        }
+    }
+
+    ${mediaMin('md')} {
+        .content,
+        .meta,
+        .year {
+            grid-column: 2 / -1;
         }
     }
 `;

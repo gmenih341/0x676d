@@ -40,7 +40,7 @@ export const ImageDivisor = styled(ImageDivisorComponent)`
 
     .content {
         z-index: 1;
-        ${mediaMin('md')} {
+        ${mediaMin('sm')} {
             display: flex;
             top: 0;
             flex-direction: column;
@@ -70,7 +70,7 @@ export const ImageDivisor = styled(ImageDivisorComponent)`
         background-size: cover;
         vertical-align: middle;
 
-        ${mediaMax('md')} {
+        ${mediaMax('sm')} {
             position: absolute;
             top: 0;
             left: 0;
