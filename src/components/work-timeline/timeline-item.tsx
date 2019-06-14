@@ -60,8 +60,10 @@ export const TimelineItem = styled(TimelineItemComponent)`
     .year {
         position: relative;
         grid-column: 1 / -1;
+        justify-self: start;
         margin-left: ${INDICATOR_SIZE / 2}px;
         padding: 6px;
+        padding-right: ${INDICATOR_SIZE * 4}px;
         background: ${({isPresent}) => (isPresent ? COLOR_MAIN[4] : COLOR_TIMELINE)};
         color: ${COLOR_GRAY[9]};
         font-size: 12px;
@@ -111,22 +113,6 @@ export const TimelineItem = styled(TimelineItemComponent)`
             color: ${COLOR_TIMELINE};
             font-family: ${FONT_SERIF};
             font-size: 14px;
-        }
-    }
-
-    .tags {
-        grid-column: 2 / 3;
-        overflow: hidden;
-        color: ${COLOR_GRAY[6]};
-        font-size: 11px;
-        font-size: 30px;
-        line-height: 0.8;
-        text-align: justify;
-        text-transform: uppercase;
-        word-break: break-all;
-
-        .tag {
-            display: inline-block;
         }
     }
 
