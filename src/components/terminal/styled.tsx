@@ -5,6 +5,7 @@ import {animated} from 'react-spring';
 export const TerminalContent = styled(animated.div)`
     position: relative;
     box-sizing: border-box;
+    align-self: flex-start;
     width: 100%;
     padding: ${SPACER}px;
     overflow: hidden;

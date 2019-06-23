@@ -1,7 +1,9 @@
 import React, {FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
-import {COLOR_GRAY, FONT_SERIF, SPACER, SPACER_BIG, COLOR_MAIN, COLOR_BLACK} from '../../style.contants';
+import {useBoundingBox} from '../../hooks/useBoundingBox';
+import {COLOR_GRAY, COLOR_MAIN, FONT_SERIF, SPACER, SPACER_BIG} from '../../style.contants';
 import {mediaMax, mediaMin} from '../../utils/style.utils';
+import {PointerIcon} from '../icons/pointer-icon';
 
 interface TimelineItemProps {
     company: string;
@@ -11,11 +13,25 @@ interface TimelineItemProps {
     isPresent?: boolean;
 }
 
-const TimelineItemComponent: FunctionComponent<TimelineItemProps> = ({children, className, company, isPresent, tags, title, year}) => {
+const INDICATOR_SIZE = 16;
+const COLOR_TIMELINE = COLOR_GRAY[4];
+const COLOR_PRESENT = COLOR_MAIN[4];
+
+const TimelineItemComponent: FunctionComponent<TimelineItemProps> = ({children, className, company, isPresent, title, year}) => {
+    const [yearRef, boundingBox] = useBoundingBox<HTMLDivElement>();
+
     return (
         <li className={className}>
             <div className="indicator" />
-            <div className="year">{!year && isPresent ? 'Present' : year}</div>
+            <div className="line" />
+            <div className="year" ref={yearRef}>
+                <PointerIcon
+                    width={(boundingBox && boundingBox.width) || 0}
+                    height={24}
+                    fill={isPresent ? COLOR_PRESENT : COLOR_TIMELINE}
+                />
+                {!year && isPresent ? 'Present' : year}
+            </div>
             <div className="meta">
                 <div className="company">{company}</div>
                 <div className="title">{title}</div>
@@ -25,13 +41,10 @@ const TimelineItemComponent: FunctionComponent<TimelineItemProps> = ({children, 
     );
 };
 
-const INDICATOR_SIZE = 12;
-const COLOR_TIMELINE = COLOR_GRAY[4];
-
 export const TimelineItem = styled(TimelineItemComponent)`
     display: grid;
     grid-template-columns: ${SPACER}px 1fr;
-    grid-template-rows: repeat(max-content);
+    grid-template-rows: max-content;
     grid-gap: ${SPACER}px;
 
     &:not(:last-of-type) {
@@ -40,17 +53,30 @@ export const TimelineItem = styled(TimelineItemComponent)`
 
     ${mediaMin('md')} {
         margin: 0 ${INDICATOR_SIZE}px;
-        border-left: 3px solid ${COLOR_TIMELINE};
     }
 
     .indicator {
         display: block;
+        grid-column: 1 / 1;
         width: ${INDICATOR_SIZE}px;
         height: ${INDICATOR_SIZE}px;
-        transform: translateX(${-INDICATOR_SIZE / 2 - 5}px) translateY(4px) rotate(45deg);
-        border: 3px solid ${({isPresent}) => (isPresent ? COLOR_MAIN[4] : COLOR_TIMELINE)};
-        outline: 1px solid ${({isPresent}) => (isPresent ? COLOR_MAIN[4] : COLOR_TIMELINE)};
-        background: ${COLOR_GRAY[8]};
+        transform: translateY(4px) translateX(-50%) rotate(45deg);
+        border: 3px solid;
+        border-color: ${({isPresent}) => (isPresent ? COLOR_PRESENT : COLOR_TIMELINE)};
+
+        ${mediaMax('md')} {
+            display: none;
+        }
+    }
+
+    .line {
+        display: block;
+        grid-column: 1 / 1;
+        grid-row: 2 / 4;
+        width: 3px;
+        height: 100%;
+        transform: translateX(-50%);
+        background: ${({isPresent}) => (isPresent ? COLOR_PRESENT : COLOR_TIMELINE)};
 
         ${mediaMax('md')} {
             display: none;
@@ -61,37 +87,17 @@ export const TimelineItem = styled(TimelineItemComponent)`
         position: relative;
         grid-column: 1 / -1;
         justify-self: start;
-        margin-left: ${INDICATOR_SIZE / 2}px;
-        padding: 6px;
-        padding-right: ${INDICATOR_SIZE * 4}px;
-        background: ${({isPresent}) => (isPresent ? COLOR_MAIN[4] : COLOR_TIMELINE)};
+        padding-right: ${SPACER_BIG}px;
         color: ${COLOR_GRAY[9]};
         font-size: 12px;
-        line-height: ${INDICATOR_SIZE}px;
+        line-height: 24px;
         text-transform: uppercase;
 
-        &:before {
-            content: '';
+        svg {
             position: absolute;
+            z-index: -1;
             top: 0;
-            left: ${-INDICATOR_SIZE}px;
-            width: 0;
-            height: 0;
-            border-top: ${INDICATOR_SIZE}px solid transparent;
-            border-right: ${INDICATOR_SIZE}px solid ${({isPresent}) => (isPresent ? COLOR_MAIN[4] : COLOR_TIMELINE)};
-            border-bottom: ${INDICATOR_SIZE}px solid transparent;
-        }
-
-        &:after {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: 99%;
-            width: ${INDICATOR_SIZE * 2}px;
-            height: ${INDICATOR_SIZE * 4}px;
-            transform: rotate(45deg);
-            transform-origin: 0 0;
-            background: ${COLOR_BLACK};
+            left: -12px;
         }
     }
 
@@ -122,6 +128,10 @@ export const TimelineItem = styled(TimelineItemComponent)`
 
         p {
             margin: 0 0 ${SPACER}px 0;
+        }
+
+        ${mediaMax('md')} {
+            margin-left: ${SPACER}px;
         }
     }
 

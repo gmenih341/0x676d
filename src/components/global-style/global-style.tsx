@@ -10,8 +10,13 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
     }
+    
     body {
         background-color: ${COLOR_GRAY[1]};
         text-rendering: optimizeLegibility;
+    }
+
+    * {
+        box-sizing: border-box;
     }
 `;

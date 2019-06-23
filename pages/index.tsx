@@ -1,18 +1,14 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import {ExternalLink} from '../src/components/external-link/external-link';
-import {ImageDivisor} from '../src/components/image-divisor/image-divisor';
-import {PageComponent} from '../src/interfaces';
-import {useExactAge} from '../src/hooks/useExactAge';
-import {GITHUB_URL, LINKEDIN_URL} from '../src/social.constants';
-import {SPACER_SMALL, SPACER, FONT_SANS, FONT_SERIF, COLOR_GRAY, SPACER_BIG} from '../src/style.contants';
+import {Skills} from '../src/components/skills/skills';
 import {TerminalContent} from '../src/components/terminal/styled';
 import {WorkTimeline} from '../src/components/work-timeline/work-timeline';
-import {mediaMin} from '../src/utils/style.utils';
+import {PageComponent} from '../src/interfaces';
+import {GITHUB_URL, LINKEDIN_URL} from '../src/social.constants';
+import {COLOR_GRAY, FONT_SANS, FONT_SERIF, SPACER_BIG, SPACER_SMALL} from '../src/style.contants';
 
 /* eslint-disable react/no-unescaped-entities */
-
-const ContainerCV = styled('div')``;
 
 const SectionTitle = styled('div')`
     display: flex;
@@ -51,12 +47,13 @@ const SectionTitle = styled('div')`
     .experience {
         grid-column: 1 / 2;
     }
+
     .skills {
         grid-column: 2 / 3;
     }
 `;
 
-const Home: PageComponent = ({children}) => null;
+const Home: PageComponent = () => null;
 
 Home.displayName = 'adgdas';
 Home.index = 0;
@@ -95,7 +92,7 @@ Home.contentItems = [
                 <h2>Skills</h2>
                 <span>many cause I'm smart 🤓</span>
             </SectionTitle>
-            <div style={{textAlign: 'center', paddingTop: 50, color: COLOR_GRAY[7]}}>Still figuring this out.</div>
+            <Skills />
         </TerminalContent>
     ),
 ];

@@ -1,14 +1,7 @@
 import React from 'react';
-import {animated} from 'react-spring';
-import styled from 'styled-components/macro';
 import {ObfuscateText} from '../../src/components/obfuscate/obfuscate';
 import {PageComponent} from '../../src/interfaces';
 import {ContactForm} from './contact-form';
-
-const ContactPage = styled(animated.div)`
-    display: block;
-    grid-column: 1 / -1;
-`;
 
 export const Contact: PageComponent = () => null;
 
