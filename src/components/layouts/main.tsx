@@ -36,7 +36,7 @@ const MainComponent: FunctionComponent<MainProps> = React.memo(({pageComponent, 
                             <ImageDivisor
                                 key={key}
                                 overlap={true}
-                                imageSrc={item.image}
+                                imageSrc={item.image || ''}
                                 imageStyle={imageStyle}
                                 contentStyle={contentStyle}
                                 style={restProps}>
@@ -95,6 +95,7 @@ export const Main = styled(MainComponent)`
 
 const Grid = styled('div')`
     display: grid;
+    position: relative;
     grid-template-rows: repeat(auto);
     grid-gap: ${SPACER}px;
     line-height: 1.5;
