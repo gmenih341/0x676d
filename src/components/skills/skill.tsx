@@ -1,6 +1,7 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useMemo} from 'react';
 import styled from 'styled-components/macro';
 import {SPACER_SMALL, COLOR_GRAY} from '../../style.contants';
+import kebabCase from 'lodash.kebabcase';
 
 interface SkillProps {
     className?: string;
@@ -9,19 +10,23 @@ interface SkillProps {
     name: string;
 }
 
-const SkillComponent: FunctionComponent<SkillProps> = ({className, children, name, value}) => {
+const SkillComponent: FunctionComponent<SkillProps> = React.memo(({className, name, value}) => {
+    const iconName = useMemo(() => kebabCase(name), [name]);
+
     return (
         <div className={className} title={name}>
-            {children}
+            <img src={`/static/skill-icons/${iconName}.svg`} />
             <div className="bar" style={{width: `calc(${value}% - 50px)`}}>
                 {name}
             </div>
         </div>
     );
-};
+});
 
 export const Skill = styled(SkillComponent)`
     display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
 
     .bar {
         position: relative;
@@ -35,13 +40,12 @@ export const Skill = styled(SkillComponent)`
         white-space: nowrap;
     }
 
-    svg {
+    img {
         flex-basis: 25px;
         flex-shrink: 0;
-        width: 22px;
         height: 22px;
         margin-right: ${SPACER_SMALL}px;
-        line-height: 22px;
-        vertical-align: middle;
+        object-fit: contain;
+        transform: rotate(-5deg);
     }
 `;

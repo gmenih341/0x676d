@@ -43,14 +43,6 @@ const SectionTitle = styled('div')`
             content: '\u2014 ';
         }
     }
-
-    .experience {
-        grid-column: 1 / 2;
-    }
-
-    .skills {
-        grid-column: 2 / 3;
-    }
 `;
 
 const Home: PageComponent = () => null;

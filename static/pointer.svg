@@ -1,0 +1,4 @@
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 100" width={width} height={height} fill={fill}>
+            <path
+                d="M 16.162439,0 H 238.47386 L 177.35963,32.624882 H 16.162439 L 0,16.312441 Z" />
+        </svg>

@@ -97,7 +97,11 @@ export const TimelineItem = styled(TimelineItemComponent)`
             position: absolute;
             z-index: -1;
             top: 0;
-            left: -12px;
+            left: -27px;
+
+            ${mediaMin('md')} {
+                left: -12px;
+            }
         }
     }
 

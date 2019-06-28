@@ -1,11 +1,11 @@
 import React, {FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
+import {usePageContentTransition} from '../../animations/hooks/usePageContentTransition';
+import {usePageHeaderTransition} from '../../animations/hooks/usePageHeaderTransition';
 import {useMenu} from '../../hooks/useMenu';
 import {PageComponent} from '../../interfaces';
 import {FONT_SANS, SPACER, SPACER_BIG} from '../../style.contants';
 import {mediaMin} from '../../utils/style.utils';
-import {usePageContentTransition} from '../../animations/hooks/usePageContentTransition';
-import {usePageHeaderTransition} from '../../animations/hooks/usePageHeaderTransition';
 import {Footer} from '../footer/footer';
 import {Header} from '../header/header';
 import {ImageDivisor} from '../image-divisor/image-divisor';
@@ -31,7 +31,7 @@ const MainComponent: FunctionComponent<MainProps> = React.memo(({pageComponent, 
             <Menu active={active} setActive={setActive} />
             <Terminal>
                 {pageComponent.headerContent && (
-                    <TerminalContent>
+                    <TerminalContent className="main-content">
                         {headerTransition(({props: {imageStyle, contentStyle, ...restProps}, item, key}) => (
                             <ImageDivisor
                                 key={key}
@@ -59,8 +59,8 @@ const MainComponent: FunctionComponent<MainProps> = React.memo(({pageComponent, 
 export const Main = styled(MainComponent)`
     display: grid;
     position: relative;
-    grid-template-columns: minmax(min-content, 120px) minmax(min-content, 300px) 1fr;
-    grid-template-rows: 85px 90px 1fr min-content;
+    grid-template-columns: minmax(min-content, 100px) minmax(min-content, 300px) 1fr;
+    grid-template-rows: 60px 90px 1fr min-content;
     grid-template-areas: 'logo header header' 'logo header header' 'terminal terminal terminal' 'footer footer footer';
     grid-column-gap: ${SPACER_BIG}px;
     grid-row-gap: ${SPACER}px;
@@ -87,20 +87,25 @@ export const Main = styled(MainComponent)`
     ${mediaMin('xl')} {
         width: 1140px;
     }
-
-    ${TerminalContent} {
-        margin-bottom: ${SPACER}px;
-    }
 `;
 
 const Grid = styled('div')`
     display: grid;
     position: relative;
-    grid-template-rows: repeat(auto);
+    grid-template-columns: minmax(0, 1fr);
     grid-gap: ${SPACER}px;
+    margin-top: ${SPACER}px;
     line-height: 1.5;
 
     ${mediaMin('md')} {
         grid-template-columns: minmax(0, 4fr) minmax(0, 3fr);
+
+        .experience {
+            grid-column: 1 / 2;
+        }
+
+        .skills {
+            grid-column: 2 / 3;
+        }
     }
 `;
