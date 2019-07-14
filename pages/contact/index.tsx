@@ -1,7 +1,7 @@
 import React from 'react';
-import {ObfuscateText} from '../../src/components/obfuscate/obfuscate';
-import {PageComponent} from '../../src/interfaces';
-import {ContactForm} from './contact-form';
+import {PageComponent} from '../../src/types/PageComponent';
+import {ObfuscateText} from '../../src/components/ObfuscateText';
+import {ContactForm} from './components/ContactForm';
 
 export const Contact: PageComponent = () => null;
 

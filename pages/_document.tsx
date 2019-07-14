@@ -40,7 +40,7 @@ export default class extends Document {
                     <meta name="format-detection" content="telephone=no, address=no, email=no" />
                     <link rel="shortcut icon" href="/static/icon.png" />
                     <link
-                        href="https://fonts.googleapis.com/css?family=Fira+Mono:400,500,600|Fira+Sans:300,400,600|Zilla+Slab:300,400,500"
+                        href="https://fonts.googleapis.com/css?family=Fira+Mono:400,500,600|Fira+Sans:300,400,600|Zilla+Slab:300,400,500&display=swap"
                         rel="stylesheet"
                     />
                 </Head>
