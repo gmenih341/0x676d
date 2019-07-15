@@ -1,8 +1,8 @@
 import React, {FormEvent, FunctionComponent, InputHTMLAttributes} from 'react';
 import styled from 'styled-components/macro';
-import {BaseInput} from './BaseInput.styled';
+import {COLOR_GRAY} from '../../../constants/style.constants';
 import {BaseFormElement} from '../types/BaseFormElement';
-import {COLOR_GRAY, COLOR_MAIN} from '../../../constants/style.constants';
+import {BaseInput} from './BaseInput.styled';
 
 export interface FormTextProps<T> extends BaseFormElement<T>, Pick<InputHTMLAttributes<HTMLInputElement>, 'type'> {}
 

@@ -63,7 +63,7 @@ export const MenuItem = styled(MenuItemComponent)`
     }
 
     &.active {
-        color: ${COLOR_MAIN[6]};
+        color: ${COLOR_MAIN[7]};
 
         strong {
             visibility: inherit;

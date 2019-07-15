@@ -1,18 +1,19 @@
 import {useRouter} from 'next/router';
-import React, {FunctionComponent, useMemo} from 'react';
+import React, {FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
-import {SPACER_BIG, SPACER_SMALL, SPACER} from '../constants/style.constants';
-import {useRouteData} from '../hooks/useRouteData';
-import {PageComponent} from '../types/PageComponent';
-import {mediaMin, mediaMax, ScreenSize} from '../utils/style.utils';
-import {ConsoleContent} from './ConsoleContent.styled';
-import {Footer} from './Footer';
-import {Header} from './Header';
-import Logo from './Logo';
-import {Menu} from './Menu';
-import {SideImage} from './SideImage';
-import {usePageHeaderTransition} from '../animations/hooks/usePageHeaderTransition';
-import {usePageContentTransition} from '../animations/hooks/usePageContentTransition';
+import {usePageContentTransition} from '../../animations/hooks/usePageContentTransition';
+import {usePageHeaderTransition} from '../../animations/hooks/usePageHeaderTransition';
+import {SPACER, SPACER_BIG} from '../../constants/style.constants';
+import {useRouteData} from '../../hooks/useRouteData';
+import {PageComponent} from '../../types/PageComponent';
+import {mediaMin, ScreenSize} from '../../utils/style.utils';
+import {ConsoleContent} from '../ConsoleContent.styled';
+import {Footer} from '../Footer';
+import {Header} from '../Header';
+import Logo from '../Logo';
+import {Menu} from '../Menu';
+import {SideImage} from '../SideImage';
+import {HeaderContainer} from './components/HeaderContainer.styled';
 
 interface LayoutProps {
     className?: string;
@@ -29,11 +30,11 @@ const DefaultLayoutComponent: FunctionComponent<LayoutProps> = ({className, page
 
     return (
         <div className={className}>
-            <header>
+            <HeaderContainer>
                 <Logo />
                 <Header title={title} description={description} />
                 <Menu activePath={pathname} />
-            </header>
+            </HeaderContainer>
             <ConsoleContent id="test">
                 {headerTransition(({props: {imageStyle, contentStyle, ...restProps}, item, key}) => (
                     <SideImage
@@ -71,31 +72,6 @@ export const DefaultLayout = styled(DefaultLayoutComponent)`
 
     ${mediaMin('xl')} {
         width: ${ScreenSize.xl - SPACER}px;
-    }
-
-    header {
-        display: flex;
-        grid-column: 1 / -1;
-        grid-row: 1 / 2;
-        flex-direction: row;
-        align-items: center;
-        margin: ${SPACER}px 0;
-
-        ${mediaMin('md')} {
-            margin: 0 -${SPACER_SMALL}px;
-        }
-
-        & > * {
-            margin: 0 ${SPACER_SMALL}px;
-        }
-
-        ${Logo} {
-            flex-basis: 100px;
-        }
-
-        ${Menu} {
-            margin-left: auto;
-        }
     }
 
     ${ConsoleContent} {

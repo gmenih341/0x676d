@@ -7,7 +7,6 @@ import {FormOption} from './FormOption';
 import {SelectButton} from './SelectButton.styled';
 import {SelectDropdown} from './SelectDropdown.styled';
 import {SelectActionType, useSelectState} from './state/selectState';
-import {BaseInput} from '../BaseInput.styled';
 
 export type OnValueSelected = (value: string) => void;
 

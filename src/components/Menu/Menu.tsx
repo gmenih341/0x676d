@@ -1,14 +1,14 @@
-import React, {FunctionComponent, useCallback, useMemo} from 'react';
+import React, {FunctionComponent, useMemo} from 'react';
 import styled from 'styled-components/macro';
-import {stopPropagation} from '../../utils/event.utils';
 import {routes} from '../../constants/route.constants';
+import {useToggle} from '../../hooks/useToggle';
+import {ClassNameOnly} from '../../types/ClassNameOnly';
+import {stopPropagation} from '../../utils/event.utils';
 import {mediaMax, mediaMin} from '../../utils/style.utils';
 import {MenuItem} from './components/MenuItem';
 import {MenuItemsContainer} from './components/MenuItemsContainer.styled';
 import {MobileTitle} from './components/MobileTitle.styled';
 import {MobileToggle} from './components/MobileToggle';
-import {useToggle} from '../../hooks/useToggle';
-import {ClassNameOnly} from '../../types/ClassNameOnly';
 import {CSS_TRANSITION_TIME_MS} from './menu.constants';
 
 interface MenuProps extends ClassNameOnly {
@@ -45,10 +45,10 @@ export const Menu = styled(MenuComponent)`
     ${mediaMax('md')} {
         transition: background-color;
         transition-duration: ${CSS_TRANSITION_TIME_MS}ms;
-        background-color: rgba(211, 217, 222, 0);
+        background-color: rgba(153, 166, 178, 0);
 
         &.active {
-            background-color: rgba(211, 217, 222, 0.95);
+            background-color: rgba(153, 166, 178, 0.95);
         }
     }
 

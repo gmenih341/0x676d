@@ -1,5 +1,5 @@
 import {withRouter, WithRouterProps} from 'next/router';
-import React, {Context, createContext, useContext, useMemo} from 'react';
+import React, {Context, createContext, useMemo} from 'react';
 
 interface RouterContextProps extends WithRouterProps {
     pathname: string;

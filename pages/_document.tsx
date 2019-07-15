@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Document, {Head, Main, NextScript, NextDocumentContext} from 'next/document';
 import {ServerStyleSheet} from 'styled-components/macro';
+import {COLOR_MAIN} from '../src/constants/style.constants';
 
 export default class extends Document {
     public static async getInitialProps(ctx: NextDocumentContext) {
@@ -39,6 +40,7 @@ export default class extends Document {
                     <meta property="og:type" content="website" />
                     <meta name="format-detection" content="telephone=no, address=no, email=no" />
                     <link rel="shortcut icon" href="/static/icon.png" />
+                    <meta name="theme-color" content={COLOR_MAIN[6]}></meta>
                     <link
                         href="https://fonts.googleapis.com/css?family=Fira+Mono:400,500,600|Fira+Sans:300,400,600|Zilla+Slab:300,400,500&display=swap"
                         rel="stylesheet"
