@@ -2,7 +2,7 @@ import React, {FormEvent, FunctionComponent, InputHTMLAttributes} from 'react';
 import styled from 'styled-components/macro';
 import {BaseInput} from './BaseInput.styled';
 import {BaseFormElement} from '../types/BaseFormElement';
-import {COLOR_GRAY} from '../../../constants/style.constants';
+import {COLOR_GRAY, COLOR_MAIN} from '../../../constants/style.constants';
 
 export interface FormTextProps<T> extends BaseFormElement<T>, Pick<InputHTMLAttributes<HTMLInputElement>, 'type'> {}
 
@@ -10,7 +10,15 @@ export const TextInputComponent: FunctionComponent<FormTextProps<string>> = Reac
     ({placeholder, type, value, setValue, className}) => {
         const onInput = (e: FormEvent<HTMLInputElement>) => setValue && setValue(e.currentTarget.value);
         return (
-            <BaseInput as="input" className={className} type={type || 'text'} placeholder={placeholder} value={value} onInput={onInput} />
+            <BaseInput
+                className={className}
+                type={type || 'text'}
+                placeholder={placeholder}
+                value={value}
+                onInput={onInput}
+                minLength={5}
+                required={true}
+            />
         );
     },
 );

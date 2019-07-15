@@ -20,10 +20,10 @@ const HeaderComponent: FunctionComponent<HeaderProps> = React.memo(({className, 
                 </title>
                 <meta name="description" content={description} />
             </Head>
-            <header className={className}>
+            <div className={className}>
                 <Title>{title}</Title>
                 <Description>{description}</Description>
-            </header>
+            </div>
         </>
     );
 });

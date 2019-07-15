@@ -30,7 +30,6 @@ export const FormSelectComponent: FunctionComponent<FormSelectProps> = React.mem
                     value={option}
                     selectable={open}
                     isPrevious={selectIndex === i + 1}
-                    isSelected={selectIndex === 1}
                     isNext={selectIndex === i - 1}
                     onFocus={() => dispatch({type: SelectActionType.FOCUSED, selectedIndex: i})}
                     onClick={() => dispatch({type: SelectActionType.SELECTED, option})}
@@ -53,7 +52,7 @@ export const FormSelectComponent: FunctionComponent<FormSelectProps> = React.mem
     }, [value]);
 
     return (
-        <BaseInput as="div" ref={dropdownRef} className={className}>
+        <div ref={dropdownRef} className={className}>
             <input name={name} type="hidden" value={value} />
             <SelectButton tabIndex={-1} type="button" onClick={toggleDropdown} onBlur={closeDropdown}>
                 <span data-placeholder={placeholder}>{value}</span>
@@ -66,7 +65,7 @@ export const FormSelectComponent: FunctionComponent<FormSelectProps> = React.mem
                 style={{transform: open ? 'scale(1)' : 'scale(0)'}}>
                 {selectOptions}
             </SelectDropdown>
-        </BaseInput>
+        </div>
     );
 });
 

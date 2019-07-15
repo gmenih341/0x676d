@@ -13,6 +13,7 @@ export const ConsoleContent = styled(animated.div)`
     background: ${COLOR_BLACK};
     color: ${COLOR_WHITE};
     font-family: ${FONT_SANS};
+    line-height: 1.5;
 
     a {
         color: inherit;

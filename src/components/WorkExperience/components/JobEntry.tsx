@@ -51,7 +51,7 @@ export const JobEntry = styled(JobEntryComponent)`
         padding-bottom: ${SPACER_BIG - SPACER}px;
     }
 
-    ${mediaMin('md')} {
+    ${mediaMin('sm')} {
         margin: 0 ${INDICATOR_SIZE}px;
     }
 
@@ -64,7 +64,7 @@ export const JobEntry = styled(JobEntryComponent)`
         border: 3px solid;
         border-color: ${({isPresent}) => (isPresent ? COLOR_PRESENT : COLOR_TIMELINE)};
 
-        ${mediaMax('md')} {
+        ${mediaMax('sm')} {
             display: none;
         }
     }
@@ -78,7 +78,7 @@ export const JobEntry = styled(JobEntryComponent)`
         transform: translateX(-50%);
         background: ${({isPresent}) => (isPresent ? COLOR_PRESENT : COLOR_TIMELINE)};
 
-        ${mediaMax('md')} {
+        ${mediaMax('sm')} {
             display: none;
         }
     }
@@ -88,7 +88,7 @@ export const JobEntry = styled(JobEntryComponent)`
         grid-column: 1 / -1;
         justify-self: start;
         padding-right: ${SPACER_BIG}px;
-        color: ${COLOR_GRAY[9]};
+        color: ${COLOR_GRAY[8]};
         font-size: 12px;
         line-height: 24px;
         text-transform: uppercase;
@@ -97,9 +97,9 @@ export const JobEntry = styled(JobEntryComponent)`
             position: absolute;
             z-index: -1;
             top: 0;
-            left: -27px;
+            left: -30px;
 
-            ${mediaMin('md')} {
+            ${mediaMin('sm')} {
                 left: -12px;
             }
         }
@@ -108,9 +108,9 @@ export const JobEntry = styled(JobEntryComponent)`
     .meta {
         grid-column: 1 / -1;
         flex: 1 0;
-        line-height: 1.4;
+        line-height: 1.1;
 
-        ${mediaMin('md')} {
+        ${mediaMin('sm')} {
             grid-column: 2 / -1;
         }
 
@@ -134,12 +134,12 @@ export const JobEntry = styled(JobEntryComponent)`
             margin: 0 0 ${SPACER}px 0;
         }
 
-        ${mediaMax('md')} {
+        ${mediaMax('sm')} {
             margin-left: ${SPACER}px;
         }
     }
 
-    ${mediaMin('md')} {
+    ${mediaMin('sm')} {
         .content,
         .meta,
         .year {

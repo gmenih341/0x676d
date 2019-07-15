@@ -18,7 +18,7 @@ interface SideImagePros {
     overlap?: boolean;
     imageStyle?: any;
     contentStyle?: any;
-    style: any;
+    style?: any;
 }
 
 const SideImageComponent: FunctionComponent<SideImagePros> = ({className, children, contentStyle, imageStyle, style}) => (

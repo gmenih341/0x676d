@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react';
-import {IconProps} from '../../types/IconProps';
+import {IconProps} from '../../../types/IconProps';
 
 export const NetlifyIcon: FunctionComponent<IconProps> = React.memo(({fill, height, width}) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width={width} height={height} fill={fill}>

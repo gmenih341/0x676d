@@ -13,18 +13,18 @@ export const SectionTitle = styled('div')`
     h5,
     h6 {
         margin: 0;
-        color: ${COLOR_GRAY[3]};
+        color: ${COLOR_GRAY[2]};
         font-family: ${FONT_SANS};
         font-weight: 300;
         text-transform: uppercase;
-        /* white-space: nowrap; */
+        white-space: nowrap;
     }
 
     span {
         flex-grow: 1;
         margin-left: ${SPACER_SMALL}px;
         overflow: hidden;
-        color: ${COLOR_GRAY[5]};
+        color: ${COLOR_GRAY[4]};
         font-family: ${FONT_SERIF};
         font-weight: 300;
         text-overflow: ellipsis;

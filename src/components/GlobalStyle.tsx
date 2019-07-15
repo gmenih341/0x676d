@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     
     body {
-        background-color: ${COLOR_GRAY[1]};
+        background-color: ${COLOR_GRAY[3]};
         text-rendering: optimizeLegibility;
     }
 

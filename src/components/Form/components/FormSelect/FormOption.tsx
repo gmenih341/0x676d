@@ -9,7 +9,6 @@ interface FormOptionProps extends Pick<HTMLAttributes<HTMLDivElement>, 'onFocus'
     selectable: boolean;
     isNext: boolean;
     isPrevious: boolean;
-    isSelected: boolean;
 }
 
 const FormOptionComponent: FunctionComponent<FormOptionProps> = React.memo(

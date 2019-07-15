@@ -21,7 +21,7 @@ export const SocialIconItem = styled(Icon)`
     overflow: hidden;
     color: ${COLOR_BLACK};
     font-size: 0.8em;
-    line-height: 22px;
+    line-height: 1em;
     text-decoration: none;
 
     &:not(:last-of-type) {

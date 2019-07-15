@@ -66,7 +66,7 @@ const ContactFormComponent: FunctionComponent<ClassNameOnly> = ({className, ...p
                 />
                 <ContactButton type="submit">
                     <MailIcon fill={COLOR_MAIN[5]} width={15} height={15} />
-                    Send
+                    Shoot me
                 </ContactButton>
             </form>
         </ConsoleContent>

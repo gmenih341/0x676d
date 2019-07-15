@@ -2,6 +2,7 @@ import React from 'react';
 import {PageComponent} from '../../src/types/PageComponent';
 import {ObfuscateText} from '../../src/components/ObfuscateText';
 import {ContactForm} from './components/ContactForm';
+import {SectionTitle} from '../../src/components/SectionTitle.styled';
 
 export const Contact: PageComponent = () => null;
 
@@ -10,11 +11,14 @@ Contact.index = 5;
 Contact.image = '/static/maribor.jpg';
 Contact.headerContent = (
     <>
-        <h3>Gregor Menih</h3>
+        <SectionTitle>
+            <h2>How to get in</h2>
+            <span>wassup</span>
+        </SectionTitle>
         <p>
-            Web developer
+            Full-stack web developer
             <br />
-            Equaleyes Solutions Ltd
+            @ Equaleyes Solutions Ltd
             <br />
             Maribor, Slovenia
         </p>
