@@ -14,6 +14,7 @@ import Logo from '../Logo';
 import {Menu} from '../Menu';
 import {SideImage} from '../SideImage';
 import {HeaderContainer} from './components/HeaderContainer.styled';
+import {PageContent} from './components/PageContent.styled';
 
 interface LayoutProps {
     className?: string;
@@ -40,7 +41,7 @@ const DefaultLayoutComponent: FunctionComponent<LayoutProps> = ({className, page
                     <SideImage
                         key={key}
                         overlap={true}
-                        imageSrc={item.image}
+                        imageSrc={item.image || ''}
                         imageStyle={imageStyle}
                         contentStyle={contentStyle}
                         style={restProps}>
@@ -48,7 +49,7 @@ const DefaultLayoutComponent: FunctionComponent<LayoutProps> = ({className, page
                     </SideImage>
                 ))}
             </ConsoleContent>
-            {contentTransition(({props, key, item}) => item({style: props, key}))}
+            <PageContent>{contentTransition(({props, key, item}) => item({style: props, key}))}</PageContent>
             <Footer />
         </div>
     );
@@ -56,8 +57,6 @@ const DefaultLayoutComponent: FunctionComponent<LayoutProps> = ({className, page
 
 export const DefaultLayout = styled(DefaultLayoutComponent)`
     display: grid;
-    position: relative;
-    grid-template-columns: minmax(0, 4fr) 3fr;
     grid-template-rows: minmax(0, 100px) 1fr min-content;
     grid-gap: ${SPACER_BIG}px;
     margin: ${SPACER_BIG}px auto;
@@ -72,14 +71,6 @@ export const DefaultLayout = styled(DefaultLayoutComponent)`
 
     ${mediaMin('xl')} {
         width: ${ScreenSize.xl - SPACER}px;
-    }
-
-    ${ConsoleContent} {
-        grid-column: 1 / -1;
-    }
-
-    ${Footer} {
-        grid-column: 1 / -1;
     }
 
     ${mediaMin('lg')} {
