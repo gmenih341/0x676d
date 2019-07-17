@@ -5,7 +5,7 @@ import {COLOR_MAIN} from '../constants/style.constants';
 import {ClassNameOnly} from '../types/ClassNameOnly';
 
 const DARK = COLOR_MAIN[6];
-const LIGHT = COLOR_MAIN[8];
+const LIGHT = COLOR_MAIN[5];
 
 const LogoComponent: FunctionComponent<ClassNameOnly> = React.memo(({className}) => {
     return (
@@ -25,8 +25,8 @@ const LogoComponent: FunctionComponent<ClassNameOnly> = React.memo(({className})
                             />
                         </g>
                         <g>
-                            <path id="left-arrow" fill={COLOR_MAIN[5]} d="M1.37583 467.99639v-169.3331l84.6666 84.6665z" />
-                            <path id="right-arrow" fill={LIGHT} d="M576.11243 298.66299v169.3335l-84.6667-84.6668z" />
+                            <path id="left-arrow" fill={DARK} d="M1.37583 467.99639v-169.3331l84.6666 84.6665z" />
+                            <path id="right-arrow" fill={DARK} d="M576.11243 298.66299v169.3335l-84.6667-84.6668z" />
                         </g>
                     </g>
                 </svg>

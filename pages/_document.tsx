@@ -42,7 +42,7 @@ export default class extends Document {
                     <link rel="shortcut icon" href="/static/icon.png" />
                     <meta name="theme-color" content={COLOR_MAIN[6]}></meta>
                     <link
-                        href="https://fonts.googleapis.com/css?family=Fira+Mono:400,500,600|Fira+Sans:300,400,600|Zilla+Slab:300,400,500&display=swap"
+                        href="https://fonts.googleapis.com/css?family=Noto+Sans:400,500,600|Fira+Sans:300,400,600|Zilla+Slab:300,400,500&display=swap"
                         rel="stylesheet"
                     />
                 </Head>

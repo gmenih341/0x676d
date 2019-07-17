@@ -36,7 +36,7 @@ const JobEntryComponent: FunctionComponent<JobEntryProps> = ({children, classNam
                 <div className="company">{company}</div>
                 <div className="title">{title}</div>
             </div>
-            <div className="content">{children}</div>
+            <p className="content">{children}</p>
         </li>
     );
 };

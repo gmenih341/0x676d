@@ -33,6 +33,7 @@ const SideImageComponent: FunctionComponent<SideImagePros> = ({className, childr
 export const SideImage = styled(SideImageComponent)`
     display: flex;
     position: relative;
+    box-sizing: content-box;
     flex-direction: ${({direction}) => (direction === 'right' ? 'row-reverse' : 'row')};
     margin: ${-SPACER}px;
     padding: ${SPACER}px;
@@ -76,6 +77,7 @@ export const SideImage = styled(SideImageComponent)`
             left: 0;
             width: 100%;
             height: 100%;
+            margin: 0;
             padding: ${SPACER}px;
             opacity: 0.15;
         }

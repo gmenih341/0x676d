@@ -8,13 +8,6 @@ const WorkExperienceComponent: FunctionComponent<ClassNameOnly> = ({className}) 
         <ul className={className}>
             <JobEntry company="EqualEyes Ltd." title="Full stack web developer" year="Mar 2016 - Present" isPresent={true}>
                 <p>
-                    Working for a large rental company built with 80+ microservices in varous languages, and an Angular 8 frontend
-                    application.
-                    <br />
-                    Worked with JavaScript, TypeScript (NestJS, Angular, Express), Java (Spring Framework), Go, Kubernetes, Docker and
-                    Google Cloud Platform.
-                </p>
-                <p>
                     Setting up and leading development of a microservice solution using TypeScript, Express and MongoDB. The service is
                     being used to easily synchronize multiple different APIs together.
                 </p>
@@ -33,8 +26,11 @@ const WorkExperienceComponent: FunctionComponent<ClassNameOnly> = ({className}) 
                 </p>
                 <p>Developing packages for Citrix XenApp.</p>
             </JobEntry>
-            <JobEntry company="Various" year="Before 2015">
-                <p>Many projects using PHP and JavaScript, that are no longer alive.</p>
+            <JobEntry company="Education" year="Before 2015">
+                <p>
+                    Studied <strong>Computer Science</strong> at <strong>The Faculty of Electrical Engineering and Computer Science</strong>{' '}
+                    in Maribor.
+                </p>
             </JobEntry>
         </ul>
     );

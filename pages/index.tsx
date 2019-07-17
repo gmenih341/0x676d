@@ -6,7 +6,6 @@ import {WorkExperience} from '../src/components/WorkExperience/WorkExperience';
 import {WorkSkills} from '../src/components/WorkSkills/WorkSkills';
 import {GITHUB_URL, LINKEDIN_URL} from '../src/constants/social.constants';
 import {PageComponent} from '../src/types/PageComponent';
-
 /* eslint-disable react/no-unescaped-entities */
 
 const Home: PageComponent = () => null;
@@ -17,18 +16,15 @@ Home.image = '/static/me.png';
 Home.headerContent = (
     <>
         <SectionTitle>
-            <h2>Quick Bio</h2>
-            <span>it's a me</span>
+            <h2>About</h2>
         </SectionTitle>
         <p>
-            I'm Gregor, a web developer from Slovenia, where I've been living for the past years! I've always had an interest in computing,
-            which is why I pursued a career as a software engineer. Most days I build websites and APIs, but I won't shy away from anything
-            interesting. Throuh my career, I acquired great knowledge of JavaScript and related technologies, problem solving skills and
-            other things.
-        </p>
-        <p>
-            If you want to know more about me, feel free to check out my <ExternalLink href={GITHUB_URL}>Github</ExternalLink>, or contact
-            me via <ExternalLink href={LINKEDIN_URL}>LinkedIn</ExternalLink>.
+            My name is Gregor, and I'm a developer from Slovenia. Most of the time, I'm working with <code>(Type|Java)Script</code> and
+            related technologies, but I enjoy learning new Sometimes, I'll be tinkering with hardware as well, and trying my luck with{' '}
+            <code>C</code>.
+            <br />
+            Through my career, I've had the chance to experience many different frameworks, languages and development approaches. I've also
+            gained the ability to quickly learn and adapt to new environments. PLEASE GIV ME WORK.
         </p>
     </>
 );

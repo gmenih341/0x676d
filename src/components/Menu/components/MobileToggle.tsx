@@ -30,6 +30,7 @@ export const MobileToggle = styled(MobileToggleComponent)`
     justify-content: space-between;
     width: 20px;
     height: 15px;
+    margin-right: ${SPACER}px;
     padding: ${SPACER_SMALL}px;
     border: none;
     background: none;

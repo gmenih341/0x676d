@@ -15,11 +15,11 @@ export const HeaderContainer = styled('header')`
     margin: ${SPACER}px 0;
 
     ${mediaMin('md')} {
-        margin: 0 -${SPACER_SMALL}px;
+        margin: 0 -${SPACER}px;
     }
 
     & > * {
-        margin: 0 ${SPACER_SMALL}px;
+        margin: 0 ${SPACER}px;
     }
 
     ${Logo} {
