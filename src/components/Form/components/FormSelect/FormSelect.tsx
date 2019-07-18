@@ -51,25 +51,28 @@ export const FormSelectComponent: FunctionComponent<FormSelectProps> = React.mem
     }, [value]);
 
     return (
-        <div ref={dropdownRef} className={className}>
+        <SelectButton
+            ref={() => dropdownRef}
+            tabIndex={-1}
+            type="button"
+            className={className}
+            onClick={toggleDropdown}
+            onBlur={closeDropdown}>
             <input name={name} type="hidden" value={value} />
-            <SelectButton tabIndex={-1} type="button" onClick={toggleDropdown} onBlur={closeDropdown}>
-                <span data-placeholder={placeholder}>{value}</span>
-                <DropDownIcon open={open} width={15} height={15} fill={COLOR_GRAY[4]} />
-            </SelectButton>
-            <SelectDropdown
-                tabIndex={open ? -1 : 0}
-                onFocus={openDropdown}
-                onBlur={onBlurHandler}
-                style={{transform: open ? 'scale(1)' : 'scale(0)'}}>
-                {selectOptions}
-            </SelectDropdown>
-        </div>
+            <span data-placeholder={placeholder}>{value}</span>
+            <DropDownIcon open={open} width={15} height={15} fill={COLOR_GRAY[4]} />
+            {open && (
+                <SelectDropdown tabIndex={-1} onFocus={openDropdown} onBlur={onBlurHandler}>
+                    {selectOptions}
+                </SelectDropdown>
+            )}
+        </SelectButton>
     );
 });
 
 export const FormSelect = styled(FormSelectComponent)`
     position: relative;
+    z-index: 20;
 
     ${SelectButton} {
         svg {

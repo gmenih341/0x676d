@@ -37,3 +37,11 @@ export function opaque(color: string, opacity: number): string {
 
     return color;
 }
+
+export function boxShadow(color: string): string {
+    return `0 14px 28px ${opaque(color, 0.25)}, 0 10px 10px ${opaque(color, 0.22)};`;
+}
+
+export function boxShadowFocused(color: string): string {
+    return `0 7px 10px ${opaque(color, 0.18)}, 0 5px 5px ${opaque(color, 0.11)};`;
+}

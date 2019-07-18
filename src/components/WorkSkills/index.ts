@@ -1,1 +1,1 @@
-export * from './WorkSkills';
+export * from './components/WorkSkills';

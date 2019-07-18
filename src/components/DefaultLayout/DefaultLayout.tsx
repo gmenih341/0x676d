@@ -1,8 +1,8 @@
 import {useRouter} from 'next/router';
 import React, {FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
-import {usePageContentTransition} from '../../animations/hooks/usePageContentTransition';
-import {usePageHeaderTransition} from '../../animations/hooks/usePageHeaderTransition';
+import {usePageContentTransition} from '../../animations/usePageContentTransition';
+import {usePageHeaderTransition} from '../../animations/usePageHeaderTransition';
 import {SPACER, SPACER_BIG} from '../../constants/style.constants';
 import {useRouteData} from '../../hooks/useRouteData';
 import {PageComponent} from '../../types/PageComponent';

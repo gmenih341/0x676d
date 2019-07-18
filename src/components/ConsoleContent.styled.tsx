@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 import {SPACER, COLOR_BLACK, COLOR_WHITE, FONT_SANS, COLOR_GRAY, SPACER_SMALL} from '../constants/style.constants';
 import {animated} from 'react-spring';
-import {opaque} from '../utils/style.utils';
+import {opaque, boxShadow} from '../utils/style.utils';
 
 export const ConsoleContent = styled(animated.div)`
     position: relative;
@@ -10,7 +10,7 @@ export const ConsoleContent = styled(animated.div)`
     width: 100%;
     padding: ${SPACER}px;
     overflow: hidden;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    box-shadow: ${boxShadow(COLOR_BLACK)};
     background: ${COLOR_BLACK};
     color: ${COLOR_WHITE};
     font-family: ${FONT_SANS};

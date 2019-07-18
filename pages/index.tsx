@@ -3,7 +3,7 @@ import {ConsoleContent} from '../src/components/ConsoleContent.styled';
 import {ExternalLink} from '../src/components/ExternalLink';
 import {SectionTitle} from '../src/components/SectionTitle.styled';
 import {WorkExperience} from '../src/components/WorkExperience/WorkExperience';
-import {WorkSkills} from '../src/components/WorkSkills/WorkSkills';
+import {WorkSkills} from '../src/components/WorkSkills/components/WorkSkills';
 import {GITHUB_URL, LINKEDIN_URL} from '../src/constants/social.constants';
 import {PageComponent} from '../src/types/PageComponent';
 /* eslint-disable react/no-unescaped-entities */
@@ -38,15 +38,18 @@ Home.contentItems = [
             <WorkExperience />
         </ConsoleContent>
     ),
-    ({style, key}) => (
-        <ConsoleContent className="skills" style={style} key={key}>
-            <SectionTitle>
-                <h2>Skills</h2>
-                <span>many cause I'm smart 🤓</span>
-            </SectionTitle>
-            <WorkSkills />
-        </ConsoleContent>
-    ),
+    ({style, key}) => {
+        return (
+            <ConsoleContent className="skills" style={style} key={key}>
+                <SectionTitle>
+                    <h2>Skills</h2>
+                    <span>many cause I'm smart 🤓</span>
+                    <button>Sort</button>
+                </SectionTitle>
+                <WorkSkills />
+            </ConsoleContent>
+        );
+    },
 ];
 
 export default Home;

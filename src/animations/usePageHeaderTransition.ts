@@ -1,6 +1,6 @@
 import {CSSProperties, ReactNode, useEffect, useMemo, useState} from 'react';
 import {config, useTransition} from 'react-spring';
-import {PageComponent} from '../../types/PageComponent';
+import {PageComponent} from '../types/PageComponent';
 
 interface TransitionProps extends CSSProperties {
     imageStyle: CSSProperties;

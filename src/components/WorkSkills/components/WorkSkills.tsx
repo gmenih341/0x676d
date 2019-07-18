@@ -1,12 +1,12 @@
-import React, {FunctionComponent, useState, useEffect} from 'react';
+import shuffle from 'lodash/shuffle';
+import React, {FunctionComponent, useEffect} from 'react';
+import {animated} from 'react-spring';
 import styled from 'styled-components/macro';
-import {SPACER, SPACER_SMALL, SPACER_BIG} from '../../constants/style.constants';
-import {ClassNameOnly} from '../../types/ClassNameOnly';
-import {Skill} from './components/Skill';
-import sortBy from 'lodash/sortBy';
-import {useTransition, animated, config} from 'react-spring';
-import {useToggle} from '../../hooks/useToggle';
-import {useSortingTransition} from '../../animations/hooks/useSortingTransition';
+import {SPACER} from '../../../constants/style.constants';
+import {useToggle} from '../../../hooks/useToggle';
+import {ClassNameOnly} from '../../../types/ClassNameOnly';
+import {useSortingTransition} from '../animations/useSortingTransition';
+import {Skill} from './Skill';
 
 interface SkillRow {
     name: string;
@@ -31,12 +31,22 @@ const data: SkillRow[] = [
 ];
 
 const WorkSkillsComponent: FunctionComponent<ClassNameOnly> = React.memo(({className}) => {
-    const {height, transition, toggleSorted} = useSortingTransition(data);
+    const [sorted, toggleSorted] = useToggle(false);
+    const [transition, setData] = useSortingTransition<SkillRow>(data, 22 + SPACER, (item: SkillRow) => item.name);
+
+    useEffect(() => {
+        setInterval(() => setData(shuffle(data)), 3000);
+        // if (sorted) {
+        //     setData(sortBy(data, ['value']).reverse());
+        // } else {
+        //     setData(sortBy(data, item => data.indexOf(item)));
+        // }
+    }, [sorted]);
 
     return (
-        <div className={className} style={{height}}>
-            {transition(({item, props: {y}, key}, index) => (
-                <animated.div key={key} style={{zIndex: data.length - index, transform: y.interpolate(y => `translate3d(0,${y}px,0)`)}}>
+        <div className={className} style={{height: (22 + SPACER) * data.length}}>
+            {transition(({props, item, key}) => (
+                <animated.div key={key} style={props}>
                     <Skill {...item} />
                 </animated.div>
             ))}

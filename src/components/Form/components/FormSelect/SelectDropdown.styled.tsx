@@ -6,6 +6,7 @@ export const SelectDropdown = styled('div')`
     position: absolute;
     z-index: 1000;
     top: calc(100% + ${SPACER_SMALL}px);
+    left: 0;
     width: 100%;
     max-height: 300px;
     overflow-y: auto;

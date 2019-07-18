@@ -35,7 +35,6 @@ export const FormOption = styled(FormOptionComponent)`
     display: flex;
     box-sizing: border-box;
     flex-direction: row;
-    width: 100%;
     padding: ${SPACER_SMALL}px ${SPACER}px;
     border: 1px solid ${COLOR_BLACK};
     border-bottom: none;
@@ -54,7 +53,7 @@ export const FormOption = styled(FormOptionComponent)`
 
     &:hover,
     &:focus {
-        background: ${COLOR_MAIN[6]};
+        background: ${COLOR_GRAY[6]};
     }
 `;
 
