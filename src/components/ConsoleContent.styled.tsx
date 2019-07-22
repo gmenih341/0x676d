@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 import {SPACER, COLOR_BLACK, COLOR_WHITE, FONT_SANS, COLOR_GRAY, SPACER_SMALL} from '../constants/style.constants';
 import {animated} from 'react-spring';
-import {opaque, boxShadow} from '../utils/style.utils';
+import {opaque, boxShadow, boxShadowFocused} from '../utils/style.utils';
 
 export const ConsoleContent = styled(animated.div)`
     position: relative;
@@ -10,6 +10,7 @@ export const ConsoleContent = styled(animated.div)`
     width: 100%;
     padding: ${SPACER}px;
     overflow: hidden;
+    transition: box-shadow 300ms ease-out;
     box-shadow: ${boxShadow(COLOR_BLACK)};
     background: ${COLOR_BLACK};
     color: ${COLOR_WHITE};
@@ -32,5 +33,9 @@ export const ConsoleContent = styled(animated.div)`
 
     a {
         color: inherit;
+    }
+
+    :hover {
+        box-shadow: ${boxShadowFocused(COLOR_BLACK)};
     }
 `;

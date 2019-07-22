@@ -1,20 +1,20 @@
 import {useRouter} from 'next/router';
 import React, {FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
-import {usePageContentTransition} from '../../animations/usePageContentTransition';
-import {usePageHeaderTransition} from '../../animations/usePageHeaderTransition';
-import {SPACER, SPACER_BIG} from '../../constants/style.constants';
-import {useRouteData} from '../../hooks/useRouteData';
-import {PageComponent} from '../../types/PageComponent';
-import {mediaMin, ScreenSize} from '../../utils/style.utils';
-import {ConsoleContent} from '../ConsoleContent.styled';
-import {Footer} from '../Footer';
-import {Header} from '../Header';
-import Logo from '../Logo';
-import {Menu} from '../Menu';
-import {SideImage} from '../SideImage';
-import {HeaderContainer} from './components/HeaderContainer.styled';
-import {PageContent} from './components/PageContent.styled';
+import {usePageContentTransition} from '../../../animations/usePageContentTransition';
+import {usePageHeaderTransition} from '../../../animations/usePageHeaderTransition';
+import {SPACER, SPACER_BIG} from '../../../constants/style.constants';
+import {useRouteData} from '../../../hooks/useRouteData';
+import {PageComponent} from '../../../types/PageComponent';
+import {mediaMin, ScreenSize} from '../../../utils/style.utils';
+import {ConsoleContent} from '../../ConsoleContent.styled';
+import {Footer} from '../../Footer';
+import {Header} from '../../Header';
+import {Logo} from '../../Logo';
+import {Menu} from '../../Menu';
+import {SideImage} from '../../SideImage';
+import {HeaderContainer} from './HeaderContainer.styled';
+import {PageContent} from './PageContent.styled';
 
 interface LayoutProps {
     className?: string;
@@ -36,7 +36,7 @@ const DefaultLayoutComponent: FunctionComponent<LayoutProps> = ({className, page
                 <Header title={title} description={description} />
                 <Menu activePath={pathname} />
             </HeaderContainer>
-            <ConsoleContent id="test">
+            <ConsoleContent>
                 {headerTransition(({props: {imageStyle, contentStyle, ...restProps}, item, key}) => (
                     <SideImage
                         key={key}
@@ -50,7 +50,7 @@ const DefaultLayoutComponent: FunctionComponent<LayoutProps> = ({className, page
                 ))}
             </ConsoleContent>
             <PageContent>{contentTransition(({props, key, item}) => item({style: props, key}))}</PageContent>
-            <Footer />
+            <Footer />]
         </div>
     );
 };

@@ -1,1 +1,1 @@
-export * from './FormSelect';
+export * from './components/FormSelect';

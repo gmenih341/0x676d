@@ -18,6 +18,7 @@ export const TextInputComponent: FunctionComponent<FormTextProps<string>> = Reac
                 onInput={onInput}
                 minLength={5}
                 required={true}
+                as="input"
             />
         );
     },

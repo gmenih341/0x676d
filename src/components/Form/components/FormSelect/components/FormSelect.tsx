@@ -1,12 +1,12 @@
 import React, {FocusEvent, FunctionComponent, useEffect, useMemo, useRef} from 'react';
 import styled from 'styled-components/macro';
-import {COLOR_GRAY} from '../../../../constants/style.constants';
-import {DropDownIcon} from '../../icons/DropdownIcon';
-import {BaseFormElement} from '../../types/BaseFormElement';
+import {COLOR_GRAY} from '../../../../../constants/style.constants';
+import {DropDownIcon} from '../../../icons/DropdownIcon';
+import {BaseFormElement} from '../../../types/BaseFormElement';
 import {FormOption} from './FormOption';
 import {SelectButton} from './SelectButton.styled';
 import {SelectDropdown} from './SelectDropdown.styled';
-import {SelectActionType, useSelectState} from './state/selectState';
+import {SelectActionType, useSelectState} from '../state/selectState';
 
 export type OnValueSelected = (value: string) => void;
 
@@ -53,7 +53,7 @@ export const FormSelectComponent: FunctionComponent<FormSelectProps> = React.mem
     return (
         <SelectButton
             ref={() => dropdownRef}
-            tabIndex={-1}
+            tabIndex={open ? -1 : 0}
             type="button"
             className={className}
             onClick={toggleDropdown}
@@ -62,7 +62,7 @@ export const FormSelectComponent: FunctionComponent<FormSelectProps> = React.mem
             <span data-placeholder={placeholder}>{value}</span>
             <DropDownIcon open={open} width={15} height={15} fill={COLOR_GRAY[4]} />
             {open && (
-                <SelectDropdown tabIndex={-1} onFocus={openDropdown} onBlur={onBlurHandler}>
+                <SelectDropdown tabIndex={1} onFocus={openDropdown} onBlur={onBlurHandler}>
                     {selectOptions}
                 </SelectDropdown>
             )}
@@ -73,15 +73,4 @@ export const FormSelectComponent: FunctionComponent<FormSelectProps> = React.mem
 export const FormSelect = styled(FormSelectComponent)`
     position: relative;
     z-index: 20;
-
-    ${SelectButton} {
-        svg {
-            margin-top: -3px;
-            line-height: 0;
-        }
-
-        &:focus svg {
-            margin-top: 0;
-        }
-    }
 `;

@@ -1,10 +1,8 @@
 import React from 'react';
 import {ConsoleContent} from '../src/components/ConsoleContent.styled';
-import {ExternalLink} from '../src/components/ExternalLink';
 import {SectionTitle} from '../src/components/SectionTitle.styled';
 import {WorkExperience} from '../src/components/WorkExperience/WorkExperience';
 import {WorkSkills} from '../src/components/WorkSkills/components/WorkSkills';
-import {GITHUB_URL, LINKEDIN_URL} from '../src/constants/social.constants';
 import {PageComponent} from '../src/types/PageComponent';
 /* eslint-disable react/no-unescaped-entities */
 
@@ -22,7 +20,8 @@ Home.headerContent = (
             My name is Gregor, and I'm a developer from Slovenia. Most of the time, I'm working with <code>(Type|Java)Script</code> and
             related technologies, but I enjoy learning new Sometimes, I'll be tinkering with hardware as well, and trying my luck with{' '}
             <code>C</code>.
-            <br />
+        </p>
+        <p>
             Through my career, I've had the chance to experience many different frameworks, languages and development approaches. I've also
             gained the ability to quickly learn and adapt to new environments. PLEASE GIV ME WORK.
         </p>

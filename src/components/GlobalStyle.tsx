@@ -6,17 +6,19 @@ export const GlobalStyle = createGlobalStyle`
     body,
     #__next {
         position: relative;
-        height: 100%;
+        min-height: 100%;
         margin: 0;
         padding: 0;
     }
     
     body {
         background-color: ${COLOR_GRAY[3]};
-        text-rendering: optimizeLegibility;
     }
 
     * {
         box-sizing: border-box;
+        text-rendering: optimizeLegibility;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
     }
 `;

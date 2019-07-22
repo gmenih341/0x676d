@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import {SPACER_SMALL, COLOR_GRAY, COLOR_WHITE} from '../../../../constants/style.constants';
+import {SPACER_SMALL, COLOR_GRAY, COLOR_WHITE} from '../../../../../constants/style.constants';
 
 export const SelectDropdown = styled('div')`
     display: block;

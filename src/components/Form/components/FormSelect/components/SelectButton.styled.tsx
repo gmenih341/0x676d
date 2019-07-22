@@ -1,10 +1,11 @@
 import styled from 'styled-components/macro';
-import {COLOR_GRAY, SPACER} from '../../../../constants/style.constants';
-import {BaseInput} from '../BaseInput.styled';
+import {COLOR_GRAY, SPACER} from '../../../../../constants/style.constants';
+import {BaseInput} from '../../BaseInput.styled';
 
-export const SelectButton = styled(BaseInput).attrs({as: 'button'})`
+export const SelectButton = styled(BaseInput)`
     display: flex;
     flex-direction: row;
+    overflow: visible;
 
     span {
         display: block;
