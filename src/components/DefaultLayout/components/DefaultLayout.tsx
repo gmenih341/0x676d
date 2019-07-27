@@ -1,8 +1,6 @@
 import {useRouter} from 'next/router';
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useMemo, useRef} from 'react';
 import styled from 'styled-components/macro';
-import {usePageContentTransition} from '../../../animations/usePageContentTransition';
-import {usePageHeaderTransition} from '../../../animations/usePageHeaderTransition';
 import {SPACER, SPACER_BIG} from '../../../constants/style.constants';
 import {useRouteData} from '../../../hooks/useRouteData';
 import {PageComponent} from '../../../types/PageComponent';
@@ -12,9 +10,8 @@ import {Footer} from '../../Footer';
 import {Header} from '../../Header';
 import {Logo} from '../../Logo';
 import {Menu} from '../../Menu';
-import {SideImage} from '../../SideImage';
 import {HeaderContainer} from './HeaderContainer.styled';
-import {PageContent} from './PageContent.styled';
+import {usePageHeaderTransition} from '../../../animations/usePageHeaderTransition';
 
 interface LayoutProps {
     className?: string;
@@ -26,8 +23,11 @@ const DefaultLayoutComponent: FunctionComponent<LayoutProps> = ({className, page
     const {
         header: {title, description},
     } = useRouteData(pathname);
+
     const headerTransition = usePageHeaderTransition(pageComponent);
-    const contentTransition = usePageContentTransition(pageComponent);
+
+    const HeaderComponent = useMemo(() => pageComponent.headerComponent, [pageComponent]);
+    const PageComponent = useMemo(() => pageComponent, [pageComponent]);
 
     return (
         <div className={className}>
@@ -37,20 +37,12 @@ const DefaultLayoutComponent: FunctionComponent<LayoutProps> = ({className, page
                 <Menu activePath={pathname} />
             </HeaderContainer>
             <ConsoleContent>
-                {headerTransition(({props: {imageStyle, contentStyle, ...restProps}, item, key}) => (
-                    <SideImage
-                        key={key}
-                        overlap={true}
-                        imageSrc={item.image || ''}
-                        imageStyle={imageStyle}
-                        contentStyle={contentStyle}
-                        style={restProps}>
-                        {item.headerContent}
-                    </SideImage>
-                ))}
+            {headerTransition(({imageProps, contentProps, props, key}) => (
+                <HeaderComponent key={key} style={props} imageStyle={imageProps} contentStyle={contentProps} />
+            ))}
             </ConsoleContent>
-            <PageContent>{contentTransition(({props, key, item}) => item({style: props, key}))}</PageContent>
-            <Footer />]
+            <PageComponent />
+            <Footer />
         </div>
     );
 };

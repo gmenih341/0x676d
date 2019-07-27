@@ -33,16 +33,15 @@ export function usePageHeaderTransition(routeComponent: PageComponent): (fn: Cal
             callbackFn({
                 item,
                 key,
-                props: {
-                    imageStyle: {
-                        transform: x.interpolate(y => `translateX(0px)`),
-                    },
-                    contentStyle: {
-                        transform: x.interpolate(y => `translateX(${y * 860}px)`),
-                    },
-                    transform: x.interpolate(y => `translateX(${y * 100}%)`),
-                    ...restProps,
+                imageProps: {
+                    transform: x.interpolate(y => `translateX(0px)`),
                 },
+                contentProps: {
+                    transform: x.interpolate(y => `translateX(${y * 860}px)`),
+                },
+                props: {
+                    transform: x.interpolate(y => `translateX(${y * 100}%)`),
+                }
             }),
         );
 }

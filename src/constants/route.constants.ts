@@ -2,7 +2,7 @@ import {RouteData} from '../types/RouteData';
 
 export const routes: Record<string, RouteData> = {
     '/': {
-        menuText: 'hey',
+        menuText: 'cv',
         header: {
             title: 'Gregor Menih',
             description: 'full-stack web developer',
