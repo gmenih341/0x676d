@@ -1,47 +1,71 @@
-import {CSSProperties, ReactNode, useEffect, useMemo, useState} from 'react';
-import {config, useTransition} from 'react-spring';
-import {PageComponent} from '../types/PageComponent';
+import {CSSProperties, FunctionComponent, ReactNode} from 'react';
+import {config, useTransition, UseTransitionResult} from 'react-spring';
+import {HeaderComponentProps, PageComponent} from '../types/PageComponent';
 
-interface TransitionProps extends CSSProperties {
-    imageStyle: CSSProperties;
-    contentStyle: CSSProperties;
+type Direction = 1 | -1;
+
+interface EarlyPageHeaderTransitionProps extends CSSProperties {
+    x?: number;
 }
-interface Transition {
-    props: TransitionProps;
-    item: PageComponent;
+
+interface PageHeaderTransitionProps {
+    imageProps: CSSProperties;
+    contentProps: CSSProperties;
+    props: CSSProperties;
     key: any;
+    HeaderComponent: FunctionComponent<HeaderComponentProps>;
 }
 
-type CallbackFn = (props: Transition) => ReactNode;
+interface RenderCallback {
+    (props: PageHeaderTransitionProps, index: number): ReactNode;
+}
 
-export function usePageHeaderTransition(routeComponent: PageComponent): (fn: CallbackFn) => ReactNode {
-    const firstIndex = useMemo(() => routeComponent.index, []);
-    const [lastIndex, setLastIndex] = useState(firstIndex);
-    const transition = useTransition([routeComponent], (item: PageComponent) => item.displayName, {
-        from: {x: lastIndex > routeComponent.index ? -1 : 1, width: '100%'},
-        enter: {x: 0},
-        leave: {x: lastIndex > routeComponent.index ? 1 : -1, position: 'absolute', width: '100%'},
-        config: config.stiff,
-    });
+interface UsePageHeaderTransitionResult {
+    (renderCallback: RenderCallback): ReactNode[];
+}
 
-    useEffect(() => {
-        setLastIndex(routeComponent.index);
-    }, [routeComponent]);
+const interpolateHeaderProps = (props: UseTransitionResult<PageComponent, EarlyPageHeaderTransitionProps>): PageHeaderTransitionProps => {
+    const {
+        item,
+        key,
+        props: {x, ...restProps},
+    } = props;
+    return {
+        HeaderComponent: item.headerComponent,
+        key: key,
+        imageProps: {
+            transform: x && x.interpolate((xValue: number | undefined = 0) => `translateX(${-xValue * 200}px)`),
+        },
+        contentProps: {
+            transform: x && x.interpolate((xValue: number | undefined = 0) => `translateX(${xValue * 250}px)`),
+        },
+        props: restProps,
+    };
+};
 
-    return (callbackFn: CallbackFn) =>
-        transition.map(({props: {x, ...restProps}, item, key}) =>
-            callbackFn({
-                item,
-                key,
-                imageProps: {
-                    transform: x.interpolate(y => `translateX(0px)`),
-                },
-                contentProps: {
-                    transform: x.interpolate(y => `translateX(${y * 860}px)`),
-                },
-                props: {
-                    transform: x.interpolate(y => `translateX(${y * 100}%)`),
-                }
-            }),
-        );
+export function usePageHeaderTransition(routeComponent: PageComponent, direction: Direction = 1): UsePageHeaderTransitionResult {
+    const transitions = useTransition<PageComponent, EarlyPageHeaderTransitionProps>(
+        [routeComponent],
+        (item: PageComponent) => item.displayName,
+        {
+            from: {
+                x: direction,
+                width: '100%',
+                transform: `translateX(${direction * 100}%)`,
+            },
+            enter: {
+                x: 0,
+                transform: 'translate(0%)',
+            },
+            leave: {
+                x: direction * -1,
+                position: 'absolute',
+                width: '100%',
+                transform: 'translate(100%)',
+            },
+            config: config.stiff,
+        },
+    );
+
+    return (renderCallback: RenderCallback) => transitions.map(interpolateHeaderProps).map(renderCallback);
 }

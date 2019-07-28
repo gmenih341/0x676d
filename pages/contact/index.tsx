@@ -5,14 +5,12 @@ import {SideImage} from '../../src/components/SideImage';
 import {PageComponent} from '../../src/types/PageComponent';
 import {ContactForm} from './components/ContactForm';
 
-export const Contact: PageComponent = () => (
-    <ContactForm />
-);
+export const Contact: PageComponent = () => <ContactForm />;
 
 Contact.displayName = 'contact';
 Contact.headerComponent = ({imageStyle, contentStyle, style}) => {
     return (
-        <SideImage imageSrc="/static/me.png" imageStyle={imageStyle} contentStyle={contentStyle}>
+        <SideImage overlap={true} imageSrc="/static/maribor.png" imageStyle={imageStyle} contentStyle={contentStyle} style={style}>
             <SectionTitle>
                 <h2>How to get in</h2>
                 <span>wassup</span>
@@ -31,6 +29,6 @@ Contact.headerComponent = ({imageStyle, contentStyle, style}) => {
             </p>
         </SideImage>
     );
-}
+};
 
 export default Contact;

@@ -1,28 +1,17 @@
-import {FunctionComponent, Ref} from 'react';
+import {CSSProperties, FunctionComponent, Dispatch} from 'react';
 
-// export interface PageComponent<T = any> extends FunctionComponent<RouterProps> {
-//     displayName: string;
-//     index: number;
-//     headerContent: ReactNode;
-//     contentItems: FunctionComponent<{style: any; key: any}>[];
-//     image?: string;
-//     getInitialProps?: GetInitialProps<T, NextContext>;
-// }
-
-interface Transitionable {
-    imageStyle: any;
-    contentStyle: any;
-    style: any;
+export interface PageComponentProps {
+    setChildren: Dispatch<any[]>;
+    style: CSSProperties;
 }
 
-interface PageComponentProps extends Transitionable {
-
-}
-
-interface HeaderComponentProps extends Transitionable {
+export interface HeaderComponentProps {
+    imageStyle: CSSProperties;
+    contentStyle: CSSProperties;
+    style: CSSProperties;
 }
 
 export interface PageComponent extends FunctionComponent<PageComponentProps> {
-    headerComponent: FunctionComponent<HeaderComponentProps>
+    headerComponent: FunctionComponent<HeaderComponentProps>;
     displayName: string;
 }
