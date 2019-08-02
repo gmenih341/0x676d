@@ -1,49 +1,62 @@
-import {CSSProperties, ReactNode, useEffect, useMemo, useState} from 'react';
-import {config, useTransition} from 'react-spring';
-import {PageComponent} from '../../../interfaces';
+import {CSSProperties, ReactNode} from 'react';
+import {useTransition, UseTransitionResult} from 'react-spring';
+import {Direction} from '../types/Direction';
+import {PageComponent} from '../types/PageComponent';
 
-interface TransitionProps extends CSSProperties {
-    imageStyle: CSSProperties;
-    contentStyle: CSSProperties;
+interface EarlyPageHeaderTransitionProps extends CSSProperties {
+    x?: number;
 }
-interface Transition {
-    props: TransitionProps;
-    item: PageComponent;
+
+interface PageHeaderTransitionProps {
+    props: CSSProperties;
     key: any;
+    PageComponent: PageComponent;
 }
 
-type CallbackFn = (props: Transition) => ReactNode;
+interface RenderCallback {
+    (props: PageHeaderTransitionProps, index: number): ReactNode;
+}
 
-export function usePageContentTransition(pageComponent: PageComponent): (fn: CallbackFn) => ReactNode {
-    const [contentItems, setContentItems] = useState<ReactNode[]>([]);
-    const firstIndex = useMemo(() => pageComponent.index, []);
-    const [lastIndex, setLastIndex] = useState(firstIndex);
-    const change = useMemo(() => (lastIndex > pageComponent.index ? -10 : 10), [pageComponent]);
-    const what = useMemo(() => Math.random(), [pageComponent]);
-    const transition = useTransition(contentItems, (_: any, i: number): number => i + what, {
-        from: {transform: `translateX(${-change}px)`, opacity: 0, p: 0},
-        enter: {transform: 'translateX(0)', opacity: 1, p: 1},
-        leave: {transform: `translateX(${change}px)`, opacity: 0, position: 'absolute'},
-        trail: 100,
-        config: config.gentle,
-    });
+interface UsePageHeaderTransitionResult {
+    (renderCallback: RenderCallback): ReactNode[];
+}
 
-    useEffect(() => {
-        setContentItems([]);
-        setLastIndex(pageComponent.index);
+const interpolateHeaderProps = (props: UseTransitionResult<PageComponent, EarlyPageHeaderTransitionProps>): PageHeaderTransitionProps => {
+    const {
+        item,
+        key,
+        props: {x, ...restProps},
+    } = props;
 
-        const timeout = setTimeout(() => {
-            setContentItems(pageComponent.contentItems);
-        }, 400);
+    return {
+        PageComponent: item,
+        key: key,
+        props: restProps,
+    };
+};
 
-        return () => clearTimeout(timeout);
-    }, [pageComponent]);
+export function usePageContentTransition(routeComponent: PageComponent, direction: Direction = 1): UsePageHeaderTransitionResult {
+    const pageTransition = useTransition<PageComponent, EarlyPageHeaderTransitionProps>(
+        [routeComponent],
+        (item: PageComponent) => item.displayName,
+        {
+            from: {
+                x: direction,
+                width: '100%',
+                transform: `translateX(${direction * 104}%)`,
+            },
+            enter: {
+                x: 0,
+                transform: 'translateX(0%)',
+            },
+            leave: {
+                x: direction,
+                position: 'absolute',
+                width: '100%',
+                transform: `translateX(${direction * -104}%)`,
+            },
+        },
+    );
 
-    useEffect(() => {
-        setTimeout(() => {
-            setContentItems(pageComponent.contentItems);
-        }, 150);
-    }, []);
-
-    return (callbackFn: CallbackFn) => transition.map(callbackFn);
+    return (renderCallback: RenderCallback) => pageTransition.map(interpolateHeaderProps).map(renderCallback);
 }

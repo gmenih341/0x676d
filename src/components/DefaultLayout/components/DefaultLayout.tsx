@@ -1,9 +1,9 @@
 import {useRouter} from 'next/router';
 import React, {FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
-import {usePageContentTransition} from '../../../animations/usePageContentTransition';
 import {usePageHeaderTransition} from '../../../animations/usePageHeaderTransition';
 import {SPACER, SPACER_BIG} from '../../../constants/style.constants';
+import {useIndexDirection} from '../../../hooks/useIndexDirection';
 import {useRouteData} from '../../../hooks/useRouteData';
 import {PageComponent} from '../../../types/PageComponent';
 import {mediaMin, ScreenSize} from '../../../utils/style.utils';
@@ -13,6 +13,8 @@ import {Header} from '../../Header';
 import {Logo} from '../../Logo';
 import {Menu} from '../../Menu';
 import {HeaderContainer} from './HeaderContainer.styled';
+import {usePageContentTransition} from '../../../animations/usePageContentTransition';
+import {ContentContainer} from './ContentContainer.styled';
 
 interface LayoutProps {
     className?: string;
@@ -21,19 +23,16 @@ interface LayoutProps {
 
 const DefaultLayoutComponent: FunctionComponent<LayoutProps> = ({className, pageComponent}) => {
     const {pathname} = useRouter();
-    const {
-        header: {title, description},
-        index,
-    } = useRouteData(pathname);
-
-    const headerTransition = usePageHeaderTransition(pageComponent, -1);
-    const contentTransition = usePageContentTransition(pageComponent, -1);
+    const routeData = useRouteData(pathname);
+    const direction = useIndexDirection(routeData.index);
+    const headerTransition = usePageHeaderTransition(pageComponent, direction);
+    const pageTransition = usePageContentTransition(pageComponent, direction);
 
     return (
         <div className={className}>
             <HeaderContainer>
                 <Logo />
-                <Header title={title} description={description} />
+                <Header title={routeData.header.title} description={routeData.header.description} />
                 <Menu activePath={pathname} />
             </HeaderContainer>
             <ConsoleContent>
@@ -41,9 +40,11 @@ const DefaultLayoutComponent: FunctionComponent<LayoutProps> = ({className, page
                     <HeaderComponent key={key} style={props} imageStyle={imageProps} contentStyle={contentProps} />
                 ))}
             </ConsoleContent>
-            {contentTransition(({PageComponent, setChildren, props}) => (
-                <PageComponent setChildren={setChildren} style={props} />
-            ))}
+            <ContentContainer>
+                {pageTransition(({PageComponent, key, props}) => (
+                    <PageComponent key={key} style={props} />
+                ))}
+            </ContentContainer>
             <Footer />
         </div>
     );

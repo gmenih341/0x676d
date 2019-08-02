@@ -1,7 +1,7 @@
-import {CSSProperties, FunctionComponent, Dispatch} from 'react';
+import {CSSProperties, FunctionComponent, Dispatch, ReactNode} from 'react';
 
 export interface PageComponentProps {
-    setChildren: Dispatch<any[]>;
+    childProps: CSSProperties[];
     style: CSSProperties;
 }
 

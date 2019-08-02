@@ -5,7 +5,7 @@ import {SideImage} from '../../src/components/SideImage';
 import {PageComponent} from '../../src/types/PageComponent';
 import {ContactForm} from './components/ContactForm';
 
-export const Contact: PageComponent = () => <ContactForm />;
+export const Contact: PageComponent = ({style}) => <ContactForm style={style} />;
 
 Contact.displayName = 'contact';
 Contact.headerComponent = ({imageStyle, contentStyle, style}) => {

@@ -86,6 +86,7 @@ export const JobEntry = styled(JobEntryComponent)`
     .year {
         position: relative;
         grid-column: 1 / -1;
+        z-index: 10;
         justify-self: start;
         padding-right: ${SPACER_BIG}px;
         color: ${COLOR_GRAY[8]};

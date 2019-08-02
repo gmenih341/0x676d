@@ -1,8 +1,7 @@
 import {CSSProperties, FunctionComponent, ReactNode} from 'react';
-import {config, useTransition, UseTransitionResult} from 'react-spring';
+import {useTransition, UseTransitionResult} from 'react-spring';
+import {Direction} from '../types/Direction';
 import {HeaderComponentProps, PageComponent} from '../types/PageComponent';
-
-type Direction = 1 | -1;
 
 interface EarlyPageHeaderTransitionProps extends CSSProperties {
     x?: number;
@@ -24,6 +23,8 @@ interface UsePageHeaderTransitionResult {
     (renderCallback: RenderCallback): ReactNode[];
 }
 
+const PARALLAX_VELOCITY = 250;
+
 const interpolateHeaderProps = (props: UseTransitionResult<PageComponent, EarlyPageHeaderTransitionProps>): PageHeaderTransitionProps => {
     const {
         item,
@@ -34,10 +35,10 @@ const interpolateHeaderProps = (props: UseTransitionResult<PageComponent, EarlyP
         HeaderComponent: item.headerComponent,
         key: key,
         imageProps: {
-            transform: x && x.interpolate((xValue: number | undefined = 0) => `translateX(${-xValue * 200}px)`),
+            transform: x && x.interpolate((xValue: number | undefined = 0) => `translateX(${xValue * -PARALLAX_VELOCITY}px)`),
         },
         contentProps: {
-            transform: x && x.interpolate((xValue: number | undefined = 0) => `translateX(${xValue * 250}px)`),
+            transform: x && x.interpolate((xValue: number | undefined = 0) => `translateX(${xValue * PARALLAX_VELOCITY}px)`),
         },
         props: restProps,
     };
@@ -58,12 +59,11 @@ export function usePageHeaderTransition(routeComponent: PageComponent, direction
                 transform: 'translate(0%)',
             },
             leave: {
-                x: direction * -1,
+                x: direction,
                 position: 'absolute',
                 width: '100%',
-                transform: 'translate(100%)',
+                transform: `translate(${direction * -100}%)`,
             },
-            config: config.stiff,
         },
     );
 
