@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {IconProps} from '../types/IconProps';
+import {IconProps} from '../../../types/IconProps';
 
 const OPEN_PATH = 'M.037 24.873h64v14.254h-64z';
 const CLOSED_PATH = 'M.037 24.873l32 23.865 32-23.865v14.254l-32 23.865-32-23.865z';

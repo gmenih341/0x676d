@@ -1,11 +1,11 @@
 import React from 'react';
-import {ConsoleContent} from '../src/components/ConsoleContent.styled';
-import {PageContent} from '../src/components/DefaultLayout/components/PageContent.styled';
-import {SectionTitle} from '../src/components/SectionTitle.styled';
-import {SideImage} from '../src/components/SideImage';
-import {WorkExperience} from '../src/components/WorkExperience/WorkExperience';
-import {WorkSkills} from '../src/components/WorkSkills/components/WorkSkills';
-import {PageComponent} from '../src/types/PageComponent';
+import {PageComponent} from '../types/PageComponent';
+import {PageContent} from '../components/DefaultLayout/components/PageContent.styled';
+import {ConsoleContent} from '../components/ConsoleContent.styled';
+import {SectionTitle} from '../components/SectionTitle.styled';
+import {WorkExperience} from '../components/WorkExperience';
+import {WorkSkills} from '../components/WorkSkills';
+import {SideImage} from '../components/SideImage';
 
 /* eslint-disable react/no-unescaped-entities */
 

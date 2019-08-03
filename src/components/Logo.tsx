@@ -5,7 +5,6 @@ import {COLOR_MAIN} from '../constants/style.constants';
 import {ClassNameOnly} from '../types/ClassNameOnly';
 
 const DARK = COLOR_MAIN[6];
-const LIGHT = COLOR_MAIN[5];
 
 const LogoComponent: FunctionComponent<ClassNameOnly> = React.memo(({className}) => {
     return (

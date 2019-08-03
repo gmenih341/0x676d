@@ -1,8 +1,9 @@
-import {withRouter, WithRouterProps} from 'next/router';
+import {withRouter, NextRouter} from 'next/router';
 import React, {Context, createContext, useMemo} from 'react';
 
-interface RouterContextProps extends WithRouterProps {
+interface RouterContextProps {
     pathname: string;
+    router?: NextRouter;
 }
 
 export const RouterContext: Context<RouterContextProps> = createContext({

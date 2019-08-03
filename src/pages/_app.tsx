@@ -1,9 +1,9 @@
 import App, {Container} from 'next/app';
 import * as React from 'react';
-import {GlobalStyle} from '../src/components/GlobalStyle';
-import {NextRouterProvider} from '../src/context/RouterContext';
-import {DefaultLayout} from '../src/components/DefaultLayout';
-import {PageComponent} from '../src/types/PageComponent';
+import {PageComponent} from '../types/PageComponent';
+import {GlobalStyle} from '../components/GlobalStyle';
+import {NextRouterProvider} from '../context/RouterContext';
+import {DefaultLayout} from '../components/DefaultLayout';
 
 export default class AppComponent extends App {
     public render() {

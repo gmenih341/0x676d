@@ -1,5 +1,5 @@
-import {ReactNode, useState} from 'react';
-import {useTransition, UseTransitionResult} from 'react-spring';
+import {useState} from 'react';
+import {useTransition} from 'react-spring';
 
 interface SortData {
     y: number;
@@ -9,7 +9,7 @@ type KeysFn = Parameters<typeof useTransition>[1];
 type CallbackFn = any;
 type ReactSetStateFn<T> = React.Dispatch<React.SetStateAction<T>>;
 
-export function useSortingTransition<T>(data: T[], step: number, keys: KeysFn): [TransitionFn<T, SortData>, ReactSetStateFn<T[]>] {
+export function useSortingTransition<T>(data: T[], step: number, keys: KeysFn): [any, ReactSetStateFn<T[]>] {
     type MergedData = T & SortData;
     const [rows, setData] = useState(data);
 

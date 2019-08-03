@@ -1,13 +1,13 @@
-import React, {FunctionComponent, FormEvent} from 'react';
-import styled from 'styled-components/macro';
-import {mediaMin} from '../../../src/utils/style.utils';
-import {TextInput, FormSelect, TextAreaInput, BaseButton} from '../../../src/components/Form';
-import {useForm} from '../../../src/components/Form/hooks/useForm';
-import {toQueryString} from '../../../src/utils/url.utils';
-import {MailIcon} from '../../../src/components/Footer/icons/MailIcon';
-import {COLOR_MAIN, SPACER, SPACER_SMALL, COLOR_WHITE, SPACER_BIG, COLOR_BLACK} from '../../../src/constants/style.constants';
-import {ClassNameOnly} from '../../../src/types/ClassNameOnly';
+import React, {FormEvent, FunctionComponent} from 'react';
 import {animated} from 'react-spring';
+import styled from 'styled-components/macro';
+import {MailIcon} from './Footer/icons/MailIcon';
+import {BaseButton, FormSelect, TextAreaInput, TextInput} from './Form';
+import {useForm} from './Form/hooks/useForm';
+import {COLOR_BLACK, COLOR_MAIN, COLOR_WHITE, SPACER, SPACER_BIG, SPACER_SMALL} from '../constants/style.constants';
+import {ClassNameOnly} from '../types/ClassNameOnly';
+import {mediaMin} from '../utils/style.utils';
+import {toQueryString} from '../utils/url.utils';
 
 interface ContactForm {
     email: string;

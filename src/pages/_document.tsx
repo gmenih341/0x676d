@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Document, {Head, Main, NextScript, NextDocumentContext} from 'next/document';
+import Document, {Head, Main, NextScript} from 'next/document';
 import {ServerStyleSheet} from 'styled-components/macro';
-import {COLOR_MAIN} from '../src/constants/style.constants';
+import {COLOR_MAIN} from '../constants/style.constants';
 
 export default class extends Document {
-    public static async getInitialProps(ctx: NextDocumentContext) {
+    public static async getInitialProps(ctx: any) {
         const sheet = new ServerStyleSheet();
         const originalRenderPage = ctx.renderPage;
 

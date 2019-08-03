@@ -1,5 +1,4 @@
-import shuffle from 'lodash/shuffle';
-import React, {FunctionComponent, useEffect} from 'react';
+import React, {FunctionComponent} from 'react';
 import {animated} from 'react-spring';
 import styled from 'styled-components/macro';
 import {SPACER} from '../../../constants/style.constants';
@@ -33,15 +32,6 @@ const data: SkillRow[] = [
 const WorkSkillsComponent: FunctionComponent<ClassNameOnly> = React.memo(({className}) => {
     const [sorted, toggleSorted] = useToggle(false);
     const [transition, setData] = useSortingTransition<SkillRow>(data, 22 + SPACER, (item: SkillRow) => item.name);
-
-    useEffect(() => {
-        setInterval(() => setData(shuffle(data)), 3000);
-        // if (sorted) {
-        //     setData(sortBy(data, ['value']).reverse());
-        // } else {
-        //     setData(sortBy(data, item => data.indexOf(item)));
-        // }
-    }, [sorted]);
 
     return (
         <div className={className} style={{height: (22 + SPACER) * data.length}}>

@@ -1,8 +1,8 @@
 import React, {FunctionComponent, HTMLAttributes} from 'react';
 import styled from 'styled-components/macro';
-import {SPACER_SMALL, SPACER, COLOR_BLACK, FONT_SANS, COLOR_MAIN, COLOR_WHITE, COLOR_GRAY} from '../../../../../constants/style.constants';
-import {mediaMax} from '../../../../../utils/style.utils';
+import {COLOR_BLACK, COLOR_GRAY, COLOR_WHITE, FONT_SANS, SPACER, SPACER_SMALL} from '../../../../../constants/style.constants';
 import {ClassNameOnly} from '../../../../../types/ClassNameOnly';
+import {mediaMax} from '../../../../../utils/style.utils';
 
 interface FormOptionProps extends Pick<HTMLAttributes<HTMLDivElement>, 'onFocus' | 'onClick' | 'onKeyPress'>, ClassNameOnly {
     value: string;

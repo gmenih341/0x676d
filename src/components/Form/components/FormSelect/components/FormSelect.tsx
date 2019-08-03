@@ -53,8 +53,8 @@ export const FormSelectComponent: FunctionComponent<FormSelectProps> = React.mem
     return (
         <SelectButton
             ref={() => dropdownRef}
-            tabIndex={open ? -1 : 0}
             type="button"
+            tabIndex={open ? -1 : 0}
             className={className}
             onClick={toggleDropdown}
             onBlur={closeDropdown}>

@@ -1,9 +1,9 @@
 import styled from 'styled-components/macro';
-import {SPACER, SPACER_SMALL, SPACER_BIG} from '../../../constants/style.constants';
-import {mediaMin, mediaMax} from '../../../utils/style.utils';
+import {SPACER, SPACER_BIG} from '../../../constants/style.constants';
+import {mediaMax, mediaMin} from '../../../utils/style.utils';
+import {Header} from '../../Header';
 import Logo from '../../Logo';
 import {Menu} from '../../Menu';
-import {Header} from '../../Header';
 
 export const HeaderContainer = styled('header')`
     display: flex;

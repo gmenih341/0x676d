@@ -1,8 +1,11 @@
+import {animated} from 'react-spring';
 import styled from 'styled-components/macro';
 import {COLOR_GRAY, SPACER} from '../../../../../constants/style.constants';
-import {BaseInput} from '../../BaseInput.styled';
+import {createBaseContentBox} from '../../../../../utils/component.utils';
 
-export const SelectButton = styled(BaseInput)`
+export const SelectButton = styled(animated.button)`
+    ${createBaseContentBox()}
+
     display: flex;
     flex-direction: row;
     overflow: visible;

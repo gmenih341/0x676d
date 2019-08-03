@@ -7,7 +7,7 @@ import {JobPointerIcon} from '../icons/JobPointerIcon';
 
 interface JobEntryProps {
     company: string;
-    title: string;
+    title?: string;
     year?: string;
     className?: string;
     isPresent?: boolean;
@@ -34,7 +34,7 @@ const JobEntryComponent: FunctionComponent<JobEntryProps> = ({children, classNam
             </div>
             <div className="meta">
                 <div className="company">{company}</div>
-                <div className="title">{title}</div>
+                {title && <div className="title">{title}</div>}
             </div>
             <div className="content">{children}</div>
         </li>

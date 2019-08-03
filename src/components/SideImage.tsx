@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react';
-import styled from 'styled-components/macro';
 import {animated} from 'react-spring';
-import {COLOR_GRAY, SPACER, SPACER_SMALL, SPACER_BIG} from '../constants/style.constants';
+import styled, {CSSProperties} from 'styled-components/macro';
+import {COLOR_GRAY, SPACER, SPACER_BIG, SPACER_SMALL} from '../constants/style.constants';
 import {mediaMax, mediaMin} from '../utils/style.utils';
 
 const SECTION_WIDTH = 250;
@@ -16,9 +16,9 @@ interface SideImagePros {
     direction?: keyof typeof SideImageDirection;
     imageSrc: string;
     overlap?: boolean;
-    imageStyle?: any;
-    contentStyle?: any;
-    style?: any;
+    imageStyle?: CSSProperties;
+    contentStyle?: CSSProperties;
+    style?: CSSProperties;
 }
 
 const SideImageComponent: FunctionComponent<SideImagePros> = ({className, children, contentStyle, imageStyle, style}) => (

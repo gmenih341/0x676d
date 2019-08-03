@@ -1,9 +1,12 @@
+import {animated} from 'react-spring';
 import styled from 'styled-components/macro';
 import {COLOR_MAIN} from '../../../constants/style.constants';
+import {createBaseContentBox} from '../../../utils/component.utils';
 import {boxShadowFocused} from '../../../utils/style.utils';
-import {ConsoleContent} from '../../ConsoleContent.styled';
 
-export const BaseInput = styled(ConsoleContent)`
+export const BaseInput = styled(animated.input)`
+    ${createBaseContentBox()}
+
     z-index: 10;
     border: none;
     font-size: 16px;

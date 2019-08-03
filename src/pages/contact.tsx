@@ -1,11 +1,11 @@
 import React from 'react';
-import {ObfuscateText} from '../../src/components/ObfuscateText';
-import {SectionTitle} from '../../src/components/SectionTitle.styled';
-import {SideImage} from '../../src/components/SideImage';
-import {PageComponent} from '../../src/types/PageComponent';
-import {ContactForm} from './components/ContactForm';
+import {ObfuscateText} from '../components/ObfuscateText';
+import {SectionTitle} from '../components/SectionTitle.styled';
+import {SideImage} from '../components/SideImage';
+import {PageComponent} from '../types/PageComponent';
+import {ContactForm} from '../components/ContactForm';
 
-export const Contact: PageComponent = ({style}) => <ContactForm style={style} />;
+export const Contact: PageComponent = () => <ContactForm />;
 
 Contact.displayName = 'contact';
 Contact.headerComponent = ({imageStyle, contentStyle, style}) => {
