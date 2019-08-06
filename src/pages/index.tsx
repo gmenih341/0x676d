@@ -6,10 +6,13 @@ import {SectionTitle} from '../components/SectionTitle.styled';
 import {WorkExperience} from '../components/WorkExperience';
 import {WorkSkills} from '../components/WorkSkills';
 import {SideImage} from '../components/SideImage';
+import {useToggle} from '../hooks/useToggle';
 
 /* eslint-disable react/no-unescaped-entities */
 
 const Home: PageComponent = ({style}) => {
+    const [sorted, setSorted] = useToggle(false);
+
     return (
         <PageContent style={style}>
             <ConsoleContent className="experience">
@@ -23,9 +26,9 @@ const Home: PageComponent = ({style}) => {
                 <SectionTitle>
                     <h2>Skills</h2>
                     <span>many cause I'm smart 🤓</span>
-                    <button>Sort</button>
+                    <button onClick={setSorted as any}>Sort</button>
                 </SectionTitle>
-                <WorkSkills />
+                <WorkSkills sorted={sorted} />
             </ConsoleContent>
         </PageContent>
     );

@@ -11,11 +11,11 @@ export function createBaseContentBox(): FlattenSimpleInterpolation {
         padding: ${SPACER}px;
         overflow: hidden;
         transition: box-shadow 300ms ease-out;
+        border: none;
         box-shadow: ${boxShadow(COLOR_BLACK)};
         background: ${COLOR_BLACK};
         color: ${COLOR_WHITE};
         font-family: ${FONT_SANS};
-
         line-height: 1.5;
 
         p,

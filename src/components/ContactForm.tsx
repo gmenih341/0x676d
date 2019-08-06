@@ -1,13 +1,13 @@
 import React, {FormEvent, FunctionComponent} from 'react';
 import {animated} from 'react-spring';
-import styled from 'styled-components/macro';
-import {MailIcon} from './Footer/icons/MailIcon';
-import {BaseButton, FormSelect, TextAreaInput, TextInput} from './Form';
-import {useForm} from './Form/hooks/useForm';
-import {COLOR_BLACK, COLOR_MAIN, COLOR_WHITE, SPACER, SPACER_BIG, SPACER_SMALL} from '../constants/style.constants';
+import styled, {CSSProperties} from 'styled-components/macro';
+import {COLOR_BLACK, COLOR_WHITE, SPACER, SPACER_BIG, SPACER_SMALL, COLOR_MAIN} from '../constants/style.constants';
 import {ClassNameOnly} from '../types/ClassNameOnly';
 import {mediaMin} from '../utils/style.utils';
 import {toQueryString} from '../utils/url.utils';
+import {BaseButton, TextAreaInput, TextInput} from './Form';
+import {useForm} from './Form/hooks/useForm';
+import {MailIcon} from './Footer/icons/MailIcon';
 
 interface ContactForm {
     email: string;
@@ -17,8 +17,12 @@ interface ContactForm {
     loading: boolean;
 }
 
+interface ContactFormProps extends ClassNameOnly {
+    style?: CSSProperties;
+}
+
 const subjectOptions: string[] = ['Work opportunity', 'Consulting', 'Just chat', 'Question about your project'];
-const ContactFormComponent: FunctionComponent<ClassNameOnly> = ({...props}) => {
+const ContactFormComponent: FunctionComponent<ContactFormProps> = ({...props}) => {
     const [formState, dispatch] = useForm<ContactForm, keyof ContactForm>({
         email: '',
         subject: '',
@@ -39,9 +43,9 @@ const ContactFormComponent: FunctionComponent<ClassNameOnly> = ({...props}) => {
         };
 
         try {
-            await fetch('/contact', {
+            await fetch('/', {
                 method: 'POST',
-                headers: {'Content-Type': 'application/x-www--urlencoded'},
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 body: toQueryString(formData),
             });
         } catch (e) {
@@ -51,18 +55,15 @@ const ContactFormComponent: FunctionComponent<ClassNameOnly> = ({...props}) => {
 
     return (
         <animated.form method="POST" name="contact" onSubmit={onFormSubmit} {...props}>
-            <TextInput placeholder="Your email" type="email" name="email" setValue={(value: string) => dispatch('email', value)} />
-            <FormSelect
-                name="subject"
-                options={subjectOptions}
-                placeholder="Subject"
-                setValue={(value: string) => dispatch('subject', value)}
+            <TextInput
+                placeholder="Where can I get you?"
+                type="email"
+                name="email"
+                setValue={(value: string) => dispatch('email', value)}
             />
+            <TextInput placeholder="Your topic" type="text" name="text" setValue={(value: string) => dispatch('subject', value)} />
             <TextAreaInput placeholder="What do you want to say?" name="content" setValue={(value: string) => dispatch('message', value)} />
-            <ContactButton type="submit">
-                <MailIcon fill={COLOR_MAIN[5]} width={15} height={15} />
-                Shoot me
-            </ContactButton>
+            <ContactButton type="submit">EN QU IR E</ContactButton>
         </animated.form>
     );
 };
@@ -88,9 +89,13 @@ export const ContactForm = styled(ContactFormComponent)`
 
 const ContactButton = styled(BaseButton)`
     grid-column: 1 / -1;
+    width: auto;
+    margin-left: auto;
     padding: ${SPACER}px ${SPACER_BIG * 2}px;
-    border: none;
     background: ${COLOR_BLACK};
+    font-size: 24px;
+    line-height: 1;
+    text-transform: uppercase;
 
     ${mediaMin('md')} {
         justify-self: flex-start;

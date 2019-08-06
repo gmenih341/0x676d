@@ -1,7 +1,12 @@
-import React, {FunctionComponent} from 'react';
+import React from 'react';
+import {SideImage} from '../components/SideImage';
+import {PageComponent} from '../types/PageComponent';
 
-const Home: FunctionComponent = () => <h1>Whoops!</h1>;
+const ErrorPage: PageComponent = () => <h1>Whoops!</h1>;
 
-Home.displayName = 'home';
+ErrorPage.displayName = 'home';
+ErrorPage.headerComponent = ({style, contentStyle, imageStyle}) => {
+    return <SideImage contentStyle={contentStyle} imageStyle={imageStyle} imageSrc={''}></SideImage>;
+};
 
-export default Home;
+export default ErrorPage;
