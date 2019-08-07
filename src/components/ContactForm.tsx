@@ -71,7 +71,7 @@ const ContactFormComponent: FunctionComponent<ContactFormProps> = ({...props}) =
 export const ContactForm = styled(ContactFormComponent)`
     display: grid;
     position: relative;
-    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-columns: 4fr 3fr;
     grid-template-rows: min-content min-content 300px min-content;
     grid-gap: ${SPACER_BIG}px;
 

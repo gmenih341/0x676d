@@ -35,18 +35,20 @@ const Home: PageComponent = ({style}) => {
 };
 
 Home.displayName = 'home-page';
+Home.index = 1;
 Home.headerComponent = ({imageStyle, contentStyle, style}) => (
     <SideImage overlap={true} imageSrc="/static/me.png" imageStyle={imageStyle} contentStyle={contentStyle} style={style}>
         <SectionTitle>
             <h2>About</h2>
         </SectionTitle>
         <p>
-            My name is Gregor, and I'm a full-stack web developer from Slovenia. I have a solid understanding of web development and it's
-            accompanying technologies, all the way from <code>HTML</code> to <code>SQL</code>.
-            <br />I hav
+            Primarily, I would call myself a web developer - most of the things I build live on the web in some form or another. Thought I
+            would say I’m equally experienced in both front- and back-end development, I prefer the front-end - it reminds me of putting
+            Lego blocks together, with added fanciness and animations.
         </p>
         <p>
-            a<br />b
+            In my free time (when I’m not building something for fun) I enjoy gaming, cycling, hiking and other activities that require
+            little to no talent.
         </p>
     </SideImage>
 );

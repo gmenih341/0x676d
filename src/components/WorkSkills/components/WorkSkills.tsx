@@ -1,13 +1,12 @@
+import orderBy from 'lodash/orderBy';
+import reverse from 'lodash/reverse';
 import React, {FunctionComponent, useEffect, useMemo} from 'react';
 import {animated} from 'react-spring';
 import styled from 'styled-components/macro';
-import {SPACER, COLOR_GRAY, SPACER_BIG} from '../../../constants/style.constants';
-import {useToggle} from '../../../hooks/useToggle';
+import {COLOR_GRAY, SPACER, SPACER_BIG} from '../../../constants/style.constants';
 import {ClassNameOnly} from '../../../types/ClassNameOnly';
 import {useSortingTransition} from '../animations/useSortingTransition';
 import {Skill} from './Skill';
-import orderBy from 'lodash/orderBy';
-import reverse from 'lodash/reverse';
 
 interface SkillRow {
     name: string;
@@ -62,7 +61,6 @@ export const WorkSkills = styled(WorkSkillsComponent)`
     position: relative;
     box-sizing: content-box;
     margin-bottom: ${SPACER_BIG}px;
-    border-right: 1px dashed ${COLOR_GRAY[6]};
 
     ${Skill} {
         position: absolute;

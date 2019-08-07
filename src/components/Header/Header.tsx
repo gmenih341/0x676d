@@ -13,18 +13,10 @@ interface HeaderProps extends ClassNameOnly {
 
 const HeaderComponent: FunctionComponent<HeaderProps> = React.memo(({className, title, description}) => {
     return (
-        <>
-            <Head>
-                <title>
-                    {title} / {description}
-                </title>
-                <meta name="description" content={description} />
-            </Head>
-            <div className={className}>
-                <Title>{title}</Title>
-                <Description>{description}</Description>
-            </div>
-        </>
+        <div className={className}>
+            <Title>{title}</Title>
+            <Description>{description}</Description>
+        </div>
     );
 });
 

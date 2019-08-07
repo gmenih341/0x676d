@@ -8,12 +8,13 @@ import {ContactForm} from '../components/ContactForm';
 export const Contact: PageComponent = ({style}) => <ContactForm style={style} />;
 
 Contact.displayName = 'contact';
+Contact.index = 2;
 Contact.headerComponent = ({imageStyle, contentStyle, style}) => {
     return (
         <SideImage overlap={true} imageSrc="/static/maribor.png" imageStyle={imageStyle} contentStyle={contentStyle} style={style}>
             <SectionTitle>
-                <h2>How to get in</h2>
-                <span>wassup</span>
+                <h2>Contact</h2>
+                <span>get in touch with me</span>
             </SectionTitle>
             <p>
                 Full-stack web developer

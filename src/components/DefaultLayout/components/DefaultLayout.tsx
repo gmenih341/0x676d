@@ -15,6 +15,7 @@ import {Menu} from '../../Menu';
 import {HeaderContainer} from './HeaderContainer.styled';
 import {usePageContentTransition} from '../../../animations/usePageContentTransition';
 import {ContentContainer} from './ContentContainer.styled';
+import Head from 'next/head';
 
 interface LayoutProps {
     className?: string;
@@ -24,15 +25,19 @@ interface LayoutProps {
 const DefaultLayoutComponent: FunctionComponent<LayoutProps> = ({className, pageComponent}) => {
     const {pathname} = useRouter();
     const routeData = useRouteData(pathname);
-    const direction = useIndexDirection(routeData.index);
+    const direction = useIndexDirection(pageComponent.index);
     const headerTransition = usePageHeaderTransition(pageComponent, direction);
     const pageTransition = usePageContentTransition(pageComponent, direction);
 
     return (
         <div className={className}>
+            <Head>
+                <title>Gregor Menih / {routeData.head.title}</title>
+                <meta name="description" content={routeData.head.description} />
+            </Head>
             <HeaderContainer>
                 <Logo />
-                <Header title={routeData.header.title} description={routeData.header.description} />
+                <Header title="Gregor Menih" description="front-end web developer" />
                 <Menu activePath={pathname} />
             </HeaderContainer>
             <ConsoleContent>

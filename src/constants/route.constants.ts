@@ -4,16 +4,16 @@ export const routes: Record<string, RouteData> = {
     '/': {
         menuText: 'cv',
         index: 0,
-        header: {
-            title: 'Gregor Menih',
+        head: {
+            title: 'about',
             description: 'full-stack web developer',
         },
     },
     '/contact': {
-        menuText: 'shoot me',
+        menuText: 'contact',
         index: 9,
-        header: {
-            title: 'Contact',
+        head: {
+            title: 'contact',
             description: 'get in touch with me',
         },
     },

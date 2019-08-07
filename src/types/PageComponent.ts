@@ -13,4 +13,5 @@ export interface HeaderComponentProps {
 export interface PageComponent extends FunctionComponent<PageComponentProps> {
     headerComponent: FunctionComponent<HeaderComponentProps>;
     displayName: string;
+    index: number;
 }
