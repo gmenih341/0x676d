@@ -4,10 +4,10 @@ import {BaseInput} from './BaseInput.styled';
 import {COLOR_GRAY} from '../../../constants/style.constants';
 import {BaseFormElement} from '../types/BaseFormElement';
 
-const TextAreaInputComponent: FunctionComponent<BaseFormElement<string>> = React.memo(({className, placeholder, value, setValue}) => {
+const TextAreaInputComponent: FunctionComponent<BaseFormElement<string>> = React.memo(({placeholder, value, setValue, ...props}) => {
     const onInput = (e: FormEvent<HTMLDivElement>) => setValue && setValue(e.currentTarget.textContent || '');
     return (
-        <BaseInput className={className} data-placeholder={placeholder} onInput={onInput} as="div" contentEditable={true}>
+        <BaseInput data-placeholder={placeholder} onInput={onInput} as="div" contentEditable={true} {...props}>
             {value}
         </BaseInput>
     );

@@ -72,14 +72,4 @@ export const DefaultLayout = styled(DefaultLayoutComponent)`
     ${mediaMin('xl')} {
         width: ${ScreenSize.xl - SPACER}px;
     }
-
-    ${mediaMin('lg')} {
-        .experience {
-            grid-column: 1 / 2;
-        }
-
-        .skills {
-            grid-column: 2 / 3;
-        }
-    }
 `;

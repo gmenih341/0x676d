@@ -26,9 +26,15 @@ const Home: PageComponent = ({style}) => {
                 <SectionTitle>
                     <h2>Skills</h2>
                     <span>many cause I'm smart 🤓</span>
-                    <button onClick={setSorted as any}>Sort</button>
+                    <span onClick={setSorted as any}>Sort</span>
                 </SectionTitle>
                 <WorkSkills sorted={sorted} />
+            </ConsoleContent>
+            <ConsoleContent className="soft-skills">
+                <SectionTitle>
+                    <h2>soft skills</h2>
+                    <span>non-technical</span>
+                </SectionTitle>
             </ConsoleContent>
         </PageContent>
     );

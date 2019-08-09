@@ -16,7 +16,7 @@ const WorkExperienceComponent: FunctionComponent<ClassNameOnly> = ({className}) 
                 <p>Developed solutions for a large rental company using ReactJS and NodeJS.</p>
                 <p>Load tested and optimized a NodeJS WebSocket server, to provide a scalable and robust backend for a live voting app.</p>
             </JobEntry>
-            <JobEntry company="ComTrade d.o.o." year="Jun 2015 - Feb 2016" title="Software engineer">
+            <JobEntry company="ComTrade d.o.o." year="Jun 2015 - Feb 2016" title="Student software engineer">
                 <p>
                     Mentored a group of students through a week of <i>EDIT Summer School</i>, where we built a simple warehouse robot using
                     AngularJS and Java.

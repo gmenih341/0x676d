@@ -1,6 +1,6 @@
-import styled from 'styled-components/macro';
-import {SPACER_SMALL, SPACER_BIG, COLOR_MAIN, FONT_MONO, COLOR_WHITE} from '../../../constants/style.constants';
 import {animated} from 'react-spring';
+import styled from 'styled-components/macro';
+import {COLOR_MAIN} from '../../../constants/style.constants';
 import {createBaseContentBox} from '../../../utils/component.utils';
 import {boxShadowFocused} from '../../../utils/style.utils';
 

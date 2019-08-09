@@ -1,10 +1,9 @@
-import Head from 'next/head';
 import React, {FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
-import {mediaMin} from '../../utils/style.utils';
 import {ClassNameOnly} from '../../types/ClassNameOnly';
-import {Title} from './components/Title.styled';
+import {mediaMin} from '../../utils/style.utils';
 import {Description} from './components/Description.styled';
+import {Title} from './components/Title.styled';
 
 interface HeaderProps extends ClassNameOnly {
     title: string;

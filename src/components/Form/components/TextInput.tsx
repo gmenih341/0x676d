@@ -6,23 +6,10 @@ import {BaseInput} from './BaseInput.styled';
 
 export interface FormTextProps<T> extends BaseFormElement<T>, Pick<InputHTMLAttributes<HTMLInputElement>, 'type'> {}
 
-export const TextInputComponent: FunctionComponent<FormTextProps<string>> = React.memo(
-    ({placeholder, type, value, setValue, className}) => {
-        const onInput = (e: FormEvent<HTMLInputElement>) => setValue && setValue(e.currentTarget.value);
-        return (
-            <BaseInput
-                className={className}
-                type={type || 'text'}
-                placeholder={placeholder}
-                value={value}
-                onInput={onInput}
-                minLength={5}
-                required={true}
-                as="input"
-            />
-        );
-    },
-);
+export const TextInputComponent: FunctionComponent<FormTextProps<string>> = React.memo(({value, setValue, ...props}) => {
+    const onInput = (e: FormEvent<HTMLInputElement>) => setValue && setValue(e.currentTarget.value);
+    return <BaseInput {...props} value={value} onInput={onInput} minLength={5} required={true} as="input" />;
+});
 
 export const TextInput = styled(TextInputComponent)`
     &::-webkit-input-placeholder {

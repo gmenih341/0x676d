@@ -30,6 +30,6 @@ export const COLOR_WHITE: string = COLOR_GRAY[0];
 export const COLOR_BLACK: string = COLOR_GRAY[8];
 
 export const FONT_SANS = `'Fira Sans', Arial, Helvetica, sans-serif`;
-export const FONT_TEXT = '`Noto+Sans`, Arial, Helvetica, sans-serif';
+export const FONT_TEXT = `'Josefin Sans', Arial, Helvetica, sans-serif`;
 export const FONT_MONO = `'Fira Mono', 'Courier New', Courier, monospace`;
 export const FONT_SERIF = `'Zilla Slab', 'Times New Roman', Times, serif`;

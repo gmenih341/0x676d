@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
-import {COLOR_GRAY, COLOR_MAIN, SPACER, SPACER_BIG, FONT_SERIF} from '../../../constants/style.constants';
+import {COLOR_GRAY, COLOR_MAIN, SPACER, SPACER_BIG, FONT_SERIF, SPACER_SMALL} from '../../../constants/style.constants';
 import {mediaMin, mediaMax} from '../../../utils/style.utils';
 import {useBoundingBox} from '../../../hooks/useBoundingBox';
 import {JobPointerIcon} from '../icons/JobPointerIcon';
@@ -88,7 +88,7 @@ export const JobEntry = styled(JobEntryComponent)`
         grid-column: 1 / -1;
         z-index: 10;
         justify-self: start;
-        padding-right: ${SPACER_BIG}px;
+        padding-right: ${SPACER_SMALL}px;
         color: ${COLOR_GRAY[8]};
         font-size: 12px;
         line-height: 24px;
@@ -98,10 +98,11 @@ export const JobEntry = styled(JobEntryComponent)`
             position: absolute;
             z-index: -1;
             top: 0;
-            left: -30px;
+            right: 0;
+            transform: scaleX(-1);
 
             ${mediaMin('sm')} {
-                left: -12px;
+                right: -24px;
             }
         }
     }

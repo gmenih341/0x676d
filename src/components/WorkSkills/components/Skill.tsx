@@ -32,12 +32,12 @@ export const Skill = styled(SkillComponent)`
     .bar {
         position: relative;
         flex-shrink: 0;
-        height: 22px;
+        height: 24px;
         padding-left: ${SPACER_SMALL}px;
         background-color: ${({color}) => color};
         color: ${COLOR_GRAY[9]};
         font-size: 12px;
-        line-height: 22px;
+        line-height: 24px;
         white-space: nowrap;
     }
 

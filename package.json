@@ -13,7 +13,7 @@
     "build": "npm run build:dev",
     "build:dev": "next build ./src",
     "build:prod": "set NODE_ENV=production && next build ./src",
-    "export": "next export ./src",
+    "export": "next export -o ./out ./src",
     "postexport": "./scripts/postExport.sh",
     "netlify": "npm run build:prod && npm run export",
     "lint:prettier": "prettier --write ./{src,pages}/**/*.{ts,tsx}",

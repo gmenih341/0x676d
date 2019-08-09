@@ -5,7 +5,7 @@ export const routes: Record<string, RouteData> = {
         menuText: 'cv',
         index: 0,
         head: {
-            title: 'about',
+            title: 'cv',
             description: 'full-stack web developer',
         },
     },

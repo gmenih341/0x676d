@@ -17,11 +17,11 @@ function obfuscateText(text: string): JSX.Element {
 
 interface ObfuscateTextProps {
     className?: string;
-    text: string;
+    children: string;
 }
 
-const ObfuscateTextComponent: FunctionComponent<ObfuscateTextProps> = React.memo(({className, text}) => (
-    <span className={className}>{obfuscateText(text)}</span>
+const ObfuscateTextComponent: FunctionComponent<ObfuscateTextProps> = React.memo(({className, children}) => (
+    <span className={className}>{obfuscateText(children)}</span>
 ));
 
 export const ObfuscateText = styled(ObfuscateTextComponent)`

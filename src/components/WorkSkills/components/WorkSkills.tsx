@@ -3,7 +3,7 @@ import reverse from 'lodash/reverse';
 import React, {FunctionComponent, useEffect, useMemo} from 'react';
 import {animated} from 'react-spring';
 import styled from 'styled-components/macro';
-import {COLOR_GRAY, SPACER, SPACER_BIG} from '../../../constants/style.constants';
+import {SPACER, SPACER_BIG} from '../../../constants/style.constants';
 import {ClassNameOnly} from '../../../types/ClassNameOnly';
 import {useSortingTransition} from '../animations/useSortingTransition';
 import {Skill} from './Skill';
@@ -37,9 +37,9 @@ interface WorkSkillsProps extends ClassNameOnly {
 }
 
 const WorkSkillsComponent: FunctionComponent<WorkSkillsProps> = React.memo(({className, sorted}) => {
-    const [transition, setData] = useSortingTransition<SkillRow>(data, 22 + SPACER, (item: SkillRow) => item.name);
+    const [transition, setData] = useSortingTransition<SkillRow>(data, 24 + SPACER, (item: SkillRow) => item.name);
     const height = useMemo(() => {
-        return 22 * data.length + SPACER * (data.length - 1);
+        return 24 * data.length + SPACER * (data.length - 1);
     }, [data]);
 
     useEffect(() => {
