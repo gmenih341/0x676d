@@ -88,7 +88,7 @@ export const JobEntry = styled(JobEntryComponent)`
         grid-column: 1 / -1;
         z-index: 10;
         justify-self: start;
-        padding-right: ${SPACER_SMALL}px;
+        padding-right: ${SPACER_BIG}px;
         color: ${COLOR_GRAY[8]};
         font-size: 12px;
         line-height: 24px;

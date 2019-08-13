@@ -4,7 +4,7 @@ import styled, {CSSProperties} from 'styled-components/macro';
 import {COLOR_MAIN, SPACER_BIG} from '../../../constants/style.constants';
 import {useToggle} from '../../../hooks/useToggle';
 import {ClassNameOnly} from '../../../types/ClassNameOnly';
-import {mediaMin} from '../../../utils/style.utils';
+import {mediaMin, mediaMax} from '../../../utils/style.utils';
 import {toQueryString} from '../../../utils/url.utils';
 import {TextAreaInput, TextInput} from '../../Form';
 import {useForm} from '../../Form/hooks/useForm';
@@ -84,8 +84,11 @@ export const ContactForm = styled(ContactFormComponent)`
     }
 
     ${TextAreaInput} {
+        grid-column: 1 / -1;
+        grid-row: 3 / 4;
         min-height: 300px;
         padding-bottom: 30px;
+
         ${mediaMin('md')} {
             grid-column: 1 / -1;
             grid-row: 2 / 4;
@@ -93,10 +96,16 @@ export const ContactForm = styled(ContactFormComponent)`
     }
 
     ${ContactButton} {
-        grid-column: 2 / 3;
+        grid-column: 1 / -1;
         grid-row: 3 / 4;
         z-index: 100;
+        align-self: end;
         margin-right: ${SPACER_BIG}px;
         transform: translateY(50%);
+
+        ${mediaMin('md')} {
+            grid-column: 2 / 3;
+            grid-row: 3 / 4;
+        }
     }
 `;

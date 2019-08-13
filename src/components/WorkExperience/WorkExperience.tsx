@@ -25,8 +25,7 @@ const WorkExperienceComponent: FunctionComponent<ClassNameOnly> = ({className}) 
             </JobEntry>
             <JobEntry company="Education and stuff" year="Before 2015">
                 <p>
-                    Studied Computer Science at <strong>The Faculty of Electrical Engineering and Computer Science</strong>
-                    in Maribor.
+                    Studied Computer Science at <strong>The Faculty of Electrical Engineering and Computer Science</strong> in Maribor.
                 </p>
                 <p>
                     Developed various websites and portals in WordPress, PHP and <span title="Good old days :(">jQuery</span>.

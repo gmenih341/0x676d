@@ -10,6 +10,10 @@ export const PageContent = styled(animated.main)`
     grid-template-rows: minmax(0, min-content) minmax(0, max-content);
     grid-gap: ${SPACER_BIG}px;
 
+    > * {
+        grid-column: 1 / -1;
+    }
+
     ${mediaMin('lg')} {
         .experience {
             grid-column: 1 / 2;
