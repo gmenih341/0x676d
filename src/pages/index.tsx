@@ -1,12 +1,13 @@
 import React from 'react';
-import {PageComponent} from '../types/PageComponent';
-import {PageContent} from '../components/DefaultLayout/components/PageContent.styled';
 import {ConsoleContent} from '../components/ConsoleContent.styled';
+import {PageContent} from '../components/DefaultLayout/components/PageContent.styled';
+import {ExternalLink} from '../components/ExternalLink';
 import {SectionTitle} from '../components/SectionTitle.styled';
+import {SideImage} from '../components/SideImage';
 import {WorkExperience} from '../components/WorkExperience';
 import {WorkSkills} from '../components/WorkSkills';
-import {SideImage} from '../components/SideImage';
 import {useToggle} from '../hooks/useToggle';
+import {PageComponent} from '../types/PageComponent';
 
 /* eslint-disable react/no-unescaped-entities */
 
@@ -18,7 +19,7 @@ const Home: PageComponent = ({style}) => {
             <ConsoleContent className="experience">
                 <SectionTitle>
                     <h2>Experience</h2>
-                    <span>not many cause I'm loyal</span>
+                    <span>few cause I'm loyal</span>
                 </SectionTitle>
                 <WorkExperience />
             </ConsoleContent>
@@ -26,15 +27,8 @@ const Home: PageComponent = ({style}) => {
                 <SectionTitle>
                     <h2>Skills</h2>
                     <span>many cause I'm smart 🤓</span>
-                    <span onClick={setSorted as any}>Sort</span>
                 </SectionTitle>
                 <WorkSkills sorted={sorted} />
-            </ConsoleContent>
-            <ConsoleContent className="soft-skills">
-                <SectionTitle>
-                    <h2>soft skills</h2>
-                    <span>non-technical</span>
-                </SectionTitle>
             </ConsoleContent>
         </PageContent>
     );
@@ -48,14 +42,14 @@ Home.headerComponent = ({imageStyle, contentStyle, style}) => (
             <h2>About</h2>
         </SectionTitle>
         <p>
-            Primarily, I would call myself a web developer - most of the things I build live on the web in some form or another. Thought I
-            would say I’m equally experienced in both front- and back-end development, I prefer the front-end - it reminds me of putting
-            Lego blocks together, with added fanciness and animations.
+            Full-stack web developer with a great understanding of the web development process, and it's accompanying technologies. Most of
+            the stacks I've worked on have been dominated by JavaScript, so I feel most at home there, but I like to try the latest cutting
+            edge technology, so I'm familiar with many other languages as well.
+            <br />
+            This website serves as my CV - if you would like to find out how I build it, you can find the source{' '}
+            <ExternalLink href="https://github.com/gmenih341/0x676d">here</ExternalLink>.
         </p>
-        <p>
-            In my free time (when I’m not building something for fun) I enjoy gaming, cycling, hiking and other activities that require
-            little to no talent.
-        </p>
+        <p>In my free time I enjoy gaming, cycling, hiking, and other similar activities, that require no talent.</p>
     </SideImage>
 );
 

@@ -18,14 +18,18 @@ Contact.headerComponent = ({imageStyle, contentStyle, style}) => {
                 <h2>Contact</h2>
                 <span>get in touch with me</span>
             </SectionTitle>
-            <p>The quickest way to get me is the form below. If you prefer, you can contact me via:</p>
             <p>
+                The best way to contact me is to use the form below. However, if you prefer to just write me an email, or use other means of
+                communication, you can use one of the methods below.
+                <br />
+                <br />
                 <ExternalLink href={LINKEDIN_URL}>LinkedIn</ExternalLink>
                 <br />
                 <ExternalLink href={LINKEDIN_URL}>gregor@menih.si</ExternalLink>
                 <br />
                 <ObfuscateText>+386 31 336 909</ObfuscateText>
             </p>
+            <small>The main purpose of this page is so that I can show you the cool transition animations.</small>
         </SideImage>
     );
 };

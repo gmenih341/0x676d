@@ -11,7 +11,7 @@ export const FooterComponent: FunctionComponent<ClassNameOnly> = React.memo(({cl
     return (
         <footer className={className}>
             <SocialIcons />
-            <NetlifySocialIcon icon={<NetlifyIcon width={20} height={20} fill={COLOR_GRAY[3]} />} href="https://netlify.com">
+            <NetlifySocialIcon icon={<NetlifyIcon width={20} height={20} fill={COLOR_GRAY[5]} />} href="https://netlify.com">
                 Hosted on Netlify
             </NetlifySocialIcon>
         </footer>

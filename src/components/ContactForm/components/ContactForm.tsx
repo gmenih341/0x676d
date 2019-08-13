@@ -60,7 +60,7 @@ const ContactFormComponent: FunctionComponent<ContactFormProps> = ({...props}) =
             <TextAreaInput placeholder="Message" setValue={(value: string) => dispatch('message', value)} />
             <ContactButton type="submit" onMouseEnter={() => !show && setShow(true)}>
                 Send
-                <JobPointerIcon width={300} height={60} fill={COLOR_MAIN[6]} />
+                <JobPointerIcon width={300} height={50} fill={COLOR_MAIN[6]} />
             </ContactButton>
 
             {/* Hack so netlify acknoledges all forms (contendEditable doesn't work) */}

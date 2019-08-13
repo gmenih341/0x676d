@@ -37,7 +37,7 @@ const DefaultLayoutComponent: FunctionComponent<LayoutProps> = ({className, page
             </Head>
             <HeaderContainer>
                 <Logo />
-                <Header title="Gregor Menih" description="front-end web developer" />
+                <Header title="Gregor Menih" description="full-stack web developer" />
                 <Menu activePath={pathname} />
             </HeaderContainer>
             <ConsoleContent>
