@@ -8,7 +8,7 @@ export const Title = styled('h1')`
     color: ${COLOR_MAIN[6]};
     font-family: ${FONT_SANS};
     font-size: 32px;
-    font-weight: 800;
+    font-weight: 600;
 
     ${mediaMin('md')} {
         font-size: 48px;

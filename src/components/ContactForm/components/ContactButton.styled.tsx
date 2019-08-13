@@ -11,7 +11,7 @@ export const ContactButton = styled('button')`
     color: ${COLOR_MAIN[0]};
     font-family: ${FONT_SANS};
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 50px;
     text-transform: uppercase;
     cursor: pointer;
