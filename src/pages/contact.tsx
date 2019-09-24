@@ -6,6 +6,12 @@ import {PageComponent} from '../types/PageComponent';
 import {ContactForm} from '../components/ContactForm';
 import {ExternalLink} from '../components/ExternalLink';
 import {LINKEDIN_URL} from '../constants/social.constants';
+import {ImageSet, MimeType} from '../types/ImageMime';
+
+const contactPageImages: ImageSet = {
+    [MimeType.PNG]: '/static/maribor.png',
+    [MimeType.WEBP]: '/static/maribor.webp',
+};
 
 export const Contact: PageComponent = ({style}) => <ContactForm style={style} />;
 
@@ -13,7 +19,13 @@ Contact.displayName = 'contact';
 Contact.index = 2;
 Contact.headerComponent = ({imageStyle, contentStyle, style}) => {
     return (
-        <SideImage overlap={true} imageSrc="/static/maribor.png" imageStyle={imageStyle} contentStyle={contentStyle} style={style}>
+        <SideImage
+            overlap={true}
+            alt="Contact page cover"
+            imageSet={contactPageImages}
+            imageStyle={imageStyle}
+            contentStyle={contentStyle}
+            style={style}>
             <SectionTitle>
                 <h2>Contact</h2>
                 <span>get in touch with me</span>

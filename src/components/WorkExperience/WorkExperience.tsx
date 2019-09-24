@@ -1,12 +1,22 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useMemo} from 'react';
 import styled from 'styled-components/macro';
 import {ClassNameOnly} from '../../types/ClassNameOnly';
 import {JobEntry} from './components/JobEntry';
+import Link from 'next/link';
 
+/* eslint-disable react/no-unescaped-entities */
 const WorkExperienceComponent: FunctionComponent<ClassNameOnly> = ({className}) => {
+    const amISelfEmployed: boolean = useMemo(() => Date.now() > new Date('2019-10-25T23:59:59.999+0200').getTime(), []);
+
     return (
         <ul className={className}>
-            <JobEntry company="EqualEyes Ltd." title="Full stack web developer" year="Mar 2016 - Present" isPresent={true}>
+            <JobEntry company="Self-employed" title="Untitled" year="Oct 2019 - Present" isPresent={amISelfEmployed}>
+                <p>Next chapter. TBD.</p>
+                <p>
+                    Think we'd be a good fit? Feel free to <Link href="/contact">contact me</Link>.
+                </p>
+            </JobEntry>
+            <JobEntry company="EqualEyes Ltd." title="Full stack web developer" year="Mar 2016 - Oct 2019" isPresent={!amISelfEmployed}>
                 <p>Maintaining and developing microservice solutions for a large rental company using multiple languages and frameworks.</p>
                 <p>
                     Leading the development of a microservice solution, to synchronise multiple third-party APIs into a single API. Used

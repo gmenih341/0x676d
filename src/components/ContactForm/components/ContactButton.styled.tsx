@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import {COLOR_MAIN, FONT_TEXT, SPACER, SPACER_BIG, FONT_SANS} from '../../../constants/style.constants';
+import {COLOR_MAIN, FONT_SANS} from '../../../constants/style.constants';
 
 export const ContactButton = styled('button')`
     position: relative;

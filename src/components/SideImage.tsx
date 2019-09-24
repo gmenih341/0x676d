@@ -3,6 +3,7 @@ import {animated} from 'react-spring';
 import styled, {CSSProperties} from 'styled-components/macro';
 import {COLOR_GRAY, SPACER, SPACER_BIG, SPACER_SMALL} from '../constants/style.constants';
 import {mediaMax, mediaMin} from '../utils/style.utils';
+import {ImageSet, MimeType} from '../types/ImageMime';
 
 const SECTION_WIDTH = 250;
 
@@ -14,16 +15,22 @@ enum SideImageDirection {
 interface SideImagePros {
     className?: string;
     direction?: keyof typeof SideImageDirection;
-    imageSrc: string;
     overlap?: boolean;
+    imageSet: Partial<ImageSet>;
     imageStyle?: CSSProperties;
     contentStyle?: CSSProperties;
     style?: CSSProperties;
+    alt?: string;
 }
 
-const SideImageComponent: FunctionComponent<SideImagePros> = ({className, children, contentStyle, imageStyle, style}) => (
+const SideImageComponent: FunctionComponent<SideImagePros> = ({alt, className, children, contentStyle, imageStyle, style, imageSet}) => (
     <animated.div className={className} style={style}>
-        <animated.div className="image" style={imageStyle} />
+        <animated.picture className="image" style={imageStyle}>
+            {Object.entries(imageSet).map(([mime, src]) => (
+                <source key={mime} srcSet={src} type={mime} />
+            ))}
+            {MimeType.PNG in imageSet && <img src={imageSet['img/png']} alt={alt} />}
+        </animated.picture>
         <animated.div className="content" style={contentStyle}>
             {children}
         </animated.div>
@@ -65,11 +72,13 @@ export const SideImage = styled(SideImageComponent)`
         width: ${SECTION_WIDTH}px;
         min-height: ${SECTION_WIDTH}px;
         margin: ${-SPACER}px;
-        background: url(${({imageSrc}) => imageSrc});
-        background-repeat: no-repeat;
-        background-position: center top;
-        background-size: cover;
         vertical-align: middle;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
         ${mediaMax('sm')} {
             position: absolute;
@@ -78,7 +87,6 @@ export const SideImage = styled(SideImageComponent)`
             width: 100%;
             height: 100%;
             margin: 0;
-            padding: ${SPACER}px;
             opacity: 0.15;
         }
     }

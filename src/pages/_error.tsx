@@ -7,7 +7,7 @@ const ErrorPage: PageComponent = () => null;
 ErrorPage.displayName = 'home';
 ErrorPage.index = 404;
 ErrorPage.headerComponent = ({style, contentStyle, imageStyle}) => {
-    return <SideImage style={style} contentStyle={contentStyle} imageStyle={imageStyle} imageSrc={''}></SideImage>;
+    return <SideImage style={style} contentStyle={contentStyle} imageStyle={imageStyle} imageSet={{}}></SideImage>;
 };
 
 export default ErrorPage;

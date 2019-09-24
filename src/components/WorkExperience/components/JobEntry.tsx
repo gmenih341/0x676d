@@ -1,8 +1,8 @@
 import React, {FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
-import {COLOR_GRAY, COLOR_MAIN, SPACER, SPACER_BIG, FONT_SERIF, SPACER_SMALL} from '../../../constants/style.constants';
-import {mediaMin, mediaMax} from '../../../utils/style.utils';
+import {COLOR_GRAY, COLOR_MAIN, FONT_SERIF, SPACER, SPACER_BIG} from '../../../constants/style.constants';
 import {useBoundingBox} from '../../../hooks/useBoundingBox';
+import {mediaMax, mediaMin} from '../../../utils/style.utils';
 import {JobPointerIcon} from '../icons/JobPointerIcon';
 
 interface JobEntryProps {
