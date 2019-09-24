@@ -29,7 +29,7 @@ const SideImageComponent: FunctionComponent<SideImagePros> = ({alt, className, c
             {Object.entries(imageSet).map(([mime, src]) => (
                 <source key={mime} srcSet={src} type={mime} />
             ))}
-            {MimeType.PNG in imageSet && <img src={imageSet['img/png']} alt={alt} />}
+            {MimeType.WEBP in imageSet && <img src={imageSet['img/png']} alt={alt} />}
         </animated.picture>
         <animated.div className="content" style={contentStyle}>
             {children}
