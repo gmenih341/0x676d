@@ -16,7 +16,7 @@ export function mediaMax(size: keyof typeof ScreenSize): string {
 
 export type Unit = 'rem' | 'em' | 'px';
 
-export function lineClamp(lines: number, lineHeight: number = 1.412, unit: Unit = 'rem'): string {
+export function lineClamp(lines: number, lineHeight = 1.412, unit: Unit = 'rem'): string {
     return `
         display: block;
         display: -webkit-box;
