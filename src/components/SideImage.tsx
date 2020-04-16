@@ -78,6 +78,7 @@ export const SideImage = styled(SideImageComponent)`
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: ${({direction}) => (direction === 'right' ? 'left' : 'right')};
         }
 
         ${mediaMax('sm')} {

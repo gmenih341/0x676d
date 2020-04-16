@@ -9,8 +9,8 @@ import {LINKEDIN_URL} from '../constants/social.constants';
 import {ImageSet, MimeType} from '../types/ImageMime';
 
 const contactPageImages: ImageSet = {
-    [MimeType.PNG]: '/static/maribor.png',
-    [MimeType.WEBP]: '/static/maribor.webp',
+    [MimeType.PNG]: '/maribor.png',
+    [MimeType.WEBP]: '/maribor.webp',
 };
 
 export const Contact: PageComponent = ({style}) => <ContactForm style={style} />;

@@ -16,7 +16,7 @@ const SkillComponent: FunctionComponent<SkillProps> = React.memo(({className, na
 
     return (
         <div className={className} title={title || name}>
-            <img src={`/static/skill-icons/${iconName}.svg`} />
+            <img src={`/skill-icons/${iconName}.svg`} />
             <div className="bar" style={{width: `calc(${value}% - 32px)`}}>
                 {name}
             </div>

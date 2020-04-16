@@ -1,30 +1,16 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {ConsoleContent} from '../components/ConsoleContent.styled';
 import {PageContent} from '../components/DefaultLayout/components/PageContent.styled';
 import {ExternalLink} from '../components/ExternalLink';
 import {SectionTitle} from '../components/SectionTitle.styled';
 import {SideImage} from '../components/SideImage';
 import {WorkExperience} from '../components/WorkExperience';
-import {WorkSkills} from '../components/WorkSkills';
-import {useToggle} from '../hooks/useToggle';
-import {PageComponent} from '../types/PageComponent';
 import {ImageSet, MimeType} from '../types/ImageMime';
+import {PageComponent} from '../types/PageComponent';
 
 /* eslint-disable react/no-unescaped-entities */
 
 const Home: PageComponent = ({style}) => {
-    const [sorted, setSorted] = useToggle();
-    const [runAnime, toggleAnime] = useToggle(true);
-
-    useEffect(() => {
-        let timeout;
-        if (runAnime) {
-            timeout = setTimeout(() => setSorted(!sorted), 5000);
-        }
-
-        return () => clearTimeout(timeout);
-    }, [sorted, runAnime]);
-
     return (
         <PageContent style={style}>
             <ConsoleContent className="experience">
@@ -34,24 +20,20 @@ const Home: PageComponent = ({style}) => {
                 </SectionTitle>
                 <WorkExperience />
             </ConsoleContent>
-            <ConsoleContent
-                className="skills"
-                onClick={() => toggleAnime()}
-                onMouseEnter={() => toggleAnime(false)}
-                onMouseLeave={() => toggleAnime(true)}>
+            <ConsoleContent className="skills">
                 <SectionTitle>
-                    <h2>Skills</h2>
-                    <span>things I've learned</span>
+                    <h2>Top skills</h2>
                 </SectionTitle>
-                <WorkSkills sorted={sorted} />
+                Angular has been part of my professional stack for over 2 years now. I don't really like it, but I don't have much of a
+                choice.
             </ConsoleContent>
         </PageContent>
     );
 };
 
 const homePageImages: ImageSet = {
-    [MimeType.PNG]: '/static/me.png',
-    [MimeType.WEBP]: '/static/me.webp',
+    [MimeType.JPEG]: '/images/me.jpg',
+    [MimeType.WEBP]: '/images/me.webp',
 };
 Home.displayName = 'home-page';
 Home.index = 1;

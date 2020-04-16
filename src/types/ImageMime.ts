@@ -1,6 +1,7 @@
 export enum MimeType {
     PNG = 'image/png',
+    JPEG = 'image/jpeg',
     WEBP = 'image/webp',
 }
 
-export type ImageSet = Record<MimeType, string>;
+export type ImageSet = Partial<Record<MimeType, string>>;

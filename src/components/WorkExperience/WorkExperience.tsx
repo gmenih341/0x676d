@@ -13,7 +13,11 @@ const WorkExperienceComponent: FunctionComponent<ClassNameOnly> = ({className}) 
             <JobEntry company="Self-employed" title="Untitled" year="Oct 2019 - Present" isPresent={amISelfEmployed}>
                 <p>Next chapter. TBD.</p>
                 <p>
-                    Think we'd be a good fit? Feel free to <Link href="/contact">contact me</Link>.
+                    Think we'd be a good fit? Feel free to{' '}
+                    <Link href="/contact">
+                        <a>contact me</a>
+                    </Link>
+                    .
                 </p>
             </JobEntry>
             <JobEntry company="EqualEyes Ltd." title="Full stack web developer" year="Mar 2016 - Oct 2019" isPresent={!amISelfEmployed}>

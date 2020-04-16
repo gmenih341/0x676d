@@ -29,6 +29,8 @@ const DefaultLayoutComponent: FunctionComponent<LayoutProps> = ({className, page
     const headerTransition = usePageHeaderTransition(pageComponent, direction);
     const pageTransition = usePageContentTransition(pageComponent, direction);
 
+    console.log(direction);
+
     return (
         <div className={className}>
             <Head>
