@@ -1,7 +1,3 @@
-export const SPACER_SMALL = 8;
-export const SPACER = 16;
-export const SPACER_BIG = 32;
-
 export const COLOR_MAIN: string[] = [
     '#e9f3fb',
     '#bddcf4',

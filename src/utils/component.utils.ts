@@ -1,14 +1,15 @@
-import {css, FlattenSimpleInterpolation} from 'styled-components/macro';
-import {COLOR_BLACK, COLOR_GRAY, COLOR_WHITE, FONT_SANS, SPACER, SPACER_SMALL} from '../constants/style.constants';
+import {css, FlattenInterpolation, ThemeProps, DefaultTheme} from 'styled-components/macro';
+import {COLOR_BLACK, COLOR_GRAY, COLOR_WHITE, FONT_SANS} from '../constants/style.constants';
 import {boxShadow, boxShadowFocused, opaque} from './style.utils';
+import {themeColor, themeSpacer} from './theme.utils';
 
-export function createBaseContentBox(): FlattenSimpleInterpolation {
+export function createBaseContentBox(): FlattenInterpolation<ThemeProps<DefaultTheme>> {
     return css`
         position: relative;
         box-sizing: border-box;
         align-self: flex-start;
         width: 100%;
-        padding: ${SPACER}px;
+        padding: ${themeSpacer(6)};
         overflow: hidden;
         transition: box-shadow 300ms ease-out;
         border: none;
@@ -20,12 +21,12 @@ export function createBaseContentBox(): FlattenSimpleInterpolation {
 
         p,
         span {
-            color: ${COLOR_GRAY[1]};
+            color: ${themeColor('textLight')};
             letter-spacing: 1px;
         }
 
         code {
-            padding: ${SPACER_SMALL / 2}px;
+            padding: ${themeSpacer(6, 0.5)};
             border-radius: 3px;
             background: ${opaque(COLOR_GRAY[9], 0.5)};
             font-size: 13px;

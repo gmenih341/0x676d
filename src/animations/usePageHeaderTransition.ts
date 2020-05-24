@@ -49,6 +49,11 @@ export function usePageHeaderTransition(routeComponent: PageComponent, direction
         [routeComponent],
         (item: PageComponent) => item.displayName,
         {
+            initial: {
+                x: 0,
+                width: '100%',
+                transform: 'translateX(0)',
+            },
             from: {
                 x: direction,
                 width: '100%',

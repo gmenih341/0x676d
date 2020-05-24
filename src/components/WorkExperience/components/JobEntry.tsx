@@ -1,9 +1,11 @@
 import React, {FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
-import {COLOR_GRAY, COLOR_MAIN, FONT_SERIF, SPACER, SPACER_BIG} from '../../../constants/style.constants';
+import {COLOR_GRAY, COLOR_MAIN, FONT_SERIF} from '../../../constants/style.constants';
 import {useBoundingBox} from '../../../hooks/useBoundingBox';
 import {mediaMax, mediaMin} from '../../../utils/style.utils';
+import {themePx, themeSpacer} from '../../../utils/theme.utils';
 import {JobPointerIcon} from '../icons/JobPointerIcon';
+import {TechStack} from './TechStack';
 
 interface JobEntryProps {
     company: string;
@@ -11,13 +13,14 @@ interface JobEntryProps {
     year?: string;
     className?: string;
     isPresent?: boolean;
+    stack?: string[];
 }
 
-const INDICATOR_SIZE = 16;
+const INDICATOR_SIZE = '16px';
 const COLOR_TIMELINE = COLOR_GRAY[4];
 const COLOR_PRESENT = COLOR_MAIN[4];
 
-const JobEntryComponent: FunctionComponent<JobEntryProps> = ({children, className, company, isPresent, title, year}) => {
+const JobEntryComponent: FunctionComponent<JobEntryProps> = ({children, className, company, isPresent, title, year, stack}) => {
     const [yearRef, boundingBox] = useBoundingBox<HTMLDivElement>();
 
     return (
@@ -32,6 +35,7 @@ const JobEntryComponent: FunctionComponent<JobEntryProps> = ({children, classNam
                 />
                 {!year && isPresent ? 'Present' : year}
             </div>
+            {stack && stack.length && <TechStack stack={stack} />}
             <div className="meta">
                 <div className="company">{company}</div>
                 {title && <div className="title">{title}</div>}
@@ -43,23 +47,23 @@ const JobEntryComponent: FunctionComponent<JobEntryProps> = ({children, classNam
 
 export const JobEntry = styled(JobEntryComponent)`
     display: grid;
-    grid-template-columns: ${SPACER}px 1fr;
+    grid-template-columns: ${themeSpacer(6)} 200px 1fr;
     grid-template-rows: max-content;
-    grid-gap: ${SPACER}px;
+    grid-gap: ${themeSpacer(6)};
 
     &:not(:last-of-type) {
-        padding-bottom: ${SPACER_BIG - SPACER}px;
+        padding-bottom: ${themePx((t) => t.spacers[9] - t.spacers[5])};
     }
 
     ${mediaMin('sm')} {
-        margin: 0 ${INDICATOR_SIZE}px;
+        margin: 0 ${INDICATOR_SIZE};
     }
 
     .indicator {
         display: block;
         grid-column: 1 / 1;
-        width: ${INDICATOR_SIZE}px;
-        height: ${INDICATOR_SIZE}px;
+        width: ${INDICATOR_SIZE};
+        height: ${INDICATOR_SIZE};
         transform: translateY(4px) translateX(-50%) rotate(45deg);
         border: 3px solid;
         border-color: ${({isPresent}) => (isPresent ? COLOR_PRESENT : COLOR_TIMELINE)};
@@ -85,10 +89,11 @@ export const JobEntry = styled(JobEntryComponent)`
 
     .year {
         position: relative;
-        grid-column: 1 / -1;
+        grid-column: 1 / 3;
+        grid-row: 1 / 1;
         z-index: 10;
         justify-self: start;
-        padding-right: ${SPACER_BIG}px;
+        padding-right: ${themeSpacer(9)};
         color: ${COLOR_GRAY[8]};
         font-size: 12px;
         line-height: 24px;
@@ -108,6 +113,8 @@ export const JobEntry = styled(JobEntryComponent)`
     }
 
     .meta {
+        display: flex;
+        flex-direction: row;
         grid-column: 1 / -1;
         flex: 1 0;
         line-height: 1.1;
@@ -128,16 +135,21 @@ export const JobEntry = styled(JobEntryComponent)`
         }
     }
 
+    ${TechStack} {
+        grid-column: 3 / -1;
+        grid-row: 1 / 1;
+    }
+
     .content {
         grid-column: 1 / -1;
         font-size: 14px;
 
         p {
-            margin: 0 0 ${SPACER}px 0;
+            margin: 0 0 ${themeSpacer(6)} 0;
         }
 
         ${mediaMax('sm')} {
-            margin-left: ${SPACER}px;
+            margin-left: ${themeSpacer(6)};
         }
     }
 

@@ -1,14 +1,14 @@
-import styled from 'styled-components/macro';
-import {SPACER_BIG} from '../../../constants/style.constants';
 import {animated} from 'react-spring';
+import styled from 'styled-components/macro';
 import {mediaMin} from '../../../utils/style.utils';
+import {themeSpacer} from '../../../utils/theme.utils';
 
 export const PageContent = styled(animated.main)`
     display: grid;
     position: relative;
     grid-template-columns: minmax(0, 5fr) minmax(0, 4fr);
     grid-template-rows: minmax(0, min-content) minmax(0, max-content);
-    grid-gap: ${SPACER_BIG}px;
+    grid-gap: ${themeSpacer(9)};
 
     > * {
         grid-column: 1 / -1;

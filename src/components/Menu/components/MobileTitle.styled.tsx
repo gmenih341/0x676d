@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
-import {SPACER} from '../../../constants/style.constants';
 import {mediaMax} from '../../../utils/style.utils';
+import {themeSpacer} from '../../../utils/theme.utils';
 
 export const MobileTitle = styled('h2')`
     display: none;
@@ -8,6 +8,6 @@ export const MobileTitle = styled('h2')`
     ${mediaMax('md')} {
         display: block;
         margin: 0;
-        margin-bottom: ${SPACER}px;
+        margin-bottom: ${themeSpacer(6)};
     }
 `;

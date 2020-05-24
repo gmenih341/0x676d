@@ -1,8 +1,9 @@
 import React, {FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
-import {COLOR_GRAY, SPACER, SPACER_SMALL} from '../../../constants/style.constants';
-import {mediaMin} from '../../../utils/style.utils';
+import {COLOR_GRAY} from '../../../constants/style.constants';
 import {ClassNameOnly} from '../../../types/ClassNameOnly';
+import {mediaMin} from '../../../utils/style.utils';
+import {themeSpacer} from '../../../utils/theme.utils';
 
 interface MenuProps extends ClassNameOnly {
     active: boolean;
@@ -23,15 +24,15 @@ export const MobileToggle = styled(MobileToggleComponent)`
     display: flex;
     position: absolute;
     z-index: 2000;
-    top: ${SPACER}px;
+    top: ${themeSpacer(6)};
     right: 0;
     box-sizing: content-box;
     flex-direction: column;
     justify-content: space-between;
     width: 20px;
     height: 15px;
-    margin-right: ${SPACER}px;
-    padding: ${SPACER_SMALL}px;
+    margin-right: ${themeSpacer(6)};
+    padding: ${themeSpacer(3)};
     border: none;
     background: none;
 

@@ -1,21 +1,21 @@
+import Head from 'next/head';
 import {useRouter} from 'next/router';
 import React, {FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
+import {usePageContentTransition} from '../../../animations/usePageContentTransition';
 import {usePageHeaderTransition} from '../../../animations/usePageHeaderTransition';
-import {SPACER, SPACER_BIG} from '../../../constants/style.constants';
 import {useIndexDirection} from '../../../hooks/useIndexDirection';
 import {useRouteData} from '../../../hooks/useRouteData';
 import {PageComponent} from '../../../types/PageComponent';
 import {mediaMin, ScreenSize} from '../../../utils/style.utils';
+import {themePx, themeSpacer} from '../../../utils/theme.utils';
 import {ConsoleContent} from '../../ConsoleContent.styled';
 import {Footer} from '../../Footer';
 import {Header} from '../../Header';
 import {Logo} from '../../Logo';
 import {Menu} from '../../Menu';
-import {HeaderContainer} from './HeaderContainer.styled';
-import {usePageContentTransition} from '../../../animations/usePageContentTransition';
 import {ContentContainer} from './ContentContainer.styled';
-import Head from 'next/head';
+import {HeaderContainer} from './HeaderContainer.styled';
 
 interface LayoutProps {
     className?: string;
@@ -60,18 +60,18 @@ const DefaultLayoutComponent: FunctionComponent<LayoutProps> = ({className, page
 export const DefaultLayout = styled(DefaultLayoutComponent)`
     display: grid;
     grid-template-rows: minmax(0, 100px) 1fr min-content;
-    grid-gap: ${SPACER_BIG}px;
-    margin: ${SPACER_BIG}px auto;
+    grid-gap: ${themeSpacer(9)};
+    margin: ${themeSpacer(9)} auto;
 
     ${mediaMin('md')} {
-        width: ${ScreenSize.md - SPACER}px;
+        width: ${themePx((t) => ScreenSize.md - t.spacers[9])};
     }
 
     ${mediaMin('lg')} {
-        width: ${ScreenSize.lg - SPACER}px;
+        width: ${themePx((t) => ScreenSize.lg - t.spacers[5])};
     }
 
     ${mediaMin('xl')} {
-        width: ${ScreenSize.xl - SPACER}px;
+        width: ${themePx((t) => ScreenSize.xl - t.spacers[5])};
     }
 `;

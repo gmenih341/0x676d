@@ -1,6 +1,6 @@
-import styled from 'styled-components/macro';
 import React, {FunctionComponent, ReactNode} from 'react';
-import {COLOR_BLACK, SPACER, SPACER_SMALL} from '../../../constants/style.constants';
+import styled from 'styled-components/macro';
+import {themeColor, themeSpacer} from '../../../utils/theme.utils';
 import {ExternalLink} from '../../ExternalLink';
 
 export interface IconItemProps {
@@ -19,19 +19,19 @@ const Icon: FunctionComponent<IconItemProps> = ({href, icon, children, className
 export const SocialIconItem = styled(Icon)`
     position: relative;
     overflow: hidden;
-    color: ${COLOR_BLACK};
+    color: ${themeColor('textDark')};
     font-size: 0.8em;
     line-height: 1em;
     text-decoration: none;
 
     &:not(:last-of-type) {
-        margin-right: ${SPACER}px;
+        margin-right: ${themeSpacer(6)};
     }
 
     i {
         display: inline-block;
         position: relative;
-        padding: ${SPACER_SMALL}px ${SPACER}px;
+        padding: ${themeSpacer(3)} ${themeSpacer(6)};
         line-height: 0;
         vertical-align: middle;
     }

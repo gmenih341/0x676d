@@ -22,7 +22,7 @@ const Home: PageComponent = ({style}) => {
             </ConsoleContent>
             <ConsoleContent className="skills">
                 <SectionTitle>
-                    <h2>Top skills</h2>
+                    <h2>commit history</h2>
                 </SectionTitle>
                 Angular has been part of my professional stack for over 2 years now. I don't really like it, but I don't have much of a
                 choice.

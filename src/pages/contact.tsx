@@ -38,10 +38,7 @@ Contact.headerComponent = ({imageStyle, contentStyle, style}) => {
                 <ExternalLink href={LINKEDIN_URL}>LinkedIn</ExternalLink>
                 <br />
                 <ExternalLink href={LINKEDIN_URL}>gregor@menih.si</ExternalLink>
-                <br />
-                <ObfuscateText>+386 31 336 909</ObfuscateText>
             </p>
-            <small>The main purpose of this page is so that I can show you the cool transition animations.</small>
         </SideImage>
     );
 };

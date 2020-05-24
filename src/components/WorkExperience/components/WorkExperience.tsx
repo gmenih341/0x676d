@@ -1,17 +1,20 @@
-import React, {FunctionComponent, useMemo} from 'react';
-import styled from 'styled-components/macro';
-import {ClassNameOnly} from '../../types/ClassNameOnly';
-import {JobEntry} from './components/JobEntry';
 import Link from 'next/link';
+import React, {FunctionComponent} from 'react';
+import styled from 'styled-components/macro';
+import {ClassNameOnly} from '../../../types/ClassNameOnly';
+import {JobEntry} from './JobEntry';
 
 /* eslint-disable react/no-unescaped-entities */
 const WorkExperienceComponent: FunctionComponent<ClassNameOnly> = ({className}) => {
-    const amISelfEmployed: boolean = useMemo(() => Date.now() > new Date('2019-10-25T23:59:59.999+0200').getTime(), []);
-
     return (
         <ul className={className}>
-            <JobEntry company="Self-employed" title="Untitled" year="Oct 2019 - Present" isPresent={amISelfEmployed}>
-                <p>Next chapter. TBD.</p>
+            <JobEntry
+                company="Self-employed"
+                title="Freelance web developer"
+                year="Oct 2019 - Present"
+                isPresent={true}
+                stack={['TypeScript','Angular', 'NestJS', 'Go', 'Docker', 'PostgreSQL', 'Git']}>
+                <p>Doing whatever it takes to get my hands dirty.</p>
                 <p>
                     Think we'd be a good fit? Feel free to{' '}
                     <Link href="/contact">
@@ -20,7 +23,11 @@ const WorkExperienceComponent: FunctionComponent<ClassNameOnly> = ({className}) 
                     .
                 </p>
             </JobEntry>
-            <JobEntry company="EqualEyes Ltd." title="Full stack web developer" year="Mar 2016 - Oct 2019" isPresent={!amISelfEmployed}>
+            <JobEntry
+                company="EqualEyes Ltd."
+                title="Full stack web developer"
+                year="Mar 2016 - Oct 2019"
+                stack={['JavaScript', 'TypeScript', 'NodeJS', 'React', 'HTML', 'CSS', 'Git']}>
                 <p>Maintaining and developing microservice solutions for a large rental company using multiple languages and frameworks.</p>
                 <p>
                     Leading the development of a microservice solution, to synchronise multiple third-party APIs into a single API. Used
@@ -30,7 +37,7 @@ const WorkExperienceComponent: FunctionComponent<ClassNameOnly> = ({className}) 
                 <p>Developed solutions for a large rental company using ReactJS and NodeJS.</p>
                 <p>Load tested and optimized a NodeJS WebSocket server, to provide a scalable and robust backend for a live voting app.</p>
             </JobEntry>
-            <JobEntry company="ComTrade d.o.o." year="Jun 2015 - Feb 2016" title="Student software engineer">
+            <JobEntry company="ComTrade d.o.o." year="Jun 2015 - Feb 2016" title="Student software engineer" stack={['JavaScript', 'Git']}>
                 <p>
                     Mentored a group of students through a week of <i>EDIT Summer School</i>, where we built a simple warehouse robot using
                     AngularJS and Java.

@@ -1,9 +1,10 @@
 import React, {FunctionComponent} from 'react';
 import {animated} from 'react-spring';
-import styled, {CSSProperties} from 'styled-components/macro';
-import {COLOR_GRAY, SPACER, SPACER_BIG, SPACER_SMALL} from '../constants/style.constants';
-import {mediaMax, mediaMin} from '../utils/style.utils';
+import styled, {CSSProperties, css} from 'styled-components/macro';
+import {COLOR_GRAY} from '../constants/style.constants';
 import {ImageSet, MimeType} from '../types/ImageMime';
+import {mediaMax, mediaMin} from '../utils/style.utils';
+import {themeSpacer} from '../utils/theme.utils';
 
 const SECTION_WIDTH = 250;
 
@@ -42,8 +43,8 @@ export const SideImage = styled(SideImageComponent)`
     position: relative;
     box-sizing: content-box;
     flex-direction: ${({direction}) => (direction === 'right' ? 'row-reverse' : 'row')};
-    margin: ${-SPACER}px;
-    padding: ${SPACER}px;
+    margin: ${themeSpacer(6, -1)};
+    padding: ${themeSpacer(6)};
     background: ${COLOR_GRAY[8]};
 
     .content {
@@ -54,13 +55,13 @@ export const SideImage = styled(SideImageComponent)`
             flex-direction: column;
             justify-content: center;
             text-align: ${({direction}) => (direction === 'right' ? 'right' : 'left')};
-            ${({overlap, direction}) => `
-                margin-${direction || 'left'}: ${SPACER_BIG * (overlap === true ? -1 : 1)}px;
+            ${({overlap, direction}) => css`
+                margin-${direction || 'left'}: ${themeSpacer(9, overlap === true ? -1 : 1)};
             `}
 
             > * {
-                margin: ${SPACER_SMALL}px 0;
-                padding: ${SPACER_SMALL}px;
+                margin: ${themeSpacer(3)} 0;
+                padding: ${themeSpacer(3)};
                 background: ${({overlap}) => (overlap === true ? COLOR_GRAY[8] : 'none')};
             }
         }
@@ -71,7 +72,7 @@ export const SideImage = styled(SideImageComponent)`
         flex-shrink: 0;
         width: ${SECTION_WIDTH}px;
         min-height: ${SECTION_WIDTH}px;
-        margin: ${-SPACER}px;
+        margin: ${themeSpacer(6, -1)};
         vertical-align: middle;
 
         img {
