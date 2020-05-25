@@ -14,8 +14,8 @@ export function createBaseContentBox(): FlattenInterpolation<ThemeProps<DefaultT
         transition: box-shadow 300ms ease-out;
         border: none;
         box-shadow: ${boxShadow(COLOR_BLACK)};
-        background: ${COLOR_BLACK};
-        color: ${COLOR_WHITE};
+        background: ${themeColor('terminalBackground')};
+        color: ${themeColor('textLight')};
         font-family: ${FONT_SANS};
         line-height: 1.5;
 
@@ -28,7 +28,7 @@ export function createBaseContentBox(): FlattenInterpolation<ThemeProps<DefaultT
         code {
             padding: ${themeSpacer(6, 0.5)};
             border-radius: 3px;
-            background: ${opaque(COLOR_GRAY[9], 0.5)};
+            background: ${themeColor('textDark', 0.5)};
             font-size: 13px;
         }
 

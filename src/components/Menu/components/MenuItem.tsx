@@ -64,7 +64,7 @@ export const MenuItem = styled(MenuItemComponent)`
     }
 
     &.active {
-        color: ${themeColor('yolo')};
+        color: ${themeColor('main')};
 
         strong {
             visibility: inherit;

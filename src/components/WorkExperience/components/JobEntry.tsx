@@ -1,10 +1,7 @@
 import React, {FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
-import {COLOR_GRAY, COLOR_MAIN, FONT_SERIF} from '../../../constants/style.constants';
-import {useBoundingBox} from '../../../hooks/useBoundingBox';
 import {mediaMax, mediaMin} from '../../../utils/style.utils';
-import {themePx, themeSpacer} from '../../../utils/theme.utils';
-import {JobPointerIcon} from '../icons/JobPointerIcon';
+import {themeColor, themePx, themeSpacer} from '../../../utils/theme.utils';
 import {TechStack} from './TechStack';
 
 interface JobEntryProps {
@@ -17,28 +14,17 @@ interface JobEntryProps {
 }
 
 const INDICATOR_SIZE = '16px';
-const COLOR_TIMELINE = COLOR_GRAY[4];
-const COLOR_PRESENT = COLOR_MAIN[4];
 
 const JobEntryComponent: FunctionComponent<JobEntryProps> = ({children, className, company, isPresent, title, year, stack}) => {
-    const [yearRef, boundingBox] = useBoundingBox<HTMLDivElement>();
-
     return (
         <li className={className}>
             <div className="indicator" />
             <div className="line" />
-            <div className="year" ref={yearRef}>
-                <JobPointerIcon
-                    width={(boundingBox && boundingBox.width) || 0}
-                    height={24}
-                    fill={isPresent ? COLOR_PRESENT : COLOR_TIMELINE}
-                />
-                {!year && isPresent ? 'Present' : year}
-            </div>
+            <div className="year">{year}</div>
             {stack && stack.length && <TechStack stack={stack} />}
             <div className="meta">
-                <div className="company">{company}</div>
-                {title && <div className="title">{title}</div>}
+                <div className="company">{title}</div>
+                {title && <div className="title">at {company}</div>}
             </div>
             <div className="content">{children}</div>
         </li>
@@ -55,10 +41,6 @@ export const JobEntry = styled(JobEntryComponent)`
         padding-bottom: ${themePx((t) => t.spacers[9] - t.spacers[5])};
     }
 
-    ${mediaMin('sm')} {
-        margin: 0 ${INDICATOR_SIZE};
-    }
-
     .indicator {
         display: block;
         grid-column: 1 / 1;
@@ -66,7 +48,7 @@ export const JobEntry = styled(JobEntryComponent)`
         height: ${INDICATOR_SIZE};
         transform: translateY(4px) translateX(-50%) rotate(45deg);
         border: 3px solid;
-        border-color: ${({isPresent}) => (isPresent ? COLOR_PRESENT : COLOR_TIMELINE)};
+        border-color: ${(p) => themeColor(p.isPresent ? 'mainLight' : 'pageBackground', 1)};
 
         ${mediaMax('sm')} {
             display: none;
@@ -77,10 +59,10 @@ export const JobEntry = styled(JobEntryComponent)`
         display: block;
         grid-column: 1 / 1;
         grid-row: 2 / 4;
-        width: 3px;
+        width: 2px;
         height: 100%;
         transform: translateX(-50%);
-        background: ${({isPresent}) => (isPresent ? COLOR_PRESENT : COLOR_TIMELINE)};
+        background: ${(p) => themeColor(p.isPresent ? 'mainLight' : 'pageBackground', 0.4)};
 
         ${mediaMax('sm')} {
             display: none;
@@ -94,29 +76,21 @@ export const JobEntry = styled(JobEntryComponent)`
         z-index: 10;
         justify-self: start;
         padding-right: ${themeSpacer(9)};
-        color: ${COLOR_GRAY[8]};
-        font-size: 12px;
+        color: ${(p) => themeColor(p.isPresent ? 'mainLight' : 'pageBackground')};
+        font-size: 14px;
         line-height: 24px;
         text-transform: uppercase;
 
-        svg {
-            position: absolute;
-            z-index: -1;
-            top: 0;
-            right: 0;
-            transform: scaleX(-1);
-
-            ${mediaMin('sm')} {
-                right: -24px;
-            }
+        ${mediaMin('sm')} {
+            margin-left: ${themeSpacer(5, -1)};
         }
     }
 
     .meta {
         display: flex;
-        flex-direction: row;
         grid-column: 1 / -1;
         flex: 1 0;
+        flex-direction: column;
         line-height: 1.1;
 
         ${mediaMin('sm')} {
@@ -126,11 +100,11 @@ export const JobEntry = styled(JobEntryComponent)`
         .company {
             font-size: 18px;
             font-weight: 600;
+            letter-spacing: 1px;
         }
 
         .title {
-            color: ${COLOR_TIMELINE};
-            font-family: ${FONT_SERIF};
+            color: ${(p) => themeColor(p.isPresent ? 'mainLight' : 'textLight')};
             font-size: 14px;
         }
     }
@@ -144,16 +118,21 @@ export const JobEntry = styled(JobEntryComponent)`
         grid-column: 1 / -1;
         font-size: 14px;
 
-        p {
-            margin: 0 0 ${themeSpacer(6)} 0;
+        p:last-child {
+            margin: 0;
+        }
+
+        p:not(:last-child) {
+            margin: 0 0 ${themeSpacer(4)} 0;
         }
 
         ${mediaMax('sm')} {
-            margin-left: ${themeSpacer(6)};
+            margin-left: ${themeSpacer(4)};
         }
     }
 
     ${mediaMin('sm')} {
+        margin: 0 ${INDICATOR_SIZE};
         .content,
         .meta,
         .year {

@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-restricted-imports
 import {DefaultTheme, ThemedStyledProps} from 'styled-components/macro';
+import {opaque} from './style.utils';
 
 type StyledFunction<R = any> = (props: ThemedStyledProps<{}, DefaultTheme>) => R;
 type ThemeFunction = (theme: DefaultTheme) => number | string;
@@ -14,6 +15,6 @@ export function themeSpacer(index: ValidSpacer, times = 1): StyledFunction<strin
     return themePx((theme) => theme.spacers[index] * times);
 }
 
-export function themeColor (color: keyof DefaultTheme['colors']): StyledFunction<string> {
-    return (props) => props.theme.colors[color];
+export function themeColor(color: keyof DefaultTheme['colors'], opaqueness = 1): StyledFunction<string> {
+    return (props) => opaque(props.theme.colors[color], opaqueness);
 }

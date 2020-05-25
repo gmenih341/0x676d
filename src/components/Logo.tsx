@@ -38,7 +38,7 @@ export const Logo = styled(LogoComponent)`
     cursor: pointer;
 
     svg path {
-        fill: ${themeColor('yolo')};
+        fill: ${themeColor('main')};
     }
 `;
 

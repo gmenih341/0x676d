@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
-import {COLOR_MAIN, FONT_SANS} from '../../../constants/style.constants';
+import {FONT_SANS} from '../../../constants/style.constants';
+import {themeColor} from '../../../utils/theme.utils';
 
 export const ContactButton = styled('button')`
     position: relative;
@@ -8,7 +9,7 @@ export const ContactButton = styled('button')`
     margin-left: auto;
     border: none;
     background: none;
-    color: ${COLOR_MAIN[0]};
+    color: ${themeColor('textDark')};
     font-family: ${FONT_SANS};
     font-size: 24px;
     font-weight: 600;

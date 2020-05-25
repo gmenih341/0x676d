@@ -9,11 +9,11 @@ const WorkExperienceComponent: FunctionComponent<ClassNameOnly> = ({className}) 
     return (
         <ul className={className}>
             <JobEntry
-                company="Self-employed"
-                title="Freelance web developer"
+                company="erento GmBH"
+                title="Software engineer"
                 year="Oct 2019 - Present"
                 isPresent={true}
-                stack={['TypeScript','Angular', 'NestJS', 'Go', 'Docker', 'PostgreSQL', 'Git']}>
+                stack={['TypeScript', 'Angular', 'NestJS', 'Go', 'Kubernetes', 'PostgreSQL', 'Git']}>
                 <p>Doing whatever it takes to get my hands dirty.</p>
                 <p>
                     Think we'd be a good fit? Feel free to{' '}
@@ -37,14 +37,14 @@ const WorkExperienceComponent: FunctionComponent<ClassNameOnly> = ({className}) 
                 <p>Developed solutions for a large rental company using ReactJS and NodeJS.</p>
                 <p>Load tested and optimized a NodeJS WebSocket server, to provide a scalable and robust backend for a live voting app.</p>
             </JobEntry>
-            <JobEntry company="ComTrade d.o.o." year="Jun 2015 - Feb 2016" title="Student software engineer" stack={['JavaScript', 'Git']}>
+            <JobEntry company="ComTrade d.o.o." title="Student software engineer" year="Jun 2015 - Feb 2016" stack={['JavaScript', 'Git']}>
                 <p>
                     Mentored a group of students through a week of <i>EDIT Summer School</i>, where we built a simple warehouse robot using
                     AngularJS and Java.
                 </p>
                 <p>Developed packages for Citrix XenApp.</p>
             </JobEntry>
-            <JobEntry company="Education and stuff" year="Before 2015">
+            <JobEntry company="FERI Maribor" title="Student" year="Before 2015">
                 <p>
                     Studied Computer Science at <strong>The Faculty of Electrical Engineering and Computer Science</strong> in Maribor.
                 </p>

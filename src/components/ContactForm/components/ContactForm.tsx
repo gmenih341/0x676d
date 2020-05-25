@@ -1,11 +1,10 @@
 import React, {FormEvent, FunctionComponent} from 'react';
 import {animated} from 'react-spring';
 import styled, {CSSProperties} from 'styled-components/macro';
-import {COLOR_MAIN} from '../../../constants/style.constants';
 import {useToggle} from '../../../hooks/useToggle';
 import {ClassNameOnly} from '../../../types/ClassNameOnly';
 import {mediaMin} from '../../../utils/style.utils';
-import {themeSpacer} from '../../../utils/theme.utils';
+import {themeSpacer, themeColor} from '../../../utils/theme.utils';
 import {toQueryString} from '../../../utils/url.utils';
 import {TextAreaInput, TextInput} from '../../Form';
 import {useForm} from '../../Form/hooks/useForm';
@@ -61,7 +60,7 @@ const ContactFormComponent: FunctionComponent<ContactFormProps> = ({...props}) =
             <TextAreaInput placeholder="Message" setValue={(value: string) => dispatch('message', value)} />
             <ContactButton type="submit" onMouseEnter={() => !show && setShow(true)}>
                 Send
-                <JobPointerIcon width={300} height={50} fill={COLOR_MAIN[6]} />
+                <JobPointerIcon width={300} height={50} />
             </ContactButton>
 
             {/* Hack so netlify acknoledges all forms (contendEditable doesn't work) */}
@@ -94,6 +93,10 @@ export const ContactForm = styled(ContactFormComponent)`
             grid-column: 1 / -1;
             grid-row: 2 / 4;
         }
+    }
+
+    ${JobPointerIcon} {
+        fill: ${themeColor('main')};
     }
 
     ${ContactButton} {

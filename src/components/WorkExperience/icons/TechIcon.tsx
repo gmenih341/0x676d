@@ -12,4 +12,4 @@ export const TechIcon: React.FC<{icon: string}> = ({icon}) => {
     const iconName = React.useMemo(() => kebabCase(icon), [icon]);
 
     return <img src={`/skill-icons/${iconName}.svg`}></img>;
-}
+};

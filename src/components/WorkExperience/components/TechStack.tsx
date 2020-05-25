@@ -26,11 +26,11 @@ export const TechStack = styled(TechStackComponent)`
     margin: -10px -10px;
 
     &__icon {
+        margin-bottom: -15px;
         padding: 10px;
         padding-bottom: 30px;
-        margin-bottom: -30px;
-        filter: grayscale();
         transition: filter 250ms ease-in;
+        filter: grayscale();
 
         &:hover {
             filter: none;

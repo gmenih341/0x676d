@@ -1,10 +1,8 @@
 import {DefaultTheme} from 'styled-components/macro';
 
-const baseTheme: Pick<DefaultTheme, 'fontStyles' | 'spacers'> = {
-    fontStyles: {
-        heading: '',
-    },
+const baseTheme: Pick<DefaultTheme, 'fontSizes' | 'spacers'> = {
     spacers: [2, 4, 6, 8, 10, 12, 16, 20, 25, 32],
+    fontSizes: [10, 14, 16, 20],
 };
 
 export const THEME_DARK: DefaultTheme = {
@@ -14,22 +12,20 @@ export const THEME_DARK: DefaultTheme = {
         terminalBackground: '#21262c',
         textDark: '#0b0d0f',
         textLight: '#d3d9de',
-        yolo: '#19619a',
-        main: ['#bddcf4', '#19619a', '#040e16'],
-        gray: ['d3d9de', '7c8c9c', '0b0d0f'],
+        main: '#19619a',
+        mainLight: '#3a96df',
     },
 };
 
 export const THEME_LIGHT: DefaultTheme = {
     ...baseTheme,
     colors: {
-        pageBackground: '#b6bfc8',
-        terminalBackground: '#374049',
+        pageBackground: '#99a6b2',
+        terminalBackground: '#21262c',
         textDark: '#0b0d0f',
         textLight: '#d3d9de',
-        main: ['#bddcf4', '#19619a', '#040e16'],
-        gray: ['d3d9de', '7c8c9c', '0b0d0f'],
-        yolo: 'blue',
+        main: '#19619a',
+        mainLight: '#3a96df',
     },
 };
 

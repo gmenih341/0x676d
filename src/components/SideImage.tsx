@@ -1,10 +1,9 @@
 import React, {FunctionComponent} from 'react';
 import {animated} from 'react-spring';
-import styled, {CSSProperties, css} from 'styled-components/macro';
-import {COLOR_GRAY} from '../constants/style.constants';
+import styled, {css, CSSProperties} from 'styled-components/macro';
 import {ImageSet, MimeType} from '../types/ImageMime';
 import {mediaMax, mediaMin} from '../utils/style.utils';
-import {themeSpacer} from '../utils/theme.utils';
+import {themeColor, themeSpacer} from '../utils/theme.utils';
 
 const SECTION_WIDTH = 250;
 
@@ -45,7 +44,7 @@ export const SideImage = styled(SideImageComponent)`
     flex-direction: ${({direction}) => (direction === 'right' ? 'row-reverse' : 'row')};
     margin: ${themeSpacer(6, -1)};
     padding: ${themeSpacer(6)};
-    background: ${COLOR_GRAY[8]};
+    background: ${themeColor('terminalBackground')};
 
     .content {
         z-index: 1;
@@ -62,7 +61,7 @@ export const SideImage = styled(SideImageComponent)`
             > * {
                 margin: ${themeSpacer(3)} 0;
                 padding: ${themeSpacer(3)};
-                background: ${({overlap}) => (overlap === true ? COLOR_GRAY[8] : 'none')};
+                background: ${(p) => (p.overlap === true && themeColor('terminalBackground')(p)) || 'none'};
             }
         }
     }

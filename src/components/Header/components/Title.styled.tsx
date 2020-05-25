@@ -6,7 +6,7 @@ import {themeColor} from '../../../utils/theme.utils';
 export const Title = styled('h1')`
     margin: 0;
     padding: 0;
-    color: ${themeColor('yolo')};
+    color: ${themeColor('main')};
     font-family: ${FONT_SANS};
     font-size: 32px;
     font-weight: 600;
