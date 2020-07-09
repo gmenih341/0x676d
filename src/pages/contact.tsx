@@ -1,23 +1,20 @@
-import React from 'react';
-import {ObfuscateText} from '../components/ObfuscateText';
-import {SectionTitle} from '../components/SectionTitle.styled';
-import {SideImage} from '../components/SideImage';
-import {PageComponent} from '../types/PageComponent';
+import React, {FunctionComponent} from 'react';
 import {ContactForm} from '../components/ContactForm';
 import {ExternalLink} from '../components/ExternalLink';
-import {LINKEDIN_URL} from '../constants/social.constants';
+import {SectionTitle} from '../components/SectionTitle.styled';
+import {SideImage} from '../components/SideImage';
+import {useSocial} from '../queries/useSocial';
 import {ImageSet, MimeType} from '../types/ImageMime';
+import {ContentComponentProps, HeaderComponentProps, PageComponent} from '../types/PageComponent';
 
 const contactPageImages: ImageSet = {
-    [MimeType.PNG]: '/static/maribor.png',
-    [MimeType.WEBP]: '/static/maribor.webp',
+    [MimeType.PNG]: '/images/maribor.png',
+    [MimeType.WEBP]: '/images/maribor.webp',
 };
 
-export const Contact: PageComponent = ({style}) => <ContactForm style={style} />;
+const HeaderComponent: FunctionComponent<HeaderComponentProps> = ({imageStyle, contentStyle, style}) => {
+    const social = useSocial();
 
-Contact.displayName = 'contact';
-Contact.index = 2;
-Contact.headerComponent = ({imageStyle, contentStyle, style}) => {
     return (
         <SideImage
             overlap={true}
@@ -35,15 +32,19 @@ Contact.headerComponent = ({imageStyle, contentStyle, style}) => {
                 communication, you can use one of the methods below.
                 <br />
                 <br />
-                <ExternalLink href={LINKEDIN_URL}>LinkedIn</ExternalLink>
+                <ExternalLink href={`https://linkedin.com/in/${social.linkedIn}`}>LinkedIn</ExternalLink>
                 <br />
-                <ExternalLink href={LINKEDIN_URL}>gregor@menih.si</ExternalLink>
-                <br />
-                <ObfuscateText>+386 31 336 909</ObfuscateText>
+                <ExternalLink href={`mailto:${social.email}`}>{social.email}</ExternalLink>
             </p>
-            <small>The main purpose of this page is so that I can show you the cool transition animations.</small>
         </SideImage>
     );
 };
 
-export default Contact;
+const ContentComponent: FunctionComponent<ContentComponentProps> = ({style}) => <ContactForm style={style} />;
+
+const ContactPage: PageComponent = {
+    HeaderComponent,
+    ContentComponent,
+};
+
+export default ContactPage;

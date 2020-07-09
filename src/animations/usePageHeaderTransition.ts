@@ -1,7 +1,7 @@
-import {CSSProperties, FunctionComponent, ReactNode} from 'react';
-import {useTransition, UseTransitionResult} from 'react-spring';
+import {CSSProperties, FC, FunctionComponent, ReactNode} from 'react';
+import {useTransition, UseTransitionResult, config} from 'react-spring';
 import {Direction} from '../types/Direction';
-import {HeaderComponentProps, PageComponent} from '../types/PageComponent';
+import {HeaderComponentProps} from '../types/PageComponent';
 
 interface EarlyPageHeaderTransitionProps extends CSSProperties {
     x?: number;
@@ -25,14 +25,16 @@ interface UsePageHeaderTransitionResult {
 
 const PARALLAX_VELOCITY = 250;
 
-const interpolateHeaderProps = (props: UseTransitionResult<PageComponent, EarlyPageHeaderTransitionProps>): PageHeaderTransitionProps => {
+const interpolateHeaderProps = (
+    props: UseTransitionResult<FC<HeaderComponentProps>, EarlyPageHeaderTransitionProps>,
+): PageHeaderTransitionProps => {
     const {
         item,
         key,
         props: {x, ...restProps},
     } = props;
     return {
-        HeaderComponent: item.headerComponent,
+        HeaderComponent: item,
         key: key,
         imageProps: {
             transform: x && x.interpolate((xValue: number | undefined = 0) => `translateX(${xValue * -PARALLAX_VELOCITY}px)`),
@@ -44,28 +46,33 @@ const interpolateHeaderProps = (props: UseTransitionResult<PageComponent, EarlyP
     };
 };
 
-export function usePageHeaderTransition(routeComponent: PageComponent, direction: Direction = 1): UsePageHeaderTransitionResult {
-    const transitions = useTransition<PageComponent, EarlyPageHeaderTransitionProps>(
-        [routeComponent],
-        (item: PageComponent) => item.displayName,
-        {
-            from: {
-                x: direction,
-                width: '100%',
-                transform: `translateX(${direction * 100}%)`,
-            },
-            enter: {
-                x: 0,
-                transform: 'translate(0%)',
-            },
-            leave: {
-                x: direction,
-                position: 'absolute',
-                width: '100%',
-                transform: `translate(${direction * -100}%)`,
-            },
+export function usePageHeaderTransition(
+    headerComponent: FC<HeaderComponentProps>,
+    index: number,
+    direction: Direction,
+): UsePageHeaderTransitionResult {
+    const transitions = useTransition<FC<HeaderComponentProps>, EarlyPageHeaderTransitionProps>([headerComponent], () => index, {
+        initial: {
+            x: 0,
+            width: '100%',
+            transform: 'translateX(0)',
         },
-    );
+        from: {
+            x: direction,
+            width: '100%',
+            transform: `translateX(${direction * -100}%)`,
+        },
+        enter: {
+            x: 0,
+            transform: 'translate(0%)',
+        },
+        leave: {
+            x: direction,
+            position: 'absolute',
+            width: '100%',
+            transform: `translate(${direction * 100}%)`,
+        },
+    });
 
     return (renderCallback: RenderCallback) => transitions.map(interpolateHeaderProps).map(renderCallback);
 }

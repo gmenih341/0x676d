@@ -1,8 +1,9 @@
 import React, {FunctionComponent, HTMLAttributes} from 'react';
 import styled from 'styled-components/macro';
-import {COLOR_BLACK, COLOR_GRAY, COLOR_WHITE, FONT_SANS, SPACER, SPACER_SMALL} from '../../../../../constants/style.constants';
+import {COLOR_GRAY, COLOR_WHITE, FONT_SANS} from '../../../../../constants/style.constants';
 import {ClassNameOnly} from '../../../../../types/ClassNameOnly';
 import {mediaMax} from '../../../../../utils/style.utils';
+import {themeColor, themeSpacer} from '../../../../../utils/theme.utils';
 
 interface FormOptionProps extends Pick<HTMLAttributes<HTMLDivElement>, 'onFocus' | 'onClick' | 'onKeyPress'>, ClassNameOnly {
     value: string;
@@ -35,8 +36,8 @@ export const FormOption = styled(FormOptionComponent)`
     display: flex;
     box-sizing: border-box;
     flex-direction: row;
-    padding: ${SPACER_SMALL}px ${SPACER}px;
-    border: 1px solid ${COLOR_BLACK};
+    padding: ${themeSpacer(3)} ${themeSpacer(6)};
+    border: 1px solid ${themeColor('textDark')};
     border-bottom: none;
     font-family: ${FONT_SANS};
     font-size: 12px;
@@ -61,7 +62,7 @@ const Hint = styled('div')`
     ${mediaMax('md')} {
         display: none;
     }
-    margin-left: ${SPACER_SMALL}px;
+    margin-left: ${themeSpacer(3)};
     color: ${COLOR_WHITE};
     white-space: nowrap;
 

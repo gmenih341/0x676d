@@ -1,20 +1,28 @@
-import {RouteData} from '../types/RouteData';
+import {RawRouteData} from '../types/RouteData';
 
-export const routes: Record<string, RouteData> = {
-    '/': {
+export const routes: RawRouteData[] = [
+    {
         menuText: 'cv',
-        index: 0,
+        path: '/',
         head: {
-            title: 'cv',
+            title: 'homepage',
             description: 'full-stack web developer',
         },
     },
-    '/contact': {
+    // {
+    //     menuText: 'blug',
+    //     path: '/blog',
+    //     head: {
+    //         title: 'blog',
+    //         description: 'some of my writings',
+    //     },
+    // },
+    {
         menuText: 'contact',
-        index: 9,
+        path: '/contact',
         head: {
             title: 'contact',
             description: 'get in touch with me',
         },
     },
-};
+];

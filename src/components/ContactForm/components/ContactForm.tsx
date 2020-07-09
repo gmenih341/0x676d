@@ -1,10 +1,10 @@
 import React, {FormEvent, FunctionComponent} from 'react';
 import {animated} from 'react-spring';
 import styled, {CSSProperties} from 'styled-components/macro';
-import {COLOR_MAIN, SPACER_BIG} from '../../../constants/style.constants';
 import {useToggle} from '../../../hooks/useToggle';
 import {ClassNameOnly} from '../../../types/ClassNameOnly';
-import {mediaMin, mediaMax} from '../../../utils/style.utils';
+import {mediaMin} from '../../../utils/style.utils';
+import {themeSpacer, themeColor} from '../../../utils/theme.utils';
 import {toQueryString} from '../../../utils/url.utils';
 import {TextAreaInput, TextInput} from '../../Form';
 import {useForm} from '../../Form/hooks/useForm';
@@ -60,7 +60,7 @@ const ContactFormComponent: FunctionComponent<ContactFormProps> = ({...props}) =
             <TextAreaInput placeholder="Message" setValue={(value: string) => dispatch('message', value)} />
             <ContactButton type="submit" onMouseEnter={() => !show && setShow(true)}>
                 Send
-                <JobPointerIcon width={300} height={50} fill={COLOR_MAIN[6]} />
+                <JobPointerIcon width={300} height={50} />
             </ContactButton>
 
             {/* Hack so netlify acknoledges all forms (contendEditable doesn't work) */}
@@ -76,7 +76,7 @@ export const ContactForm = styled(ContactFormComponent)`
     display: grid;
     position: relative;
     grid-template-rows: min-content max-content 300px min-content;
-    grid-gap: ${SPACER_BIG}px;
+    grid-gap: ${themeSpacer(9)};
 
     ${mediaMin('md')} {
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -95,12 +95,16 @@ export const ContactForm = styled(ContactFormComponent)`
         }
     }
 
+    ${JobPointerIcon} {
+        fill: ${themeColor('main')};
+    }
+
     ${ContactButton} {
         grid-column: 1 / -1;
         grid-row: 3 / 4;
         z-index: 100;
         align-self: end;
-        margin-right: ${SPACER_BIG}px;
+        margin-right: ${themeSpacer(5, -1)};
         transform: translateY(50%);
 
         ${mediaMin('md')} {

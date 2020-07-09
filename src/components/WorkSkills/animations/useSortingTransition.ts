@@ -30,7 +30,7 @@ export function useSortingTransition<T>(data: T[], step: number, keys: KeysFn): 
                 {
                     item,
                     key,
-                    props: {zIndex: data.length - index, transform: y.interpolate(y => `translate3d(0,${y}px,0)`)},
+                    props: {zIndex: data.length - index, transform: y.interpolate((y) => `translate3d(0,${y}px,0)`)},
                 },
                 index,
             ),

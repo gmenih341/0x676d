@@ -1,17 +1,17 @@
-import React, {FunctionComponent} from 'react';
+import React from 'react';
 import styled from 'styled-components/macro';
-import {COLOR_BLACK, COLOR_GRAY} from '../../constants/style.constants';
-import {ClassNameOnly} from '../../types/ClassNameOnly';
+import {MyStyledComponent} from '../../types/MyStyledComponent';
 import {mediaMax, mediaMin} from '../../utils/style.utils';
+import {themeColor} from '../../utils/theme.utils';
 import {SocialIconItem} from './components/SocialIconItem';
 import {SocialIcons} from './components/SocialIcons';
 import {NetlifyIcon} from './icons/NetlifyIcon';
 
-export const FooterComponent: FunctionComponent<ClassNameOnly> = React.memo(({className}) => {
+export const FooterComponent: MyStyledComponent = React.memo(({theme, className}) => {
     return (
         <footer className={className}>
             <SocialIcons />
-            <NetlifySocialIcon icon={<NetlifyIcon width={20} height={20} fill={COLOR_GRAY[5]} />} href="https://netlify.com">
+            <NetlifySocialIcon icon={<NetlifyIcon width={20} height={20} fill="#000" />} href="https://netlify.com">
                 Hosted on Netlify
             </NetlifySocialIcon>
         </footer>
@@ -22,7 +22,7 @@ export const Footer = styled(FooterComponent)`
     display: flex;
     align-items: center;
     justify-content: center;
-    color: ${COLOR_BLACK};
+    color: ${themeColor('textDark')};
 
     ${mediaMin('sm')} {
         justify-content: flex-start;

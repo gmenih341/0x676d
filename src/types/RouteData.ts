@@ -1,8 +1,12 @@
-export interface RouteData {
+export interface RawRouteData {
     menuText: string;
-    index: number;
+    path: string;
     head: {
         title: string;
         description: string;
     };
+}
+
+export interface RouteData extends RawRouteData {
+    index: number;
 }

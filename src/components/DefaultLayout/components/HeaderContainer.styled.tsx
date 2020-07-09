@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
-import {SPACER, SPACER_BIG} from '../../../constants/style.constants';
 import {mediaMax, mediaMin} from '../../../utils/style.utils';
+import {themeSpacer} from '../../../utils/theme.utils';
 import {Header} from '../../Header';
 import Logo from '../../Logo';
 import {Menu} from '../../Menu';
@@ -12,14 +12,14 @@ export const HeaderContainer = styled('header')`
     grid-row: 1 / 2;
     flex-direction: row;
     align-items: center;
-    margin: ${SPACER}px 0;
+    margin: ${themeSpacer(6)} 0;
 
     ${mediaMin('md')} {
-        margin: 0 -${SPACER}px;
+        margin: 0 -${themeSpacer(6)};
     }
 
     & > * {
-        margin: 0 ${SPACER}px;
+        margin: 0 ${themeSpacer(6)};
     }
 
     ${Logo} {
@@ -38,11 +38,11 @@ export const HeaderContainer = styled('header')`
 
         ${mediaMax('md')} {
             position: absolute;
-            top: -${SPACER_BIG}px;
+            top: ${themeSpacer(9)};
             left: 0;
             width: 100%;
-            height: calc(100% + ${SPACER_BIG * 2}px);
-            padding: 0 ${SPACER_BIG}px;
+            height: calc(100% + ${themeSpacer(9, 2)});
+            padding: 0 ${themeSpacer(9)};
         }
     }
 `;

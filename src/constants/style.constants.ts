@@ -1,7 +1,3 @@
-export const SPACER_SMALL = 8;
-export const SPACER = 16;
-export const SPACER_BIG = 32;
-
 export const COLOR_MAIN: string[] = [
     '#e9f3fb',
     '#bddcf4',
@@ -32,4 +28,4 @@ export const COLOR_BLACK: string = COLOR_GRAY[8];
 export const FONT_SANS = `'Fira Sans', Arial, Helvetica, sans-serif`;
 export const FONT_TEXT = `'Josefin Sans', Arial, Helvetica, sans-serif`;
 export const FONT_MONO = `'Fira Mono', 'Courier New', Courier, monospace`;
-export const FONT_SERIF = `'Zilla Slab', 'Times New Roman', Times, serif`;
+export const FONT_SERIF = `'Roboto Slab', 'Times New Roman', Times, serif`;

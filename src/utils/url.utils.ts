@@ -1,7 +1,7 @@
 type ObjectKey = string | number | boolean;
 
 export function toQueryString(object: Record<string, ObjectKey | ObjectKey[]>): string {
-    let result: string[] = [];
+    const result: string[] = [];
     Object.entries(object).map(([key, value]: [string, ObjectKey | ObjectKey[]]) => {
         if (Array.isArray(value)) {
             value.forEach((item: ObjectKey) => {

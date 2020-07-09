@@ -32,7 +32,7 @@ export const FormSelectComponent: FunctionComponent<FormSelectProps> = React.mem
                     isNext={selectIndex === i - 1}
                     onFocus={() => dispatch({type: SelectActionType.FOCUSED, selectedIndex: i})}
                     onClick={() => dispatch({type: SelectActionType.SELECTED, option})}
-                    onKeyPress={e => e.key === 'Enter' && dispatch({type: SelectActionType.SELECTED, option})}
+                    onKeyPress={(e) => e.key === 'Enter' && dispatch({type: SelectActionType.SELECTED, option})}
                 />
             )),
         [open, selectIndex],
