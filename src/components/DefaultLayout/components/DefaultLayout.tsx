@@ -1,5 +1,5 @@
 import {graphql, useStaticQuery} from 'gatsby';
-import React, {FunctionComponent, useMemo} from 'react';
+import React, {FunctionComponent, useMemo, useState, useEffect} from 'react';
 import {ThemeProvider} from 'styled-components/macro';
 import {usePageContentTransition} from '../../../animations/usePageContentTransition';
 import {usePageHeaderTransition} from '../../../animations/usePageHeaderTransition';
@@ -45,12 +45,16 @@ export const DefaultLayout: FunctionComponent<LayoutProps> = ({children}) => {
             }
         `,
     );
-    const pathname = useMemo(() => window.location.pathname, [window.location.pathname]);
+    const [pathname, setPathName] = useState('');
     const routeData = useRouteData(pathname);
     const {HeaderComponent, ContentComponent} = usePageComponents(children, routeData.index);
     const direction = useIndexDirection(routeData.index);
     const headerTransition = usePageHeaderTransition(HeaderComponent, routeData.index, direction);
     const pageTransition = usePageContentTransition(ContentComponent, routeData.index, direction);
+
+    // useEffect(() => {
+    //     setPathName(window.location.pathname);
+    // }, [window !== undefined && window.location.pathname]);
 
     return (
         <ThemeProvider theme={THEME_LIGHT}>

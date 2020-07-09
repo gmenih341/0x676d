@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useEffect, useMemo} from 'react';
+import React, {FunctionComponent, useEffect, useMemo, useState} from 'react';
 import styled from 'styled-components/macro';
 import {routes} from '../../constants/route.constants';
 import {useToggle} from '../../hooks/useToggle';
@@ -17,7 +17,11 @@ interface MenuProps extends ClassNameOnly {
 
 const MenuComponent: FunctionComponent<MenuProps> = React.memo(({activePath, className}) => {
     const [active, toggleMenu] = useToggle(false);
-    const {pathname} = useMemo(() => window.location, [window.location.pathname]);
+    const [pathname, setPathName] = useState('');
+
+    // useEffect(() => {
+    //     setPathName(window.location.pathname);
+    // }, [window?.location.pathname]);
 
     useEffect(() => {
         if (active) {
