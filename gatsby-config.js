@@ -2,7 +2,7 @@ module.exports = {
     // metadata
     siteMetadata: {
         title: 'Gregor Menih',
-        description: 'i make this',
+        description: 'i am good a programming',
         author: {
             name: 'Gregor Menih',
             summary: 'full stack web developer brah',
@@ -54,8 +54,8 @@ module.exports = {
         //         ],
         //     },
         // },
-        // 'gatsby-transformer-sharp',
-        // 'gatsby-plugin-sharp',
+        'gatsby-transformer-sharp',
+        'gatsby-plugin-sharp',
         // {
         //     resolve: 'gatsby-plugin-google-analytics',
         //     options: {
