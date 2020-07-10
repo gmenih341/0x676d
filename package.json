@@ -84,6 +84,6 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "netlify": "npm run build"
+    "netlify": "gatsby build"
   }
 }
