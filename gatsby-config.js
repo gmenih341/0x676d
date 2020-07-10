@@ -7,7 +7,7 @@ module.exports = {
             name: 'Gregor Menih',
             summary: 'full stack web developer brah',
         },
-        siteUrl: 'https://menih.si',
+        siteUrl: 'https://menih.si/',
         social: {
             twitter: 'gmenih341',
             github: 'gmenih341',
