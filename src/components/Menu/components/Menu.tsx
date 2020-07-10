@@ -1,15 +1,15 @@
 import React, {FunctionComponent, useEffect, useMemo, useState} from 'react';
 import styled from 'styled-components/macro';
-import {routes} from '../../constants/route.constants';
-import {useToggle} from '../../hooks/useToggle';
-import {ClassNameOnly} from '../../types/ClassNameOnly';
-import {stopPropagation} from '../../utils/event.utils';
-import {mediaMax, mediaMin} from '../../utils/style.utils';
-import {MenuItem} from './components/MenuItem';
-import {MenuItemsContainer} from './components/MenuItemsContainer.styled';
-import {MobileTitle} from './components/MobileTitle.styled';
-import {MobileToggle} from './components/MobileToggle';
-import {CSS_TRANSITION_TIME_MS} from './menu.constants';
+import {routes} from '../../../constants/route.constants';
+import {useToggle} from '../../../hooks/useToggle';
+import {ClassNameOnly} from '../../../types/ClassNameOnly';
+import {stopPropagation} from '../../../utils/event.utils';
+import {mediaMax, mediaMin} from '../../../utils/style.utils';
+import {MenuItem} from './MenuItem';
+import {MenuItemsContainer} from './MenuItemsContainer.styled';
+import {MobileTitle} from './MobileTitle.styled';
+import {MobileToggle} from './MobileToggle';
+import {CSS_TRANSITION_TIME_MS} from '../menu.constants';
 
 interface MenuProps extends ClassNameOnly {
     activePath: string;
@@ -17,17 +17,6 @@ interface MenuProps extends ClassNameOnly {
 
 const MenuComponent: FunctionComponent<MenuProps> = React.memo(({activePath, className}) => {
     const [active, toggleMenu] = useToggle(false);
-    const [pathname, setPathName] = useState('');
-
-    // useEffect(() => {
-    //     setPathName(window.location.pathname);
-    // }, [window?.location.pathname]);
-
-    useEffect(() => {
-        if (active) {
-            toggleMenu(false);
-        }
-    }, [pathname]);
 
     const items = useMemo(
         () =>

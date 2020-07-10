@@ -1,4 +1,4 @@
-import {graphql, useStaticQuery} from 'gatsby';
+import {graphql, useStaticQuery, PageRendererProps} from 'gatsby';
 import React, {FunctionComponent, useMemo, useState, useEffect} from 'react';
 import {ThemeProvider} from 'styled-components/macro';
 import {usePageContentTransition} from '../../../animations/usePageContentTransition';
@@ -32,7 +32,7 @@ function usePageComponents(children: LayoutChildren, index: number): PageCompone
     return useMemo(() => (children && children.type) || null, [index]);
 }
 
-export const DefaultLayout: FunctionComponent<LayoutProps> = ({children}) => {
+export const DefaultLayout: FunctionComponent<LayoutProps & PageRendererProps> = ({children, location}) => {
     const siteData = useStaticQuery(
         graphql`
             query {
@@ -45,16 +45,11 @@ export const DefaultLayout: FunctionComponent<LayoutProps> = ({children}) => {
             }
         `,
     );
-    const [pathname, setPathName] = useState('');
-    const routeData = useRouteData(pathname);
+    const routeData = useRouteData(location.pathname);
     const {HeaderComponent, ContentComponent} = usePageComponents(children, routeData.index);
     const direction = useIndexDirection(routeData.index);
     const headerTransition = usePageHeaderTransition(HeaderComponent, routeData.index, direction);
     const pageTransition = usePageContentTransition(ContentComponent, routeData.index, direction);
-
-    // useEffect(() => {
-    //     setPathName(window.location.pathname);
-    // }, [window !== undefined && window.location.pathname]);
 
     return (
         <ThemeProvider theme={THEME_LIGHT}>
@@ -65,7 +60,7 @@ export const DefaultLayout: FunctionComponent<LayoutProps> = ({children}) => {
                 <HeaderContainer>
                     <Logo />
                     <Header title={siteData?.site?.siteMetadata?.title} description={siteData?.site?.siteMetadata?.description} />
-                    <Menu activePath={pathname} />
+                    <Menu activePath={location.pathname} />
                 </HeaderContainer>
                 <ConsoleContent>
                     {headerTransition(({imageProps, contentProps, props, key, HeaderComponent}) => (

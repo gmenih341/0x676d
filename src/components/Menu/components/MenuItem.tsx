@@ -31,6 +31,7 @@ export const MenuItem = styled(MenuItemComponent)`
     font-weight: 300;
     line-height: 16px;
     text-decoration: none;
+    cursor: pointer;
 
     &:first-of-type {
         margin: 0 !important;
