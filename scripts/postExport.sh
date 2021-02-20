@@ -1,4 +1,0 @@
-ROOT_FOLDER="./root"
-OUT_FOLDER="./out"
-
-cp ${ROOT_FOLDER}/* ${OUT_FOLDER}

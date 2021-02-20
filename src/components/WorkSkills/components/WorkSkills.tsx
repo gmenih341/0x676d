@@ -1,10 +1,11 @@
 import orderBy from 'lodash/orderBy';
 import reverse from 'lodash/reverse';
-import React, {FunctionComponent, useEffect, useMemo} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {animated} from 'react-spring';
 import styled from 'styled-components/macro';
-import {SPACER, SPACER_BIG} from '../../../constants/style.constants';
 import {ClassNameOnly} from '../../../types/ClassNameOnly';
+import {MyStyledComponent} from '../../../types/MyStyledComponent';
+import {themeSpacer} from '../../../utils/theme.utils';
 import {useSortingTransition} from '../animations/useSortingTransition';
 import {Skill} from './Skill';
 
@@ -36,10 +37,10 @@ interface WorkSkillsProps extends ClassNameOnly {
     sorted: boolean;
 }
 
-const WorkSkillsComponent: FunctionComponent<WorkSkillsProps> = React.memo(({className, sorted}) => {
-    const [transition, setData] = useSortingTransition<SkillRow>(data, 24 + SPACER, (item: SkillRow) => item.name);
+const WorkSkillsComponent: MyStyledComponent<WorkSkillsProps> = React.memo(({className, sorted, theme: t}) => {
+    const [transition, setData] = useSortingTransition<SkillRow>(data, 24 + t.spacers[5], (item: SkillRow) => item.name);
     const height = useMemo(() => {
-        return 24 * data.length + SPACER * (data.length - 1);
+        return 24 * data.length + t.spacers[5] * (data.length - 1);
     }, [data]);
 
     useEffect(() => {
@@ -60,7 +61,7 @@ const WorkSkillsComponent: FunctionComponent<WorkSkillsProps> = React.memo(({cla
 export const WorkSkills = styled(WorkSkillsComponent)`
     position: relative;
     box-sizing: content-box;
-    margin-bottom: ${SPACER_BIG}px;
+    margin-bottom: ${themeSpacer(9)};
 
     ${Skill} {
         position: absolute;

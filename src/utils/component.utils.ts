@@ -1,33 +1,34 @@
-import {css, FlattenSimpleInterpolation} from 'styled-components/macro';
-import {COLOR_BLACK, COLOR_GRAY, COLOR_WHITE, FONT_SANS, SPACER, SPACER_SMALL} from '../constants/style.constants';
-import {boxShadow, boxShadowFocused, opaque} from './style.utils';
+import {css, DefaultTheme, FlattenInterpolation, ThemeProps} from 'styled-components/macro';
+import {COLOR_BLACK, FONT_SANS} from '../constants/style.constants';
+import {boxShadow, boxShadowFocused} from './style.utils';
+import {themeColor, themeSpacer} from './theme.utils';
 
-export function createBaseContentBox(): FlattenSimpleInterpolation {
+export function createBaseContentBox(): FlattenInterpolation<ThemeProps<DefaultTheme>> {
     return css`
         position: relative;
         box-sizing: border-box;
         align-self: flex-start;
         width: 100%;
-        padding: ${SPACER}px;
+        padding: ${themeSpacer(6)};
         overflow: hidden;
         transition: box-shadow 300ms ease-out;
         border: none;
         box-shadow: ${boxShadow(COLOR_BLACK)};
-        background: ${COLOR_BLACK};
-        color: ${COLOR_WHITE};
+        background: ${themeColor('terminalBackground')};
+        color: ${themeColor('textLight')};
         font-family: ${FONT_SANS};
         line-height: 1.5;
 
         p,
         span {
-            color: ${COLOR_GRAY[1]};
+            color: ${themeColor('textLight')};
             letter-spacing: 1px;
         }
 
         code {
-            padding: ${SPACER_SMALL / 2}px;
+            padding: ${themeSpacer(6, 0.5)};
             border-radius: 3px;
-            background: ${opaque(COLOR_GRAY[9], 0.5)};
+            background: ${themeColor('textDark', 0.5)};
             font-size: 13px;
         }
 

@@ -1,11 +1,12 @@
 import styled from 'styled-components/macro';
-import {SPACER_SMALL, COLOR_GRAY, COLOR_WHITE} from '../../../../../constants/style.constants';
+import {COLOR_GRAY, COLOR_WHITE} from '../../../../../constants/style.constants';
+import {themeSpacer} from '../../../../../utils/theme.utils';
 
 export const SelectDropdown = styled('div')`
     display: block;
     position: absolute;
     z-index: 1000;
-    top: calc(100% + ${SPACER_SMALL}px);
+    top: calc(100% + ${themeSpacer(3)});
     left: 0;
     width: 100%;
     max-height: 300px;

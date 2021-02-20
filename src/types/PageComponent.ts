@@ -1,8 +1,10 @@
-import {CSSProperties, FunctionComponent} from 'react';
+import {CSSProperties, FunctionComponent, FC} from 'react';
 
-export interface PageComponentProps {
+export interface ContentComponentProps {
     style: CSSProperties;
 }
+
+export type ContentComponentType = FC<ContentComponentProps>;
 
 export interface HeaderComponentProps {
     imageStyle: CSSProperties;
@@ -10,8 +12,9 @@ export interface HeaderComponentProps {
     style: CSSProperties;
 }
 
-export interface PageComponent extends FunctionComponent<PageComponentProps> {
-    headerComponent: FunctionComponent<HeaderComponentProps>;
-    displayName: string;
-    index: number;
+export type HeaderComponentType = FC<HeaderComponentProps>;
+
+export interface PageComponent {
+    HeaderComponent: FunctionComponent<HeaderComponentProps>;
+    ContentComponent: FunctionComponent<ContentComponentProps>;
 }

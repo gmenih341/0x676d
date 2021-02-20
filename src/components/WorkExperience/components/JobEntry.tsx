@@ -1,9 +1,8 @@
 import React, {FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
-import {COLOR_GRAY, COLOR_MAIN, FONT_SERIF, SPACER, SPACER_BIG} from '../../../constants/style.constants';
-import {useBoundingBox} from '../../../hooks/useBoundingBox';
 import {mediaMax, mediaMin} from '../../../utils/style.utils';
-import {JobPointerIcon} from '../icons/JobPointerIcon';
+import {themeColor, themePx, themeSpacer} from '../../../utils/theme.utils';
+import {TechStack} from './TechStack';
 
 interface JobEntryProps {
     company: string;
@@ -11,30 +10,21 @@ interface JobEntryProps {
     year?: string;
     className?: string;
     isPresent?: boolean;
+    stack?: string[];
 }
 
-const INDICATOR_SIZE = 16;
-const COLOR_TIMELINE = COLOR_GRAY[4];
-const COLOR_PRESENT = COLOR_MAIN[4];
+const INDICATOR_SIZE = '14px';
 
-const JobEntryComponent: FunctionComponent<JobEntryProps> = ({children, className, company, isPresent, title, year}) => {
-    const [yearRef, boundingBox] = useBoundingBox<HTMLDivElement>();
-
+const JobEntryComponent: FunctionComponent<JobEntryProps> = ({children, className, company, title, year, stack}) => {
     return (
         <li className={className}>
             <div className="indicator" />
             <div className="line" />
-            <div className="year" ref={yearRef}>
-                <JobPointerIcon
-                    width={(boundingBox && boundingBox.width) || 0}
-                    height={24}
-                    fill={isPresent ? COLOR_PRESENT : COLOR_TIMELINE}
-                />
-                {!year && isPresent ? 'Present' : year}
-            </div>
+            <div className="year">{year}</div>
+            {stack && stack.length && <TechStack stack={stack} />}
             <div className="meta">
-                <div className="company">{company}</div>
-                {title && <div className="title">{title}</div>}
+                <div className="title">{title}</div>
+                {title && <div className="company">at {company}</div>}
             </div>
             <div className="content">{children}</div>
         </li>
@@ -43,28 +33,33 @@ const JobEntryComponent: FunctionComponent<JobEntryProps> = ({children, classNam
 
 export const JobEntry = styled(JobEntryComponent)`
     display: grid;
-    grid-template-columns: ${SPACER}px 1fr;
+    grid-template-columns: ${themeSpacer(6)} 200px 1fr;
     grid-template-rows: max-content;
-    grid-gap: ${SPACER}px;
+    grid-gap: ${themeSpacer(6)};
+    grid-row-gap: ${themeSpacer(8)};
+    padding-left: 4px;
 
     &:not(:last-of-type) {
-        padding-bottom: ${SPACER_BIG - SPACER}px;
+        padding-bottom: calc(${themeSpacer(8)});
     }
 
-    ${mediaMin('sm')} {
-        margin: 0 ${INDICATOR_SIZE}px;
+    &:hover {
+        .line {
+            opacity: 0.4;
+        }
     }
 
     .indicator {
         display: block;
         grid-column: 1 / 1;
-        width: ${INDICATOR_SIZE}px;
-        height: ${INDICATOR_SIZE}px;
-        transform: translateY(4px) translateX(-50%) rotate(45deg);
+        width: ${({isPresent}) => (isPresent ? '16px' : INDICATOR_SIZE)};
+        height: ${({isPresent}) => (isPresent ? '16px' : INDICATOR_SIZE)};
+        transform: translateY(4px) translateX(0) rotate(45deg);
         border: 3px solid;
-        border-color: ${({isPresent}) => (isPresent ? COLOR_PRESENT : COLOR_TIMELINE)};
+        border-color: ${(p) => themeColor(p.isPresent ? 'mainLight' : 'pageBackground', 1)};
 
         ${mediaMax('sm')} {
+            grid-row: 1 / 1;
             display: none;
         }
     }
@@ -73,10 +68,12 @@ export const JobEntry = styled(JobEntryComponent)`
         display: block;
         grid-column: 1 / 1;
         grid-row: 2 / 4;
-        width: 3px;
+        width: 2px;
         height: 100%;
-        transform: translateX(-50%);
-        background: ${({isPresent}) => (isPresent ? COLOR_PRESENT : COLOR_TIMELINE)};
+        transform: translateX(calc(${INDICATOR_SIZE} / 2));
+        background: ${(p) => themeColor(p.isPresent ? 'mainLight' : 'pageBackground')};
+        opacity: 0.2;
+        transition: opacity 100ms ease-in;
 
         ${mediaMax('sm')} {
             display: none;
@@ -85,59 +82,59 @@ export const JobEntry = styled(JobEntryComponent)`
 
     .year {
         position: relative;
-        grid-column: 1 / -1;
+        grid-column: 1 / 3;
+        grid-row: 1 / 1;
         z-index: 10;
         justify-self: start;
-        padding-right: ${SPACER_BIG}px;
-        color: ${COLOR_GRAY[8]};
-        font-size: 12px;
+        padding-right: ${themeSpacer(9)};
+        color: ${(p) => themeColor(p.isPresent ? 'mainLight' : 'pageBackground')};
+        font-size: 14px;
         line-height: 24px;
         text-transform: uppercase;
-
-        svg {
-            position: absolute;
-            z-index: -1;
-            top: 0;
-            right: 0;
-            transform: scaleX(-1);
-
-            ${mediaMin('sm')} {
-                right: -24px;
-            }
-        }
     }
 
     .meta {
+        display: flex;
         grid-column: 1 / -1;
         flex: 1 0;
+        flex-direction: column;
         line-height: 1.1;
 
         ${mediaMin('sm')} {
             grid-column: 2 / -1;
         }
 
-        .company {
+        .title {
             font-size: 18px;
             font-weight: 600;
+            letter-spacing: 1px;
         }
 
-        .title {
-            color: ${COLOR_TIMELINE};
-            font-family: ${FONT_SERIF};
+        .company {
+            /* color: ${(p) => themeColor(p.isPresent ? 'mainLight' : 'textLight')}; */
             font-size: 14px;
         }
+    }
+
+    ${TechStack} {
+        grid-column: 3 / -1;
+        grid-row: 1 / 1;
     }
 
     .content {
         grid-column: 1 / -1;
         font-size: 14px;
 
-        p {
-            margin: 0 0 ${SPACER}px 0;
+        p:last-child {
+            margin: 0;
+        }
+
+        p:not(:last-child) {
+            margin: 0 0 ${themeSpacer(4)} 0;
         }
 
         ${mediaMax('sm')} {
-            margin-left: ${SPACER}px;
+            margin-left: ${themeSpacer(4)};
         }
     }
 
@@ -146,6 +143,14 @@ export const JobEntry = styled(JobEntryComponent)`
         .meta,
         .year {
             grid-column: 2 / -1;
+        }
+
+        .content {
+            padding-bottom: ${themeSpacer(2)};
+        }
+
+        .meta {
+            padding-top: ${themeSpacer(2)};
         }
     }
 `;

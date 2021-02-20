@@ -1,75 +1,79 @@
-import {useRouter} from 'next/router';
-import React, {FunctionComponent} from 'react';
-import styled from 'styled-components/macro';
+import {graphql, useStaticQuery, PageRendererProps} from 'gatsby';
+import React, {FunctionComponent, useMemo, useState, useEffect} from 'react';
+import {ThemeProvider} from 'styled-components/macro';
+import {usePageContentTransition} from '../../../animations/usePageContentTransition';
 import {usePageHeaderTransition} from '../../../animations/usePageHeaderTransition';
-import {SPACER, SPACER_BIG} from '../../../constants/style.constants';
 import {useIndexDirection} from '../../../hooks/useIndexDirection';
 import {useRouteData} from '../../../hooks/useRouteData';
+import {THEME_LIGHT} from '../../../theme';
 import {PageComponent} from '../../../types/PageComponent';
-import {mediaMin, ScreenSize} from '../../../utils/style.utils';
 import {ConsoleContent} from '../../ConsoleContent.styled';
 import {Footer} from '../../Footer';
+import {GlobalStyle} from '../../GlobalStyle';
 import {Header} from '../../Header';
 import {Logo} from '../../Logo';
 import {Menu} from '../../Menu';
-import {HeaderContainer} from './HeaderContainer.styled';
-import {usePageContentTransition} from '../../../animations/usePageContentTransition';
 import {ContentContainer} from './ContentContainer.styled';
-import Head from 'next/head';
+import {DefaultLayoutContainer} from './DefaultLayoutContainer.styled';
+import {Fonts} from './Fonts';
+import {HeaderContainer} from './HeaderContainer.styled';
+import {Meta} from './Meta';
+
+interface LayoutChildren {
+    type: PageComponent;
+}
 
 interface LayoutProps {
     className?: string;
-    pageComponent: PageComponent;
+    children: LayoutChildren;
 }
 
-const DefaultLayoutComponent: FunctionComponent<LayoutProps> = ({className, pageComponent}) => {
-    const {pathname} = useRouter();
-    const routeData = useRouteData(pathname);
-    const direction = useIndexDirection(pageComponent.index);
-    const headerTransition = usePageHeaderTransition(pageComponent, direction);
-    const pageTransition = usePageContentTransition(pageComponent, direction);
+function usePageComponents(children: LayoutChildren, index: number): PageComponent {
+    return useMemo(() => (children && children.type) || null, [index]);
+}
+
+export const DefaultLayout: FunctionComponent<LayoutProps & PageRendererProps> = ({children, location}) => {
+    const siteData = useStaticQuery(
+        graphql`
+            query {
+                site {
+                    siteMetadata {
+                        title
+                        description
+                    }
+                }
+            }
+        `,
+    );
+    const routeData = useRouteData(location.pathname);
+    const {HeaderComponent, ContentComponent} = usePageComponents(children, routeData.index);
+    const direction = useIndexDirection(routeData.index);
+    const headerTransition = usePageHeaderTransition(HeaderComponent, routeData.index, direction);
+    const pageTransition = usePageContentTransition(ContentComponent, routeData.index, direction);
 
     return (
-        <div className={className}>
-            <Head>
-                <title>Gregor Menih / {routeData.head.title}</title>
-                <meta name="description" content={routeData.head.description} />
-            </Head>
-            <HeaderContainer>
-                <Logo />
-                <Header title="Gregor Menih" description="full-stack web developer" />
-                <Menu activePath={pathname} />
-            </HeaderContainer>
-            <ConsoleContent>
-                {headerTransition(({imageProps, contentProps, props, key, HeaderComponent}) => (
-                    <HeaderComponent key={key} style={props} imageStyle={imageProps} contentStyle={contentProps} />
-                ))}
-            </ConsoleContent>
-            <ContentContainer>
-                {pageTransition(({PageComponent, key, props}) => (
-                    <PageComponent key={key} style={props} />
-                ))}
-            </ContentContainer>
-            <Footer />
-        </div>
+        <ThemeProvider theme={THEME_LIGHT}>
+            <GlobalStyle />
+            <Fonts />
+            <Meta title={siteData.site.siteMetadata.title} description={siteData.site.siteMetadata.description} routeData={routeData} />
+            <DefaultLayoutContainer>
+                <HeaderContainer>
+                    <Logo />
+                    <Header title={siteData?.site?.siteMetadata?.title} description={siteData?.site?.siteMetadata?.description} />
+                    <Menu activePath={location.pathname} />
+                </HeaderContainer>
+                <ConsoleContent>
+                    {headerTransition(({imageProps, contentProps, props, key, HeaderComponent}) => (
+                        <HeaderComponent key={key} style={props} imageStyle={imageProps} contentStyle={contentProps} />
+                    ))}
+                </ConsoleContent>
+                <ContentContainer>
+                    {pageTransition(({PageComponent, key, props}) => (
+                        <PageComponent key={key} style={props} />
+                    ))}
+                </ContentContainer>
+                <Footer />
+            </DefaultLayoutContainer>
+        </ThemeProvider>
     );
 };
-
-export const DefaultLayout = styled(DefaultLayoutComponent)`
-    display: grid;
-    grid-template-rows: minmax(0, 100px) 1fr min-content;
-    grid-gap: ${SPACER_BIG}px;
-    margin: ${SPACER_BIG}px auto;
-
-    ${mediaMin('md')} {
-        width: ${ScreenSize.md - SPACER}px;
-    }
-
-    ${mediaMin('lg')} {
-        width: ${ScreenSize.lg - SPACER}px;
-    }
-
-    ${mediaMin('xl')} {
-        width: ${ScreenSize.xl - SPACER}px;
-    }
-`;

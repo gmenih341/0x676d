@@ -2,8 +2,14 @@ import {useMemo} from 'react';
 import {RouteData} from '../types/RouteData';
 import {routes} from '../constants/route.constants';
 
+
 function getRouteData(pathname: string): RouteData {
-    return pathname in routes ? routes[pathname] : routes['/'];
+    const routeIndex = routes.findIndex((r) => r.path === pathname);
+    const index = routeIndex === -1 ? 0 : routeIndex;
+    return {
+        index,
+        ...routes[index],
+    };
 }
 
 export function useRouteData(pathname: string): RouteData {

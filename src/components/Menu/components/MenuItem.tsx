@@ -1,8 +1,9 @@
-import Link from 'next/link';
+import {Link} from 'gatsby';
 import React, {FunctionComponent} from 'react';
 import styled from 'styled-components/macro';
-import {SPACER, SPACER_SMALL, COLOR_BLACK, FONT_SANS, COLOR_MAIN} from '../../../constants/style.constants';
+import {COLOR_MAIN, FONT_SANS} from '../../../constants/style.constants';
 import {mediaMin} from '../../../utils/style.utils';
+import {themeColor, themeSpacer} from '../../../utils/theme.utils';
 
 interface MenuItemProps {
     href: string;
@@ -13,25 +14,24 @@ interface MenuItemProps {
 }
 
 const MenuItemComponent: FunctionComponent<MenuItemProps> = ({children, className, href, currentPath}) => (
-    <Link href={href}>
-        <a href={href} className={(className = className + (href === currentPath ? ' active' : ''))}>
-            <span>{children}</span>
-            <strong>{children}</strong>
-        </a>
+    <Link to={href} className={className + (href === currentPath ? ' active' : '')}>
+        <span>{children}</span>
+        <strong>{children}</strong>
     </Link>
 );
 
 export const MenuItem = styled(MenuItemComponent)`
     display: block;
     position: relative;
-    margin: ${SPACER}px 0;
-    padding: ${SPACER_SMALL}px ${SPACER}px;
-    color: ${COLOR_BLACK};
+    margin: ${themeSpacer(6)} 0;
+    padding: ${themeSpacer(3)} ${themeSpacer(6)};
+    color: ${themeColor('textDark')};
     font-family: ${FONT_SANS};
     font-size: 16px;
     font-weight: 300;
     line-height: 16px;
     text-decoration: none;
+    cursor: pointer;
 
     &:first-of-type {
         margin: 0 !important;
@@ -39,11 +39,11 @@ export const MenuItem = styled(MenuItemComponent)`
 
     ${mediaMin('md')} {
         display: inline-block;
-        margin: 0 0 0 ${SPACER_SMALL}px;
+        margin: 0 0 0 ${themeSpacer(3)};
     }
 
     ${mediaMin('lg')} {
-        margin: 0 0 0 ${SPACER}px;
+        margin: 0 0 0 ${themeSpacer(6)};
     }
 
     strong,
@@ -63,7 +63,7 @@ export const MenuItem = styled(MenuItemComponent)`
     }
 
     &.active {
-        color: ${COLOR_MAIN[6]};
+        color: ${themeColor('main')};
 
         strong {
             visibility: inherit;

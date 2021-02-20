@@ -1,10 +1,10 @@
 import {createGlobalStyle} from 'styled-components/macro';
-import {COLOR_GRAY} from '../constants/style.constants';
+import {themeColor} from '../utils/theme.utils';
 
 export const GlobalStyle = createGlobalStyle`
     html,
     body,
-    #__next {
+    #__gatsby {
         position: relative;
         min-height: 100%;
         margin: 0;
@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     
     body {
-        background-color: ${COLOR_GRAY[3]};
+        background-color: ${themeColor('pageBackground')};
     }
 
     * {

@@ -1,7 +1,8 @@
 import {animated} from 'react-spring';
 import styled from 'styled-components/macro';
-import {COLOR_GRAY, SPACER} from '../../../../../constants/style.constants';
+import {COLOR_GRAY} from '../../../../../constants/style.constants';
 import {createBaseContentBox} from '../../../../../utils/component.utils';
+import {themeSpacer} from '../../../../../utils/theme.utils';
 
 export const SelectButton = styled(animated.button)`
     ${createBaseContentBox()}
@@ -13,7 +14,7 @@ export const SelectButton = styled(animated.button)`
     span {
         display: block;
         flex-grow: 1;
-        margin-right: ${SPACER}px;
+        margin-right: ${themeSpacer(6)};
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
